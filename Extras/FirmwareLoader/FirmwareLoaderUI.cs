@@ -46,6 +46,23 @@ namespace DMR
 			}
 		}
 
+		public void SetLoadingState(bool loading)
+		{
+			if (loading)
+			{
+				this.grpboxModel.Enabled = false;
+				this.btnClose.Enabled = false;
+				this.grpboxProgress.Enabled = true;
+			}
+			else
+			{
+				this.grpboxModel.Enabled = true;
+				this.btnClose.Enabled = true;
+				this.grpboxProgress.Enabled = false;
+				this.progressBar1.Value = 0;
+			}
+		}
+
 		private void FirmwareLoaderUI_Load(object sender, EventArgs e)
 		{
 
@@ -63,6 +80,21 @@ namespace DMR
 			}
 		}
 
+
+		private void rbModel_CheckedChanged(object sender, EventArgs e)
+		{
+			RadioButton rb = sender as RadioButton;
+
+			if (rb != null)
+			{
+				if (rb.Checked)
+				{
+					FirmwareLoader.outputType = (FirmwareLoader.OutputType)rb.Tag;
+					UpdateUploadButtonLabel();
+				}
+			}
+		}
+
 		private void btnUploadFirmware_Click(object sender, EventArgs e)
 		{
 			if (IsLoading)
@@ -75,7 +107,9 @@ namespace DMR
 				Action<object> action = (object obj) =>
 				{
 					IsLoading = true;
+					SetLoadingState(true);
 					FirmwareLoader.UploadFirmare(_filename, this);
+					SetLoadingState(false);
 					IsLoading = false;
 				};
 				try
@@ -86,6 +120,7 @@ namespace DMR
 				catch (Exception)
 				{
 					IsLoading = false;
+					SetLoadingState(false);
 				}
 			}
 		}
