@@ -94,7 +94,6 @@ namespace DMR
 				if (rb.Checked)
 				{
 					FirmwareLoader.outputType = (FirmwareLoader.OutputType)rb.Tag;
-					UpdateUploadButtonLabel();
 				}
 			}
 		}

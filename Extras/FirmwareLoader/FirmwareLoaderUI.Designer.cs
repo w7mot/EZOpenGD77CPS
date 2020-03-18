@@ -22,11 +22,6 @@
 
 		#region Windows Form Designer generated code
 
-		public void UpdateUploadButtonLabel()
-		{
-			this.btnUploadFirmware.Text = string.Format("Upload firmware to {0}", FirmwareLoader.getModelName());
-		}
-
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
