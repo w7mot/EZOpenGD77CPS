@@ -3088,20 +3088,12 @@ namespace DMR
 
 		private void tsmiFirmwareLoader_Click(object sender, EventArgs e)
 		{
-			OpenFileDialog openFileDialog = new OpenFileDialog();
-			openFileDialog.Filter = "firmware files|*.sgl";
-			openFileDialog.InitialDirectory = IniFileUtils.getProfileStringWithDefault("Setup", "LastFirmwareLocation", null);
-			if (openFileDialog.ShowDialog() == DialogResult.OK && openFileDialog.FileName != null)
-			{
-				IniFileUtils.WriteProfileString("Setup", "LastFirmwareLocation", Path.GetDirectoryName(openFileDialog.FileName)); 
-				FirmwareLoaderUI firmwareLoaderUI = new FirmwareLoaderUI(openFileDialog.FileName);
+				FirmwareLoaderUI firmwareLoaderUI = new FirmwareLoaderUI(); // openFileDialog.FileName
 				firmwareLoaderUI.ShowDialog();
-			}
 		}
 		
 		private void tsbtnRead_Click(object sender, EventArgs e)
 		{
-
 			if (SetupDiWrap.ComPortNameFromFriendlyNamePrefix("OpenGD77") != null)
 			{
 				openGD77Form(OpenGD77Form.CommsAction.READ_CODEPLUG);

@@ -34,8 +34,10 @@
 		private void InitializeComponent()
 		{
 			this.lblMessage = new System.Windows.Forms.Label();
+			this.progressBarDwnl = new System.Windows.Forms.ProgressBar();
 			this.progressBar1 = new System.Windows.Forms.ProgressBar();
 			this.btnClose = new System.Windows.Forms.Button();
+			this.btnDownloadFirmware = new System.Windows.Forms.Button();
 			this.btnUploadFirmware = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			//
@@ -52,7 +54,7 @@
 			this.lblMessage.Location = new System.Drawing.Point(20, 18);
 			this.lblMessage.Name = "lblMessage";
 			this.lblMessage.Size = new System.Drawing.Size(370, 20);
-			this.lblMessage.TabIndex = 3;
+			this.lblMessage.TabIndex = 0;
 			this.lblMessage.Text = "label1";
 			// 
 			// progressBar1
@@ -61,7 +63,7 @@
 			this.progressBar1.Name = "progressBar1";
 			this.progressBar1.Size = new System.Drawing.Size(380, 11);
 			this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-			this.progressBar1.TabIndex = 2;
+			this.progressBar1.TabIndex = 1;
 
 			this.grpboxProgress.Controls.Add(this.lblMessage);
 			this.grpboxProgress.Controls.Add(this.progressBar1);
@@ -72,7 +74,7 @@
 			this.btnClose.Location = new System.Drawing.Point(340, 170);
 			this.btnClose.Name = "btnClose";
 			this.btnClose.Size = new System.Drawing.Size(75, 23);
-			this.btnClose.TabIndex = 4;
+			this.btnClose.TabIndex = 2;
 			this.btnClose.Text = "Close";
 			this.btnClose.UseVisualStyleBackColor = true;
 			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -111,6 +113,31 @@
 
 			this.rbModels[(int)FirmwareLoader.outputType].Checked = true;
 
+			//
+			// progressBarDwnl
+			//
+			this.progressBarDwnl.Location = new System.Drawing.Point(233, 20);
+			this.progressBarDwnl.Name = "progressBarDwnl";
+			this.progressBarDwnl.Size = new System.Drawing.Size(170, 8);
+			this.progressBarDwnl.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+			this.progressBarDwnl.TabIndex = 3;
+			this.progressBarDwnl.Visible = false;
+			this.progressBarDwnl.Minimum = 0;
+			this.progressBarDwnl.Maximum = 100;
+			this.progressBarDwnl.Value = 0;
+
+			// 
+			// btnDownloadFirmware
+			// 
+			this.btnDownloadFirmware.Location = new System.Drawing.Point(233, 29);
+			this.btnDownloadFirmware.Name = "btnDownloadFirmware";
+			this.btnDownloadFirmware.MinimumSize = new System.Drawing.Size(170, 25);
+			this.btnDownloadFirmware.AutoSize = true;
+			this.btnDownloadFirmware.TabIndex = 4;
+			this.btnDownloadFirmware.Text = "Download && Update";
+			this.btnDownloadFirmware.UseVisualStyleBackColor = true;
+			this.btnDownloadFirmware.Click += new System.EventHandler(this.btnDownloadFirmware_Click);
+		
 			// 
 			// btnUploadFirmware
 			// 
@@ -119,13 +146,15 @@
 			this.btnUploadFirmware.MinimumSize = new System.Drawing.Size(170, 25);
 			this.btnUploadFirmware.AutoSize = true;
 			this.btnUploadFirmware.TabIndex = 5;
-			this.btnUploadFirmware.Text = string.Format("Upload firmware to {0}", FirmwareLoader.getModelName());
+			this.btnUploadFirmware.Text = "Select a File && Update";
 			this.btnUploadFirmware.UseVisualStyleBackColor = true;
 			this.btnUploadFirmware.Click += new System.EventHandler(this.btnUploadFirmware_Click);
 
 			this.grpboxModel.Controls.Add(this.rbModels[0]);
 			this.grpboxModel.Controls.Add(this.rbModels[1]);
 			this.grpboxModel.Controls.Add(this.rbModels[2]);
+			this.grpboxModel.Controls.Add(this.progressBarDwnl);
+			this.grpboxModel.Controls.Add(this.btnDownloadFirmware);
 			this.grpboxModel.Controls.Add(this.btnUploadFirmware);
 			// 
 			// FirmwareLoaderUI
@@ -151,8 +180,10 @@
 		#endregion
 
 		private System.Windows.Forms.Label lblMessage;
+		private System.Windows.Forms.ProgressBar progressBarDwnl;
 		private System.Windows.Forms.ProgressBar progressBar1;
 		private System.Windows.Forms.Button btnClose;
+		private System.Windows.Forms.Button btnDownloadFirmware;
 		private System.Windows.Forms.Button btnUploadFirmware;
 		private System.Windows.Forms.GroupBox grpboxModel;
 		//private System.Windows.Forms.Panel panelProgress;
