@@ -207,9 +207,11 @@ namespace DMR
 			const int TRANSFER_LENGTH = 38;
 			byte[] recBuf = new byte[TRANSFER_LENGTH];
 
-			_specifiedDevice.SendData(cmd);
-			_specifiedDevice.ReceiveData(recBuf);// Wait for response
-
+			if (_specifiedDevice != null)
+			{
+				_specifiedDevice.SendData(cmd);
+				_specifiedDevice.ReceiveData(recBuf);// Wait for response
+			}
 			return recBuf;
 		}
 

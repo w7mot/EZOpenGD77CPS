@@ -40,7 +40,7 @@
 			// Progress group box
 			//
 			this.grpboxProgress = new System.Windows.Forms.GroupBox();
-			this.grpboxProgress.Location = new System.Drawing.Point(5, 100);
+			this.grpboxProgress.Location = new System.Drawing.Point(5, 105);
 			this.grpboxProgress.Size = new System.Drawing.Size(410, 60);
 			this.grpboxProgress.Text = " Progress ";
 			// 
@@ -67,7 +67,7 @@
 			// 
 			// btnClose
 			// 
-			this.btnClose.Location = new System.Drawing.Point(340, 170);
+			this.btnClose.Location = new System.Drawing.Point(340, 175);
 			this.btnClose.Name = "btnClose";
 			this.btnClose.Size = new System.Drawing.Size(75, 23);
 			this.btnClose.TabIndex = 2;
@@ -106,8 +106,6 @@
 			this.rbModels[2].Tag = (int)FirmwareLoader.OutputType.OutputType_DM1801;
 			this.rbModels[2].AutoSize = true;
 			this.rbModels[2].CheckedChanged += new System.EventHandler(this.rbModel_CheckedChanged);
-
-			this.rbModels[(int)FirmwareLoader.outputType].Checked = true;
 
 			// 
 			// btnDetectModel
@@ -170,7 +168,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(420, 200);
+			this.ClientSize = new System.Drawing.Size(420, 205);
 			//this.Controls.Add(this.btnUploadFirmware);
 			this.Controls.Add(this.grpboxModel);
 			this.Controls.Add(this.btnClose);

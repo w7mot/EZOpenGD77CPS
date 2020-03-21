@@ -22,6 +22,10 @@ namespace DMR
 
 		public FirmwareLoaderUI()
 		{
+			InitializeComponent();
+			this.lblMessage.Text = "";
+			this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);// Roger Clark. Added correct icon on main form!
+
 			FirmwareLoader.outputType = FirmwareLoader.probeModel();
 
 			if ((FirmwareLoader.outputType < FirmwareLoader.OutputType.OutputType_GD77) || (FirmwareLoader.outputType > FirmwareLoader.OutputType.OutputType_DM1801))
@@ -29,11 +33,7 @@ namespace DMR
 				MessageBox.Show("Error: Unable to detect your radio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				FirmwareLoader.outputType = FirmwareLoader.OutputType.OutputType_GD77;
 			}
-
-			InitializeComponent();
-			this.lblMessage.Text = "";
-			this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);// Roger Clark. Added correct icon on main form!
-
+			this.rbModels[(int)FirmwareLoader.outputType].Checked = true;
 		}
 
 		public void SetLabel(string txt)
