@@ -32,6 +32,7 @@
 			this.progressBarDwnl = new System.Windows.Forms.ProgressBar();
 			this.progressBar1 = new System.Windows.Forms.ProgressBar();
 			this.btnClose = new System.Windows.Forms.Button();
+			this.btnDetectModel = new System.Windows.Forms.Button();
 			this.btnDownloadFirmware = new System.Windows.Forms.Button();
 			this.btnUploadFirmware = new System.Windows.Forms.Button();
 			this.SuspendLayout();
@@ -79,12 +80,12 @@
 			this.grpboxModel = new System.Windows.Forms.GroupBox();
 			this.grpboxModel.Text = " Select your radio type ";
 			this.grpboxModel.Location = new System.Drawing.Point(5, 5);
-			this.grpboxModel.Size = new System.Drawing.Size(410, 85);
+			this.grpboxModel.Size = new System.Drawing.Size(410, 98);
 			this.rbModels = new System.Windows.Forms.RadioButton[3];
 
 			this.rbModels[0] = new System.Windows.Forms.RadioButton();
 			this.rbModels[0].Text = "Radioddity GD-77 / TYT MD-760";
-			this.rbModels[0].Location = new System.Drawing.Point(5, 15);
+			this.rbModels[0].Location = new System.Drawing.Point(5, 25);
 			this.rbModels[0].UseVisualStyleBackColor = true;
 			this.rbModels[0].Tag = (int)FirmwareLoader.OutputType.OutputType_GD77;
 			this.rbModels[0].AutoSize = true;
@@ -92,7 +93,7 @@
 
 			this.rbModels[1] = new System.Windows.Forms.RadioButton();
 			this.rbModels[1].Text = "Radioddity GD-77S";
-			this.rbModels[1].Location = new System.Drawing.Point(5, 35);
+			this.rbModels[1].Location = new System.Drawing.Point(5, 45);
 			this.rbModels[1].UseVisualStyleBackColor = true;
 			this.rbModels[1].Tag = (int)FirmwareLoader.OutputType.OutputType_GD77S;
 			this.rbModels[1].AutoSize = true;
@@ -100,7 +101,7 @@
 
 			this.rbModels[2] = new System.Windows.Forms.RadioButton();
 			this.rbModels[2].Text = "Baofeng MD-1801 / DM-860";
-			this.rbModels[2].Location = new System.Drawing.Point(5, 55);
+			this.rbModels[2].Location = new System.Drawing.Point(5, 65);
 			this.rbModels[2].UseVisualStyleBackColor = true;
 			this.rbModels[2].Tag = (int)FirmwareLoader.OutputType.OutputType_DM1801;
 			this.rbModels[2].AutoSize = true;
@@ -108,27 +109,39 @@
 
 			this.rbModels[(int)FirmwareLoader.outputType].Checked = true;
 
+			// 
+			// btnDetectModel
+			// 
+			this.btnDetectModel.Location = new System.Drawing.Point(233, 10);
+			this.btnDetectModel.Name = "btnDetectModel";
+			this.btnDetectModel.MinimumSize = new System.Drawing.Size(170, 25);
+			this.btnDetectModel.AutoSize = true;
+			this.btnDetectModel.TabIndex = 3;
+			this.btnDetectModel.Text = "Detect Radio Type";
+			this.btnDetectModel.UseVisualStyleBackColor = true;
+			this.btnDetectModel.Click += new System.EventHandler(this.btnDetectModel_Click);
+
 			//
 			// progressBarDwnl
 			//
-			this.progressBarDwnl.Location = new System.Drawing.Point(233, 20);
+			this.progressBarDwnl.Location = new System.Drawing.Point(233, 35);
 			this.progressBarDwnl.Name = "progressBarDwnl";
 			this.progressBarDwnl.Size = new System.Drawing.Size(170, 8);
 			this.progressBarDwnl.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-			this.progressBarDwnl.TabIndex = 3;
+			this.progressBarDwnl.TabIndex = 4;
 			this.progressBarDwnl.Visible = false;
-			this.progressBarDwnl.Minimum = 0;
 			this.progressBarDwnl.Maximum = 100;
+			this.progressBarDwnl.Minimum = 0;
 			this.progressBarDwnl.Value = 0;
 
 			// 
 			// btnDownloadFirmware
 			// 
-			this.btnDownloadFirmware.Location = new System.Drawing.Point(233, 29);
+			this.btnDownloadFirmware.Location = new System.Drawing.Point(233, 44);
 			this.btnDownloadFirmware.Name = "btnDownloadFirmware";
 			this.btnDownloadFirmware.MinimumSize = new System.Drawing.Size(170, 25);
 			this.btnDownloadFirmware.AutoSize = true;
-			this.btnDownloadFirmware.TabIndex = 4;
+			this.btnDownloadFirmware.TabIndex = 5;
 			this.btnDownloadFirmware.Text = "Download && Update";
 			this.btnDownloadFirmware.UseVisualStyleBackColor = true;
 			this.btnDownloadFirmware.Click += new System.EventHandler(this.btnDownloadFirmware_Click);
@@ -136,11 +149,11 @@
 			// 
 			// btnUploadFirmware
 			// 
-			this.btnUploadFirmware.Location = new System.Drawing.Point(233, 55);
+			this.btnUploadFirmware.Location = new System.Drawing.Point(233, 69);
 			this.btnUploadFirmware.Name = "btnUploadFirmware";
 			this.btnUploadFirmware.MinimumSize = new System.Drawing.Size(170, 25);
 			this.btnUploadFirmware.AutoSize = true;
-			this.btnUploadFirmware.TabIndex = 5;
+			this.btnUploadFirmware.TabIndex = 6;
 			this.btnUploadFirmware.Text = "Select a File && Update";
 			this.btnUploadFirmware.UseVisualStyleBackColor = true;
 			this.btnUploadFirmware.Click += new System.EventHandler(this.btnUploadFirmware_Click);
@@ -148,6 +161,7 @@
 			this.grpboxModel.Controls.Add(this.rbModels[0]);
 			this.grpboxModel.Controls.Add(this.rbModels[1]);
 			this.grpboxModel.Controls.Add(this.rbModels[2]);
+			this.grpboxModel.Controls.Add(this.btnDetectModel);
 			this.grpboxModel.Controls.Add(this.progressBarDwnl);
 			this.grpboxModel.Controls.Add(this.btnDownloadFirmware);
 			this.grpboxModel.Controls.Add(this.btnUploadFirmware);
@@ -178,6 +192,7 @@
 		private System.Windows.Forms.ProgressBar progressBarDwnl;
 		private System.Windows.Forms.ProgressBar progressBar1;
 		private System.Windows.Forms.Button btnClose;
+		private System.Windows.Forms.Button btnDetectModel;
 		private System.Windows.Forms.Button btnDownloadFirmware;
 		private System.Windows.Forms.Button btnUploadFirmware;
 		private System.Windows.Forms.GroupBox grpboxModel;

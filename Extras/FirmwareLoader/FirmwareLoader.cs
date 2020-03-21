@@ -52,14 +52,21 @@ namespace DMR
 		{
 			OutputType_GD77,
 			OutputType_GD77S,
-			OutputType_DM1801
+			OutputType_DM1801,
+			OutputType_UNKOWN
 		}
 
-		public static OutputType outputType = OutputType.OutputType_GD77;
-
-		public static String getModelName()
+		class StringAndOutputType
 		{
-			switch (outputType)
+			public byte[] Model { get; set; }
+			public OutputType Type { get; set; }
+		}
+
+		public static OutputType outputType = OutputType.OutputType_UNKOWN;
+
+		public static String getModelString(OutputType type)
+		{
+			switch (type)
 			{
 				case OutputType.OutputType_GD77:
 					return "GD-77";
@@ -70,6 +77,11 @@ namespace DMR
 			}
 
 			return "Unknown";
+		}
+
+		public static String getModelName()
+		{
+			return getModelString(outputType);
 		}
 
 
@@ -92,6 +104,9 @@ namespace DMR
 				case OutputType.OutputType_DM1801:
 					encodeKey = new Byte[4] { (0x74), (0x21), (0x44), (0x39) };
 					break;
+
+				case OutputType.OutputType_UNKOWN:
+					return -99;
 			}
 
 			_specifiedDevice = SpecifiedDevice.FindSpecifiedDevice(VENDOR_ID, PRODUCT_ID);
@@ -105,16 +120,33 @@ namespace DMR
 			byte[] fileBuf = File.ReadAllBytes(fileName);
 			if (Path.GetExtension(fileName).ToLower() == ".sgl")
 			{
+				Dictionary<FirmwareLoader.OutputType, byte> firmwareModelTag = new Dictionary<FirmwareLoader.OutputType, byte>();
+				byte headerModel = 0x00;
+
+				firmwareModelTag.Add(OutputType.OutputType_GD77, 0x1B);
+				firmwareModelTag.Add(OutputType.OutputType_GD77S, 0x70);
+				firmwareModelTag.Add(OutputType.OutputType_DM1801, 0x4F);
+
 				// Couls be a SGL file !
-				fileBuf = checkForSGLAndReturnEncryptedData(fileBuf, encodeKey);
+				fileBuf = checkForSGLAndReturnEncryptedData(fileBuf, encodeKey, ref headerModel);
 				if (fileBuf == null)
 				{
 					_progessForm.SetLabel("Error. Missing SGL! in .sgl file header");
 					Console.WriteLine("Error. Missing SGL! in .sgl file header.");
+					_specifiedDevice.Dispose();
+					_specifiedDevice = null;
 					return -5;
 				}
 
 				_progessForm.SetLabel("Firmware file confirmed as SGL");
+
+				if (firmwareModelTag[FirmwareLoader.outputType] != headerModel)
+				{
+					MessageBox.Show("Error. The firmware doesn't match the transceiver model.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					_specifiedDevice.Dispose();
+					_specifiedDevice = null;
+					return -10;
+				}
 			}
 			else
 			{
@@ -126,6 +158,8 @@ namespace DMR
 			if (fileBuf.Length > 0x7b000)
 			{
 				_progessForm.SetLabel("Error. Firmware file too large.");
+				_specifiedDevice.Dispose();
+				_specifiedDevice = null;
 				return -2;
 			}
 
@@ -151,15 +185,32 @@ namespace DMR
 							_progessForm.SetLabel("Error " + respCode + " While sending data file");
 							break;
 					}
+					_specifiedDevice.Dispose();
+					_specifiedDevice = null;
 					return -3;
 				}
 			}
 			else
 			{
 				_progessForm.SetLabel(String.Format("Error while sending initial commands. Is the {0} in firmware update mode?", getModelName()));
+				_specifiedDevice.Dispose();
+				_specifiedDevice = null;
 				return -4;
 			}
+			_specifiedDevice.Dispose();
+					_specifiedDevice = null;
 			return 0;
+		}
+
+		static byte[] sendAndGetResponse(byte[] cmd)
+		{
+			const int TRANSFER_LENGTH = 38;
+			byte[] recBuf = new byte[TRANSFER_LENGTH];
+
+			_specifiedDevice.SendData(cmd);
+			_specifiedDevice.ReceiveData(recBuf);// Wait for response
+
+			return recBuf;
 		}
 
 		static bool sendAndCheckResponse(byte[] cmd, byte[] resp)
@@ -307,6 +358,62 @@ namespace DMR
 			return 0;
 		}
 
+		static public OutputType probeModel()
+		{
+			byte[] commandLetterA = new byte[] { 0x41 }; // 'A'
+			byte[][] command0 = new byte[][] { new byte[] { 0x44, 0x4f, 0x57, 0x4e, 0x4c, 0x4f, 0x41, 0x44 }, new byte[] { 0x23, 0x55, 0x50, 0x44, 0x41, 0x54, 0x45, 0x3f } }; // DOWNLOAD
+			byte[][] command1 = new byte[][] { commandLetterA, responseOK };
+			byte[] commandDummy = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
+			byte[][][] commandID = { command0, command1 };
+			StringAndOutputType[] models = new StringAndOutputType[] {
+				   new StringAndOutputType { Model = Encoding.ASCII.GetBytes("DV01"), Type = OutputType.OutputType_GD77   },
+				   new StringAndOutputType { Model = Encoding.ASCII.GetBytes("DV02"), Type = OutputType.OutputType_GD77S  },
+				   new StringAndOutputType { Model = Encoding.ASCII.GetBytes("DV03"), Type = OutputType.OutputType_DM1801 }
+				   };
+			int commandNumber = 0;
+			byte[] resp;
+
+			_specifiedDevice = SpecifiedDevice.FindSpecifiedDevice(VENDOR_ID, PRODUCT_ID);
+
+			if (_specifiedDevice == null)
+			{
+				Console.WriteLine("Error. Can't connect the transceiver");
+				return OutputType.OutputType_UNKOWN;
+			}
+
+			while (commandNumber < commandID.Length)
+			{
+				if (sendAndCheckResponse(commandID[commandNumber][0], commandID[commandNumber][1]) == false)
+				{
+					Console.WriteLine("Error sending command.");
+					_specifiedDevice.Dispose();
+					_specifiedDevice = null;
+					return OutputType.OutputType_UNKOWN;
+				}
+
+				commandNumber = commandNumber + 1;
+			}
+
+			resp = sendAndGetResponse(commandDummy);
+
+			if (resp.Length >= 4)
+			{
+				foreach (StringAndOutputType model in models)
+				{
+					if (model.Model.SequenceEqual(resp.ToList().GetRange(0, 4).ToArray()))
+					{
+						_specifiedDevice.Dispose();
+						_specifiedDevice = null;
+						return model.Type;
+					}
+				}
+			}
+
+			_specifiedDevice.Dispose();
+			_specifiedDevice = null;
+			return OutputType.OutputType_UNKOWN;
+		}
+
 		static private bool sendInitialCommands(byte[] encodeKey)
 		{
 			byte[] commandLetterA = new byte[] { 0x41 }; //A
@@ -412,15 +519,16 @@ namespace DMR
 			return encrypted;
 		}
 
-
-
-		static byte[] checkForSGLAndReturnEncryptedData(byte[] fileBuf, byte[] encodeKey)
+		static byte[] checkForSGLAndReturnEncryptedData(byte[] fileBuf, byte[] encodeKey, ref byte headerModel)
 		{
 			byte[] header_tag = new byte[] { (byte)'S', (byte)'G', (byte)'L', (byte)'!' };
 
 			// read header tag
 			byte[] buf_in_4 = new byte[4];
+
 			Buffer.BlockCopy(fileBuf, 0, buf_in_4, 0, buf_in_4.Length);
+
+			headerModel = Buffer.GetByte(fileBuf, 11);
 
 			if (buf_in_4.SequenceEqual(header_tag))
 			{
