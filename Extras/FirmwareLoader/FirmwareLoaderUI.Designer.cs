@@ -92,7 +92,7 @@
 			this.rbModels[0].CheckedChanged += new System.EventHandler(this.rbModel_CheckedChanged);
 
 			this.rbModels[1] = new System.Windows.Forms.RadioButton();
-			this.rbModels[1].Text = "Radioddity GD-77S";
+			this.rbModels[1].Text = "Radioddity GD-77S / TYT MD-730";
 			this.rbModels[1].Location = new System.Drawing.Point(5, 45);
 			this.rbModels[1].UseVisualStyleBackColor = true;
 			this.rbModels[1].Tag = (int)FirmwareLoader.OutputType.OutputType_GD77S;
