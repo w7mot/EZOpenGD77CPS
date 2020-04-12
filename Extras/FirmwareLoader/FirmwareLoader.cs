@@ -97,9 +97,8 @@ namespace DMR
 					break;
 
 				case OutputType.OutputType_GD77S:
-					MessageBox.Show("GD-77S is not yet supported", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return -1;
-				//break;
+					encodeKey = new Byte[4] { (0x47), (0x70), (0x6d), (0x4a) };
+					break;
 
 				case OutputType.OutputType_DM1801:
 					encodeKey = new Byte[4] { (0x74), (0x21), (0x44), (0x39) };
@@ -436,11 +435,10 @@ namespace DMR
 					break;
 
 				case OutputType.OutputType_GD77S:
-					command2 = new byte[][] { new byte[] { 0x0 }, new byte[] { 0x0 } };
-					command4 = new byte[][] { new byte[] { 0x0 }, new byte[] { 0x0 } };
-					command5 = new byte[][] { new byte[] { 0x0 }, new byte[] { 0x0 } };
-					MessageBox.Show("GD-77S is not yet supported", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return false;
+					command2 = new byte[][] { new byte[] { 0x44, 0x56, 0x30, 0x32, 0x47, 0x70, 0x6d, 0x4a }, new byte[] { 0x44, 0x56, 0x30, 0x32 } }; //.... DV02Gpmj (thanks Wireshark)
+					command4 = new byte[][] { new byte[] { 0x53, 0x47, 0x2d, 0x4d, 0x44, 0x2d, 0x37, 0x33, 0x30, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }, responseOK }; // SG-MD-730
+					command5 = new byte[][] { new byte[] { 0x4d, 0x44, 0x2d, 0x37, 0x33, 0x30, 0xff, 0xff }, responseOK }; // MD-730..
+					break;
 
 				case OutputType.OutputType_DM1801:
 					command2 = new byte[][] { new byte[] { 0x44, 0x56, 0x30, 0x33, 0x74, 0x21, 0x44, 0x39 }, new byte[] { 0x44, 0x56, 0x30, 0x33 } }; //.... last 4 bytes of the command are the offset encoded as letters a - p (hard coded fr
@@ -494,8 +492,7 @@ namespace DMR
 					shift = 0x0807;
 					break;
 				case OutputType.OutputType_GD77S:
-#warning complete me
-					shift = 0x0807;
+					shift = 0x2a8e;
 					break;
 				case OutputType.OutputType_DM1801:
 					shift = 0x2C7C;
