@@ -1370,6 +1370,12 @@ namespace DMR
 			btnRestoreFlash.Enabled = show;
 			btnReadCodeplug.Enabled = show;
 			btnWriteCodeplug.Enabled = show;
+			btnBackupCalibration.Enabled = show;
+			btnRestoreCalibration.Enabled = show;
+			btnOpenFile.Enabled = show;
+			btnBackupMCUROM.Enabled = show;
+			btnDownloadScreenGrab.Enabled = show;
+			btnPlayTune.Enabled = show;
 		}
 
 		private void OpenGD77Form_Load(object sender, EventArgs e)
