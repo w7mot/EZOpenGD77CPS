@@ -26,15 +26,17 @@ namespace DMR
 			this.lblMessage.Text = "";
 			this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);// Roger Clark. Added correct icon on main form!
 
-			FirmwareLoader.outputType = FirmwareLoader.probeModel();
-
+			FirmwareLoader.outputType = FirmwareLoader.OutputType.OutputType_GD77;// FirmwareLoader.OutputType.OutputType_UNKOWN;// FirmwareLoader.probeModel();
+/*
 			if ((FirmwareLoader.outputType < FirmwareLoader.OutputType.OutputType_GD77) || (FirmwareLoader.outputType > FirmwareLoader.OutputType.OutputType_DM1801))
 			{
 				MessageBox.Show("Error: Unable to detect your radio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				FirmwareLoader.outputType = FirmwareLoader.OutputType.OutputType_GD77;
 			}
 			this.rbModels[(int)FirmwareLoader.outputType].Checked = true;
+ * */
 		}
+
 
 		public void SetLabel(string txt)
 		{
@@ -63,16 +65,23 @@ namespace DMR
 		{
 			if (loading)
 			{
-				this.grpboxModel.Enabled = false;
-				this.btnClose.Enabled = false;
-				this.grpboxProgress.Enabled = true;
+				Invoke((MethodInvoker)delegate
+				{
+					this.grpboxModel.Enabled = false;
+					this.btnClose.Enabled = false;
+					this.grpboxProgress.Enabled = true;
+				});
+
 			}
 			else
 			{
-				this.grpboxModel.Enabled = true;
-				this.btnClose.Enabled = true;
-				this.grpboxProgress.Enabled = false;
-				this.progressBar1.Value = 0;
+				Invoke((MethodInvoker)delegate
+				{
+					this.grpboxModel.Enabled = true;
+					this.btnClose.Enabled = true;
+					this.grpboxProgress.Enabled = false;
+					this.progressBar1.Value = 0;
+				});
 			}
 		}
 
@@ -103,6 +112,8 @@ namespace DMR
 				if (rb.Checked)
 				{
 					FirmwareLoader.outputType = (FirmwareLoader.OutputType)rb.Tag;
+					this.btnDownloadFirmware.Enabled = true;
+					this.btnUploadFirmware.Enabled = true;
 				}
 			}
 		}
@@ -132,6 +143,9 @@ namespace DMR
 					break;
 				case FirmwareLoader.OutputType.OutputType_DM1801:
 					pattern = @"/rogerclarkmelbourne/OpenGD77/releases/download/R([0-9\.]+)/OpenDM1801\.sgl";
+					break;
+				case FirmwareLoader.OutputType.OutputType_RD5R:
+					pattern = @"/rogerclarkmelbourne/OpenGD77/releases/download/R([0-9\.]+)/OpenRD5R\.sgl";
 					break;
 			}
 
@@ -183,14 +197,18 @@ namespace DMR
 			// Now flash the downloaded firmware
 			Action<object> action = (object obj) =>
 			{
+				
 				IsLoading = true;
 				SetLoadingState(true);
 				FirmwareLoader.UploadFirmare(tempFile, this);
 				SetLoadingState(false);
 				IsLoading = false;
+				Console.WriteLine("IsLoading=false");
 				// Cleanup
 				if (File.Exists(tempFile))
+				{
 					File.Delete(tempFile);
+				}
 			};
 			try
 			{
@@ -204,7 +222,9 @@ namespace DMR
 				IsLoading = false;
 				// Cleanup
 				if (File.Exists(tempFile))
+				{
 					File.Delete(tempFile);
+				}
 			}
 		}
 
@@ -212,9 +232,9 @@ namespace DMR
 		{
 			this.btnDetectModel.Enabled = false;
 
-			FirmwareLoader.outputType = FirmwareLoader.probeModel();
+			FirmwareLoader.outputType = FirmwareLoader.OutputType.OutputType_UNKOWN;//FirmwareLoader.probeModel();
 
-			if ((FirmwareLoader.outputType < FirmwareLoader.OutputType.OutputType_GD77) || (FirmwareLoader.outputType > FirmwareLoader.OutputType.OutputType_DM1801))
+			if ((FirmwareLoader.outputType < FirmwareLoader.OutputType.OutputType_GD77) || (FirmwareLoader.outputType > FirmwareLoader.OutputType.OutputType_RD5R))
 			{
 				MessageBox.Show("Error: Unable to detect your radio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				FirmwareLoader.outputType = FirmwareLoader.OutputType.OutputType_GD77;

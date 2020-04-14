@@ -53,6 +53,7 @@ namespace DMR
 			OutputType_GD77,
 			OutputType_GD77S,
 			OutputType_DM1801,
+			OutputType_RD5R,
 			OutputType_UNKOWN
 		}
 
@@ -74,6 +75,8 @@ namespace DMR
 					return "GD-77S";
 				case OutputType.OutputType_DM1801:
 					return "DM-1801";
+				case OutputType.OutputType_RD5R:
+					return "RD-5R";
 			}
 
 			return "Unknown";
@@ -125,6 +128,7 @@ namespace DMR
 				firmwareModelTag.Add(OutputType.OutputType_GD77, 0x1B);
 				firmwareModelTag.Add(OutputType.OutputType_GD77S, 0x70);
 				firmwareModelTag.Add(OutputType.OutputType_DM1801, 0x4F);
+				firmwareModelTag.Add(OutputType.OutputType_RD5R, 0x5C);         // valid value for DM5R firmware v2.1.7
 
 				// Couls be a SGL file !
 				fileBuf = checkForSGLAndReturnEncryptedData(fileBuf, encodeKey, ref headerModel);
@@ -369,10 +373,14 @@ namespace DMR
 			StringAndOutputType[] models = new StringAndOutputType[] {
 				   new StringAndOutputType { Model = Encoding.ASCII.GetBytes("DV01"), Type = OutputType.OutputType_GD77   },
 				   new StringAndOutputType { Model = Encoding.ASCII.GetBytes("DV02"), Type = OutputType.OutputType_GD77S  },
-				   new StringAndOutputType { Model = Encoding.ASCII.GetBytes("DV03"), Type = OutputType.OutputType_DM1801 }
+				   new StringAndOutputType { Model = Encoding.ASCII.GetBytes("DV03"), Type = OutputType.OutputType_DM1801 },
+	   			   new StringAndOutputType { Model = Encoding.ASCII.GetBytes("DV02"), Type = OutputType.OutputType_RD5R }     // Also have "DV02"
 				   };
 			int commandNumber = 0;
 			byte[] resp;
+
+
+
 
 			_specifiedDevice = SpecifiedDevice.FindSpecifiedDevice(VENDOR_ID, PRODUCT_ID);
 
@@ -445,6 +453,13 @@ namespace DMR
 					command4 = new byte[][] { new byte[] { 0x42, 0x46, 0x2d, 0x44, 0x4d, 0x52, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }, responseOK }; //BF-DMR
 					command5 = new byte[][] { new byte[] { 0x31, 0x38, 0x30, 0x31, 0xff, 0xff, 0xff, 0xff }, responseOK }; //1801..
 					break;
+
+				case OutputType.OutputType_RD5R:
+					command2 = new byte[][] { new byte[] { 0x44, 0x56, 0x30, 0x32, 0x53, 0x36, 0x37, 0x62 }, new byte[] { 0x44, 0x56, 0x30, 0x32 } };
+					command4 = new byte[][] { new byte[] { 0x42, 0x46, 0x2D, 0x35, 0x52, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }, responseOK }; //RD-5R
+					command5 = new byte[][] { new byte[] { 0x42, 0x46, 0x2D, 0x35, 0x52, 0xff, 0xff, 0xff }, responseOK }; //RD-5R..
+					break;
+
 			}
 
 			byte[][] commandErase = new byte[][] { new byte[] { 0x46, 0x2d, 0x45, 0x52, 0x41, 0x53, 0x45, 0xff }, responseOK }; //F-ERASE
@@ -496,6 +511,9 @@ namespace DMR
 					break;
 				case OutputType.OutputType_DM1801:
 					shift = 0x2C7C;
+					break;
+				case OutputType.OutputType_RD5R:
+					shift = 0x306E;
 					break;
 			}
 
