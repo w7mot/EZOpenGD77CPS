@@ -37,10 +37,10 @@ namespace DMR
 			this.tabUHF = new System.Windows.Forms.TabPage();
 			this.calibrationBandControlUHF = new DMR.CalibrationBandControl();
 			this.btnWrite = new System.Windows.Forms.Button();
-			this.btnClose = new System.Windows.Forms.Button();
 			this.btnReadFile = new System.Windows.Forms.Button();
 			this.btnReadFromRadio = new System.Windows.Forms.Button();
 			this.lblMessage = new System.Windows.Forms.Label();
+			this.btnSaveCalibration = new System.Windows.Forms.Button();
 			this.tabCtlBands.SuspendLayout();
 			this.tabVHF.SuspendLayout();
 			this.tabUHF.SuspendLayout();
@@ -50,7 +50,7 @@ namespace DMR
 			// 
 			this.tabCtlBands.Controls.Add(this.tabVHF);
 			this.tabCtlBands.Controls.Add(this.tabUHF);
-			this.tabCtlBands.Location = new System.Drawing.Point(12, 59);
+			this.tabCtlBands.Location = new System.Drawing.Point(12, 85);
 			this.tabCtlBands.Name = "tabCtlBands";
 			this.tabCtlBands.SelectedIndex = 0;
 			this.tabCtlBands.Size = new System.Drawing.Size(921, 524);
@@ -97,7 +97,7 @@ namespace DMR
 			// 
 			// btnWrite
 			// 
-			this.btnWrite.Location = new System.Drawing.Point(827, 12);
+			this.btnWrite.Location = new System.Drawing.Point(172, 12);
 			this.btnWrite.Name = "btnWrite";
 			this.btnWrite.Size = new System.Drawing.Size(102, 23);
 			this.btnWrite.TabIndex = 1;
@@ -106,19 +106,9 @@ namespace DMR
 			this.btnWrite.Visible = false;
 			this.btnWrite.Click += new System.EventHandler(this.btnWrite_Click);
 			// 
-			// btnClose
-			// 
-			this.btnClose.Location = new System.Drawing.Point(854, 597);
-			this.btnClose.Name = "btnClose";
-			this.btnClose.Size = new System.Drawing.Size(75, 23);
-			this.btnClose.TabIndex = 1;
-			this.btnClose.Text = "Close";
-			this.btnClose.UseVisualStyleBackColor = true;
-			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-			// 
 			// btnReadFile
 			// 
-			this.btnReadFile.Location = new System.Drawing.Point(172, 12);
+			this.btnReadFile.Location = new System.Drawing.Point(815, 12);
 			this.btnReadFile.Name = "btnReadFile";
 			this.btnReadFile.Size = new System.Drawing.Size(123, 23);
 			this.btnReadFile.TabIndex = 1;
@@ -139,21 +129,31 @@ namespace DMR
 			// lblMessage
 			// 
 			this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblMessage.Location = new System.Drawing.Point(327, 12);
+			this.lblMessage.Location = new System.Drawing.Point(301, 12);
 			this.lblMessage.Name = "lblMessage";
-			this.lblMessage.Size = new System.Drawing.Size(436, 35);
+			this.lblMessage.Size = new System.Drawing.Size(415, 35);
 			this.lblMessage.TabIndex = 2;
 			this.lblMessage.Text = "Please read the calibration data from the radio or open a calibration file";
-			this.lblMessage.Click += new System.EventHandler(this.label1_Click);
+			// 
+			// btnSaveCalibration
+			// 
+			this.btnSaveCalibration.Location = new System.Drawing.Point(815, 41);
+			this.btnSaveCalibration.Name = "btnSaveCalibration";
+			this.btnSaveCalibration.Size = new System.Drawing.Size(123, 23);
+			this.btnSaveCalibration.TabIndex = 1;
+			this.btnSaveCalibration.Text = "Save Calibration file";
+			this.btnSaveCalibration.UseVisualStyleBackColor = true;
+			this.btnSaveCalibration.Visible = false;
+			this.btnSaveCalibration.Click += new System.EventHandler(this.btnSaveCalibration_Click);
 			// 
 			// CalibrationForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(945, 632);
+			this.ClientSize = new System.Drawing.Size(945, 661);
 			this.Controls.Add(this.lblMessage);
-			this.Controls.Add(this.btnClose);
 			this.Controls.Add(this.btnReadFromRadio);
+			this.Controls.Add(this.btnSaveCalibration);
 			this.Controls.Add(this.btnReadFile);
 			this.Controls.Add(this.btnWrite);
 			this.Controls.Add(this.tabCtlBands);
@@ -174,11 +174,11 @@ namespace DMR
 		private System.Windows.Forms.TabPage tabVHF;
 		private System.Windows.Forms.TabPage tabUHF;
 		private System.Windows.Forms.Button btnWrite;
-		private System.Windows.Forms.Button btnClose;
 		private CalibrationBandControl calibrationBandControlUHF;
 		private CalibrationBandControl calibrationBandControlVHF;
 		private Button btnReadFile;
 		private Button btnReadFromRadio;
 		private Label lblMessage;
+		private Button btnSaveCalibration;
 	}
 }

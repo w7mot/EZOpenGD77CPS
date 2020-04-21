@@ -552,8 +552,7 @@ namespace DMR
 						Array.Copy(buf, VHF_OFFSET, array, 0, calibrationDataSize);
 						this.calibrationBandControlVHF.data = (CalibrationData)ByteToData(array);
 
-						tabCtlBands.Visible = true;
-						btnWrite.Visible = true;
+						showButtons();
 					}
 					else
 					{
@@ -572,14 +571,41 @@ namespace DMR
 		{
 			if (readDataFromRadio())
 			{
-				tabCtlBands.Visible = true;
-				btnWrite.Visible = true;
+				showButtons();
 			}
 		}
 
-		private void label1_Click(object sender, EventArgs e)
+		private void showButtons()
 		{
+			tabCtlBands.Visible = true;
+			btnWrite.Visible = true;
+			btnSaveCalibration.Visible = true;
+		}
 
+
+		private void btnSaveCalibration_Click(object sender, EventArgs e)
+		{
+			Byte[] buf = null;
+			SaveFileDialog sfd = new SaveFileDialog();
+
+			lblMessage.Text = "";
+
+			DialogResult dialogResult = sfd.ShowDialog();
+			if (dialogResult == DialogResult.OK && !string.IsNullOrEmpty(sfd.FileName))
+			{
+				byte[] dataBuff = new byte[CALIBRATION_DATA_SIZE];
+
+				int calibrationDataSize = Marshal.SizeOf(typeof(CalibrationData));
+
+				byte[] array = DataToByte(this.calibrationBandControlUHF.data);
+				Array.Copy(array, 0, dataBuff, 0, calibrationDataSize);
+
+				array = DataToByte(this.calibrationBandControlVHF.data);
+				Array.Copy(array, 0, dataBuff, VHF_OFFSET, calibrationDataSize);
+
+				File.WriteAllBytes(sfd.FileName, dataBuff);
+				lblMessage.Text = "File saved.";
+			}
 		}
 	}
 }
