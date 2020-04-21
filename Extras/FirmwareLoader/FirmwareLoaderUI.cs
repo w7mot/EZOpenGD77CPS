@@ -139,7 +139,7 @@ namespace DMR
 					pattern = @"/rogerclarkmelbourne/OpenGD77/releases/download/R([0-9\.]+)/OpenGD77\.sgl";
 					break;
 				case FirmwareLoader.OutputType.OutputType_GD77S:
-					pattern = @"/rogerclarkmelbourne/OpenGD77/releases/download/R([0-9\.]+)/OpenGD77S_HS\.sgl";
+					pattern = @"/rogerclarkmelbourne/OpenGD77/releases/download/R([0-9\.]+)/OpenGD77S\.sgl";
 					break;
 				case FirmwareLoader.OutputType.OutputType_DM1801:
 					pattern = @"/rogerclarkmelbourne/OpenGD77/releases/download/R([0-9\.]+)/OpenDM1801\.sgl";
@@ -187,6 +187,12 @@ namespace DMR
 					return;
 				}
 			}
+			else
+			{
+				MessageBox.Show(String.Format("Error: unable to find a firmware for your {0} transceiver.", FirmwareLoader.getModelName()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				SetLoadingState(false);
+			}
+
 		}
 
 		private void downloadFileCompletedCallback(object sender, AsyncCompletedEventArgs ev)
