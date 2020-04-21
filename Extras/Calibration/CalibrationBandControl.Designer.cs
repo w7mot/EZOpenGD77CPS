@@ -294,7 +294,7 @@
 			// 
 			this.nudVhfOscRef.Location = new System.Drawing.Point(712, 322);
 			this.nudVhfOscRef.Maximum = new decimal(new int[] {
-            65535,
+            1023,
             0,
             0,
             0});
