@@ -68,7 +68,7 @@ namespace DMR
 		 * UHF 405Mhz - 475Mhz (in 10Mhz steps)
 		 */
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-		public byte[] TXIandQ;// Don't adjust
+		public byte[] Dmr4FskDeviation;// Don't adjust
 
 		public byte DigitalRxAudioGainAndBeepVolume;// The Rx audio gain and the beep volume seem linked together.  0x1D on VHF and UHF
 
@@ -109,7 +109,7 @@ namespace DMR
 			this.UknownBlock9 = new byte[8];
 			this.UnknownBlock4 = new byte[4];
 			this.UnknownBlock5 = new byte[8];
-			this.TXIandQ = new byte[8];
+			this.Dmr4FskDeviation = new byte[8];
 			this.UnknownBlock7 = new byte[2];
 			this.UnknownBlock8 = new byte[2];
 			

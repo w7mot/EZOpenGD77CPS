@@ -111,7 +111,7 @@ namespace DMR
 				numItems = calibrationTXIandQ.Rows * calibrationTXIandQ.Cols;
 				for (int i = 0; i < numItems; i++)
 				{
-					_calibrationData.TXIandQ[i] = (byte)calibrationTXIandQ.Values[i];
+					_calibrationData.Dmr4FskDeviation[i] = (byte)calibrationTXIandQ.Values[i];
 				}
 
 				return _calibrationData; 
@@ -167,7 +167,7 @@ namespace DMR
 				int[] txIAndQ = new int[numItems];
 				for (int i = 0; i < numItems; i++)
 				{
-					txIAndQ[i] = _calibrationData.TXIandQ[i];
+					txIAndQ[i] = _calibrationData.Dmr4FskDeviation[i];
 				}
 				calibrationTXIandQ.Values = txIAndQ;
 			}
