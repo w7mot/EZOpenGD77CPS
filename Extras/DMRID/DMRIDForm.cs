@@ -139,7 +139,7 @@ namespace DMR
 				Cursor.Current = Cursors.WaitCursor;
 				this.Refresh();
 				Application.DoEvents();
-				_wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(downloadCompleteHandler);
+				_wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(downloadFromHamDigitalCompleteHandler);
 				_wc.DownloadStringAsync(new Uri("http://ham-digital.org/user_by_lh.php?id=" + txtRegionId.Text));
 	
 			}
@@ -153,8 +153,71 @@ namespace DMR
 
 		}
 
+		private void downloadFromRadioIdCompleteHandler(object sender, DownloadStringCompletedEventArgs e)
+		{
+			string ownRadioId = GeneralSetForm.data.RadioId;
+			string csv;// = e.Result;
+			int maxAge = Int32.MaxValue;
 
-		private void downloadCompleteHandler(object sender, DownloadStringCompletedEventArgs e )
+
+			try
+			{
+				csv = e.Result;
+			}
+			catch (Exception)
+			{
+				MessageBox.Show(Settings.dicCommon["UnableDownloadFromInternet"]);
+				return;
+			}
+
+			try
+			{
+				maxAge = Int32.Parse(this.txtAgeMaxDays.Text);
+			}
+			catch (Exception)
+			{
+
+			}
+
+			try
+			{
+				bool first = true;
+				foreach (var csvLine in csv.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries))
+				{
+					if (first)
+					{
+						first = false;
+						continue;
+					}
+					if (csvLine.Length > 0)
+					{
+						DMRDataItem item = (new DMRDataItem()).FromRadioidDotNet(csvLine);
+						if (item.DMRIdString.IndexOf(txtRegionId.Text) == 0)
+						{
+							DataList.Add(item);
+						}
+					}
+				}
+				DataList = DataList.Distinct().ToList();
+
+				rebindData();
+				Cursor.Current = Cursors.Default;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(Settings.dicCommon["ErrorParsingData"]);
+			}
+			finally
+			{
+				_wc = null;
+				_isDownloading = false;
+				Cursor.Current = Cursors.Default;
+			}
+		}
+
+
+
+		private void downloadFromHamDigitalCompleteHandler(object sender, DownloadStringCompletedEventArgs e )
 		{
 			string ownRadioId = GeneralSetForm.data.RadioId;
 			string csv;// = e.Result;
@@ -828,6 +891,38 @@ namespace DMR
 					MessageBox.Show("The CSV file could not be opened");
 				}
 			}
+		}
+
+		private void btnDownloadFromRadioId_Click(object sender, EventArgs e)
+		{
+			if (DataList == null || _isDownloading)
+			{
+				return;
+			}
+
+			_wc = new WebClient();
+			try
+			{
+				lblMessage.Text = Settings.dicCommon["DownloadContactsDownloading"];
+				Cursor.Current = Cursors.WaitCursor;
+				this.Refresh();
+				Application.DoEvents();
+				ServicePointManager.Expect100Continue = true;
+				// If you have .Net 4.5
+				//ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+				// otherwise
+				ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+				_wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(downloadFromRadioIdCompleteHandler);
+				_wc.DownloadStringAsync(new Uri("https://www.radioid.net/static/user.csv"));
+
+			}
+			catch (Exception)
+			{
+				Cursor.Current = Cursors.Default;
+				MessageBox.Show(Settings.dicCommon["UnableDownloadFromInternet"]);
+				return;
+			}
+			_isDownloading = true;
 		}
 	}
 }

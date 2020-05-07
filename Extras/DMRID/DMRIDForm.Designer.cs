@@ -42,8 +42,9 @@
 			this.cmbStringLen = new System.Windows.Forms.ComboBox();
 			this.lblEnhancedLength = new System.Windows.Forms.Label();
 			this.progressBar1 = new System.Windows.Forms.ProgressBar();
-			this.btnImportCSV = new System.Windows.Forms.Button();
+			this.btnDownloadFromRadioId = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.button1 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
@@ -98,9 +99,9 @@
 			// 
 			this.dataGridView1.AllowUserToResizeColumns = false;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Location = new System.Drawing.Point(13, 129);
+			this.dataGridView1.Location = new System.Drawing.Point(13, 161);
 			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.Size = new System.Drawing.Size(505, 141);
+			this.dataGridView1.Size = new System.Drawing.Size(505, 109);
 			this.dataGridView1.TabIndex = 6;
 			this.dataGridView1.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dataGridView1_SortCompare);
 			// 
@@ -115,9 +116,9 @@
 			// 
 			// lblRegionId
 			// 
-			this.lblRegionId.Location = new System.Drawing.Point(368, 103);
+			this.lblRegionId.Location = new System.Drawing.Point(395, 103);
 			this.lblRegionId.Name = "lblRegionId";
-			this.lblRegionId.Size = new System.Drawing.Size(102, 13);
+			this.lblRegionId.Size = new System.Drawing.Size(75, 13);
 			this.lblRegionId.TabIndex = 7;
 			this.lblRegionId.Text = "Region";
 			this.lblRegionId.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -179,15 +180,15 @@
 			this.progressBar1.Size = new System.Drawing.Size(499, 17);
 			this.progressBar1.TabIndex = 12;
 			// 
-			// btnImportCSV
+			// btnDownloadFromRadioId
 			// 
-			this.btnImportCSV.Location = new System.Drawing.Point(12, 100);
-			this.btnImportCSV.Name = "btnImportCSV";
-			this.btnImportCSV.Size = new System.Drawing.Size(179, 23);
-			this.btnImportCSV.TabIndex = 0;
-			this.btnImportCSV.Text = "Import CSV - filtered by region code";
-			this.btnImportCSV.UseVisualStyleBackColor = true;
-			this.btnImportCSV.Click += new System.EventHandler(this.btnImportCSV_Click);
+			this.btnDownloadFromRadioId.Location = new System.Drawing.Point(12, 100);
+			this.btnDownloadFromRadioId.Name = "btnDownloadFromRadioId";
+			this.btnDownloadFromRadioId.Size = new System.Drawing.Size(305, 23);
+			this.btnDownloadFromRadioId.TabIndex = 0;
+			this.btnDownloadFromRadioId.Text = "Download from RadioID.net filtered by region code";
+			this.btnDownloadFromRadioId.UseVisualStyleBackColor = true;
+			this.btnDownloadFromRadioId.Click += new System.EventHandler(this.btnDownloadFromRadioId_Click);
 			// 
 			// groupBox1
 			// 
@@ -200,6 +201,16 @@
 			this.groupBox1.TabIndex = 13;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Data record length";
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(15, 132);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(302, 23);
+			this.button1.TabIndex = 0;
+			this.button1.Text = "Import CSV - filtered by region code";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.btnImportCSV_Click);
 			// 
 			// DMRIDForm
 			// 
@@ -217,7 +228,8 @@
 			this.Controls.Add(this.lblMessage);
 			this.Controls.Add(this.btnClear);
 			this.Controls.Add(this.btnWriteToGD77);
-			this.Controls.Add(this.btnImportCSV);
+			this.Controls.Add(this.button1);
+			this.Controls.Add(this.btnDownloadFromRadioId);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "DMRIDForm";
 			this.Text = "DMR ID";
@@ -246,7 +258,8 @@
 		private System.Windows.Forms.ComboBox cmbStringLen;
 		private System.Windows.Forms.Label lblEnhancedLength;
 		private System.Windows.Forms.ProgressBar progressBar1;
-		private System.Windows.Forms.Button btnImportCSV;
+		private System.Windows.Forms.Button btnDownloadFromRadioId;
 		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.Button button1;
 	}
 }
