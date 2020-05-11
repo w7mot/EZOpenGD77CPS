@@ -1082,7 +1082,7 @@ namespace DMR
 			this.txtName.Location = new Point(316, 62);
 			this.txtName.MaxByteLength = 0;
 			this.txtName.Name = "txtName";
-			this.txtName.Size = new Size(115, 23);
+			this.txtName.Size = new Size(150, 23);
 			this.txtName.TabIndex = 1;
 			this.txtName.Leave += new EventHandler(this.txtName_Leave);
 			this.grpSelected.Controls.Add(this.lstSelected);
