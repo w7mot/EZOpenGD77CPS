@@ -1096,10 +1096,10 @@ namespace DMR
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstSelected.FormattingEnabled = true;
 			this.lstSelected.ItemHeight = 16;
-			this.lstSelected.Location = new Point(47, 37);
+			this.lstSelected.Location = new Point(27, 37);
 			this.lstSelected.Name = "lstSelected";
 			this.lstSelected.SelectionMode = SelectionMode.MultiExtended;
-			this.lstSelected.Size = new Size(120, 324);
+			this.lstSelected.Size = new Size(160, 324);
 			this.lstSelected.TabIndex = 5;
 			this.lstSelected.SelectedIndexChanged += new EventHandler(this.lstSelected_SelectedIndexChanged);
 			this.lstSelected.DoubleClick += new EventHandler(this.lstSelected_DoubleClick);
@@ -1123,10 +1123,10 @@ namespace DMR
 | System.Windows.Forms.AnchorStyles.Left)));
             this.lstUnselected.FormattingEnabled = true;
 			this.lstUnselected.ItemHeight = 16;
-			this.lstUnselected.Location = new Point(52, 37);
+			this.lstUnselected.Location = new Point(32, 37);
 			this.lstUnselected.Name = "lstUnselected";
 			this.lstUnselected.SelectionMode = SelectionMode.MultiExtended;
-			this.lstUnselected.Size = new Size(120, 324);
+			this.lstUnselected.Size = new Size(160, 324);
 			this.lstUnselected.TabIndex = 2;
 			this.btnDel.Location = new Point(327, 310);
 			this.btnDel.Name = "btnDel";
