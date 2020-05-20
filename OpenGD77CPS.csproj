@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>WinExe</OutputType>
     <AssemblyName>OpenGD77CPS</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <TargetFrameworkProfile />
@@ -50,6 +50,7 @@
     <DebugSymbols>false</DebugSymbols>
     <DefineConstants>OpenGD77</DefineConstants>
     <OutputPath>bin\ReleaseOpenGD77\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_3.1.x|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -59,6 +60,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <DefineConstants>CP_VER_3_1_X</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_3.1.x|x86'">
     <OutputPath>bin\Release_3.1.x\</OutputPath>
@@ -68,10 +70,12 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <DefineConstants>CP_VER_3_1_X</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DefineConstants>OpenGD77</DefineConstants>
     <OutputPath>bin\Debug_OpenGD77\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -156,6 +160,7 @@
     <Compile Include="Extras\OpenGD77\OpenGD77Form.Designer.cs">
       <DependentUpon>OpenGD77Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extras\RadioIdResults.cs" />
     <Compile Include="Extras\SetupDiWrap.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Code</SubType>
