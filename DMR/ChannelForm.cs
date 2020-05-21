@@ -2823,9 +2823,7 @@ namespace DMR
 
 		private void ChannelForm_Shown(object sender, EventArgs e)
 		{
-			System.Media.SystemSounds.Beep.Play();
 			this.pnlChannel.Focus();
-			//txtName.Focus();
 		}
 
 		private void ChannelForm_Load(object sender, EventArgs e)
