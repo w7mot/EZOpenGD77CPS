@@ -894,15 +894,15 @@ namespace DMR
 			this.btnImport = new System.Windows.Forms.Button();
 			this.btnExport = new System.Windows.Forms.Button();
 			this.btnDeleteSelect = new System.Windows.Forms.Button();
-			this.txtTxFreq = new DMR.SGTextBox();
-			this.txtRxFreq = new DMR.SGTextBox();
-			this.txtName = new DMR.SGTextBox();
 			this.cmbPower = new System.Windows.Forms.ComboBox();
 			this.cmbChMode = new System.Windows.Forms.ComboBox();
-			this.cmbAddChMode = new CustomCombo();
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.dgvChannels = new System.Windows.Forms.DataGridView();
 			this.btnImportClearAll = new System.Windows.Forms.Button();
+			this.txtTxFreq = new DMR.SGTextBox();
+			this.txtRxFreq = new DMR.SGTextBox();
+			this.txtName = new DMR.SGTextBox();
+			this.cmbAddChMode = new CustomCombo();
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -963,6 +963,69 @@ namespace DMR
 			this.btnDeleteSelect.UseVisualStyleBackColor = true;
 			this.btnDeleteSelect.Click += new System.EventHandler(this.btnDeleteSelected_Click);
 			// 
+			// cmbPower
+			// 
+			this.cmbPower.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cmbPower.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.cmbPower.FormattingEnabled = true;
+			this.cmbPower.Location = new System.Drawing.Point(1061, 12);
+			this.cmbPower.Name = "cmbPower";
+			this.cmbPower.Size = new System.Drawing.Size(61, 24);
+			this.cmbPower.TabIndex = 8;
+			this.cmbPower.Visible = false;
+			this.cmbPower.Leave += new System.EventHandler(this.cmbPower_Leave);
+			// 
+			// cmbChMode
+			// 
+			this.cmbChMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cmbChMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.cmbChMode.FormattingEnabled = true;
+			this.cmbChMode.Location = new System.Drawing.Point(994, 12);
+			this.cmbChMode.Name = "cmbChMode";
+			this.cmbChMode.Size = new System.Drawing.Size(61, 24);
+			this.cmbChMode.TabIndex = 7;
+			this.cmbChMode.Visible = false;
+			this.cmbChMode.Leave += new System.EventHandler(this.cmbChMode_Leave);
+			// 
+			// btnAdd
+			// 
+			this.btnAdd.Location = new System.Drawing.Point(139, 11);
+			this.btnAdd.Name = "btnAdd";
+			this.btnAdd.Size = new System.Drawing.Size(75, 23);
+			this.btnAdd.TabIndex = 1;
+			this.btnAdd.Text = "Add";
+			this.btnAdd.UseVisualStyleBackColor = true;
+			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+			// 
+			// dgvChannels
+			// 
+			this.dgvChannels.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+			this.dgvChannels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvChannels.Location = new System.Drawing.Point(12, 42);
+			this.dgvChannels.Name = "dgvChannels";
+			this.dgvChannels.ReadOnly = true;
+			this.dgvChannels.RowHeadersWidth = 50;
+			this.dgvChannels.RowTemplate.Height = 23;
+			this.dgvChannels.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.dgvChannels.Size = new System.Drawing.Size(1110, 457);
+			this.dgvChannels.TabIndex = 9;
+			this.dgvChannels.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvChannels_RowHeaderMouseDoubleClick);
+			this.dgvChannels.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.NligzloMrR);
+			this.dgvChannels.SelectionChanged += new System.EventHandler(this.dgvChannels_SelectionChanged);
+			this.dgvChannels.Enter += new System.EventHandler(this.dgvChannels_Enter);
+			this.dgvChannels.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvChannels_KeyPress);
+			// 
+			// btnImportClearAll
+			// 
+			this.btnImportClearAll.Location = new System.Drawing.Point(772, 12);
+			this.btnImportClearAll.Name = "btnImportClearAll";
+			this.btnImportClearAll.Size = new System.Drawing.Size(190, 23);
+			this.btnImportClearAll.TabIndex = 13;
+			this.btnImportClearAll.Text = "Clear and Import";
+			this.btnImportClearAll.UseVisualStyleBackColor = true;
+			this.btnImportClearAll.Click += new System.EventHandler(this.btnImportClearAll_Click);
+			// 
 			// txtTxFreq
 			// 
 			this.txtTxFreq.InputString = null;
@@ -996,30 +1059,6 @@ namespace DMR
 			this.txtName.Visible = false;
 			this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
 			// 
-			// cmbPower
-			// 
-			this.cmbPower.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cmbPower.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.cmbPower.FormattingEnabled = true;
-			this.cmbPower.Location = new System.Drawing.Point(1061, 12);
-			this.cmbPower.Name = "cmbPower";
-			this.cmbPower.Size = new System.Drawing.Size(61, 24);
-			this.cmbPower.TabIndex = 8;
-			this.cmbPower.Visible = false;
-			this.cmbPower.Leave += new System.EventHandler(this.cmbPower_Leave);
-			// 
-			// cmbChMode
-			// 
-			this.cmbChMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cmbChMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.cmbChMode.FormattingEnabled = true;
-			this.cmbChMode.Location = new System.Drawing.Point(994, 12);
-			this.cmbChMode.Name = "cmbChMode";
-			this.cmbChMode.Size = new System.Drawing.Size(61, 24);
-			this.cmbChMode.TabIndex = 7;
-			this.cmbChMode.Visible = false;
-			this.cmbChMode.Leave += new System.EventHandler(this.cmbChMode_Leave);
-			// 
 			// cmbAddChMode
 			// 
 			this.cmbAddChMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1028,43 +1067,6 @@ namespace DMR
 			this.cmbAddChMode.Name = "cmbAddChMode";
 			this.cmbAddChMode.Size = new System.Drawing.Size(109, 24);
 			this.cmbAddChMode.TabIndex = 0;
-			// 
-			// btnAdd
-			// 
-			this.btnAdd.Location = new System.Drawing.Point(139, 11);
-			this.btnAdd.Name = "btnAdd";
-			this.btnAdd.Size = new System.Drawing.Size(75, 23);
-			this.btnAdd.TabIndex = 1;
-			this.btnAdd.Text = "Add";
-			this.btnAdd.UseVisualStyleBackColor = true;
-			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-			// 
-			// dgvChannels
-			// 
-			this.dgvChannels.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-			this.dgvChannels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvChannels.Location = new System.Drawing.Point(12, 42);
-			this.dgvChannels.Name = "dgvChannels";
-			this.dgvChannels.ReadOnly = true;
-			this.dgvChannels.RowHeadersWidth = 50;
-			this.dgvChannels.RowTemplate.Height = 23;
-			this.dgvChannels.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvChannels.Size = new System.Drawing.Size(1110, 457);
-			this.dgvChannels.TabIndex = 9;
-			this.dgvChannels.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvChannels_RowHeaderMouseDoubleClick);
-			this.dgvChannels.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.NligzloMrR);
-			this.dgvChannels.SelectionChanged += new System.EventHandler(this.dgvChannels_SelectionChanged);
-			// 
-			// btnImportClearAll
-			// 
-			this.btnImportClearAll.Location = new System.Drawing.Point(772, 12);
-			this.btnImportClearAll.Name = "btnImportClearAll";
-			this.btnImportClearAll.Size = new System.Drawing.Size(190, 23);
-			this.btnImportClearAll.TabIndex = 13;
-			this.btnImportClearAll.Text = "Clear and Import";
-			this.btnImportClearAll.UseVisualStyleBackColor = true;
-			this.btnImportClearAll.Click += new System.EventHandler(this.btnImportClearAll_Click);
 			// 
 			// dataGridViewTextBoxColumn1
 			// 
@@ -1124,6 +1126,29 @@ namespace DMR
 
 			SZ_DISPLAY_HEADER_TEXT = new string[35];
 			SZ_EXPORT_HEADER_TEXT = new string[35];
+		}
+
+		private void dgvChannels_Enter(object sender, EventArgs e)
+		{
+
+		}
+
+		private void dgvChannels_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == 32)
+			{
+				MainForm mainForm = base.MdiParent as MainForm;
+				DataGridView dataGridView = sender as DataGridView;
+				DataGridViewSelectedRowCollection rows = dataGridView.SelectedRows;
+				foreach (DataGridViewRow row in rows)
+				{
+					int index = (int)row.Tag;// (int)dataGridView.Rows[0].Tag;
+					Console.Write(row.Cells[1].Value);
+
+					mainForm.DispChildForm(typeof(ChannelForm), index);
+					break;
+				}
+			}
 		}
 
 

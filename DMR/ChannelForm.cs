@@ -2792,8 +2792,6 @@ namespace DMR
 
 		public ChannelForm()
 		{
-			
-			//base._002Ector();
 			this.InitializeComponent();
 			this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);// Roger Clark. Added correct icon on main form!
 			base.Scale(Settings.smethod_6());
@@ -2822,6 +2820,14 @@ namespace DMR
 			Settings.smethod_78("KeySwitch", ChannelForm.SZ_KEY_SWITCH, name);
 		}
 
+
+		private void ChannelForm_Shown(object sender, EventArgs e)
+		{
+			System.Media.SystemSounds.Beep.Play();
+			this.pnlChannel.Focus();
+			//txtName.Focus();
+		}
+
 		private void ChannelForm_Load(object sender, EventArgs e)
 		{
 			try
@@ -2833,6 +2839,10 @@ namespace DMR
 				this.BbRiogasSx();
 				this.method_0();
 				this.DispData();
+				txtName.Focus();
+				this.pnlChannel.Focus();
+				txtName.Focus();
+				//this.pnlChannel.FocusMe();
 			}
 			catch (Exception ex)
 			{
@@ -4647,6 +4657,7 @@ namespace DMR
 			base.Name = "ChannelForm";
 			this.Text = "Channel";
 			base.Load += this.ChannelForm_Load;
+			this.Shown += this.ChannelForm_Shown;
 			base.FormClosing += this.ChannelForm_FormClosing;
 			this.tsrCh.ResumeLayout(false);
 			this.tsrCh.PerformLayout();

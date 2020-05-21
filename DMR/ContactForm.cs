@@ -1090,6 +1090,7 @@ namespace DMR
 			this.Text = "Digital Contact";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ContactForm_FormClosing);
 			this.Load += new System.EventHandler(this.ContactForm_Load);
+			this.Shown += new System.EventHandler(this.ContactForm_Shown);
 			this.pnlContact.ResumeLayout(false);
 			this.pnlContact.PerformLayout();
 			this.openGD77groupbox.ResumeLayout(false);
@@ -1225,6 +1226,10 @@ namespace DMR
 			}
 		}
 
+		private void ContactForm_Shown(object sender, EventArgs e)
+		{
+			this.Focus();
+		}
 		private void ContactForm_Load(object sender, EventArgs e)
 		{
 			try
