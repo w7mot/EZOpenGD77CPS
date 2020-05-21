@@ -49,6 +49,7 @@ namespace DMR
 			{
 				loadMelodyFromCodeplug(imagePosition + 8);
 			}
+
 		}
 
 		int littleEndianToInt(byte[] dataBytes, int offset)
@@ -533,6 +534,7 @@ namespace DMR
 							{
 								if (dataObj.dataBuff[p] != CalibrationForm.CALIBRATION_HEADER[p])
 								{
+									System.Media.SystemSounds.Hand.Play();
 									MessageBox.Show("Calibration data could not be found. Please update your firmware");
 									return;
 								}
@@ -549,12 +551,15 @@ namespace DMR
 						case OpenGD77CommsTransferData.CommsAction.RESTORE_EEPROM:
 						case OpenGD77CommsTransferData.CommsAction.RESTORE_FLASH:
 						case OpenGD77CommsTransferData.CommsAction.RESTORE_CALIBRATION:
+							System.Media.SystemSounds.Asterisk.Play();
 							MessageBox.Show("Restore complete");
 							enableDisableAllButtons(true);
 							dataObj.action = OpenGD77CommsTransferData.CommsAction.NONE;
 							break;
 						case OpenGD77CommsTransferData.CommsAction.READ_CODEPLUG:
+							System.Media.SystemSounds.Asterisk.Play();
 							MessageBox.Show("Read Codeplug complete");
+
 #if OpenGD77
 							if (!MainForm.checkZonesFor80Channels(dataObj.dataBuff))
 							{
@@ -580,6 +585,7 @@ namespace DMR
 							}
 							break;
 						case OpenGD77CommsTransferData.CommsAction.WRITE_CODEPLUG:
+							System.Media.SystemSounds.Asterisk.Play();
 							enableDisableAllButtons(true);
 							if (_initialAction == CommsAction.WRITE_CODEPLUG)
 							{
@@ -633,6 +639,7 @@ namespace DMR
 				}
 				else
 				{
+					System.Media.SystemSounds.Hand.Play();
 					MessageBox.Show("There has been an error. Refer to the last status message that was displayed", "Oops");
 				}
 			}
@@ -664,6 +671,7 @@ namespace DMR
 						}
 						catch (Exception)
 						{
+							System.Media.SystemSounds.Hand.Play();
 							MessageBox.Show("Comm port not available");
 							return;
 						}
@@ -710,6 +718,7 @@ namespace DMR
 						}
 						catch (Exception)
 						{
+							System.Media.SystemSounds.Hand.Play();
 							MessageBox.Show("Comm port not available");
 							return;
 						}
@@ -802,6 +811,7 @@ namespace DMR
 						}
 						catch (Exception)
 						{
+							System.Media.SystemSounds.Hand.Play();
 							MessageBox.Show("Comm port not available");
 							return;
 						}
@@ -829,6 +839,7 @@ namespace DMR
 						}
 						else
 						{
+							System.Media.SystemSounds.Hand.Play();
 							MessageBox.Show("Error while restoring");
 							displayMessage("Error while restoring");
 							dataObj.responseCode = 1;
@@ -848,6 +859,7 @@ namespace DMR
 						}
 						catch (Exception)
 						{
+							System.Media.SystemSounds.Hand.Play();
 							MessageBox.Show("Comm port not available");
 							return;
 						}
@@ -876,6 +888,7 @@ namespace DMR
 						}
 						else
 						{
+							System.Media.SystemSounds.Hand.Play();
 							MessageBox.Show("Error while restoring Calibration");
 							displayMessage("Error while restoring Calibration");
 							dataObj.responseCode = 1;
@@ -895,6 +908,7 @@ namespace DMR
 						}
 						catch (Exception)
 						{
+							System.Media.SystemSounds.Hand.Play();
 							MessageBox.Show("Comm port not available");
 							return;
 						}
@@ -922,6 +936,7 @@ namespace DMR
 						}
 						else
 						{
+							System.Media.SystemSounds.Hand.Play();
 							MessageBox.Show("Error while restoring");
 							displayMessage("Error while restoring");
 							dataObj.responseCode = 1;
@@ -940,6 +955,7 @@ namespace DMR
 						}
 						catch (Exception)
 						{
+							System.Media.SystemSounds.Hand.Play();
 							MessageBox.Show("Comm port not available");
 							return;
 						}
@@ -1027,6 +1043,7 @@ namespace DMR
 						}
 						catch (Exception)
 						{
+							System.Media.SystemSounds.Hand.Play();
 							MessageBox.Show("Comm port not available");
 							return;
 						}
@@ -1118,6 +1135,7 @@ namespace DMR
 						}
 						catch (Exception)
 						{
+							System.Media.SystemSounds.Hand.Play();
 							MessageBox.Show("Comm port not available");
 							return;
 						}
@@ -1165,6 +1183,7 @@ namespace DMR
 						}
 						catch (Exception)
 						{
+							System.Media.SystemSounds.Hand.Play();
 							MessageBox.Show("Comm port not available");
 							return;
 						}
@@ -1200,6 +1219,7 @@ namespace DMR
 			}
 			catch (Exception ex)
 			{
+				System.Media.SystemSounds.Hand.Play();
 				MessageBox.Show(ex.Message);
 			}
 			e.Result = dataObj;
@@ -1216,6 +1236,7 @@ namespace DMR
 			}
 			catch (Exception ex)
 			{
+				System.Media.SystemSounds.Hand.Play();
 				MessageBox.Show(ex.Message);
 			}
 		}
@@ -1224,6 +1245,7 @@ namespace DMR
 		{
 			if (commPort==null)
 			{
+				System.Media.SystemSounds.Hand.Play();
 				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
 				return;
 			}
@@ -1236,6 +1258,7 @@ namespace DMR
 		{
 			if (commPort==null)
 			{
+				System.Media.SystemSounds.Hand.Play();
 				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
 				return;
 			}
@@ -1249,6 +1272,7 @@ namespace DMR
 		{
 			if (commPort == null)
 			{
+				System.Media.SystemSounds.Hand.Play();
 				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
 				return;
 			}
@@ -1276,6 +1300,7 @@ namespace DMR
 		{
 			if (commPort == null)
 			{
+				System.Media.SystemSounds.Hand.Play();
 				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
 				return;
 			}
@@ -1292,6 +1317,7 @@ namespace DMR
 					}
 					else
 					{
+						System.Media.SystemSounds.Hand.Play();
 						MessageBox.Show("The file is not the correct size.", "Error");
 					}
 				}
@@ -1302,6 +1328,7 @@ namespace DMR
 		{
 			if (commPort == null)
 			{
+				System.Media.SystemSounds.Hand.Play();
 				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
 				return;
 			}
@@ -1319,6 +1346,7 @@ namespace DMR
 						{
 							if (dataObj.dataBuff[p] != CalibrationForm.CALIBRATION_HEADER[p])
 							{
+								System.Media.SystemSounds.Hand.Play();
 								MessageBox.Show("Invalid Calibration data.");
 								return;
 							}
@@ -1328,6 +1356,7 @@ namespace DMR
 					}
 					else
 					{
+						System.Media.SystemSounds.Hand.Play();
 						MessageBox.Show("The file is not the correct size.", "Error");
 					}
 				}
@@ -1338,6 +1367,7 @@ namespace DMR
 		{
 			if (commPort == null)
 			{
+				System.Media.SystemSounds.Hand.Play();
 				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
 				return;
 			}
@@ -1356,6 +1386,7 @@ namespace DMR
 					}
 					else
 					{
+						System.Media.SystemSounds.Hand.Play();
 						MessageBox.Show("The file is not the correct size.", "Error");
 					}
 				}
@@ -1433,6 +1464,7 @@ namespace DMR
 					catch (Exception)
 					{
 						_port = null;
+						System.Media.SystemSounds.Hand.Play();
 						MessageBox.Show("Failed to open comm port", "Error");
 						IniFileUtils.WriteProfileString("Setup", "LastCommPort", "");// clear any port they may have saved
 						return null;
@@ -1473,6 +1505,7 @@ namespace DMR
 		{			
 			if (commPort == null)
 			{
+				System.Media.SystemSounds.Hand.Play();
 				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
 				return;
 			}
@@ -1492,6 +1525,7 @@ namespace DMR
 		{
 			if (commPort == null)
 			{
+				System.Media.SystemSounds.Hand.Play();
 				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
 				return;
 			}
@@ -1512,6 +1546,7 @@ namespace DMR
 		{
 			if (commPort == null)
 			{
+				System.Media.SystemSounds.Hand.Play();
 				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
 				return;
 			}
@@ -1524,6 +1559,7 @@ namespace DMR
 		{
 			if (commPort == null)
 			{
+				System.Media.SystemSounds.Hand.Play();
 				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
 				return;
 			}
