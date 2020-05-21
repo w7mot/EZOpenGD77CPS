@@ -72,13 +72,13 @@ namespace DMR
 			this.txtName = new DMR.SGTextBox();
 			this.cmbCallRxTone = new System.Windows.Forms.ComboBox();
 			this.cmbRingStyle = new System.Windows.Forms.ComboBox();
-			this.cmbRepeaterSlot = new System.Windows.Forms.ComboBox();
 			this.cmbType = new System.Windows.Forms.ComboBox();
 			this.cmbAddType = new CustomCombo();
 			this.btnClear = new System.Windows.Forms.Button();
 			this.btnDelete = new System.Windows.Forms.Button();
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.dgvContacts = new System.Windows.Forms.DataGridView();
+			this.cmbRepeaterSlot = new System.Windows.Forms.ComboBox();
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -213,17 +213,6 @@ namespace DMR
 			this.cmbAddType.Name = "cmbAddType";
 			this.cmbAddType.Size = new System.Drawing.Size(112, 24);
 			this.cmbAddType.TabIndex = 0;
-
-			// 
-			// cmbAddType
-			// 
-			this.cmbRepeaterSlot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cmbRepeaterSlot.FormattingEnabled = true;
-			this.cmbRepeaterSlot.Location = new System.Drawing.Point(22, 43);
-			this.cmbRepeaterSlot.Name = "cmbRepeaterSlot";
-			this.cmbRepeaterSlot.Size = new System.Drawing.Size(112, 24);
-			this.cmbRepeaterSlot.TabIndex = 0;
-
 			// 
 			// btnClear
 			// 
@@ -268,6 +257,16 @@ namespace DMR
 			this.dgvContacts.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvContacts_RowHeaderMouseDoubleClick);
 			this.dgvContacts.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvContacts_RowPostPaint);
 			this.dgvContacts.SelectionChanged += new System.EventHandler(this.dgvContacts_SelectionChanged);
+			this.dgvContacts.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvContacts_KeyPress);
+			// 
+			// cmbRepeaterSlot
+			// 
+			this.cmbRepeaterSlot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cmbRepeaterSlot.FormattingEnabled = true;
+			this.cmbRepeaterSlot.Location = new System.Drawing.Point(22, 43);
+			this.cmbRepeaterSlot.Name = "cmbRepeaterSlot";
+			this.cmbRepeaterSlot.Size = new System.Drawing.Size(112, 21);
+			this.cmbRepeaterSlot.TabIndex = 0;
 			// 
 			// dataGridViewTextBoxColumn1
 			// 
@@ -316,7 +315,7 @@ namespace DMR
 
 		public void SaveData()
 		{
-			this.dgvContacts.Focus();
+			//this.dgvContacts.Focus();
 		}
 
 		public void DispData()
@@ -877,6 +876,22 @@ namespace DMR
 			{
 				MessageBox.Show(Settings.dicCommon["UnableDownloadFromInternet"]);
 				return;
+			}
+		}
+
+		private void dgvContacts_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == 32)
+			{
+				MainForm mainForm = base.MdiParent as MainForm;
+				DataGridView dataGridView = sender as DataGridView;
+				DataGridViewSelectedRowCollection rows = dataGridView.SelectedRows;
+				foreach (DataGridViewRow row in rows)
+				{
+					int index = (int)row.Tag;
+					mainForm.DispChildForm(typeof(ContactForm), index);
+					break;
+				}
 			}
 		}
 	}

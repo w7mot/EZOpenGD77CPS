@@ -46,7 +46,7 @@ namespace DMR
 
 		public void SaveData()
 		{
-			this.dgvChannels.Focus();
+			//this.dgvChannels.Focus();
 		}
 
 		public void DispData()
