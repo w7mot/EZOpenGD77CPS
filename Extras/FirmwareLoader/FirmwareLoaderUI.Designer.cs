@@ -71,7 +71,7 @@
 			this.btnClose.Name = "btnClose";
 			this.btnClose.Size = new System.Drawing.Size(75, 23);
 			this.btnClose.TabIndex = 2;
-			this.btnClose.Text = "Close";
+			this.btnClose.Text = "&Close";
 			this.btnClose.UseVisualStyleBackColor = true;
 			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
 			//
@@ -84,7 +84,7 @@
 			this.rbModels = new System.Windows.Forms.RadioButton[4];
 
 			this.rbModels[0] = new System.Windows.Forms.RadioButton();
-			this.rbModels[0].Text = "Radioddity GD-77 / TYT MD-760";
+			this.rbModels[0].Text = "Radioddity GD-&77 / TYT MD-760";
 			this.rbModels[0].Location = new System.Drawing.Point(5, 15);
 			this.rbModels[0].UseVisualStyleBackColor = true;
 			this.rbModels[0].Tag = (int)FirmwareLoader.OutputType.OutputType_GD77;
@@ -92,7 +92,7 @@
 			this.rbModels[0].CheckedChanged += new System.EventHandler(this.rbModel_CheckedChanged);
 
 			this.rbModels[1] = new System.Windows.Forms.RadioButton();
-			this.rbModels[1].Text = "Radioddity GD-77S / TYT MD-730";
+			this.rbModels[1].Text = "Radioddity GD-77&S / TYT MD-730";
 			this.rbModels[1].Location = new System.Drawing.Point(5, 35);
 			this.rbModels[1].UseVisualStyleBackColor = true;
 			this.rbModels[1].Tag = (int)FirmwareLoader.OutputType.OutputType_GD77S;
@@ -100,7 +100,7 @@
 			this.rbModels[1].CheckedChanged += new System.EventHandler(this.rbModel_CheckedChanged);
 
 			this.rbModels[2] = new System.Windows.Forms.RadioButton();
-			this.rbModels[2].Text = "Baofeng DM-1801 / DM-860";
+			this.rbModels[2].Text = "Baofeng DM-&1801 / DM-860";
 			this.rbModels[2].Location = new System.Drawing.Point(5, 55);
 			this.rbModels[2].UseVisualStyleBackColor = true;
 			this.rbModels[2].Tag = (int)FirmwareLoader.OutputType.OutputType_DM1801;
@@ -108,7 +108,7 @@
 			this.rbModels[2].CheckedChanged += new System.EventHandler(this.rbModel_CheckedChanged);
 
 			this.rbModels[3] = new System.Windows.Forms.RadioButton();
-			this.rbModels[3].Text = "Baofeng RD-5R / DM-5R Tier2";
+			this.rbModels[3].Text = "Baofeng RD-&5R / DM-5R Tier2";
 			this.rbModels[3].Location = new System.Drawing.Point(5, 75);
 			this.rbModels[3].UseVisualStyleBackColor = true;
 			this.rbModels[3].Tag = (int)FirmwareLoader.OutputType.OutputType_RD5R;
@@ -137,7 +137,7 @@
 			this.btnDownloadFirmware.MinimumSize = new System.Drawing.Size(170, 25);
 			this.btnDownloadFirmware.AutoSize = true;
 			this.btnDownloadFirmware.TabIndex = 5;
-			this.btnDownloadFirmware.Text = "Download && Update";
+			this.btnDownloadFirmware.Text = "&Download && Update";
 			this.btnDownloadFirmware.UseVisualStyleBackColor = true;
 			this.btnDownloadFirmware.Enabled = false;
 			this.btnDownloadFirmware.Click += new System.EventHandler(this.btnDownloadFirmware_Click);
@@ -150,7 +150,7 @@
 			this.btnUploadFirmware.MinimumSize = new System.Drawing.Size(170, 25);
 			this.btnUploadFirmware.AutoSize = true;
 			this.btnUploadFirmware.TabIndex = 6;
-			this.btnUploadFirmware.Text = "Select a File && Update";
+			this.btnUploadFirmware.Text = "Select a &File && Update";
 			this.btnUploadFirmware.UseVisualStyleBackColor = true;
 			this.btnUploadFirmware.Enabled = false;
 			this.btnUploadFirmware.Click += new System.EventHandler(this.btnUploadFirmware_Click);
@@ -169,9 +169,6 @@
 			this.btnDetectModel.Click += new System.EventHandler(this.btnDetectModel_Click);
 			this.btnDetectModel.Visible = false;
 
-
-
-
 			this.grpboxModel.Controls.Add(this.rbModels[0]);
 			this.grpboxModel.Controls.Add(this.rbModels[1]);
 			this.grpboxModel.Controls.Add(this.rbModels[2]);
@@ -180,6 +177,14 @@
 			this.grpboxModel.Controls.Add(this.progressBarDwnl);
 			this.grpboxModel.Controls.Add(this.btnDownloadFirmware);
 			this.grpboxModel.Controls.Add(this.btnUploadFirmware);
+
+			if (FirmwareLoader.outputType != FirmwareLoader.OutputType.OutputType_UNKNOWN)
+			{
+				this.rbModels[(int)FirmwareLoader.outputType].Checked = true;
+				this.btnDownloadFirmware.Enabled = true;
+				this.btnUploadFirmware.Enabled = true;
+			}
+
 			// 
 			// FirmwareLoaderUI
 			// 
