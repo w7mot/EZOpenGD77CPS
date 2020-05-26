@@ -471,6 +471,124 @@ namespace DMR
 			return true;
 		}
 
+
+		private bool WriteWAV(OpenGD77CommsTransferData dataObj)
+		{
+			int old_progress = 0;
+			byte[] sendbuffer = new byte[512];
+			byte[] readbuffer = new byte[512];
+			byte[] com_Buf = new byte[256];
+
+			int currentDataAddressInTheRadio = dataObj.startDataAddressInTheRadio;
+			int currentDataAddressInLocalBuffer = dataObj.localDataBufferStartPosition;
+
+			int size = (dataObj.startDataAddressInTheRadio + dataObj.transferLength) - currentDataAddressInTheRadio;
+			while (size > 0)
+			{
+				if (size > MAX_TRANSFER_SIZE)
+				{
+					size = MAX_TRANSFER_SIZE;
+				}
+
+				if (dataObj.data_sector == -1)
+				{
+					dataObj.data_sector = currentDataAddressInTheRadio / 128;
+				}
+
+				int len = 0;
+				for (int i = 0; i < size; i++)
+				{
+					sendbuffer[i + 8] = (byte)dataObj.dataBuff[currentDataAddressInLocalBuffer++];
+					len++;
+
+					if (dataObj.data_sector != ((currentDataAddressInTheRadio + len) / 128))
+					{
+						dataObj.data_sector = -1;
+						break;
+					}
+				}
+
+				sendbuffer[0] = (byte)'W';
+				sendbuffer[1] = 7;// This value tells the firmware to write to the WAV buffer
+				sendbuffer[2] = (byte)((currentDataAddressInTheRadio >> 24) & 0xFF);
+				sendbuffer[3] = (byte)((currentDataAddressInTheRadio >> 16) & 0xFF);
+				sendbuffer[4] = (byte)((currentDataAddressInTheRadio >> 8) & 0xFF);
+				sendbuffer[5] = (byte)((currentDataAddressInTheRadio >> 0) & 0xFF);
+				sendbuffer[6] = (byte)((len >> 8) & 0xFF);
+				sendbuffer[7] = (byte)((len >> 0) & 0xFF);
+				commPort.Write(sendbuffer, 0, len + 8);
+				while (commPort.BytesToRead == 0)
+				{
+					Thread.Sleep(0);
+				}
+				commPort.Read(readbuffer, 0, 64);
+
+				if ((readbuffer[0] == sendbuffer[0]) && (readbuffer[1] == sendbuffer[1]))
+				{
+					int progress = (currentDataAddressInTheRadio - dataObj.startDataAddressInTheRadio) * 100 / dataObj.transferLength;
+					if (old_progress != progress)
+					{
+						updateProgess(progress);
+						old_progress = progress;
+					}
+
+					currentDataAddressInTheRadio = currentDataAddressInTheRadio + len;
+				}
+				else
+				{
+					Console.WriteLine(String.Format("Error. Write stopped (write sector error at {0:X8})", currentDataAddressInTheRadio));
+					//close_data_mode();
+					return false;
+				}
+				size = (dataObj.startDataAddressInTheRadio + dataObj.transferLength) - currentDataAddressInTheRadio;
+			}
+			return true;
+		}
+
+		private bool CompressWAV(OpenGD77CommsTransferData dataObj)
+		{
+			const int AMBE_INPUT_BUF_SIZE = 6 * 160;
+	
+			dataObj.localDataBufferStartPosition = 0;
+			OpenGD77CommsTransferData waveWriteData = new OpenGD77CommsTransferData();
+
+			OpenGD77CommsTransferData readAmbeData = new OpenGD77CommsTransferData();
+			readAmbeData.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeReadAMBE;
+			readAmbeData.dataBuff = new Byte[32];// only 27 bytes per comression, but stardard transfer size is 32
+			readAmbeData.localDataBufferStartPosition = 0;
+			readAmbeData.startDataAddressInTheRadio = 0;
+			readAmbeData.transferLength=32;
+
+			Byte []ambeOutputBuffer = new Byte[16*1024];// Allocate hopefully worst case output buffer. Roughly this would be 35 secs of ambe audio.
+			int ambeOutputBufPos = 0;
+			sendCommand(6, 5);// codecInitInternalBuffers()
+			
+
+			while (dataObj.localDataBufferStartPosition < dataObj.dataBuff.Length)
+			{
+				waveWriteData.dataBuff = new Byte[AMBE_INPUT_BUF_SIZE];
+				waveWriteData.localDataBufferStartPosition = 0;
+				waveWriteData.startDataAddressInTheRadio = 0;
+				waveWriteData.transferLength = waveWriteData.dataBuff.Length;
+				Array.Copy(dataObj.dataBuff, dataObj.localDataBufferStartPosition, waveWriteData.dataBuff, 0, AMBE_INPUT_BUF_SIZE);
+
+				sendCommand(6, 6);// soundInit(). Initialises sound buffer pointers prior to uploading.
+				WriteWAV(waveWriteData);
+
+				ReadFlashOrEEPROMOrROMOrScreengrab(readAmbeData);// encoding happens when we read from the amb data
+				Array.Copy(readAmbeData.dataBuff, 0, ambeOutputBuffer, ambeOutputBufPos, 27);
+				ambeOutputBufPos += 27;
+
+				dataObj.localDataBufferStartPosition += Math.Min(AMBE_INPUT_BUF_SIZE, dataObj.dataBuff.Length - dataObj.localDataBufferStartPosition);
+			}
+
+			Array.Resize(ref ambeOutputBuffer, ambeOutputBufPos);
+			dataObj.dataBuff = ambeOutputBuffer;
+		
+			return true;
+		}
+
+
 		void updateProgess(int progressPercentage)
 		{
 			if (progressBar1.InvokeRequired)
@@ -635,6 +753,20 @@ namespace DMR
 							enableDisableAllButtons(true);
 							dataObj.action = OpenGD77CommsTransferData.CommsAction.NONE;
 							break;
+
+						case OpenGD77CommsTransferData.CommsAction.COMPRESS_AUDIO:
+		
+							_saveFileDialog.Filter = "AMB files (*.amb)|*.amb";
+							_saveFileDialog.FilterIndex = 1;
+							if (_saveFileDialog.ShowDialog() == DialogResult.OK)
+							{
+								File.WriteAllBytes(_saveFileDialog.FileName, dataObj.dataBuff);
+							}
+
+							enableDisableAllButtons(true);
+							dataObj.action = OpenGD77CommsTransferData.CommsAction.NONE;
+							break;
+
 					}
 				}
 				else
@@ -1187,15 +1319,7 @@ namespace DMR
 							MessageBox.Show("Comm port not available");
 							return;
 						}
-						// show CPS screen
-						/*
-						if (!sendCommand(0))
-						{
-							displayMessage("Error connecting to the OpenGD77");
-							dataObj.responseCode = 1;
-							break;
-						}
-						*/
+
 						dataObj.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeReadScreenGrab;
 						dataObj.dataBuff = new Byte[1 * 1024];
 						dataObj.localDataBufferStartPosition = 0;
@@ -1211,7 +1335,29 @@ namespace DMR
 						{
 							displayMessage("");
 						}
-						//sendCommand(5);// close CPS screen
+
+						commPort.Close();
+						break;
+
+					case OpenGD77CommsTransferData.CommsAction.COMPRESS_AUDIO:
+						if (commPort == null)
+						{
+							return;
+						}
+						try
+						{
+							commPort.Open();
+						}
+						catch (Exception)
+						{
+							System.Media.SystemSounds.Hand.Play();
+							MessageBox.Show("Comm port not available");
+							return;
+						}
+
+						sendCommand(0);
+						CompressWAV(dataObj);
+						sendCommand(5);// close CPS screen on radio
 						commPort.Close();
 						break;
 
@@ -1407,6 +1553,7 @@ namespace DMR
 			btnBackupMCUROM.Enabled = show;
 			btnDownloadScreenGrab.Enabled = show;
 			btnPlayTune.Enabled = show;
+			btnCompressAudio.Enabled = show;
 		}
 
 		private void OpenGD77Form_Load(object sender, EventArgs e)
@@ -1722,5 +1869,27 @@ namespace DMR
 		{
 			melodyToBytes(true);
 		}
+
+		private void btnCompressAudio_Click(object sender, EventArgs e)
+		{
+			if (commPort == null)
+			{
+				System.Media.SystemSounds.Hand.Play();
+				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
+				return;
+			}
+			if (DialogResult.OK == _openFileDialog.ShowDialog())
+			{
+				OpenGD77CommsTransferData dataObj = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.COMPRESS_AUDIO);
+				dataObj.dataBuff = File.ReadAllBytes(_openFileDialog.FileName);
+				enableDisableAllButtons(false);
+				perFormCommsTask(dataObj);
+				
+				
+			}
+		}
+
+
+
 	}
 }
