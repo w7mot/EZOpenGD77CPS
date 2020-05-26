@@ -54,7 +54,7 @@ namespace DMR
 			OutputType_GD77S,
 			OutputType_DM1801,
 			OutputType_RD5R,
-			OutputType_UNKOWN
+			OutputType_UNKNOWN
 		}
 
 		class StringAndOutputType
@@ -63,7 +63,7 @@ namespace DMR
 			public OutputType Type { get; set; }
 		}
 
-		public static OutputType outputType = OutputType.OutputType_UNKOWN;
+		public static OutputType outputType = OutputType.OutputType_GD77;
 
 		public static String getModelString(OutputType type)
 		{
@@ -87,7 +87,6 @@ namespace DMR
 			return getModelString(outputType);
 		}
 
-
 		public static int UploadFirmare(string fileName, FirmwareLoaderUI progessForm = null)
 		{
 			byte[] encodeKey = null; 
@@ -107,7 +106,7 @@ namespace DMR
 					encodeKey = new Byte[4] { (0x74), (0x21), (0x44), (0x39) };
 					break;
 
-				case OutputType.OutputType_UNKOWN:
+				case OutputType.OutputType_UNKNOWN:
 					return -99;
 			}
 
@@ -135,7 +134,7 @@ namespace DMR
 				if (fileBuf == null)
 				{
 					_progessForm.SetLabel("Error. Missing SGL! in .sgl file header");
-					Console.WriteLine("Error. Missing SGL! in .sgl file header.");
+					//Console.WriteLine("Error. Missing SGL! in .sgl file header.");
 					_specifiedDevice.Dispose();
 					_specifiedDevice = null;
 					return -5;
@@ -324,7 +323,7 @@ namespace DMR
 #if EXTENDED_DEBUG
 						Console.WriteLine("Sent block " + (address / BLOCK_LENGTH) + " of " + totalBlocks);
 #else
-						Console.Write(".");
+						//Console.Write(".");
 #endif
 						if (sendAndCheckResponse(createChecksumData(fileBuf, checksumStartAddress, address), responseOK) == false)
 						{
@@ -338,7 +337,7 @@ namespace DMR
 #if EXTENDED_DEBUG
 					Console.WriteLine("Sending last block");
 #else
-					Console.Write(".");
+					//Console.Write(".");
 #endif
 
 					dataTransferSize = fileLength - address;
@@ -379,25 +378,22 @@ namespace DMR
 			int commandNumber = 0;
 			byte[] resp;
 
-
-
-
 			_specifiedDevice = SpecifiedDevice.FindSpecifiedDevice(VENDOR_ID, PRODUCT_ID);
 
 			if (_specifiedDevice == null)
 			{
-				Console.WriteLine("Error. Can't connect the transceiver");
-				return OutputType.OutputType_UNKOWN;
+				//Console.WriteLine("Error. Can't connect the transceiver");
+				return OutputType.OutputType_UNKNOWN;
 			}
 
 			while (commandNumber < commandID.Length)
 			{
 				if (sendAndCheckResponse(commandID[commandNumber][0], commandID[commandNumber][1]) == false)
 				{
-					Console.WriteLine("Error sending command.");
+					//Console.WriteLine("Error sending command.");
 					_specifiedDevice.Dispose();
 					_specifiedDevice = null;
-					return OutputType.OutputType_UNKOWN;
+					return OutputType.OutputType_UNKNOWN;
 				}
 
 				commandNumber = commandNumber + 1;
@@ -420,7 +416,7 @@ namespace DMR
 
 			_specifiedDevice.Dispose();
 			_specifiedDevice = null;
-			return OutputType.OutputType_UNKOWN;
+			return OutputType.OutputType_UNKNOWN;
 		}
 
 		static private bool sendInitialCommands(byte[] encodeKey)
@@ -482,7 +478,7 @@ namespace DMR
 #if EXTENDED_DEBUG
 				Console.WriteLine("Sending command " + commandNumber);
 #else
-				Console.Write(".");
+				//Console.Write(".");
 #endif
 
 				if (sendAndCheckResponse(commands[commandNumber][0], commands[commandNumber][1]) == false)
