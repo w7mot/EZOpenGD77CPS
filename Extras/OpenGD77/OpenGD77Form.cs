@@ -766,6 +766,12 @@ namespace DMR
 							enableDisableAllButtons(true);
 							dataObj.action = OpenGD77CommsTransferData.CommsAction.NONE;
 							break;
+						case OpenGD77CommsTransferData.CommsAction.WRITE_VOICE_PROMPTS:
+							System.Media.SystemSounds.Asterisk.Play();
+							MessageBox.Show("Upload complete");
+							enableDisableAllButtons(true);
+							dataObj.action = OpenGD77CommsTransferData.CommsAction.NONE;
+							break;
 
 					}
 				}
@@ -1360,6 +1366,56 @@ namespace DMR
 						sendCommand(5);// close CPS screen on radio
 						commPort.Close();
 						break;
+					case OpenGD77CommsTransferData.CommsAction.WRITE_VOICE_PROMPTS:
+						if (commPort == null)
+						{
+							return;
+						}
+						try
+						{
+							commPort.Open();
+						}
+						catch (Exception)
+						{
+							System.Media.SystemSounds.Hand.Play();
+							MessageBox.Show("Comm port not available");
+							return;
+						}
+						if (!sendCommand(0))
+						{
+							displayMessage("Error connecting to the OpenGD77");
+							dataObj.responseCode = 1;
+							break;
+						}
+						sendCommand(1);
+						sendCommand(2, 0, 0, 3, 1, 0, "CPS");
+						sendCommand(2, 0, 16, 3, 1, 0, "Writing");
+						sendCommand(2, 0, 32, 3, 1, 0, "Voice prompts");
+						sendCommand(3);
+						sendCommand(6, 4);// flash red LED
+
+
+						dataObj.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeWriteFlash;
+						dataObj.localDataBufferStartPosition = 0;
+						dataObj.startDataAddressInTheRadio = 0xE0000;
+						dataObj.transferLength = dataObj.dataBuff.Length;
+						displayMessage("Writing voice prompts");
+						if (WriteFlash(dataObj))
+						{
+							displayMessage("Upload complete");
+						}
+						else
+						{
+							System.Media.SystemSounds.Hand.Play();
+							MessageBox.Show("Error while restoring Calibration");
+							displayMessage("Error while restoring Calibration");
+							dataObj.responseCode = 1;
+						}
+						sendCommand(6, 2);// Save settings and VFO's to codeplug
+						sendCommand(6, 1);// Reboot
+						commPort.Close();
+						break;
+						
 
 				}
 			}
@@ -1553,7 +1609,8 @@ namespace DMR
 			btnBackupMCUROM.Enabled = show;
 			btnDownloadScreenGrab.Enabled = show;
 			btnPlayTune.Enabled = show;
-			btnCompressAudio.Enabled = show;
+			//btnCompressAudio.Enabled = show;
+			btnWriteVoicePrompts.Enabled = show;
 		}
 
 		private void OpenGD77Form_Load(object sender, EventArgs e)
@@ -1886,6 +1943,23 @@ namespace DMR
 				perFormCommsTask(dataObj);
 				
 				
+			}
+		}
+
+		private void btnWriteVoicePrompts_Click(object sender, EventArgs e)
+		{
+			if (commPort == null)
+			{
+				System.Media.SystemSounds.Hand.Play();
+				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
+				return;
+			}
+			if (DialogResult.OK == _openFileDialog.ShowDialog())
+			{
+				OpenGD77CommsTransferData dataObj = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.WRITE_VOICE_PROMPTS);
+				dataObj.dataBuff = File.ReadAllBytes(_openFileDialog.FileName);
+				enableDisableAllButtons(false);
+				perFormCommsTask(dataObj);
 			}
 		}
 

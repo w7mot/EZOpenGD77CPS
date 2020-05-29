@@ -47,6 +47,7 @@
 			this.btnPlayTune = new System.Windows.Forms.Button();
 			this.lblBootTune = new System.Windows.Forms.Label();
 			this.btnCompressAudio = new System.Windows.Forms.Button();
+			this.btnWriteVoicePrompts = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.grpFunThings.SuspendLayout();
 			this.SuspendLayout();
@@ -238,6 +239,16 @@
 			this.btnCompressAudio.Visible = false;
 			this.btnCompressAudio.Click += new System.EventHandler(this.btnCompressAudio_Click);
 			// 
+			// btnWriteVoicePrompts
+			// 
+			this.btnWriteVoicePrompts.Location = new System.Drawing.Point(172, 81);
+			this.btnWriteVoicePrompts.Name = "btnWriteVoicePrompts";
+			this.btnWriteVoicePrompts.Size = new System.Drawing.Size(131, 23);
+			this.btnWriteVoicePrompts.TabIndex = 5;
+			this.btnWriteVoicePrompts.Text = "Write voice prompts";
+			this.btnWriteVoicePrompts.UseVisualStyleBackColor = true;
+			this.btnWriteVoicePrompts.Click += new System.EventHandler(this.btnWriteVoicePrompts_Click);
+			// 
 			// OpenGD77Form
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,6 +257,7 @@
 			this.Controls.Add(this.grpFunThings);
 			this.Controls.Add(this.txtMessage);
 			this.Controls.Add(this.btnRestoreCalibration);
+			this.Controls.Add(this.btnWriteVoicePrompts);
 			this.Controls.Add(this.btnCompressAudio);
 			this.Controls.Add(this.btnDownloadScreenGrab);
 			this.Controls.Add(this.btnBackupMCUROM);
@@ -290,5 +302,6 @@
 		private System.Windows.Forms.Label lblBootTune;
 		private System.Windows.Forms.Button btnPlayTune;
 		private System.Windows.Forms.Button btnCompressAudio;
+		private System.Windows.Forms.Button btnWriteVoicePrompts;
 	}
 }
