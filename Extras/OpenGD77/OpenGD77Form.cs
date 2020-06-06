@@ -969,7 +969,7 @@ namespace DMR
 						dataObj.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeWriteFlash;
 						dataObj.localDataBufferStartPosition = 0;
 						dataObj.startDataAddressInTheRadio = 0;
-						dataObj.transferLength = 1024 * 1024;
+						dataObj.transferLength = dataObj.dataBuff.Length;
 						displayMessage("Restoring Flash");
 						if (WriteFlash(dataObj))
 						{
@@ -1579,18 +1579,17 @@ namespace DMR
 				{
 					OpenGD77CommsTransferData dataObj = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.RESTORE_FLASH);
 					dataObj.dataBuff = File.ReadAllBytes(_openFileDialog.FileName);
-					
-					if (dataObj.dataBuff.Length == (1024 * 1024))
+
+					if (dataObj.dataBuff.Length != (1024 * 1024))
 					{
-						byte[] signature = { 0x54, 0x59, 0x54, 0x3A, 0x4D, 0x44, 0x2D, 0x37, 0x36, 0x30 };
-						enableDisableAllButtons(false);
-						perFormCommsTask(dataObj);
+						if (DialogResult.No == MessageBox.Show("This file is not a full backup\nDo you want restore the contents of this file?", "Warning", MessageBoxButtons.YesNo))
+						{
+							return;
+						}
 					}
-					else
-					{
-						System.Media.SystemSounds.Hand.Play();
-						MessageBox.Show("The file is not the correct size.", "Error");
-					}
+
+					enableDisableAllButtons(false);
+					perFormCommsTask(dataObj);
 				}
 			}
 		}
