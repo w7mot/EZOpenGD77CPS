@@ -913,7 +913,7 @@ namespace DMR
 				// otherwise
 				ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
 				_wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(downloadFromRadioIdCompleteHandler);
-				_wc.DownloadStringAsync(new Uri("https://www.radioid.net/static/user.csv"));
+				_wc.DownloadStringAsync(new Uri("https://database.radioid.net/static/user.csv"));
 
 			}
 			catch (Exception)
