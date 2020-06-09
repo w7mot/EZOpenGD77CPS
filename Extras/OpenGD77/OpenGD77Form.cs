@@ -1953,6 +1953,8 @@ namespace DMR
 				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
 				return;
 			}
+
+			_openFileDialog.Filter = "Voice prompt files (*.vpr)|*.vpr";
 			if (DialogResult.OK == _openFileDialog.ShowDialog())
 			{
 				OpenGD77CommsTransferData dataObj = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.WRITE_VOICE_PROMPTS);
@@ -1961,8 +1963,5 @@ namespace DMR
 				perFormCommsTask(dataObj);
 			}
 		}
-
-
-
 	}
 }
