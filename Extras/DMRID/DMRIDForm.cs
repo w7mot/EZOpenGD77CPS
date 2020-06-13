@@ -429,36 +429,6 @@ namespace DMR
 
 		}
 
-	
-		private void writeToOfficalFirmware()
-		{
-			MainForm.CommsBuffer = new byte[0x100000];// 128k buffer
-			CodeplugComms.CommunicationMode = CodeplugComms.CommunicationType.dataRead;
-			CommPrgForm commPrgForm = new CommPrgForm(true);// true =  close download form as soon as download is complete
-			commPrgForm.StartPosition = FormStartPosition.CenterParent;
-			CodeplugComms.startAddress = 0x50100;
-			CodeplugComms.transferLength = 0x20;
-			DialogResult result = commPrgForm.ShowDialog();
-			Array.Copy(MainForm.CommsBuffer, 0x50100, DMRIDForm.DMRIDBuffer, 0, 0x20);
-			if (!isInMemoryAccessMode(DMRIDForm.DMRIDBuffer))
-			{
-				MessageBox.Show(Settings.dicCommon["EnableMemoryAccessMode"]);
-				return;
-			}
-
-
-			SIG_PATTERN_BYTES[3] = (byte)(0x4a + _stringLength + 4);
-
-			byte[] uploadData = GenerateUploadData();
-			Array.Copy(uploadData, 0, MainForm.CommsBuffer, 0x30000, (uploadData.Length / 32) * 32);
-			CodeplugComms.CommunicationMode = CodeplugComms.CommunicationType.dataWrite;
-
-			CodeplugComms.startAddress = 0x30000;
-			CodeplugComms.transferLength = (uploadData.Length / 32) * 32;
-			commPrgForm.StartPosition = FormStartPosition.CenterParent;
-			result = commPrgForm.ShowDialog();
-		}
-
 		private void btnWriteToGD77_Click(object sender, EventArgs e)
 		{
 			if (SetupDiWrap.ComPortNameFromFriendlyNamePrefix("OpenGD77") != null)
@@ -467,7 +437,7 @@ namespace DMR
 			}
 			else
 			{
-				writeToOfficalFirmware();
+				MessageBox.Show("Please connect the GD-77 running OpenGD77 firmware, and try again.", "OpenGD77 radio not detected.");
 			}
 		}
 
