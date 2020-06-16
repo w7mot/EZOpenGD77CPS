@@ -1204,7 +1204,7 @@ namespace DMR
 			this.pnlFill.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnlFill.Location = new System.Drawing.Point(0, 0);
 			this.pnlFill.Name = "pnlFill";
-			this.pnlFill.Size = new System.Drawing.Size(961, 613);
+			this.pnlFill.Size = new System.Drawing.Size(414, 111);
 			this.pnlFill.TabIndex = 0;
 			// 
 			// lblDownChMode
@@ -1215,6 +1215,7 @@ namespace DMR
 			this.lblDownChMode.TabIndex = 35;
 			this.lblDownChMode.Text = "Down Channel Mode";
 			this.lblDownChMode.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.lblDownChMode.Visible = false;
 			// 
 			// lblUpChMode
 			// 
@@ -1224,6 +1225,7 @@ namespace DMR
 			this.lblUpChMode.TabIndex = 35;
 			this.lblUpChMode.Text = "Up Channel Mode";
 			this.lblUpChMode.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.lblUpChMode.Visible = false;
 			// 
 			// cmbDownChMode
 			// 
@@ -1237,6 +1239,7 @@ namespace DMR
 			this.cmbDownChMode.Name = "cmbDownChMode";
 			this.cmbDownChMode.Size = new System.Drawing.Size(120, 24);
 			this.cmbDownChMode.TabIndex = 36;
+			this.cmbDownChMode.Visible = false;
 			// 
 			// cmbUpChMode
 			// 
@@ -1250,6 +1253,7 @@ namespace DMR
 			this.cmbUpChMode.Name = "cmbUpChMode";
 			this.cmbUpChMode.Size = new System.Drawing.Size(120, 24);
 			this.cmbUpChMode.TabIndex = 36;
+			this.cmbUpChMode.Visible = false;
 			// 
 			// grpScan
 			// 
@@ -1261,6 +1265,7 @@ namespace DMR
 			this.grpScan.TabIndex = 34;
 			this.grpScan.TabStop = false;
 			this.grpScan.Text = "Scan";
+			this.grpScan.Visible = false;
 			// 
 			// lblScanMode
 			// 
@@ -1294,6 +1299,7 @@ namespace DMR
 			this.chkTxExitTone.TabIndex = 33;
 			this.chkTxExitTone.Text = "Tx Exit Tone";
 			this.chkTxExitTone.UseVisualStyleBackColor = true;
+			this.chkTxExitTone.Visible = false;
 			// 
 			// grpBeep
 			// 
@@ -1315,6 +1321,7 @@ namespace DMR
 			this.grpBeep.TabIndex = 32;
 			this.grpBeep.TabStop = false;
 			this.grpBeep.Text = "Alert Tone";
+			this.grpBeep.Visible = false;
 			// 
 			// chkResetTone
 			// 
@@ -1512,6 +1519,7 @@ namespace DMR
 			this.grpSaveMode.TabIndex = 30;
 			this.grpSaveMode.TabStop = false;
 			this.grpSaveMode.Text = "Battery Saver";
+			this.grpSaveMode.Visible = false;
 			// 
 			// chkBatteryRx
 			// 
@@ -1546,6 +1554,7 @@ namespace DMR
 			this.grpLoneWork.TabIndex = 29;
 			this.grpLoneWork.TabStop = false;
 			this.grpLoneWork.Text = "Lone Worker";
+			this.grpLoneWork.Visible = false;
 			// 
 			// nudRespTmr
 			// 
@@ -1621,6 +1630,7 @@ namespace DMR
 			this.grpTalkAround.TabIndex = 28;
 			this.grpTalkAround.TabStop = false;
 			this.grpTalkAround.Text = "Talkaround";
+			this.grpTalkAround.Visible = false;
 			// 
 			// nudGrpHang
 			// 
@@ -1693,10 +1703,11 @@ namespace DMR
 			this.chkDisableAllLeds.TabIndex = 12;
 			this.chkDisableAllLeds.Text = "Disable All LED";
 			this.chkDisableAllLeds.UseVisualStyleBackColor = true;
+			this.chkDisableAllLeds.Visible = false;
 			// 
 			// lblRadioName
 			// 
-			this.lblRadioName.Location = new System.Drawing.Point(47, 40);
+			this.lblRadioName.Location = new System.Drawing.Point(22, 18);
 			this.lblRadioName.Name = "lblRadioName";
 			this.lblRadioName.Size = new System.Drawing.Size(186, 24);
 			this.lblRadioName.TabIndex = 0;
@@ -1705,14 +1716,14 @@ namespace DMR
 			// 
 			// txtRadioName
 			// 
-			this.txtRadioName.Location = new System.Drawing.Point(249, 40);
+			this.txtRadioName.Location = new System.Drawing.Point(224, 18);
 			this.txtRadioName.Name = "txtRadioName";
 			this.txtRadioName.Size = new System.Drawing.Size(120, 23);
 			this.txtRadioName.TabIndex = 1;
 			// 
 			// label_0
 			// 
-			this.label_0.Location = new System.Drawing.Point(47, 67);
+			this.label_0.Location = new System.Drawing.Point(22, 45);
 			this.label_0.Name = "label_0";
 			this.label_0.Size = new System.Drawing.Size(186, 24);
 			this.label_0.TabIndex = 2;
@@ -1727,6 +1738,7 @@ namespace DMR
 			this.lblTxPreambleDur.TabIndex = 6;
 			this.lblTxPreambleDur.Text = "Tx Preamble Duration [ms]";
 			this.lblTxPreambleDur.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.lblTxPreambleDur.Visible = false;
 			// 
 			// nudArsInitDly
 			// 
@@ -1759,6 +1771,7 @@ namespace DMR
 			this.lblProgramPwd.TabIndex = 16;
 			this.lblProgramPwd.Text = "Program Password";
 			this.lblProgramPwd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.lblProgramPwd.Visible = false;
 			// 
 			// nudRxLowBatt
 			// 
@@ -1781,11 +1794,12 @@ namespace DMR
             0,
             0,
             0});
+			this.nudRxLowBatt.Visible = false;
 			// 
 			// txtRadioId
 			// 
 			this.txtRadioId.InputString = null;
-			this.txtRadioId.Location = new System.Drawing.Point(249, 67);
+			this.txtRadioId.Location = new System.Drawing.Point(224, 45);
 			this.txtRadioId.MaxByteLength = 0;
 			this.txtRadioId.Name = "txtRadioId";
 			this.txtRadioId.Size = new System.Drawing.Size(120, 23);
@@ -1814,6 +1828,7 @@ namespace DMR
             0,
             0,
             0});
+			this.nudTxPreambleDur.Visible = false;
 			// 
 			// lblRxLowBatt
 			// 
@@ -1823,6 +1838,7 @@ namespace DMR
 			this.lblRxLowBatt.TabIndex = 4;
 			this.lblRxLowBatt.Text = "Rx Low Battery Interval [s]";
 			this.lblRxLowBatt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.lblRxLowBatt.Visible = false;
 			// 
 			// chkKillState
 			// 
@@ -1875,6 +1891,7 @@ namespace DMR
 			this.txtProgramPwd.Name = "txtProgramPwd";
 			this.txtProgramPwd.Size = new System.Drawing.Size(121, 23);
 			this.txtProgramPwd.TabIndex = 17;
+			this.txtProgramPwd.Visible = false;
 			// 
 			// lblMonitorType
 			// 
@@ -1884,6 +1901,7 @@ namespace DMR
 			this.lblMonitorType.TabIndex = 8;
 			this.lblMonitorType.Text = "Monitor Type";
 			this.lblMonitorType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.lblMonitorType.Visible = false;
 			// 
 			// cmbMonitorType
 			// 
@@ -1897,6 +1915,7 @@ namespace DMR
 			this.cmbMonitorType.Name = "cmbMonitorType";
 			this.cmbMonitorType.Size = new System.Drawing.Size(120, 24);
 			this.cmbMonitorType.TabIndex = 9;
+			this.cmbMonitorType.Visible = false;
 			// 
 			// lblVoxSense
 			// 
@@ -1906,6 +1925,7 @@ namespace DMR
 			this.lblVoxSense.TabIndex = 18;
 			this.lblVoxSense.Text = "Vox Sensitivity";
 			this.lblVoxSense.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.lblVoxSense.Visible = false;
 			// 
 			// cmbVoxSense
 			// 
@@ -1926,6 +1946,7 @@ namespace DMR
 			this.cmbVoxSense.Name = "cmbVoxSense";
 			this.cmbVoxSense.Size = new System.Drawing.Size(121, 24);
 			this.cmbVoxSense.TabIndex = 19;
+			this.cmbVoxSense.Visible = false;
 			// 
 			// chkPrivateCall
 			// 
@@ -1936,6 +1957,7 @@ namespace DMR
 			this.chkPrivateCall.TabIndex = 10;
 			this.chkPrivateCall.Text = "Private Call";
 			this.chkPrivateCall.UseVisualStyleBackColor = true;
+			this.chkPrivateCall.Visible = false;
 			// 
 			// chkTxInhibit
 			// 
@@ -1946,10 +1968,11 @@ namespace DMR
 			this.chkTxInhibit.TabIndex = 11;
 			this.chkTxInhibit.Text = "Tx Inhibit Quick Key Override";
 			this.chkTxInhibit.UseVisualStyleBackColor = true;
+			this.chkTxInhibit.Visible = false;
 			// 
 			// GeneralSetForm
 			// 
-			this.ClientSize = new System.Drawing.Size(961, 613);
+			this.ClientSize = new System.Drawing.Size(414, 111);
 			this.Controls.Add(this.pnlFill);
 			this.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "GeneralSetForm";
