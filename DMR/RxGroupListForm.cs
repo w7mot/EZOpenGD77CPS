@@ -567,7 +567,9 @@ namespace DMR
 			this.method_4();
 		}
 
-		private void btnUp_Click(object sender, EventArgs e)
+
+
+		private void btnUp_Click(object sender=null, EventArgs e=null)
 		{
 			int num = 0;
 			int num2 = 0;
@@ -588,7 +590,7 @@ namespace DMR
 			this.method_3();
 		}
 
-		private void btnDown_Click(object sender, EventArgs e)
+		private void btnDown_Click(object sender = null, EventArgs e = null)
 		{
 			int num = 0;
 			int num2 = 0;
@@ -860,6 +862,20 @@ namespace DMR
 				handleDeleteClick();
 				return true;
 			}
+
+			if (keyData == (Keys.Control | Keys.Up))
+			{
+				btnUp_Click();
+				return true;
+			}
+
+			if (keyData == (Keys.Control | Keys.Down))
+			{
+				btnDown_Click();
+				return true;
+			}
+
+
 
 			return base.ProcessCmdKey(ref msg, keyData);
 		}
