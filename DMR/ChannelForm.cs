@@ -2793,6 +2793,13 @@ namespace DMR
 		public ChannelForm()
 		{
 			this.InitializeComponent();
+			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(ChannelForm));
+			this.tsbtnFirst.Image = (Image)componentResourceManager.GetObject("tsbtnFirst.Image");
+			this.tsbtnPrev.Image = (Image)componentResourceManager.GetObject("tsbtnPrev.Image");
+			this.tsbtnNext.Image = (Image)componentResourceManager.GetObject("tsbtnNext.Image");
+			this.tsbtnLast.Image = (Image)componentResourceManager.GetObject("tsbtnLast.Image");
+			this.tsbtnAdd.Image = (Image)componentResourceManager.GetObject("tsbtnAdd.Image");
+			this.tsbtnDel.Image = (Image)componentResourceManager.GetObject("tsbtnDel.Image");
 			this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);// Roger Clark. Added correct icon on main form!
 			base.Scale(Settings.smethod_6());
 			ChannelForm.CurCntCh = 1024;
@@ -3668,7 +3675,6 @@ namespace DMR
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(ChannelForm));
 			this.tsrCh = new ToolStrip();
 			this.tslblInfo = new ToolStripLabel();
 			this.toolStripSeparator2 = new ToolStripSeparator();
@@ -3692,9 +3698,11 @@ namespace DMR
 			this.cmbScanList = new CustomCombo();
 			this.txtName = new SGTextBox();
 			this.cmbSquelch = new ComboBox();
+			cmbSquelch.Visible = false;
 			this.cmbSql = new ComboBox();
 			this.cmbAdmitCriteria = new ComboBox();
 			this.lblSquelch = new Label();
+			lblSquelch.Visible = false;
 			this.nudRssiThreshold = new CustomNumericUpDown();
 			this.lblSql = new Label();
 			this.grpDigit = new DoubleClickGroupBox();
@@ -3717,18 +3725,24 @@ namespace DMR
 			this.cmbContact = new CustomCombo();
 			this.lblContact = new Label();
 			this.chkDualCapacity = new CheckBox();
+			chkDualCapacity.Visible = false;
 			this.chkUdpDataHead = new CheckBox();
 			this.chkAllowTxInterupt = new CheckBox();
 			this.chkTxInteruptFreq = new CheckBox();
 			this.chkPrivateCall = new CheckBox();
+			chkPrivateCall.Visible = false;
 			this.chkDataCall = new CheckBox();
+			chkDataCall.Visible = false;
 			this.chkEmgConfirmed = new CheckBox();
+			chkEmgConfirmed.Visible = false;
 			this.chkEnhancedChAccess = new CheckBox();
+			chkEnhancedChAccess.Visible = false;
 			this.lblRxColor = new Label();
 			this.lblRxGroup = new Label();
 			this.chkRxOnly = new CheckBox();
 			this.cmbRxRefFreq = new ComboBox();
 			this.chkAllowTalkaround = new CheckBox();
+			chkAllowTalkaround.Visible = false;
 			this.grpAnalog = new DoubleClickGroupBox();
 			this.nudArtsInterval = new CustomNumericUpDown();
 			this.cmbChBandwidth = new ComboBox();
@@ -3765,15 +3779,20 @@ namespace DMR
 			this.lblTot = new Label();
 			this.txtRxFreq = new TextBox();
 			this.lblTotRekey = new Label();
+			lblTotRekey.Visible = false;
 			this.lblRssiThreshold = new Label();
 			this.lblRxRefFreq = new Label();
 			this.lblTxRefFreq = new Label();
 			this.cmbPower = new ComboBox();
+			cmbPower.Visible = false;
 			this.lblRxFreq = new Label();
 			this.cmbTxRefFreq = new ComboBox();
+			
 			this.lblPower = new Label();
+			lblPower.Visible = false;
 			this.lblAdmitCriteria = new Label();
 			this.nudTotRekey = new CustomNumericUpDown();
+			nudTotRekey.Visible = false;
 			this.lblTxFreq = new Label();
 			this.nudTot = new CustomNumericUpDown();
 			this.lblScanList = new Label();
@@ -3814,28 +3833,28 @@ namespace DMR
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = new Size(6, 25);
 			this.tsbtnFirst.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.tsbtnFirst.Image = (Image)componentResourceManager.GetObject("tsbtnFirst.Image");
+
 			this.tsbtnFirst.ImageTransparentColor = Color.Magenta;
 			this.tsbtnFirst.Name = "tsbtnFirst";
 			this.tsbtnFirst.Size = new Size(23, 22);
 			this.tsbtnFirst.Text = "First";
 			this.tsbtnFirst.Click += this.tsbtnFirst_Click;
 			this.tsbtnPrev.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.tsbtnPrev.Image = (Image)componentResourceManager.GetObject("tsbtnPrev.Image");
+
 			this.tsbtnPrev.ImageTransparentColor = Color.Magenta;
 			this.tsbtnPrev.Name = "tsbtnPrev";
 			this.tsbtnPrev.Size = new Size(23, 22);
 			this.tsbtnPrev.Text = "Previous";
 			this.tsbtnPrev.Click += this.tsbtnPrev_Click;
 			this.tsbtnNext.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.tsbtnNext.Image = (Image)componentResourceManager.GetObject("tsbtnNext.Image");
+
 			this.tsbtnNext.ImageTransparentColor = Color.Magenta;
 			this.tsbtnNext.Name = "tsbtnNext";
 			this.tsbtnNext.Size = new Size(23, 22);
 			this.tsbtnNext.Text = "Next";
 			this.tsbtnNext.Click += this.tsbtnNext_Click;
 			this.tsbtnLast.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.tsbtnLast.Image = (Image)componentResourceManager.GetObject("tsbtnLast.Image");
+
 			this.tsbtnLast.ImageTransparentColor = Color.Magenta;
 			this.tsbtnLast.Name = "tsbtnLast";
 			this.tsbtnLast.Size = new Size(23, 22);
@@ -3844,14 +3863,14 @@ namespace DMR
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.tsbtnAdd.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.tsbtnAdd.Image = (Image)componentResourceManager.GetObject("tsbtnAdd.Image");
+
 			this.tsbtnAdd.ImageTransparentColor = Color.Magenta;
 			this.tsbtnAdd.Name = "tsbtnAdd";
 			this.tsbtnAdd.Size = new Size(23, 22);
 			this.tsbtnAdd.Text = "Add";
 			this.tsbtnAdd.Click += this.tsmiAdd_Click;
 			this.tsbtnDel.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.tsbtnDel.Image = (Image)componentResourceManager.GetObject("tsbtnDel.Image");
+
 			this.tsbtnDel.ImageTransparentColor = Color.Magenta;
 			this.tsbtnDel.Name = "tsbtnDel";
 			this.tsbtnDel.Size = new Size(23, 22);
@@ -3959,6 +3978,7 @@ namespace DMR
 			this.cmbScanList.Size = new Size(119, 24);
 			this.cmbScanList.TabIndex = 24;
 			this.cmbScanList.SelectedIndexChanged += this.cmbScanList_SelectedIndexChanged;
+			cmbScanList.Visible = false;
 			this.txtName.InputString = null;
 			this.txtName.Location = new Point(78, 56);
 			this.txtName.MaxByteLength = 0;
@@ -4105,6 +4125,7 @@ namespace DMR
 			this.cmbKeySwitch.Size = new Size(119, 24);
 			this.cmbKeySwitch.TabIndex = 8;
 			this.cmbKeySwitch.SelectedIndexChanged += this.cmbKeySwitch_SelectedIndexChanged;
+			cmbKeySwitch.Visible = false;
 			this.lblArs.Location = new Point(69, 371);
 			this.lblArs.Name = "lblArs";
 			this.lblArs.Size = new Size(36, 24);
@@ -4118,17 +4139,20 @@ namespace DMR
 			this.cmbKey.Name = "cmbKey";
 			this.cmbKey.Size = new Size(119, 24);
 			this.cmbKey.TabIndex = 10;
+			cmbKey.Visible = false;
 			this.lblKeySwitch.Location = new Point(169, 30);
 			this.lblKeySwitch.Name = "lblKeySwitch";
 			this.lblKeySwitch.Size = new Size(54, 24);
 			this.lblKeySwitch.TabIndex = 7;
 			this.lblKeySwitch.Text = "Privacy";
+			lblKeySwitch.Visible = false;
 			this.lblKeySwitch.TextAlign = ContentAlignment.MiddleRight;
 			this.lblKey.Location = new Point(125, 60);
 			this.lblKey.Name = "lblKey";
 			this.lblKey.Size = new Size(98, 24);
 			this.lblKey.TabIndex = 9;
 			this.lblKey.Text = "Privacy Group";
+			lblKey.Visible = false;
 			this.lblKey.TextAlign = ContentAlignment.MiddleRight;
 			this.cmbRxGroup.DropDownStyle = ComboBoxStyle.DropDownList;
 			this.cmbRxGroup.FormattingEnabled = true;
@@ -4150,12 +4174,14 @@ namespace DMR
 			this.cmbEmgSystem.Size = new Size(119, 24);
 			this.cmbEmgSystem.TabIndex = 19;
 			this.cmbEmgSystem.SelectedIndexChanged += this.cmbEmgSystem_SelectedIndexChanged;
+			cmbEmgSystem.Visible = false;
 			this.lblEmgSystem.Location = new Point(94, 148);
 			this.lblEmgSystem.Name = "lblEmgSystem";
 			this.lblEmgSystem.Size = new Size(129, 24);
 			this.lblEmgSystem.TabIndex = 18;
 			this.lblEmgSystem.Text = "Emergency System";
 			this.lblEmgSystem.TextAlign = ContentAlignment.MiddleRight;
+			lblEmgSystem.Visible = false;
 			this.cmbContact.DropDownStyle = ComboBoxStyle.DropDownList;
 			this.cmbContact.FormattingEnabled = true;
 			this.cmbContact.Location = new Point(233, 178);
@@ -4333,6 +4359,7 @@ namespace DMR
 			this.cmbSte.Name = "cmbSte";
 			this.cmbSte.Size = new Size(119, 24);
 			this.cmbSte.TabIndex = 7;
+			cmbSte.Visible = false;
 			this.lblVoiceEmphasis.Location = new Point(75, 119);
 			this.lblVoiceEmphasis.Name = "lblVoiceEmphasis";
 			this.lblVoiceEmphasis.Size = new Size(166, 24);
@@ -4346,12 +4373,14 @@ namespace DMR
 			this.cmbNonSte.Name = "cmbNonSte";
 			this.cmbNonSte.Size = new Size(119, 24);
 			this.cmbNonSte.TabIndex = 9;
+			cmbNonSte.Visible = false;
 			this.lblSte.Location = new Point(75, 60);
 			this.lblSte.Name = "lblSte";
 			this.lblSte.Size = new Size(166, 24);
 			this.lblSte.TabIndex = 6;
 			this.lblSte.Text = "STE";
 			this.lblSte.TextAlign = ContentAlignment.MiddleRight;
+			lblSte.Visible = false;
 			this.cmbRxTone.FormattingEnabled = true;
 			this.cmbRxTone.Location = new Point(160, 151);
 			this.cmbRxTone.MaxLength = 5;
@@ -4367,6 +4396,7 @@ namespace DMR
 			this.lblNonSte.TabIndex = 8;
 			this.lblNonSte.Text = "Non STE";
 			this.lblNonSte.TextAlign = ContentAlignment.MiddleRight;
+			lblNonSte.Visible = false;
 			this.cmbRxSignaling.DropDownStyle = ComboBoxStyle.DropDownList;
 			this.cmbRxSignaling.FormattingEnabled = true;
 			this.cmbRxSignaling.Location = new Point(160, 181);
@@ -4374,6 +4404,7 @@ namespace DMR
 			this.cmbRxSignaling.Size = new Size(99, 24);
 			this.cmbRxSignaling.TabIndex = 13;
 			this.cmbRxSignaling.SelectedIndexChanged += this.cmbRxSignaling_SelectedIndexChanged;
+			cmbRxSignaling.Visible = false;
 			this.lblRxTone.Location = new Point(14, 151);
 			this.lblRxTone.Name = "lblRxTone";
 			this.lblRxTone.Size = new Size(135, 24);
@@ -4393,18 +4424,21 @@ namespace DMR
 			this.lblRxSignaling.TabIndex = 12;
 			this.lblRxSignaling.Text = "Rx Signaling System";
 			this.lblRxSignaling.TextAlign = ContentAlignment.MiddleRight;
+			lblRxSignaling.Visible = false;
 			this.cmbArts.DropDownStyle = ComboBoxStyle.DropDownList;
 			this.cmbArts.FormattingEnabled = true;
 			this.cmbArts.Location = new Point(417, 237);
 			this.cmbArts.Name = "cmbArts";
 			this.cmbArts.Size = new Size(99, 24);
 			this.cmbArts.TabIndex = 22;
+			cmbArts.Visible = false;
 			this.cmbPttidType.DropDownStyle = ComboBoxStyle.DropDownList;
 			this.cmbPttidType.FormattingEnabled = true;
 			this.cmbPttidType.Location = new Point(417, 211);
 			this.cmbPttidType.Name = "cmbPttidType";
 			this.cmbPttidType.Size = new Size(99, 24);
 			this.cmbPttidType.TabIndex = 22;
+			cmbPttidType.Visible = false;
 			this.lblUnmuteRule.Location = new Point(14, 239);
 			this.lblUnmuteRule.Name = "lblUnmuteRule";
 			this.lblUnmuteRule.Size = new Size(135, 24);
@@ -4425,12 +4459,14 @@ namespace DMR
 			this.lblArts.TabIndex = 21;
 			this.lblArts.Text = "ARTS";
 			this.lblArts.TextAlign = ContentAlignment.MiddleRight;
+			lblArts.Visible = false;
 			this.lblPttidType.Location = new Point(271, 211);
 			this.lblPttidType.Name = "lblPttidType";
 			this.lblPttidType.Size = new Size(135, 24);
 			this.lblPttidType.TabIndex = 21;
 			this.lblPttidType.Text = "PTTID Type";
 			this.lblPttidType.TextAlign = ContentAlignment.MiddleRight;
+			lblPttidType.Visible = false;
 			this.cmbTxSignaling.DropDownStyle = ComboBoxStyle.DropDownList;
 			this.cmbTxSignaling.FormattingEnabled = true;
 			this.cmbTxSignaling.Location = new Point(417, 181);
@@ -4438,12 +4474,14 @@ namespace DMR
 			this.cmbTxSignaling.Size = new Size(99, 24);
 			this.cmbTxSignaling.TabIndex = 20;
 			this.cmbTxSignaling.SelectedIndexChanged += this.cmbTxSignaling_SelectedIndexChanged;
+			cmbTxSignaling.Visible = false;
 			this.lblTxSignaling.Location = new Point(271, 181);
 			this.lblTxSignaling.Name = "lblTxSignaling";
 			this.lblTxSignaling.Size = new Size(135, 24);
 			this.lblTxSignaling.TabIndex = 19;
 			this.lblTxSignaling.Text = "Tx Signaling System";
 			this.lblTxSignaling.TextAlign = ContentAlignment.MiddleRight;
+			lblTxSignaling.Visible = false;
 			this.cmbTxTone.FormattingEnabled = true;
 			this.cmbTxTone.Location = new Point(417, 151);
 			this.cmbTxTone.MaxLength = 5;
@@ -4466,6 +4504,7 @@ namespace DMR
 			this.chkDataPl.TabIndex = 16;
 			this.chkDataPl.Text = "PL for Data";
 			this.chkDataPl.UseVisualStyleBackColor = true;
+			chkDataPl.Visible = false;
 			this.chkLoneWoker.AutoSize = true;
 			this.chkLoneWoker.Location = new Point(909, 111);
 
@@ -4636,6 +4675,7 @@ namespace DMR
 			this.lblScanList.TabIndex = 23;
 			this.lblScanList.Text = "Scan List";
 			this.lblScanList.TextAlign = ContentAlignment.MiddleRight;
+			lblScanList.Visible = false;
             this.lblxband.Location = new Point(252, 0);
             this.lblxband.Name = "lblxband";
             this.lblxband.Size = new Size(800, 24);
