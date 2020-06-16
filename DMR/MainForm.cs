@@ -1443,7 +1443,7 @@ namespace DMR
 			return null;
 		}
 
-		private Form method_7(TreeNode treeNode_0, bool bool_0)
+		private Form treeviewDoubleClickHandler(TreeNode treeNode_0, bool bool_0)
 		{
 			TreeNodeItem treeNodeItem = treeNode_0.Tag as TreeNodeItem;
 			if (treeNodeItem != null)
@@ -1983,7 +1983,7 @@ namespace DMR
 				treeNodeItem = (treeNode.Tag as TreeNodeItem);
 				if (treeNodeItem != null)
 				{
-					this.method_7(treeNode, true);
+					this.treeviewDoubleClickHandler(treeNode, true);
 				}
 			}
 		}
@@ -2831,7 +2831,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(DeviceInfoForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, true);
+				this.treeviewDoubleClickHandler(treeNode, true);
 			}
 		}
 
@@ -2840,7 +2840,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(GeneralSetForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, true);
+				this.treeviewDoubleClickHandler(treeNode, true);
 			}
 		}
 
@@ -2849,7 +2849,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(ButtonForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, true);
+				this.treeviewDoubleClickHandler(treeNode, true);
 			}
 		}
 
@@ -2858,7 +2858,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(MenuForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, true);
+				this.treeviewDoubleClickHandler(treeNode, true);
 			}
 		}
 
@@ -2867,7 +2867,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(BootItemForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, true);
+				this.treeviewDoubleClickHandler(treeNode, true);
 			}
 		}
 
@@ -2876,7 +2876,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(DigitalKeyContactForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, true);
+				this.treeviewDoubleClickHandler(treeNode, true);
 			}
 		}
 
@@ -2885,7 +2885,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(TextMsgForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, false);
+				this.treeviewDoubleClickHandler(treeNode, false);
 			}
 		}
 
@@ -2894,7 +2894,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(EncryptForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, false);
+				this.treeviewDoubleClickHandler(treeNode, false);
 			}
 		}
 
@@ -2903,7 +2903,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(SignalingBasicForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, false);
+				this.treeviewDoubleClickHandler(treeNode, false);
 			}
 		}
 
@@ -2912,7 +2912,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(DtmfForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, false);
+				this.treeviewDoubleClickHandler(treeNode, false);
 			}
 		}
 
@@ -2921,7 +2921,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(EmergencyForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, false);
+				this.treeviewDoubleClickHandler(treeNode, false);
 			}
 		}
 
@@ -2930,7 +2930,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(DtmfContactForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, false);
+				this.treeviewDoubleClickHandler(treeNode, false);
 			}
 		}
 
@@ -2939,7 +2939,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(ContactsForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, true);
+				this.treeviewDoubleClickHandler(treeNode, true);
 			}
 		}
 
@@ -2948,7 +2948,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(ContactsForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, true);
+				this.treeviewDoubleClickHandler(treeNode, true);
 			}
 		}
 
@@ -2957,7 +2957,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(RxGroupListForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, true);
+				this.treeviewDoubleClickHandler(treeNode, true);
 			}
 		}
 
@@ -2966,7 +2966,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(ZoneBasicForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, true);
+				this.treeviewDoubleClickHandler(treeNode, true);
 			}
 		}
 
@@ -2975,7 +2975,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(ZoneForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, true);
+				this.treeviewDoubleClickHandler(treeNode, true);
 			}
 		}
 
@@ -2984,7 +2984,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(ChannelsForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, true);
+				this.treeviewDoubleClickHandler(treeNode, true);
 			}
 		}
 
@@ -2993,7 +2993,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(ScanBasicForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, true);
+				this.treeviewDoubleClickHandler(treeNode, true);
 			}
 		}
 
@@ -3002,7 +3002,7 @@ namespace DMR
 			TreeNode treeNode = this.method_9(typeof(NormalScanForm), this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, true);
+				this.treeviewDoubleClickHandler(treeNode, true);
 			}
 		}
 
@@ -3011,7 +3011,7 @@ namespace DMR
 			TreeNode treeNode = this.GetTreeNodeByTypeAndIndex(typeof(VfoForm), 0,this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, true);
+				this.treeviewDoubleClickHandler(treeNode, true);
 			}
 		}
 
@@ -3020,7 +3020,7 @@ namespace DMR
 			TreeNode treeNode = this.GetTreeNodeByTypeAndIndex(typeof(VfoForm), 1,this.tvwMain.Nodes);
 			if (treeNode != null)
 			{
-				this.method_7(treeNode, true);
+				this.treeviewDoubleClickHandler(treeNode, true);
 			}
 		}
 
@@ -3740,7 +3740,7 @@ namespace DMR
 			TreeNode treeNodeByTypeAndIndex = this.GetTreeNodeByTypeAndIndex(type, index, this.tvwMain.Nodes);
 			if (treeNodeByTypeAndIndex != null)
 			{
-				this.method_7(treeNodeByTypeAndIndex, true);
+				this.treeviewDoubleClickHandler(treeNodeByTypeAndIndex, true);
 			}
 		}
 
