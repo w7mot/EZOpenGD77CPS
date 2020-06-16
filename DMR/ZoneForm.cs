@@ -896,7 +896,7 @@ namespace DMR
 
 		private void InitializeComponent()
 		{
-			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(ZoneForm));
+
 			this.pnlZone = new CustomPanel();
 			this.tsrZone = new ToolStrip();
 			this.tslblInfo = new ToolStripLabel();
@@ -974,21 +974,21 @@ namespace DMR
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = new Size(6, 25);
 			this.tsbtnFirst.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.tsbtnFirst.Image = (Image)componentResourceManager.GetObject("tsbtnFirst.Image");
+
 			this.tsbtnFirst.ImageTransparentColor = Color.Magenta;
 			this.tsbtnFirst.Name = "tsbtnFirst";
 			this.tsbtnFirst.Size = new Size(23, 22);
 			this.tsbtnFirst.Text = "First";
 			this.tsbtnFirst.Click += new EventHandler(this.tsmiFirst_Click);
 			this.tsbtnPrev.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.tsbtnPrev.Image = (Image)componentResourceManager.GetObject("tsbtnPrev.Image");
+
 			this.tsbtnPrev.ImageTransparentColor = Color.Magenta;
 			this.tsbtnPrev.Name = "tsbtnPrev";
 			this.tsbtnPrev.Size = new Size(23, 22);
 			this.tsbtnPrev.Text = "Previous";
 			this.tsbtnPrev.Click += new EventHandler(this.tsmiPrev_Click);
 			this.tsbtnNext.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.tsbtnNext.Image = (Image)componentResourceManager.GetObject("tsbtnNext.Image");
+
 			this.tsbtnNext.ImageTransparentColor = Color.Magenta;
 			this.tsbtnNext.Name = "tsbtnNext";
 			this.tsbtnNext.Size = new Size(23, 22);
@@ -996,7 +996,7 @@ namespace DMR
 			this.tsbtnNext.Click += new EventHandler(this.tsmiNext_Click);
 
 			this.tsbtnLast.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.tsbtnLast.Image = (Image)componentResourceManager.GetObject("tsbtnLast.Image");
+
 			this.tsbtnLast.ImageTransparentColor = Color.Magenta;
 			this.tsbtnLast.Name = "tsbtnLast";
 			this.tsbtnLast.Size = new Size(23, 22);
@@ -1005,14 +1005,14 @@ namespace DMR
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.tsbtnAdd.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.tsbtnAdd.Image = (Image)componentResourceManager.GetObject("tsbtnAdd.Image");
+
 			this.tsbtnAdd.ImageTransparentColor = Color.Magenta;
 			this.tsbtnAdd.Name = "tsbtnAdd";
 			this.tsbtnAdd.Size = new Size(23, 22);
 			this.tsbtnAdd.Text = "Add..";
 			this.tsbtnAdd.Click += new EventHandler(this.tsmiAdd_Click);
 			this.tsbtnDel.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.tsbtnDel.Image = (Image)componentResourceManager.GetObject("tsbtnDel.Image");
+			
 			this.tsbtnDel.ImageTransparentColor = Color.Magenta;
 			this.tsbtnDel.Name = "tsbtnDel";
 			this.tsbtnDel.Size = new Size(23, 22);
@@ -1297,9 +1297,19 @@ namespace DMR
 			this.txtName.Text = ZoneForm.data[index].Name;
 		}
 
+		private ComponentResourceManager componentResourceManager;
+
 		public ZoneForm()
 		{
+			componentResourceManager = new ComponentResourceManager(typeof(ZoneForm));
 			this.InitializeComponent();
+			this.tsbtnDel.Image = (Image)componentResourceManager.GetObject("tsbtnDel.Image");
+			this.tsbtnFirst.Image = (Image)componentResourceManager.GetObject("tsbtnFirst.Image");
+			this.tsbtnLast.Image = (Image)componentResourceManager.GetObject("tsbtnLast.Image");
+			this.tsbtnPrev.Image = (Image)componentResourceManager.GetObject("tsbtnPrev.Image");
+			this.tsbtnAdd.Image = (Image)componentResourceManager.GetObject("tsbtnAdd.Image");
+			this.tsbtnNext.Image = (Image)componentResourceManager.GetObject("tsbtnNext.Image");
+
 			this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);// Roger Clark. Added correct icon on main form!
 			base.Scale(Settings.smethod_6());
 		}
