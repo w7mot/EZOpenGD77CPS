@@ -1476,6 +1476,26 @@ namespace DMR
 				}
 				if (treeNodeItem.Type != null)
 				{
+					if (treeNodeItem.Type == typeof(TextMsgForm) || 
+						treeNodeItem.Type == typeof(ButtonForm) ||
+						treeNodeItem.Type == typeof(DigitalKeyContactForm) ||
+						treeNodeItem.Type == typeof(MenuForm) ||
+						treeNodeItem.Type == typeof(DeviceInfoForm) ||
+						treeNodeItem.Type == typeof(ScanBasicForm) ||
+						treeNodeItem.Type == typeof(DtmfContactForm) ||
+						treeNodeItem.Type == typeof(DtmfForm) ||
+						treeNodeItem.Type == typeof(SignalingBasicForm) ||
+						treeNodeItem.Type == typeof(EncryptForm))
+					{
+						MessageBox.Show("This feature is not supported in the OpenGD77 firmware");
+						return null;
+					}
+
+					if (treeNodeItem.Type == typeof(ZoneBasicForm))
+					{
+						return null;
+					}
+
 					Form form2 = (Form)Activator.CreateInstance(treeNodeItem.Type);
 					form2.MdiParent = this;
 					IDisp disp2 = form2 as IDisp;
