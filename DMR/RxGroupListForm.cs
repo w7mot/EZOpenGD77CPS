@@ -836,5 +836,33 @@ namespace DMR
 			}
 		}
 
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+		{
+			if (keyData == (Keys.Control | Keys.Right))
+			{
+				handleNextClick();
+				return true;
+			}
+			if (keyData == (Keys.Control | Keys.Left))
+			{
+				handlePreviousClick();
+				return true;
+			}
+
+			if (keyData == (Keys.Control | Keys.Insert))
+			{
+				handleInsertClick();
+				return true;
+			}
+
+			if (keyData == (Keys.Control | Keys.Delete))
+			{
+				handleDeleteClick();
+				return true;
+			}
+
+			return base.ProcessCmdKey(ref msg, keyData);
+		}
+
 	}
 }
