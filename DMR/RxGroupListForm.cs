@@ -14,6 +14,25 @@ namespace DMR
 	{
 		//private IContainer components;
 
+		private ToolStrip tsrGrpList;
+		private ToolStripButton tsbtnFirst;
+		private ToolStripButton tsbtnPrev;
+		private ToolStripButton tsbtnNext;
+		private ToolStripButton tsbtnLast;
+		private ToolStripSeparator toolStripSeparator1;
+		private ToolStripButton tsbtnAdd;
+		private ToolStripButton tsbtnDel;
+		private ToolStripMenuItem tsmiCh;
+		private ToolStripMenuItem tsmiFirst;
+		private ToolStripMenuItem tsmiPrev;
+		private ToolStripMenuItem tsmiNext;
+		private ToolStripMenuItem tsmiLast;
+		private ToolStripMenuItem tsmiAdd;
+		private ToolStripMenuItem tsmiDel;
+		private ToolStripSeparator toolStripSeparator2;
+		private ToolStripLabel tslblInfo;
+
+
 		private Button btnDel;
 
 		private Button btnAdd;
@@ -56,7 +75,24 @@ namespace DMR
 
 		private void InitializeComponent()
 		{
+			this.tsmiCh = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiFirst = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiPrev = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiNext = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiLast = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiAdd = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiDel = new System.Windows.Forms.ToolStripMenuItem();
 			this.pnlRxGrpList = new CustomPanel();
+			this.tsrGrpList = new System.Windows.Forms.ToolStrip();
+			this.tslblInfo = new System.Windows.Forms.ToolStripLabel();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsbtnFirst = new System.Windows.Forms.ToolStripButton();
+			this.tsbtnPrev = new System.Windows.Forms.ToolStripButton();
+			this.tsbtnNext = new System.Windows.Forms.ToolStripButton();
+			this.tsbtnLast = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.tsbtnAdd = new System.Windows.Forms.ToolStripButton();
+			this.tsbtnDel = new System.Windows.Forms.ToolStripButton();
 			this.btnDown = new System.Windows.Forms.Button();
 			this.btnUp = new System.Windows.Forms.Button();
 			this.txtName = new DMR.SGTextBox();
@@ -68,14 +104,51 @@ namespace DMR
 			this.btnDel = new System.Windows.Forms.Button();
 			this.lblName = new System.Windows.Forms.Label();
 			this.pnlRxGrpList.SuspendLayout();
+			this.tsrGrpList.SuspendLayout();
 			this.grpSelected.SuspendLayout();
 			this.grpUnselected.SuspendLayout();
 			this.SuspendLayout();
+			// 
+			// tsmiCh
+			// 
+			this.tsmiCh.Name = "tsmiCh";
+			this.tsmiCh.Size = new System.Drawing.Size(32, 19);
+			// 
+			// tsmiFirst
+			// 
+			this.tsmiFirst.Name = "tsmiFirst";
+			this.tsmiFirst.Size = new System.Drawing.Size(32, 19);
+			// 
+			// tsmiPrev
+			// 
+			this.tsmiPrev.Name = "tsmiPrev";
+			this.tsmiPrev.Size = new System.Drawing.Size(32, 19);
+			// 
+			// tsmiNext
+			// 
+			this.tsmiNext.Name = "tsmiNext";
+			this.tsmiNext.Size = new System.Drawing.Size(32, 19);
+			// 
+			// tsmiLast
+			// 
+			this.tsmiLast.Name = "tsmiLast";
+			this.tsmiLast.Size = new System.Drawing.Size(32, 19);
+			// 
+			// tsmiAdd
+			// 
+			this.tsmiAdd.Name = "tsmiAdd";
+			this.tsmiAdd.Size = new System.Drawing.Size(32, 19);
+			// 
+			// tsmiDel
+			// 
+			this.tsmiDel.Name = "tsmiDel";
+			this.tsmiDel.Size = new System.Drawing.Size(32, 19);
 			// 
 			// pnlRxGrpList
 			// 
 			this.pnlRxGrpList.AutoScroll = true;
 			this.pnlRxGrpList.AutoSize = true;
+			this.pnlRxGrpList.Controls.Add(this.tsrGrpList);
 			this.pnlRxGrpList.Controls.Add(this.btnDown);
 			this.pnlRxGrpList.Controls.Add(this.btnUp);
 			this.pnlRxGrpList.Controls.Add(this.txtName);
@@ -87,8 +160,94 @@ namespace DMR
 			this.pnlRxGrpList.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnlRxGrpList.Location = new System.Drawing.Point(0, 0);
 			this.pnlRxGrpList.Name = "pnlRxGrpList";
-			this.pnlRxGrpList.Size = new System.Drawing.Size(693, 514);
+			this.pnlRxGrpList.Size = new System.Drawing.Size(693, 567);
 			this.pnlRxGrpList.TabIndex = 8;
+			// 
+			// tsrGrpList
+			// 
+			this.tsrGrpList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tslblInfo,
+            this.toolStripSeparator2,
+            this.tsbtnFirst,
+            this.tsbtnPrev,
+            this.tsbtnNext,
+            this.tsbtnLast,
+            this.toolStripSeparator1,
+            this.tsbtnAdd,
+            this.tsbtnDel});
+			this.tsrGrpList.Location = new System.Drawing.Point(0, 0);
+			this.tsrGrpList.Name = "tsrGrpList";
+			this.tsrGrpList.Size = new System.Drawing.Size(693, 25);
+			this.tsrGrpList.TabIndex = 0;
+			// 
+			// tslblInfo
+			// 
+			this.tslblInfo.Name = "tslblInfo";
+			this.tslblInfo.Size = new System.Drawing.Size(0, 22);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+			// 
+			// tsbtnFirst
+			// 
+			this.tsbtnFirst.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbtnFirst.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbtnFirst.Name = "tsbtnFirst";
+			this.tsbtnFirst.Size = new System.Drawing.Size(23, 22);
+			this.tsbtnFirst.Text = "First";
+			this.tsbtnFirst.Click += new System.EventHandler(this.tsmiFirst_Click);
+			// 
+			// tsbtnPrev
+			// 
+			this.tsbtnPrev.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbtnPrev.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbtnPrev.Name = "tsbtnPrev";
+			this.tsbtnPrev.Size = new System.Drawing.Size(23, 22);
+			this.tsbtnPrev.Text = "Previous";
+			this.tsbtnPrev.Click += new System.EventHandler(this.tsmiPrev_Click);
+			// 
+			// tsbtnNext
+			// 
+			this.tsbtnNext.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbtnNext.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbtnNext.Name = "tsbtnNext";
+			this.tsbtnNext.Size = new System.Drawing.Size(23, 22);
+			this.tsbtnNext.Text = "Next";
+			this.tsbtnNext.Click += new System.EventHandler(this.tsmiNext_Click);
+			// 
+			// tsbtnLast
+			// 
+			this.tsbtnLast.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbtnLast.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbtnLast.Name = "tsbtnLast";
+			this.tsbtnLast.Size = new System.Drawing.Size(23, 22);
+			this.tsbtnLast.Text = "Last";
+			this.tsbtnLast.Click += new System.EventHandler(this.tsmiLast_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+			// 
+			// tsbtnAdd
+			// 
+			this.tsbtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbtnAdd.Name = "tsbtnAdd";
+			this.tsbtnAdd.Size = new System.Drawing.Size(23, 22);
+			this.tsbtnAdd.Text = "Add..";
+			this.tsbtnAdd.Click += new System.EventHandler(this.tsmiAdd_Click);
+			// 
+			// tsbtnDel
+			// 
+			this.tsbtnDel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.tsbtnDel.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsbtnDel.Name = "tsbtnDel";
+			this.tsbtnDel.Size = new System.Drawing.Size(23, 22);
+			this.tsbtnDel.Text = "Delete";
+			this.tsbtnDel.Click += new System.EventHandler(this.tsmiDel_Click);
 			// 
 			// btnDown
 			// 
@@ -113,7 +272,7 @@ namespace DMR
 			// txtName
 			// 
 			this.txtName.InputString = null;
-			this.txtName.Location = new System.Drawing.Point(100, 12);
+			this.txtName.Location = new System.Drawing.Point(100, 39);
 			this.txtName.MaxByteLength = 0;
 			this.txtName.Name = "txtName";
 			this.txtName.Size = new System.Drawing.Size(115, 23);
@@ -123,9 +282,9 @@ namespace DMR
 			// grpSelected
 			// 
 			this.grpSelected.Controls.Add(this.lstSelected);
-			this.grpSelected.Location = new System.Drawing.Point(353, 50);
+			this.grpSelected.Location = new System.Drawing.Point(353, 110);
 			this.grpSelected.Name = "grpSelected";
-			this.grpSelected.Size = new System.Drawing.Size(230, 440);
+			this.grpSelected.Size = new System.Drawing.Size(230, 433);
 			this.grpSelected.TabIndex = 7;
 			this.grpSelected.TabStop = false;
 			this.grpSelected.Text = "Member";
@@ -154,21 +313,21 @@ namespace DMR
 			// 
 			// grpUnselected
 			// 
+			this.grpUnselected.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.grpUnselected.Controls.Add(this.lstUnselected);
-			this.grpUnselected.Location = new System.Drawing.Point(10, 50);
-            this.grpUnselected.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-| System.Windows.Forms.AnchorStyles.Left)));
-            this.grpUnselected.Name = "grpUnselected";
-			this.grpUnselected.Size = new System.Drawing.Size(230, 440);
+			this.grpUnselected.Location = new System.Drawing.Point(10, 97);
+			this.grpUnselected.Name = "grpUnselected";
+			this.grpUnselected.Size = new System.Drawing.Size(230, 446);
 			this.grpUnselected.TabIndex = 6;
 			this.grpUnselected.TabStop = false;
 			this.grpUnselected.Text = "Available";
-            // 
-            // lstUnselected
-            // 
-            this.lstUnselected.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			// 
+			// lstUnselected
+			// 
+			this.lstUnselected.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.lstUnselected.FormattingEnabled = true;
+			this.lstUnselected.FormattingEnabled = true;
 			this.lstUnselected.ItemHeight = 16;
 			this.lstUnselected.Location = new System.Drawing.Point(25, 25);
 			this.lstUnselected.Name = "lstUnselected";
@@ -188,7 +347,7 @@ namespace DMR
 			// 
 			// lblName
 			// 
-			this.lblName.Location = new System.Drawing.Point(7, 12);
+			this.lblName.Location = new System.Drawing.Point(7, 39);
 			this.lblName.Name = "lblName";
 			this.lblName.Size = new System.Drawing.Size(86, 23);
 			this.lblName.TabIndex = 0;
@@ -197,7 +356,7 @@ namespace DMR
 			// 
 			// RxGroupListForm
 			// 
-			this.ClientSize = new System.Drawing.Size(693, 514);
+			this.ClientSize = new System.Drawing.Size(693, 567);
 			this.Controls.Add(this.pnlRxGrpList);
 			this.Font = new System.Drawing.Font("Arial", 10F);
 			this.Name = "RxGroupListForm";
@@ -206,6 +365,8 @@ namespace DMR
 			this.Load += new System.EventHandler(this.RxGroupListForm_Load);
 			this.pnlRxGrpList.ResumeLayout(false);
 			this.pnlRxGrpList.PerformLayout();
+			this.tsrGrpList.ResumeLayout(false);
+			this.tsrGrpList.PerformLayout();
 			this.grpSelected.ResumeLayout(false);
 			this.grpUnselected.ResumeLayout(false);
 			this.ResumeLayout(false);
@@ -300,6 +461,7 @@ namespace DMR
 					this.lstUnselected.SelectedIndex = 0;
 				}
 				this.method_4();
+				this.method_6();
 			}
 			catch (Exception ex)
 			{
@@ -313,9 +475,17 @@ namespace DMR
 			this.txtName.Text = RxGroupListForm.data[index].Name;
 		}
 
+		private ComponentResourceManager componentResourceManager;
 		public RxGroupListForm()
 		{
+			componentResourceManager = new ComponentResourceManager(typeof(RxGroupListForm));
 			this.InitializeComponent();
+			this.tsbtnDel.Image = (Image)componentResourceManager.GetObject("tsbtnDel.Image");
+			this.tsbtnFirst.Image = (Image)componentResourceManager.GetObject("tsbtnFirst.Image");
+			this.tsbtnLast.Image = (Image)componentResourceManager.GetObject("tsbtnLast.Image");
+			this.tsbtnPrev.Image = (Image)componentResourceManager.GetObject("tsbtnPrev.Image");
+			this.tsbtnAdd.Image = (Image)componentResourceManager.GetObject("tsbtnAdd.Image");
+			this.tsbtnNext.Image = (Image)componentResourceManager.GetObject("tsbtnNext.Image");
 			this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);// Roger Clark. Added correct icon on main form!
 			base.Scale(Settings.smethod_6());
 		}
@@ -536,5 +706,135 @@ namespace DMR
 			
 			RxGroupListForm.data = new RxListData();
 		}
+
+		private void tsmiFirst_Click(object sender, EventArgs e)
+		{
+			this.SaveData();
+			this.Node = this.Node.Parent.FirstNode;
+			TreeNodeItem treeNodeItem = this.Node.Tag as TreeNodeItem;
+			base.Tag = treeNodeItem.Index;
+			this.DispData();
+		}
+
+
+		private void handlePreviousClick()
+		{
+			this.SaveData();
+			if (this.Node.PrevNode != null)
+			{
+				this.Node = this.Node.PrevNode;
+				TreeNodeItem treeNodeItem = this.Node.Tag as TreeNodeItem;
+				base.Tag = treeNodeItem.Index;
+				this.DispData();
+			}
+		}
+
+		private void tsmiPrev_Click(object sender, EventArgs e)
+		{
+			handlePreviousClick();
+		}
+
+		private void handleNextClick()
+		{
+
+			this.SaveData();
+			if (this.Node.NextNode != null)
+			{
+				this.Node = this.Node.NextNode;
+				TreeNodeItem treeNodeItem = this.Node.Tag as TreeNodeItem;
+				base.Tag = treeNodeItem.Index;
+				this.DispData();
+			}
+		}
+
+		private void tsmiNext_Click(object sender, EventArgs e)
+		{
+			handleNextClick();
+		}
+
+		private void tsmiLast_Click(object sender, EventArgs e)
+		{
+			this.SaveData();
+			this.Node = this.Node.Parent.LastNode;
+			TreeNodeItem treeNodeItem = this.Node.Tag as TreeNodeItem;
+			base.Tag = treeNodeItem.Index;
+			this.DispData();
+		}
+
+		private void handleInsertClick()
+		{
+
+			if (this.Node.Parent.Nodes.Count < RxListData.CNT_RX_LIST)
+			{
+				this.SaveData();
+				TreeNodeItem treeNodeItem = this.Node.Tag as TreeNodeItem;
+				int minIndex = RxGroupListForm.data.GetMinIndex();
+				string minName = RxGroupListForm.data.GetMinName(this.Node);
+				RxGroupListForm.data.SetIndex(minIndex, 1);
+				TreeNodeItem tag = new TreeNodeItem(treeNodeItem.Cms, treeNodeItem.Type, null, 0, minIndex, treeNodeItem.ImageIndex, treeNodeItem.Data);
+				TreeNode treeNode = new TreeNode(minName);
+				treeNode.Tag = tag;
+				treeNode.ImageIndex = 19;
+				treeNode.SelectedImageIndex = 19;
+				this.Node.Parent.Nodes.Insert(minIndex, treeNode);
+				RxGroupListForm.data.SetName(minIndex, minName);
+				this.Node = treeNode;
+				base.Tag = minIndex;
+				this.DispData();
+				this.method_7();
+			}
+		}
+
+		private void tsmiAdd_Click(object sender, EventArgs e)
+		{
+			handleInsertClick();
+		}
+
+		private void handleDeleteClick()
+		{
+			if (this.Node.Parent.Nodes.Count > 1 && this.Node.Index != 0)
+			{
+				this.SaveData();
+				TreeNode node = this.Node.NextNode ?? this.Node.PrevNode;
+				TreeNodeItem treeNodeItem = this.Node.Tag as TreeNodeItem;
+				RxGroupListForm.data.ClearIndex(treeNodeItem.Index);
+				this.Node.Remove();
+				this.Node = node;
+				TreeNodeItem treeNodeItem2 = this.Node.Tag as TreeNodeItem;
+				base.Tag = treeNodeItem2.Index;
+				this.DispData();
+				this.method_7();
+			}
+			else
+			{
+				MessageBox.Show(Settings.dicCommon["FirstNotDelete"]);
+			}
+		}
+
+		private void tsmiDel_Click(object sender, EventArgs e)
+		{
+			handleDeleteClick();
+		}
+
+		private void method_6()
+		{
+			this.tsbtnAdd.Enabled = (this.Node.Parent.Nodes.Count != RxListData.CNT_RX_LIST);
+			this.tsbtnDel.Enabled = (this.Node.Parent.Nodes.Count != 1 && this.Node.Index != 0);
+			this.tsbtnFirst.Enabled = (this.Node != this.Node.Parent.FirstNode);
+			this.tsbtnPrev.Enabled = (this.Node != this.Node.Parent.FirstNode);
+			this.tsbtnNext.Enabled = (this.Node != this.Node.Parent.LastNode);
+			this.tsbtnLast.Enabled = (this.Node != this.Node.Parent.LastNode);
+			//this.tslblInfo.Text = string.Format(" {0} / {1}", RxGroupListForm.data.GetDispIndex(Convert.ToInt32(base.Tag)), RxGroupListForm.data.ValidCount);
+		}
+
+		private void method_7()
+		{
+			MainForm mainForm = base.MdiParent as MainForm;
+			if (mainForm != null)
+			{
+				mainForm.RefreshRelatedForm(typeof(RxGroupListForm));
+			}
+		}
+
 	}
 }
