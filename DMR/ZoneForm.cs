@@ -994,6 +994,7 @@ namespace DMR
 			this.tsbtnNext.Size = new Size(23, 22);
 			this.tsbtnNext.Text = "Next";
 			this.tsbtnNext.Click += new EventHandler(this.tsmiNext_Click);
+
 			this.tsbtnLast.DisplayStyle = ToolStripItemDisplayStyle.Image;
 			this.tsbtnLast.Image = (Image)componentResourceManager.GetObject("tsbtnLast.Image");
 			this.tsbtnLast.ImageTransparentColor = Color.Magenta;
@@ -1052,6 +1053,8 @@ namespace DMR
 			this.tsmiNext.Size = new Size(159, 22);
 			this.tsmiNext.Text = "Next";
 			this.tsmiNext.Click += new EventHandler(this.tsmiNext_Click);
+			this.tsmiNext.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N;
+
 			this.tsmiLast.Name = "tsmiLast";
 			this.tsmiLast.Size = new Size(159, 22);
 			this.tsmiLast.Text = "Last";
@@ -1535,22 +1538,40 @@ namespace DMR
 			this.DispData();
 		}
 
-		private void tsmiPrev_Click(object sender, EventArgs e)
+
+		private void handlePreviousClick()
 		{
 			this.SaveData();
-			this.Node = this.Node.PrevNode;
-			TreeNodeItem treeNodeItem = this.Node.Tag as TreeNodeItem;
-			base.Tag = treeNodeItem.Index;
-			this.DispData();
+			if (this.Node.PrevNode != null)
+			{
+				this.Node = this.Node.PrevNode;
+				TreeNodeItem treeNodeItem = this.Node.Tag as TreeNodeItem;
+				base.Tag = treeNodeItem.Index;
+				this.DispData();
+			}
+		}
+
+		private void tsmiPrev_Click(object sender, EventArgs e)
+		{
+			handlePreviousClick();
+		}
+
+		private void handleNextClick()
+		{
+
+			this.SaveData();
+			if (this.Node.NextNode != null)
+			{
+				this.Node = this.Node.NextNode;
+				TreeNodeItem treeNodeItem = this.Node.Tag as TreeNodeItem;
+				base.Tag = treeNodeItem.Index;
+				this.DispData();
+			}
 		}
 
 		private void tsmiNext_Click(object sender, EventArgs e)
 		{
-			this.SaveData();
-			this.Node = this.Node.NextNode;
-			TreeNodeItem treeNodeItem = this.Node.Tag as TreeNodeItem;
-			base.Tag = treeNodeItem.Index;
-			this.DispData();
+			handleNextClick();
 		}
 
 		private void tsmiLast_Click(object sender, EventArgs e)
@@ -1562,7 +1583,7 @@ namespace DMR
 			this.DispData();
 		}
 
-		private void tsmiAdd_Click(object sender, EventArgs e)
+		private void handleInsertClick()
 		{
 			if (this.Node.Parent.Nodes.Count < NUM_ZONES)
 			{
@@ -1585,7 +1606,12 @@ namespace DMR
 			}
 		}
 
-		private void tsmiDel_Click(object sender, EventArgs e)
+		private void tsmiAdd_Click(object sender, EventArgs e)
+		{
+			handleInsertClick();
+		}
+
+		private void handleDeleteClick()
 		{
 			if (this.Node.Parent.Nodes.Count > 1 && this.Node.Index != 0)
 			{
@@ -1604,6 +1630,11 @@ namespace DMR
 			{
 				MessageBox.Show(Settings.dicCommon["FirstNotDelete"]);
 			}
+		}
+
+		private void tsmiDel_Click(object sender, EventArgs e)
+		{
+			handleDeleteClick();
 		}
 
 		private void method_6()
@@ -1633,6 +1664,34 @@ namespace DMR
 			ZoneForm.basicData = new BasicZone();
 			ZoneForm.data = new Zone();
 			ZoneForm.SPACE_BASIC_ZONE = Marshal.SizeOf(typeof(BasicZone));
+		}
+		
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+		{
+			if (keyData == (Keys.Control | Keys.Right))
+			{
+				handleNextClick();
+				return true;
+			}
+			if (keyData == (Keys.Control | Keys.Left))
+			{
+				handlePreviousClick();
+				return true;
+			}
+
+			if (keyData == (Keys.Control | Keys.Insert))
+			{
+				handleInsertClick();
+				return true;
+			}
+
+			if (keyData == (Keys.Control | Keys.Delete))
+			{
+				handleDeleteClick();
+				return true;
+			}
+
+			return base.ProcessCmdKey(ref msg, keyData);
 		}
 	}
 }
