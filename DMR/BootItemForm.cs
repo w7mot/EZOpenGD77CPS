@@ -265,12 +265,14 @@ namespace DMR
 			this.chkBootPwdEnable.Text = "Power On Password Enable";
 			this.chkBootPwdEnable.UseVisualStyleBackColor = true;
 			this.chkBootPwdEnable.CheckedChanged += this.chkBootPwdEnable_CheckedChanged;
+			this.chkBootPwdEnable.Visible = false;
 			this.lblBootPwd.Location = new Point(12, 268);
 			this.lblBootPwd.Name = "lblBootPwd";
 			this.lblBootPwd.Size = new Size(152, 24);
 			this.lblBootPwd.TabIndex = 3;
 			this.lblBootPwd.Text = "Power On Password";
 			this.lblBootPwd.TextAlign = ContentAlignment.MiddleRight;
+			lblBootPwd.Visible = false;
 			this.lblLine1.Location = new Point(22, 74);
 			this.lblLine1.Name = "lblLine1";
 			this.lblLine1.Size = new Size(104, 24);
@@ -294,8 +296,8 @@ namespace DMR
 			this.cmbBootScreen.FormattingEnabled = true;
 			this.cmbBootScreen.Items.AddRange(new object[2]
 			{
-				"打开静噪",
-				"静默"
+				"",
+				""
 			});
 			this.cmbBootScreen.Location = new Point(133, 32);
 			this.cmbBootScreen.Margin = new Padding(3, 4, 3, 4);
@@ -338,9 +340,9 @@ namespace DMR
 			this.txtBootPwd.Name = "txtBootPwd";
 			this.txtBootPwd.Size = new Size(120, 23);
 			this.txtBootPwd.TabIndex = 4;
+			txtBootPwd.Visible = false;
 			base.AutoScaleDimensions = new SizeF(7f, 16f);
-//			base.AutoScaleMode = AutoScaleMode.Font;
-			base.ClientSize = new Size(350, 336);
+			base.ClientSize = new Size(350, 250);
 			base.Controls.Add(this.grpBootScreen);
 			base.Controls.Add(this.txtBootPwd);
 			base.Controls.Add(this.lblBootPwd);
@@ -350,8 +352,8 @@ namespace DMR
 			base.Margin = new Padding(3, 4, 3, 4);
 			base.Name = "BootItemForm";
 			this.Text = "Boot Item";
-			base.Load += this.BootItemForm_Load;
-			base.FormClosing += this.BootItemForm_FormClosing;
+			base.Load += new EventHandler(this.BootItemForm_Load);
+			base.FormClosing += new FormClosingEventHandler(this.BootItemForm_FormClosing);
 			this.grpBootScreen.ResumeLayout(false);
 			this.grpBootScreen.PerformLayout();
 			base.ResumeLayout(false);
