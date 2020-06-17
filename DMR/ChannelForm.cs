@@ -3838,28 +3838,28 @@ namespace DMR
 			this.tsbtnFirst.Name = "tsbtnFirst";
 			this.tsbtnFirst.Size = new Size(23, 22);
 			this.tsbtnFirst.Text = "First";
-			this.tsbtnFirst.Click += this.tsbtnFirst_Click;
+			this.tsbtnFirst.Click += new EventHandler(this.tsbtnFirst_Click);
 			this.tsbtnPrev.DisplayStyle = ToolStripItemDisplayStyle.Image;
 
 			this.tsbtnPrev.ImageTransparentColor = Color.Magenta;
 			this.tsbtnPrev.Name = "tsbtnPrev";
 			this.tsbtnPrev.Size = new Size(23, 22);
 			this.tsbtnPrev.Text = "Previous";
-			this.tsbtnPrev.Click += this.tsbtnPrev_Click;
+			this.tsbtnPrev.Click += new EventHandler(this.tsbtnPrev_Click);
 			this.tsbtnNext.DisplayStyle = ToolStripItemDisplayStyle.Image;
 
 			this.tsbtnNext.ImageTransparentColor = Color.Magenta;
 			this.tsbtnNext.Name = "tsbtnNext";
 			this.tsbtnNext.Size = new Size(23, 22);
 			this.tsbtnNext.Text = "Next";
-			this.tsbtnNext.Click += this.tsbtnNext_Click;
+			this.tsbtnNext.Click += new EventHandler(this.tsbtnNext_Click);
 			this.tsbtnLast.DisplayStyle = ToolStripItemDisplayStyle.Image;
 
 			this.tsbtnLast.ImageTransparentColor = Color.Magenta;
 			this.tsbtnLast.Name = "tsbtnLast";
 			this.tsbtnLast.Size = new Size(23, 22);
 			this.tsbtnLast.Text = "Last";
-			this.tsbtnLast.Click += this.tsbtnLast_Click;
+			this.tsbtnLast.Click += new EventHandler(this.tsbtnLast_Click);
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new Size(6, 25);
 			this.tsbtnAdd.DisplayStyle = ToolStripItemDisplayStyle.Image;
@@ -3868,14 +3868,14 @@ namespace DMR
 			this.tsbtnAdd.Name = "tsbtnAdd";
 			this.tsbtnAdd.Size = new Size(23, 22);
 			this.tsbtnAdd.Text = "Add";
-			this.tsbtnAdd.Click += this.tsmiAdd_Click;
+			this.tsbtnAdd.Click += new EventHandler(this.tsmiAdd_Click);
 			this.tsbtnDel.DisplayStyle = ToolStripItemDisplayStyle.Image;
 
 			this.tsbtnDel.ImageTransparentColor = Color.Magenta;
 			this.tsbtnDel.Name = "tsbtnDel";
 			this.tsbtnDel.Size = new Size(23, 22);
 			this.tsbtnDel.Text = "Delete";
-			this.tsbtnDel.Click += this.tsmiDel_Click;
+			this.tsbtnDel.Click += new EventHandler(this.tsmiDel_Click);
 			this.mnsCh.AllowMerge = false;
 			this.mnsCh.Items.AddRange(new ToolStripItem[1]
 			{
@@ -3914,11 +3914,11 @@ namespace DMR
 			this.tsmiAdd.Name = "tsmiAdd";
 			this.tsmiAdd.Size = new Size(159, 22);
 			this.tsmiAdd.Text = "Add";
-			this.tsmiAdd.Click += this.tsmiAdd_Click;
+			this.tsmiAdd.Click += new EventHandler(this.tsmiAdd_Click);
 			this.tsmiDel.Name = "tsmiDel";
 			this.tsmiDel.Size = new Size(159, 22);
 			this.tsmiDel.Text = "Delete";
-			this.tsmiDel.Click += this.tsmiDel_Click;
+			this.tsmiDel.Click += new EventHandler(this.tsmiDel_Click);
 			this.pnlChannel.AutoScroll = true;
 			this.pnlChannel.AutoSize = true;
 			this.pnlChannel.Controls.Add(this.btnCopy);
@@ -3970,14 +3970,14 @@ namespace DMR
 			this.btnCopy.TabIndex = 32;
 			this.btnCopy.Text = ">>";
 			this.btnCopy.UseVisualStyleBackColor = true;
-			this.btnCopy.Click += this.btnCopy_Click;
+			this.btnCopy.Click += new EventHandler(this.btnCopy_Click);
 			this.cmbScanList.DropDownStyle = ComboBoxStyle.DropDownList;
 			this.cmbScanList.FormattingEnabled = true;
 			this.cmbScanList.Location = new Point(909, 56);
 			this.cmbScanList.Name = "cmbScanList";
 			this.cmbScanList.Size = new Size(119, 24);
 			this.cmbScanList.TabIndex = 24;
-			this.cmbScanList.SelectedIndexChanged += this.cmbScanList_SelectedIndexChanged;
+			this.cmbScanList.SelectedIndexChanged += new EventHandler(this.cmbScanList_SelectedIndexChanged);
 			cmbScanList.Visible = false;
 			this.txtName.InputString = null;
 			this.txtName.Location = new Point(78, 56);
@@ -3985,7 +3985,7 @@ namespace DMR
 			this.txtName.Name = "txtName";
 			this.txtName.Size = new Size(119, 23);
 			this.txtName.TabIndex = 3;
-			this.txtName.Leave += this.txtName_Leave;
+			this.txtName.Leave += new EventHandler(this.txtName_Leave);
 			this.cmbSquelch.DropDownStyle = ComboBoxStyle.DropDownList;
 			this.cmbSquelch.FormattingEnabled = true;
 			this.cmbSquelch.Location = new Point(364, 56);
@@ -3998,7 +3998,7 @@ namespace DMR
 			this.cmbSql.Name = "cmbSql";
 			this.cmbSql.Size = new Size(119, 24);
 			this.cmbSql.TabIndex = 3;
-			this.cmbSql.Visible = true;
+			//this.cmbSql.Visible = true;
 			this.cmbAdmitCriteria.DropDownStyle = ComboBoxStyle.DropDownList;
 			this.cmbAdmitCriteria.FormattingEnabled = true;
 			this.cmbAdmitCriteria.Location = new Point(909, 26);
@@ -4073,7 +4073,7 @@ namespace DMR
 			class2.method_4(new decimal(bits2));
 			this.nudTxColor.Size = new Size(120, 23);
 			this.nudTxColor.TabIndex = 17;
-			this.nudTxColor.ValueChanged += this.nudTxColor_ValueChanged;
+			this.nudTxColor.ValueChanged  += new EventHandler(this.nudTxColor_ValueChanged);
 			this.nudRxColor.method_2(null);
 			this.nudRxColor.Location = new Point(101, 314);
 			this.nudRxColor.Name = "nudRxColor";
@@ -4097,7 +4097,7 @@ namespace DMR
 			this.cmbRepeaterSlot.Name = "cmbRepeaterSlot";
 			this.cmbRepeaterSlot.Size = new Size(119, 24);
 			this.cmbRepeaterSlot.TabIndex = 4;
-			this.cmbRepeaterSlot.SelectedIndexChanged += this.cmbRepeaterSlot_SelectedIndexChanged;
+			this.cmbRepeaterSlot.SelectedIndexChanged += new EventHandler(this.cmbRepeaterSlot_SelectedIndexChanged);
 			this.lblTimingPreference.Location = new Point(-51, 345);
 			this.lblTimingPreference.Name = "lblTimingPreference";
 			this.lblTimingPreference.Size = new Size(164, 24);
@@ -4124,7 +4124,7 @@ namespace DMR
 			this.cmbKeySwitch.Name = "cmbKeySwitch";
 			this.cmbKeySwitch.Size = new Size(119, 24);
 			this.cmbKeySwitch.TabIndex = 8;
-			this.cmbKeySwitch.SelectedIndexChanged += this.cmbKeySwitch_SelectedIndexChanged;
+			this.cmbKeySwitch.SelectedIndexChanged += new EventHandler(this.cmbKeySwitch_SelectedIndexChanged);
 			cmbKeySwitch.Visible = false;
 			this.lblArs.Location = new Point(69, 371);
 			this.lblArs.Name = "lblArs";
@@ -4160,7 +4160,7 @@ namespace DMR
 			this.cmbRxGroup.Name = "cmbRxGroup";
 			this.cmbRxGroup.Size = new Size(119, 24);
 			this.cmbRxGroup.TabIndex = 15;
-			this.cmbRxGroup.SelectedIndexChanged += this.cmbRxGroup_SelectedIndexChanged;
+			this.cmbRxGroup.SelectedIndexChanged += new EventHandler(this.cmbRxGroup_SelectedIndexChanged);
 			this.lblTxColor.Location = new Point(143, 118);
 			this.lblTxColor.Name = "lblTxColor";
 			this.lblTxColor.Size = new Size(80, 24);
@@ -4173,7 +4173,7 @@ namespace DMR
 			this.cmbEmgSystem.Name = "cmbEmgSystem";
 			this.cmbEmgSystem.Size = new Size(119, 24);
 			this.cmbEmgSystem.TabIndex = 19;
-			this.cmbEmgSystem.SelectedIndexChanged += this.cmbEmgSystem_SelectedIndexChanged;
+			this.cmbEmgSystem.SelectedIndexChanged += new EventHandler(this.cmbEmgSystem_SelectedIndexChanged);
 			cmbEmgSystem.Visible = false;
 			this.lblEmgSystem.Location = new Point(94, 148);
 			this.lblEmgSystem.Name = "lblEmgSystem";
@@ -4188,7 +4188,7 @@ namespace DMR
 			this.cmbContact.Name = "cmbContact";
 			this.cmbContact.Size = new Size(119, 24);
 			this.cmbContact.TabIndex = 21;
-			this.cmbContact.SelectedIndexChanged += this.cmbContact_SelectedIndexChanged;
+			this.cmbContact.SelectedIndexChanged += new EventHandler(this.cmbContact_SelectedIndexChanged);
 			this.lblContact.Location = new Point(126, 178);
 			this.lblContact.Name = "lblContact";
 			this.lblContact.Size = new Size(97, 24);
@@ -4202,7 +4202,7 @@ namespace DMR
 			this.chkDualCapacity.TabIndex = 0;
 			this.chkDualCapacity.Text = "Dual Capacity Direct Mode";
 			this.chkDualCapacity.UseVisualStyleBackColor = true;
-			this.chkDualCapacity.CheckedChanged += this.chkDualCapacity_CheckedChanged;
+			this.chkDualCapacity.CheckedChanged += new EventHandler(this.chkDualCapacity_CheckedChanged);
 			this.chkUdpDataHead.AutoSize = true;
 			this.chkUdpDataHead.Location = new Point(285, 273);
 			this.chkUdpDataHead.Name = "chkUdpDataHead";
@@ -4276,7 +4276,7 @@ namespace DMR
 			this.chkRxOnly.TabIndex = 28;
 			this.chkRxOnly.Text = "Rx Only";
 			this.chkRxOnly.UseVisualStyleBackColor = true;
-			this.chkRxOnly.CheckedChanged += this.chkRxOnly_CheckedChanged;
+			this.chkRxOnly.CheckedChanged += new EventHandler(this.chkRxOnly_CheckedChanged);
 			this.cmbRxRefFreq.DropDownStyle = ComboBoxStyle.DropDownList;
 			this.cmbRxRefFreq.FormattingEnabled = true;
 			this.cmbRxRefFreq.Location = new Point(364, 86);
@@ -4387,9 +4387,9 @@ namespace DMR
 			this.cmbRxTone.Name = "cmbRxTone";
 			this.cmbRxTone.Size = new Size(99, 24);
 			this.cmbRxTone.TabIndex = 11;
-			this.cmbRxTone.Validating += this.cmbRxTone_Validating;
-			this.cmbRxTone.SelectedIndexChanged += this.cmbRxTone_SelectedIndexChanged;
-			this.cmbRxTone.KeyDown += this.cmbRxTone_KeyDown;
+			this.cmbRxTone.Validating += new CancelEventHandler(this.cmbRxTone_Validating);
+			this.cmbRxTone.SelectedIndexChanged += new EventHandler(this.cmbRxTone_SelectedIndexChanged);
+			this.cmbRxTone.KeyDown += new KeyEventHandler(this.cmbRxTone_KeyDown);
 			this.lblNonSte.Location = new Point(75, 90);
 			this.lblNonSte.Name = "lblNonSte";
 			this.lblNonSte.Size = new Size(166, 24);
@@ -4403,7 +4403,7 @@ namespace DMR
 			this.cmbRxSignaling.Name = "cmbRxSignaling";
 			this.cmbRxSignaling.Size = new Size(99, 24);
 			this.cmbRxSignaling.TabIndex = 13;
-			this.cmbRxSignaling.SelectedIndexChanged += this.cmbRxSignaling_SelectedIndexChanged;
+			this.cmbRxSignaling.SelectedIndexChanged += new EventHandler(this.cmbRxSignaling_SelectedIndexChanged);
 			cmbRxSignaling.Visible = false;
 			this.lblRxTone.Location = new Point(14, 151);
 			this.lblRxTone.Name = "lblRxTone";
@@ -4473,7 +4473,7 @@ namespace DMR
 			this.cmbTxSignaling.Name = "cmbTxSignaling";
 			this.cmbTxSignaling.Size = new Size(99, 24);
 			this.cmbTxSignaling.TabIndex = 20;
-			this.cmbTxSignaling.SelectedIndexChanged += this.cmbTxSignaling_SelectedIndexChanged;
+			this.cmbTxSignaling.SelectedIndexChanged += new EventHandler(this.cmbTxSignaling_SelectedIndexChanged);
 			cmbTxSignaling.Visible = false;
 			this.lblTxSignaling.Location = new Point(271, 181);
 			this.lblTxSignaling.Name = "lblTxSignaling";
@@ -4488,9 +4488,9 @@ namespace DMR
 			this.cmbTxTone.Name = "cmbTxTone";
 			this.cmbTxTone.Size = new Size(99, 24);
 			this.cmbTxTone.TabIndex = 18;
-			this.cmbTxTone.Validating += this.cmbTxTone_Validating;
-			this.cmbTxTone.SelectedIndexChanged += this.cmbTxTone_SelectedIndexChanged;
-			this.cmbTxTone.KeyDown += this.cmbTxTone_KeyDown;
+			this.cmbTxTone.Validating += new CancelEventHandler(this.cmbTxTone_Validating);
+			this.cmbTxTone.SelectedIndexChanged += new EventHandler(this.cmbTxTone_SelectedIndexChanged);
+			this.cmbTxTone.KeyDown += new KeyEventHandler(this.cmbTxTone_KeyDown);
 			this.lblTxTone.Location = new Point(271, 151);
 			this.lblTxTone.Name = "lblTxTone";
 			this.lblTxTone.Size = new Size(135, 24);
@@ -4548,7 +4548,7 @@ namespace DMR
 			this.cmbChMode.Name = "cmbChMode";
 			this.cmbChMode.Size = new Size(119, 24);
 			this.cmbChMode.TabIndex = 1;
-			this.cmbChMode.SelectedIndexChanged += this.cmbChMode_SelectedIndexChanged;
+			this.cmbChMode.SelectedIndexChanged += new EventHandler(this.cmbChMode_SelectedIndexChanged);
 			this.lblChName.Location = new Point(25, 56);
 			this.lblChName.Name = "lblChName";
 			this.lblChName.Size = new Size(44, 24);
@@ -4559,7 +4559,7 @@ namespace DMR
 			this.txtTxFreq.Name = "txtTxFreq";
 			this.txtTxFreq.Size = new Size(119, 23);
 			this.txtTxFreq.TabIndex = 9;
-			this.txtTxFreq.Validating += this.txtTxFreq_Validating;
+			this.txtTxFreq.Validating += new CancelEventHandler(this.txtTxFreq_Validating);
 			this.lblChMode.Location = new Point(25, 26);
 			this.lblChMode.Name = "lblChMode";
 			this.lblChMode.Size = new Size(43, 24);
@@ -4577,7 +4577,7 @@ namespace DMR
 			this.txtRxFreq.Name = "txtRxFreq";
 			this.txtRxFreq.Size = new Size(119, 23);
 			this.txtRxFreq.TabIndex = 5;
-			this.txtRxFreq.Validating += this.txtRxFreq_Validating;
+			this.txtRxFreq.Validating += new CancelEventHandler(this.txtRxFreq_Validating);
 			this.lblTotRekey.Location = new Point(509, 116);
 			this.lblTotRekey.Name = "lblTotRekey";
 			this.lblTotRekey.Size = new Size(140, 24);
@@ -4611,7 +4611,7 @@ namespace DMR
 			this.cmbPower.Name = "cmbPower";
 			this.cmbPower.Size = new Size(119, 24);
 			this.cmbPower.TabIndex = 13;
-			this.cmbPower.SelectedIndexChanged += this.cmbPower_SelectedIndexChanged;
+			this.cmbPower.SelectedIndexChanged += new EventHandler(this.cmbPower_SelectedIndexChanged);
 			this.lblRxFreq.Location = new Point(220, 26);
 			this.lblRxFreq.Name = "lblRxFreq";
 			this.lblRxFreq.Size = new Size(134, 24);
@@ -4668,7 +4668,7 @@ namespace DMR
 				0,
 				0
 			});
-			this.nudTot.ValueChanged += this.nudTot_ValueChanged;
+			this.nudTot.ValueChanged  += new EventHandler(this.nudTot_ValueChanged);
 			this.lblScanList.Location = new Point(831, 56);
 			this.lblScanList.Name = "lblScanList";
 			this.lblScanList.Size = new Size(66, 24);
@@ -4694,9 +4694,9 @@ namespace DMR
 			base.MainMenuStrip = this.mnsCh;
 			base.Name = "ChannelForm";
 			this.Text = "Channel";
-			base.Load += this.ChannelForm_Load;
-			this.Shown += this.ChannelForm_Shown;
-			base.FormClosing += this.ChannelForm_FormClosing;
+			base.Load += new EventHandler(this.ChannelForm_Load);
+			this.Shown += new EventHandler(this.ChannelForm_Shown);
+			base.FormClosing += new FormClosingEventHandler(this.ChannelForm_FormClosing);
 			this.tsrCh.ResumeLayout(false);
 			this.tsrCh.PerformLayout();
 			this.mnsCh.ResumeLayout(false);
