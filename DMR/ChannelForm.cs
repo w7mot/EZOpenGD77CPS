@@ -4015,9 +4015,8 @@ namespace DMR
 			this.nudRssiThreshold.Location = new Point(909, -3);
 			this.nudRssiThreshold.Name = "nudRssiThreshold";
 			this.nudRssiThreshold.method_6(null);
-			CustomNumericUpDown @class = this.nudRssiThreshold;
 			int[] bits = new int[4];
-			@class.method_4(new decimal(bits));
+			this.nudRssiThreshold.method_4(new decimal(bits));
 			this.nudRssiThreshold.Size = new Size(120, 23);
 			this.nudRssiThreshold.TabIndex = 22;
 			this.nudRssiThreshold.Visible = false;
@@ -4068,9 +4067,9 @@ namespace DMR
 			this.nudTxColor.Location = new Point(233, 118);
 			this.nudTxColor.Name = "nudTxColor";
 			this.nudTxColor.method_6(null);
-			CustomNumericUpDown class2 = this.nudTxColor;
+
 			int[] bits2 = new int[4];
-			class2.method_4(new decimal(bits2));
+			this.nudTxColor.method_4(new decimal(bits2));
 			this.nudTxColor.Size = new Size(120, 23);
 			this.nudTxColor.TabIndex = 17;
 			this.nudTxColor.ValueChanged  += new EventHandler(this.nudTxColor_ValueChanged);
@@ -4078,9 +4077,8 @@ namespace DMR
 			this.nudRxColor.Location = new Point(101, 314);
 			this.nudRxColor.Name = "nudRxColor";
 			this.nudRxColor.method_6(null);
-			CustomNumericUpDown class3 = this.nudRxColor;
 			int[] bits3 = new int[4];
-			class3.method_4(new decimal(bits3));
+			this.nudRxColor.method_4(new decimal(bits3));
 			this.nudRxColor.Size = new Size(120, 23);
 			this.nudRxColor.TabIndex = 13;
 			this.nudRxColor.Visible = false;
@@ -4328,9 +4326,8 @@ namespace DMR
 			this.nudArtsInterval.Location = new Point(417, 263);
 			this.nudArtsInterval.Name = "nudArtsInterval";
 			this.nudArtsInterval.method_6(null);
-			CustomNumericUpDown class4 = this.nudArtsInterval;
 			int[] bits4 = new int[4];
-			class4.method_4(new decimal(bits4));
+			this.nudArtsInterval.method_4(new decimal(bits4));
 			this.nudArtsInterval.Size = new Size(99, 23);
 			this.nudArtsInterval.TabIndex = 25;
 			this.nudArtsInterval.Visible = false;
@@ -4641,9 +4638,9 @@ namespace DMR
 			this.nudTotRekey.Location = new Point(659, 116);
 			this.nudTotRekey.Name = "nudTotRekey";
 			this.nudTotRekey.method_6(null);
-			CustomNumericUpDown class5 = this.nudTotRekey;
+
 			int[] bits5 = new int[4];
-			class5.method_4(new decimal(bits5));
+			this.nudTotRekey.method_4(new decimal(bits5));
 			this.nudTotRekey.Size = new Size(120, 23);
 			this.nudTotRekey.TabIndex = 17;
 			this.lblTxFreq.Location = new Point(516, 26);
@@ -4656,9 +4653,9 @@ namespace DMR
 			this.nudTot.Location = new Point(659, 86);
 			this.nudTot.Name = "nudTot";
 			this.nudTot.method_6(null);
-			CustomNumericUpDown class6 = this.nudTot;
+
 			int[] bits6 = new int[4];
-			class6.method_4(new decimal(bits6));
+			this.nudTot.method_4(new decimal(bits6));
 			this.nudTot.Size = new Size(120, 23);
 			this.nudTot.TabIndex = 15;
 			this.nudTot.Value = new decimal(new int[4]
