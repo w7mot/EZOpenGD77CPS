@@ -851,7 +851,7 @@ namespace DMR
 				return true;
 			}
 
-			if (keyData == (Keys.Control | Keys.Insert))
+			if ((keyData == (Keys.Control | Keys.Insert)) || (keyData == (Keys.Control | Keys.I)))
 			{
 				handleInsertClick();
 				return true;
