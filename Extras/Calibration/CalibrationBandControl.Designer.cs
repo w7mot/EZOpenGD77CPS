@@ -755,7 +755,7 @@
 			// calibrationPowerControlLow
 			// 
 			this.calibrationPowerControlLow.Cols = 16;
-			this.calibrationPowerControlLow.CtrlText = "Low power";
+			this.calibrationPowerControlLow.CtrlText = "1W (Low power)";
 			this.calibrationPowerControlLow.Location = new System.Drawing.Point(7, 95);
 			this.calibrationPowerControlLow.Name = "calibrationPowerControlLow";
 			this.calibrationPowerControlLow.Names = new string[] {
@@ -778,7 +778,7 @@
 			this.calibrationPowerControlLow.Rows = 1;
 			this.calibrationPowerControlLow.Size = new System.Drawing.Size(817, 97);
 			this.calibrationPowerControlLow.TabIndex = 9;
-			this.calibrationPowerControlLow.Text = "Low power";
+			this.calibrationPowerControlLow.Text = "1W (Low power)";
 			this.calibrationPowerControlLow.Values = new int[] {
         0,
         0,
@@ -800,7 +800,7 @@
 			// calibrationPowerControlHigh
 			// 
 			this.calibrationPowerControlHigh.Cols = 16;
-			this.calibrationPowerControlHigh.CtrlText = "High power";
+			this.calibrationPowerControlHigh.CtrlText = "5W (High power)";
 			this.calibrationPowerControlHigh.Location = new System.Drawing.Point(7, 5);
 			this.calibrationPowerControlHigh.Name = "calibrationPowerControlHigh";
 			this.calibrationPowerControlHigh.Names = new string[] {
@@ -823,7 +823,7 @@
 			this.calibrationPowerControlHigh.Rows = 1;
 			this.calibrationPowerControlHigh.Size = new System.Drawing.Size(817, 97);
 			this.calibrationPowerControlHigh.TabIndex = 9;
-			this.calibrationPowerControlHigh.Text = "High power";
+			this.calibrationPowerControlHigh.Text = "5W (High power)";
 			this.calibrationPowerControlHigh.Values = new int[] {
         0,
         0,
