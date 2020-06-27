@@ -106,6 +106,10 @@ namespace DMR
 					encodeKey = new Byte[4] { (0x74), (0x21), (0x44), (0x39) };
 					break;
 
+				case OutputType.OutputType_RD5R:
+					encodeKey = new Byte[4] { (0x53), (0x36), (0x37), (0x62) };
+					break;
+
 				case OutputType.OutputType_UNKNOWN:
 					return -99;
 			}
