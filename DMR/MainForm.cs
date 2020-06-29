@@ -3527,10 +3527,11 @@ namespace DMR
 			byte[] array = new byte[Settings.SPACE_DEVICE_INFO];
 			Array.Copy(eerom, Settings.ADDR_DEVICE_INFO, array, 0, array.Length);
 			DeviceInfoForm.data = (DeviceInfoForm.DeviceInfo)Settings.smethod_62(array, DeviceInfoForm.data.GetType());
-			Settings.MIN_FREQ[0] = ushort.Parse(DeviceInfoForm.data.MinFreq);
-			Settings.MAX_FREQ[0] = ushort.Parse(DeviceInfoForm.data.MaxFreq);
-			Settings.MIN_FREQ[1] = ushort.Parse(DeviceInfoForm.data.MinFreq2);
-			Settings.MAX_FREQ[1] = ushort.Parse(DeviceInfoForm.data.MaxFreq2);
+			// Force frequency ranges to match the OpenGD77 firmware, rather than using whatever is in the users codeplug file.
+			Settings.MIN_FREQ[0] = 380;// ushort.Parse(DeviceInfoForm.data.MinFreq);
+			Settings.MAX_FREQ[0] = 564;// ushort.Parse(DeviceInfoForm.data.MaxFreq);
+			Settings.MIN_FREQ[1] = 127;// ushort.Parse(DeviceInfoForm.data.MinFreq2);
+			Settings.MAX_FREQ[1] = 282;// ushort.Parse(DeviceInfoForm.data.MaxFreq2);
 			array = new byte[Settings.SPACE_GENERAL_SET];
 			Array.Copy(eerom, Settings.ADDR_GENERAL_SET, array, 0, array.Length);
 			GeneralSetForm.data = (GeneralSetForm.GeneralSet)Settings.smethod_62(array, GeneralSetForm.data.GetType());

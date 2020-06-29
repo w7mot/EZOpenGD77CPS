@@ -539,7 +539,27 @@ internal class Settings
 			{
 				if (Settings.MIN_FREQ[num] < Settings.MAX_FREQ[num] && uint_0 == 0)
 				{
-					uint_0 = Settings.MIN_FREQ[num];
+					// Set the frequency to the nearest in range band.
+					if (double_0 < Settings.MIN_FREQ[1])
+					{
+						uint_0 = Settings.MIN_FREQ[1];
+					}
+					if (double_0 > Settings.MAX_FREQ[1] && double_0 < Settings.MIN_FREQ[0])
+					{
+						uint midPointFreq = ((Settings.MIN_FREQ[0] - Settings.MAX_FREQ[1]) / 2) + Settings.MAX_FREQ[1];
+						if (double_0 >= midPointFreq)
+						{
+							uint_0 = Settings.MIN_FREQ[0];
+						}
+						else
+						{
+							uint_0 = Settings.MAX_FREQ[1];
+						}
+					}
+					if (double_0 > Settings.MAX_FREQ[0])
+					{
+						uint_0 = Settings.MAX_FREQ[0];
+					}
 				}
 				if (double_0 >= (double)Settings.MIN_FREQ[num] && !(double_0 > (double)Settings.MAX_FREQ[num]))
 				{
