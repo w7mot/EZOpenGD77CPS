@@ -277,7 +277,19 @@ namespace DMR
 
 		private void downloadStringCompletedCallback(object sender, DownloadStringCompletedEventArgs ev)
 		{
-			String result = ev.Result;
+			String result="";
+			try
+			{
+				result = ev.Result;
+			}
+			catch(Exception ex)
+			{
+				MessageBox.Show("Internet connection error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				SetLoadingState(false);
+				this.progressBarDwnl.Visible = false;
+				return;
+			}
+			
 			String urlBase = "http://github.com";
 			String urlFW = "";
 			String patternR = "", patternD = "";
@@ -463,7 +475,7 @@ namespace DMR
 				Application.DoEvents();
 				wc.DownloadStringAsync(uri);
 			}
-			catch (Exception ex)
+			catch (WebException ex)
 			{
 				MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				SetLoadingState(false);
