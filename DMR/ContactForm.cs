@@ -1298,7 +1298,8 @@ namespace DMR
 
 		private void cmbRepeaterSlot_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			//this.method_3();
+			//CustomCombo cmb = sender as CustomCombo;
+			//this.cmbRepeaterSlot.SelectedIndex;
 		}
 
 		private void txtName_Leave(object sender, EventArgs e)
@@ -1340,7 +1341,7 @@ namespace DMR
 				base.Activate();
 			}
 			string text2 = this.txtCallId.Text;//.PadLeft(8, '0');
-			int repeaterSlot = ContactForm.data[index].RepeaterSlot;
+			int repeaterSlot = this.cmbRepeaterSlot.SelectedIndex; //ContactForm.data[index].RepeaterSlot;
 
 			if (ContactForm.data.CallIdExist(index, selectedIndex, text2, repeaterSlot))
 			{
@@ -1472,7 +1473,7 @@ namespace DMR
 				
 				Cursor.Current = Cursors.Default;
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				MessageBox.Show(Settings.dicCommon["ErrorParsingData"]);
 			}

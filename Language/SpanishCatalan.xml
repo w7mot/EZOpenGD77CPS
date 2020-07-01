@@ -800,7 +800,7 @@
     <Item Id="DMRIDWrite" Text="Escrivint base de dades DMR ID al GD-77" />
     <Item Id="CalibrationRead" Text="Llegint calibracions del GD-77" />
     <Item Id="CalibrationWrite" Text="Escrivint calibracions al GD-77" />
-    <Item Id="IdAlreadyExists" Text="ID duplicada!" />
+    <Item Id="IdAlreadyExists" Text="ID / TS duplicada!" />
     <Item Id="IdOutOfRange" Text="ID fora de rang!" />
     <Item Id="IdNotEmpty" Text="ID no pot estar buida!" />
     <Item Id="ContactNameDuplicate" Text="Atenció. Nom de contacte duplicat." />

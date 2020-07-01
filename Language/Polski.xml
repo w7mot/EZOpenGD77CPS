@@ -798,7 +798,7 @@
     <Item Id="DMRIDWrite" Text="Writing DMR ID database to GD-77" />
     <Item Id="CalibrationRead" Text="Reading calibration data from GD-77" />
     <Item Id="CalibrationWrite" Text="Writing calibration data to GD-77" />
-    <Item Id="IdAlreadyExists" Text="ID already exists！" />
+    <Item Id="IdAlreadyExists" Text="ID / TS already exists！" />
     <Item Id="IdOutOfRange" Text="ID out of range!" />
     <Item Id="IdNotEmpty" Text="ID can not be empty!" />
     <Item Id="ContactNameDuplicate" Text="Warning. Duplicate contact name." />

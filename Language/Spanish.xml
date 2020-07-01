@@ -802,7 +802,7 @@
     <Item Id="DMRIDWrite" Text="Escribiendo base de datos DMR ID a GD-77" />
     <Item Id="CalibrationRead" Text="Leyendo datos de calibración desde GD-77" />
     <Item Id="CalibrationWrite" Text="Escribiendo datos de calibración a GD-77" />
-    <Item Id="IdAlreadyExists" Text="ID ya existe!" />
+    <Item Id="IdAlreadyExists" Text="ID / TS ya existe!" />
     <Item Id="IdOutOfRange" Text="ID fuera de rango!" />
     <Item Id="IdNotEmpty" Text="ID no puede estar vacío!" />
     <Item Id="ContactNameDuplicate" Text="Aviso. Nombre de contacto duplicado." />
