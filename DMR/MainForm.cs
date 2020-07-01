@@ -2205,6 +2205,7 @@ namespace DMR
 					else if (treeNodeItem.SubType == typeof(ZoneForm))
 					{
 						this.AddTreeViewNode(selectedNode.Nodes, text, new TreeNodeItem(this.cmsSub, treeNodeItem.SubType, null, 0, num, 25, treeNodeItem.Data));
+						this.DispChildForm(typeof(ZoneForm), num);
 					}
 					else if (treeNodeItem.SubType == typeof(ChannelForm))
 					{
@@ -2212,10 +2213,12 @@ namespace DMR
 						ChannelForm.Channel channel = (ChannelForm.Channel)treeNodeItem.Data;
 						channel.SetChMode(num, ChannelForm.ChModeE.Analog);
 						channel.SetDefaultFreq(num);
+						this.DispChildForm(typeof(ChannelForm), num);
 					}
 					else if (treeNodeItem.SubType == typeof(RxGroupListForm))
 					{
 						this.AddTreeViewNode(selectedNode.Nodes, text, new TreeNodeItem(this.cmsSub, treeNodeItem.SubType, null, 0, num, 19, treeNodeItem.Data));
+						this.DispChildForm(typeof(ZoneForm), num);
 					}
 					else if (treeNodeItem.SubType == typeof(EmergencyForm))
 					{
@@ -2600,6 +2603,7 @@ namespace DMR
 					{
 						selectedNode.Expand();
 					}
+					this.DispChildForm(typeof(ContactForm), num);
 				}
 			}
 		}
@@ -2627,6 +2631,7 @@ namespace DMR
 					{
 						selectedNode.Expand();
 					}
+					this.DispChildForm(typeof(ContactForm), num);
 				}
 			}
 		}
@@ -2654,6 +2659,7 @@ namespace DMR
 					{
 						selectedNode.Expand();
 					}
+					this.DispChildForm(typeof(ContactForm), num);
 				}
 			}
 		}

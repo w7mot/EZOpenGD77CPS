@@ -420,6 +420,8 @@ namespace DMR
 			};
 			mainForm.InsertTreeViewNode(this.Node, minIndex, typeof(ContactForm), array[selectedIndex], ContactForm.data);
 			mainForm.RefreshRelatedForm(base.GetType());
+
+			mainForm.DispChildForm(typeof(ContactForm), minIndex);
 		}
 
 		private void btnDelete_Click(object sender, EventArgs e)

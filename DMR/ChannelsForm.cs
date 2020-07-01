@@ -124,6 +124,7 @@ namespace DMR
 			};
 			mainForm.InsertTreeViewNode(this.Node, minIndex, typeof(ChannelForm), array[selectedIndex], ChannelForm.data);
 			mainForm.RefreshRelatedForm(base.GetType());
+			mainForm.DispChildForm(typeof(ChannelForm), minIndex);
 		}
 
 		private int AddDigitalContact(string contactName, int contactType, string contactID)
