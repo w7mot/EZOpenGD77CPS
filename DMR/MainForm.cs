@@ -1329,7 +1329,7 @@ namespace DMR
 			Version ver = AssemblyName.GetAssemblyName(System.Reflection.Assembly.GetExecutingAssembly().Location).Version;//.ToString();
 			DateTime dt = new DateTime(2000, 1, 1, 0, 0, 0).AddDays(ver.Build).AddSeconds(ver.Revision * 2);
 
-			return MainForm.PRODUCT_NAME + " (Build date " + dt.ToString("yyyyMMdd")+ ")";
+			return MainForm.PRODUCT_NAME + " (Build date " + dt.ToString("yyyy.MM.dd")+ ")";
 		}
 
 
