@@ -514,7 +514,7 @@ namespace DMR
 			Uri uri = new Uri("https://github.com/rogerclarkmelbourne/OpenGD77/releases");
 		
 			this.lblMessage.Text = "";
-			wc = new WebClientAsync(5);
+			wc = new WebClientAsync(40);
 
 			ServicePointManager.Expect100Continue = true;
 			// If you have .Net 4.5
