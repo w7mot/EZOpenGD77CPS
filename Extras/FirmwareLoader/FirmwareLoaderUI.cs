@@ -14,11 +14,51 @@ using System.Text.RegularExpressions;
 
 namespace DMR
 {
+	public class WebClientAsync : WebClient
+	{
+		private int timeoutMS;
+		private System.Timers.Timer timer;
+
+		public WebClientAsync(int timeoutSeconds)
+		{
+			timeoutMS = timeoutSeconds * 1000;
+
+			timer = new System.Timers.Timer(timeoutMS);
+			System.Timers.ElapsedEventHandler handler = null;
+
+			handler = ((sender, args) =>
+			{
+				this.CancelAsync();
+				timer.Stop();
+				timer.Elapsed -= handler;
+			});
+
+			timer.Elapsed += handler;
+			timer.Enabled = true;
+		}
+
+		protected override WebRequest GetWebRequest(Uri address)
+		{
+			WebRequest request = base.GetWebRequest(address);
+			request.Timeout = timeoutMS;
+			((HttpWebRequest)request).ReadWriteTimeout = timeoutMS;
+
+			return request;
+		}
+
+		protected override void OnDownloadProgressChanged(DownloadProgressChangedEventArgs e)
+		{
+			base.OnDownloadProgressChanged(e);
+			timer.Stop();
+			timer.Start();
+		}
+	}
+
 	public partial class FirmwareLoaderUI : Form
 	{
 		public bool IsLoading = false;
 		private static String tempFile = "";
-		private WebClient wc = null;
+		private WebClientAsync wc = null;
 
 		public FirmwareLoaderUI()
 		{
@@ -277,19 +317,24 @@ namespace DMR
 
 		private void downloadStringCompletedCallback(object sender, DownloadStringCompletedEventArgs ev)
 		{
-			String result="";
-			try
+			if (ev.Cancelled)
 			{
-				result = ev.Result;
-			}
-			catch(Exception ex)
-			{
-				MessageBox.Show("Internet connection error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Download has been canceled.", "Timeout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
 				SetLoadingState(false);
 				this.progressBarDwnl.Visible = false;
 				return;
 			}
-			
+			else if (ev.Error != null)
+			{
+				MessageBox.Show(ev.Error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+				SetLoadingState(false);
+				this.progressBarDwnl.Visible = false;
+				return;
+			}
+
+			String result = ev.Result;
 			String urlBase = "http://github.com";
 			String urlFW = "";
 			String patternR = "", patternD = "";
@@ -398,6 +443,23 @@ namespace DMR
 			this.progressBarDwnl.Visible = false;
 			this.progressBarDwnl.Value = 0;
 
+			if (ev.Cancelled)
+			{
+				MessageBox.Show("Download has been canceled.", "Timeout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+				SetLoadingState(false);
+				IsLoading = false;
+				return;
+			}
+			else if (ev.Error != null)
+			{
+				MessageBox.Show(ev.Error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+				SetLoadingState(false);
+				IsLoading = false;
+				return;
+			}
+
 			// Now flash the downloaded firmware
 			Action<object> action = (object obj) =>
 			{
@@ -452,7 +514,7 @@ namespace DMR
 			Uri uri = new Uri("https://github.com/rogerclarkmelbourne/OpenGD77/releases");
 		
 			this.lblMessage.Text = "";
-			wc = new WebClient();
+			wc = new WebClientAsync(5);
 
 			ServicePointManager.Expect100Continue = true;
 			// If you have .Net 4.5
