@@ -3994,11 +3994,13 @@ namespace DMR
 			this.cmbSquelch.TabIndex = 3;
 			this.cmbSql.DropDownStyle = ComboBoxStyle.DropDownList;
 			this.cmbSql.FormattingEnabled = true;
-			this.cmbSql.Location = new Point(364, 113);
+			this.cmbSql.Location = new Point(364, 233);
 			this.cmbSql.Name = "cmbSql";
 			this.cmbSql.Size = new Size(119, 24);
 			this.cmbSql.TabIndex = 3;
-			//this.cmbSql.Visible = true;
+			//this.cmbSql.Visible = false;//rjc
+
+
 			this.cmbAdmitCriteria.DropDownStyle = ComboBoxStyle.DropDownList;
 			this.cmbAdmitCriteria.FormattingEnabled = true;
 			this.cmbAdmitCriteria.Location = new Point(909, 26);
@@ -4020,9 +4022,9 @@ namespace DMR
 			this.nudRssiThreshold.Size = new Size(120, 23);
 			this.nudRssiThreshold.TabIndex = 22;
 			this.nudRssiThreshold.Visible = false;
-			this.lblSql.Location = new Point(180, 113);
+			this.lblSql.Location = new Point(180, 183);
 			this.lblSql.Name = "lblSql";
-			this.lblSql.Size = new Size(174, 24);
+			this.lblSql.Size = new Size(174, 124);
 			this.lblSql.TabIndex = 2;
 			this.lblSql.Text = "OpenGD77 Squelch Level";
 			this.lblSql.TextAlign = ContentAlignment.MiddleRight;
@@ -4290,6 +4292,9 @@ namespace DMR
 			this.chkAllowTalkaround.Text = "Allow Talkaround";
 			this.chkAllowTalkaround.UseVisualStyleBackColor = true;
 			this.grpAnalog.method_3(true);
+			this.grpAnalog.Controls.Add(this.cmbSql);
+			this.grpAnalog.Controls.Add(this.lblSql);
+			
 			this.grpAnalog.Controls.Add(this.nudArtsInterval);
 			this.grpAnalog.Controls.Add(this.cmbChBandwidth);
 			this.grpAnalog.Controls.Add(this.lblChBandwidth);
