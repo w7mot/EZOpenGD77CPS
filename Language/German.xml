@@ -90,6 +90,7 @@
 			<Control Id="lblTxTone" Text="TX Ton [Hz]" />
 			<Control Id="chkDataPl" Text="PL für Daten" />
 			<Control Id="chkLoneWoker" Text="Lone Work" />
+      <Control Id="chkOpenGD77ScanAllSkip" Text="Scan: All skip" />
 			<Control Id="chkVox" Text="Vox aktiviert" />
 			<Control Id="chkAutoScan" Text="Auto Suchlauf" />
 			<Control Id="lblChName" Text="Name" />
@@ -654,6 +655,8 @@
 			<Control Id="lblTxTone" Text="TX Ton [Hz]" />
 			<Control Id="chkDataPl" Text="PL für Daten" />
 			<Control Id="chkLoneWoker" Text="Lone Work" />
+      <Control Id="chkOpenGD77ScanAllSkip" Text="Scan: All skip" />
+      <Control Id="chkOpenGD77ScanZoneSkip" Text="Scan: Zone skip" />
 			<Control Id="chkVox" Text="Vox" />
 			<Control Id="chkAutoScan" Text="Auto Suchlauf" />
 			<Control Id="lblChName" Text="Name" />

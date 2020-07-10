@@ -92,6 +92,7 @@
 			<Control Id="chkLoneWoker" Text="Одинокий працівник"/>
 			<Control Id="chkVox" Text="VOX"/>
 			<Control Id="chkAutoScan" Text="Автосканування"/>
+      <Control Id="chkOpenGD77ScanAllSkip" Text="Scan: All skip" />
       <Control Id="chkOpenGD77ScanZoneSkip" Text="Scan: Zone skip" />
 			<Control Id="lblChName" Text="Ім'я"/>
 			<Control Id="lblChMode" Text="Режим"/>
@@ -673,6 +674,8 @@
 			<Control Id="chkLoneWoker" Text="Одинокий працівник"/>
 			<Control Id="chkVox" Text="VOX"/>
 			<Control Id="chkAutoScan" Text="Автосканування"/>
+      <Control Id="chkOpenGD77ScanAllSkip" Text="Scan: All skip" />
+      <Control Id="chkOpenGD77ScanZoneSkip" Text="Scan: Zone skip" />
 			<Control Id="lblChName" Text="Ім'я"/>
 			<Control Id="lblChMode" Text="Режим"/>
 			<Control Id="lblTot" Text="TOT [с]"/>

@@ -2530,9 +2530,9 @@ namespace DMR
 
 		private CustomCombo cmbScanList;
 
-		private CheckBox chkAutoScan;
+		private CheckBox chkOpenGD77ScanZoneSkip;
 
-		private CheckBox chkLoneWoker;
+		private CheckBox chkOpenGD77ScanAllSkip;
 
 		private CheckBox chkAllowTalkaround;
 
@@ -2636,8 +2636,8 @@ namespace DMR
 			value.AdmitCriteria = this.cmbAdmitCriteria.SelectedIndex;
 			value.RssiThreshold = this.nudRssiThreshold.Value;
 			value.ScanList = this.cmbScanList.method_3();
-			value.AutoScan = this.chkAutoScan.Checked;
-			value.LoneWoker = this.chkLoneWoker.Checked;
+			value.AutoScan = this.chkOpenGD77ScanZoneSkip.Checked;
+			value.LoneWoker = this.chkOpenGD77ScanAllSkip.Checked;
 			value.AllowTalkaround = this.chkAllowTalkaround.Checked;
 			value.OnlyRx = this.chkRxOnly.Checked;
 			value.Bandwidth = this.cmbChBandwidth.SelectedIndex;
@@ -2706,8 +2706,8 @@ namespace DMR
 			this.cmbAdmitCriteria.SelectedIndex = channelOne.AdmitCriteria;
 			this.nudRssiThreshold.Value = channelOne.RssiThreshold;
 			this.cmbScanList.method_2(channelOne.ScanList);
-			this.chkAutoScan.Checked = channelOne.AutoScan;
-			this.chkLoneWoker.Checked = channelOne.LoneWoker;
+			this.chkOpenGD77ScanZoneSkip.Checked = channelOne.AutoScan;
+			this.chkOpenGD77ScanAllSkip.Checked = channelOne.LoneWoker;
 			this.chkAllowTalkaround.Checked = channelOne.AllowTalkaround;
 			this.chkRxOnly.Checked = channelOne.OnlyRx;
 			this.method_11();
@@ -2767,8 +2767,8 @@ namespace DMR
 			this.lblArts.Enabled &= flag;
 			this.cmbArts.Enabled &= flag;
 #if OpenGD77
-			this.chkAutoScan.Enabled = true;
-			this.chkLoneWoker.Enabled = true;
+			this.chkOpenGD77ScanZoneSkip.Enabled = true;
+			this.chkOpenGD77ScanAllSkip.Enabled = true;
 #elif CP_VER_3_1_X
 			this.chkAutoScan.Enabled &= flag;
 			this.chkLoneWoker.Enabled &= flag;
@@ -3123,13 +3123,13 @@ namespace DMR
 		{
 
 #if OpenGD77
-			this.chkLoneWoker.Enabled = true;
+			this.chkOpenGD77ScanAllSkip.Enabled = true;
 #elif CP_VER_3_1_X
 			this.chkLoneWoker.Enabled = (this.cmbEmgSystem.SelectedIndex != 0 && this.cmbChMode.SelectedIndex == 1);
 #endif
-			if (!this.chkLoneWoker.Enabled)
+			if (!this.chkOpenGD77ScanAllSkip.Enabled)
 			{
-				this.chkLoneWoker.Checked = false;
+				this.chkOpenGD77ScanAllSkip.Checked = false;
 			}
 		}
 
@@ -3189,7 +3189,7 @@ namespace DMR
 		private void cmbScanList_SelectedIndexChanged(object sender, EventArgs e)
 		{
 #if OpenGD77
-			this.chkAutoScan.Enabled = true;
+			this.chkOpenGD77ScanZoneSkip.Enabled = true;
 #elif CP_VER_3_1_X
 			this.chkAutoScan.Enabled = (this.cmbScanList.SelectedIndex > 0);
 #endif
@@ -3698,16 +3698,14 @@ namespace DMR
             this.cmbScanList = new CustomCombo();
             this.txtName = new DMR.SGTextBox();
             this.cmbSquelch = new System.Windows.Forms.ComboBox();
-            this.cmbSql = new System.Windows.Forms.ComboBox();
-            this.cmbAdmitCriteria = new System.Windows.Forms.ComboBox();
             this.lblSquelch = new System.Windows.Forms.Label();
             this.nudRssiThreshold = new CustomNumericUpDown();
-            this.lblSql = new System.Windows.Forms.Label();
             this.grpDigit = new DoubleClickGroupBox();
             this.nudTxColor = new CustomNumericUpDown();
             this.nudRxColor = new CustomNumericUpDown();
             this.cmbTimingPreference = new System.Windows.Forms.ComboBox();
             this.cmbRepeaterSlot = new System.Windows.Forms.ComboBox();
+            this.cmbAdmitCriteria = new System.Windows.Forms.ComboBox();
             this.lblTimingPreference = new System.Windows.Forms.Label();
             this.cmbArs = new System.Windows.Forms.ComboBox();
             this.lblRepeaterSlot = new System.Windows.Forms.Label();
@@ -3732,10 +3730,13 @@ namespace DMR
             this.chkEnhancedChAccess = new System.Windows.Forms.CheckBox();
             this.lblRxColor = new System.Windows.Forms.Label();
             this.lblRxGroup = new System.Windows.Forms.Label();
+            this.lblAdmitCriteria = new System.Windows.Forms.Label();
             this.chkRxOnly = new System.Windows.Forms.CheckBox();
             this.cmbRxRefFreq = new System.Windows.Forms.ComboBox();
             this.chkAllowTalkaround = new System.Windows.Forms.CheckBox();
             this.grpAnalog = new DoubleClickGroupBox();
+            this.cmbSql = new System.Windows.Forms.ComboBox();
+            this.lblSql = new System.Windows.Forms.Label();
             this.nudArtsInterval = new CustomNumericUpDown();
             this.cmbChBandwidth = new System.Windows.Forms.ComboBox();
             this.lblChBandwidth = new System.Windows.Forms.Label();
@@ -3761,9 +3762,9 @@ namespace DMR
             this.cmbTxTone = new System.Windows.Forms.ComboBox();
             this.lblTxTone = new System.Windows.Forms.Label();
             this.chkDataPl = new System.Windows.Forms.CheckBox();
-            this.chkLoneWoker = new System.Windows.Forms.CheckBox();
+            this.chkOpenGD77ScanAllSkip = new System.Windows.Forms.CheckBox();
             this.chkVox = new System.Windows.Forms.CheckBox();
-            this.chkAutoScan = new System.Windows.Forms.CheckBox();
+            this.chkOpenGD77ScanZoneSkip = new System.Windows.Forms.CheckBox();
             this.cmbChMode = new System.Windows.Forms.ComboBox();
             this.lblChName = new System.Windows.Forms.Label();
             this.txtTxFreq = new System.Windows.Forms.TextBox();
@@ -3778,7 +3779,6 @@ namespace DMR
             this.lblRxFreq = new System.Windows.Forms.Label();
             this.cmbTxRefFreq = new System.Windows.Forms.ComboBox();
             this.lblPower = new System.Windows.Forms.Label();
-            this.lblAdmitCriteria = new System.Windows.Forms.Label();
             this.nudTotRekey = new CustomNumericUpDown();
             this.lblTxFreq = new System.Windows.Forms.Label();
             this.nudTot = new CustomNumericUpDown();
@@ -3964,9 +3964,9 @@ namespace DMR
             this.pnlChannel.Controls.Add(this.cmbRxRefFreq);
             this.pnlChannel.Controls.Add(this.chkAllowTalkaround);
             this.pnlChannel.Controls.Add(this.grpAnalog);
-            this.pnlChannel.Controls.Add(this.chkLoneWoker);
+            this.pnlChannel.Controls.Add(this.chkOpenGD77ScanAllSkip);
             this.pnlChannel.Controls.Add(this.chkVox);
-            this.pnlChannel.Controls.Add(this.chkAutoScan);
+            this.pnlChannel.Controls.Add(this.chkOpenGD77ScanZoneSkip);
             this.pnlChannel.Controls.Add(this.cmbChMode);
             this.pnlChannel.Controls.Add(this.lblChName);
             this.pnlChannel.Controls.Add(this.txtTxFreq);
@@ -4034,25 +4034,6 @@ namespace DMR
             this.cmbSquelch.TabIndex = 3;
             this.cmbSquelch.Visible = false;
             // 
-            // cmbSql
-            // 
-            this.cmbSql.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSql.FormattingEnabled = true;
-            this.cmbSql.Location = new System.Drawing.Point(397, 103);
-            this.cmbSql.Name = "cmbSql";
-            this.cmbSql.Size = new System.Drawing.Size(119, 24);
-            this.cmbSql.TabIndex = 3;
-            // 
-            // cmbAdmitCriteria
-            // 
-            this.cmbAdmitCriteria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbAdmitCriteria.FormattingEnabled = true;
-            this.cmbAdmitCriteria.Location = new System.Drawing.Point(17, 56);
-            this.cmbAdmitCriteria.Name = "cmbAdmitCriteria";
-            this.cmbAdmitCriteria.Size = new System.Drawing.Size(119, 24);
-            this.cmbAdmitCriteria.TabIndex = 20;
-            this.cmbAdmitCriteria.Visible = false;
-            // 
             // lblSquelch
             // 
             this.lblSquelch.Location = new System.Drawing.Point(208, 381);
@@ -4070,15 +4051,6 @@ namespace DMR
             this.nudRssiThreshold.Size = new System.Drawing.Size(120, 23);
             this.nudRssiThreshold.TabIndex = 22;
             this.nudRssiThreshold.Visible = false;
-            // 
-            // lblSql
-            // 
-            this.lblSql.Location = new System.Drawing.Point(132, 103);
-            this.lblSql.Name = "lblSql";
-            this.lblSql.Size = new System.Drawing.Size(253, 24);
-            this.lblSql.TabIndex = 2;
-            this.lblSql.Text = "OpenGD77 Squelch Level";
-            this.lblSql.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // grpDigit
             // 
@@ -4154,6 +4126,16 @@ namespace DMR
             this.cmbRepeaterSlot.Size = new System.Drawing.Size(119, 24);
             this.cmbRepeaterSlot.TabIndex = 4;
             this.cmbRepeaterSlot.SelectedIndexChanged += new System.EventHandler(this.cmbRepeaterSlot_SelectedIndexChanged);
+            // 
+            // cmbAdmitCriteria
+            // 
+            this.cmbAdmitCriteria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAdmitCriteria.FormattingEnabled = true;
+            this.cmbAdmitCriteria.Location = new System.Drawing.Point(17, 56);
+            this.cmbAdmitCriteria.Name = "cmbAdmitCriteria";
+            this.cmbAdmitCriteria.Size = new System.Drawing.Size(119, 24);
+            this.cmbAdmitCriteria.TabIndex = 20;
+            this.cmbAdmitCriteria.Visible = false;
             // 
             // lblTimingPreference
             // 
@@ -4402,6 +4384,16 @@ namespace DMR
             this.lblRxGroup.Text = "Rx Group List";
             this.lblRxGroup.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // lblAdmitCriteria
+            // 
+            this.lblAdmitCriteria.Location = new System.Drawing.Point(20, 29);
+            this.lblAdmitCriteria.Name = "lblAdmitCriteria";
+            this.lblAdmitCriteria.Size = new System.Drawing.Size(93, 24);
+            this.lblAdmitCriteria.TabIndex = 19;
+            this.lblAdmitCriteria.Text = "Admit Criteria";
+            this.lblAdmitCriteria.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblAdmitCriteria.Visible = false;
+            // 
             // chkRxOnly
             // 
             this.chkRxOnly.Location = new System.Drawing.Point(816, 101);
@@ -4468,6 +4460,24 @@ namespace DMR
             this.grpAnalog.TabIndex = 29;
             this.grpAnalog.TabStop = false;
             this.grpAnalog.Text = "Analog";
+            // 
+            // cmbSql
+            // 
+            this.cmbSql.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSql.FormattingEnabled = true;
+            this.cmbSql.Location = new System.Drawing.Point(397, 103);
+            this.cmbSql.Name = "cmbSql";
+            this.cmbSql.Size = new System.Drawing.Size(119, 24);
+            this.cmbSql.TabIndex = 3;
+            // 
+            // lblSql
+            // 
+            this.lblSql.Location = new System.Drawing.Point(132, 103);
+            this.lblSql.Name = "lblSql";
+            this.lblSql.Size = new System.Drawing.Size(253, 24);
+            this.lblSql.TabIndex = 2;
+            this.lblSql.Text = "OpenGD77 Squelch Level";
+            this.lblSql.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // nudArtsInterval
             // 
@@ -4720,14 +4730,14 @@ namespace DMR
             this.chkDataPl.UseVisualStyleBackColor = true;
             this.chkDataPl.Visible = false;
             // 
-            // chkLoneWoker
+            // chkOpenGD77ScanAllSkip
             // 
-            this.chkLoneWoker.Location = new System.Drawing.Point(816, 49);
-            this.chkLoneWoker.Name = "chkLoneWoker";
-            this.chkLoneWoker.Size = new System.Drawing.Size(236, 20);
-            this.chkLoneWoker.TabIndex = 26;
-            this.chkLoneWoker.Text = "Scan: All skip";
-            this.chkLoneWoker.UseVisualStyleBackColor = true;
+            this.chkOpenGD77ScanAllSkip.Location = new System.Drawing.Point(816, 49);
+            this.chkOpenGD77ScanAllSkip.Name = "chkOpenGD77ScanAllSkip";
+            this.chkOpenGD77ScanAllSkip.Size = new System.Drawing.Size(236, 20);
+            this.chkOpenGD77ScanAllSkip.TabIndex = 26;
+            this.chkOpenGD77ScanAllSkip.Text = "Scan: All skip";
+            this.chkOpenGD77ScanAllSkip.UseVisualStyleBackColor = true;
             // 
             // chkVox
             // 
@@ -4738,14 +4748,14 @@ namespace DMR
             this.chkVox.Text = "Vox";
             this.chkVox.UseVisualStyleBackColor = true;
             // 
-            // chkAutoScan
+            // chkOpenGD77ScanZoneSkip
             // 
-            this.chkAutoScan.Location = new System.Drawing.Point(816, 25);
-            this.chkAutoScan.Name = "chkAutoScan";
-            this.chkAutoScan.Size = new System.Drawing.Size(236, 20);
-            this.chkAutoScan.TabIndex = 25;
-            this.chkAutoScan.Text = "Zone skip";
-            this.chkAutoScan.UseVisualStyleBackColor = true;
+            this.chkOpenGD77ScanZoneSkip.Location = new System.Drawing.Point(816, 25);
+            this.chkOpenGD77ScanZoneSkip.Name = "chkOpenGD77ScanZoneSkip";
+            this.chkOpenGD77ScanZoneSkip.Size = new System.Drawing.Size(236, 20);
+            this.chkOpenGD77ScanZoneSkip.TabIndex = 25;
+            this.chkOpenGD77ScanZoneSkip.Text = "Zone skip";
+            this.chkOpenGD77ScanZoneSkip.UseVisualStyleBackColor = true;
             // 
             // cmbChMode
             // 
@@ -4880,16 +4890,6 @@ namespace DMR
             this.lblPower.Text = "Power Level";
             this.lblPower.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblPower.Visible = false;
-            // 
-            // lblAdmitCriteria
-            // 
-            this.lblAdmitCriteria.Location = new System.Drawing.Point(20, 29);
-            this.lblAdmitCriteria.Name = "lblAdmitCriteria";
-            this.lblAdmitCriteria.Size = new System.Drawing.Size(93, 24);
-            this.lblAdmitCriteria.TabIndex = 19;
-            this.lblAdmitCriteria.Text = "Admit Criteria";
-            this.lblAdmitCriteria.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblAdmitCriteria.Visible = false;
             // 
             // nudTotRekey
             // 

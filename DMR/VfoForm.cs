@@ -1899,9 +1899,9 @@ namespace DMR
 
 		private CustomCombo cmbScanList;
 
-		private CheckBox chkAutoScan;
+		private CheckBox chkOpenGD77ScanZoneSkip;
 
-		private CheckBox chkLoneWoker;
+		private CheckBox chkOpenGD77ScanAllSkip;
 
 		private CheckBox chkAllowTalkaround;
 
@@ -2032,989 +2032,1269 @@ namespace DMR
 
 		private void InitializeComponent()
 		{
-			this.mnsCh = new MenuStrip();
-			this.tsmiCh = new ToolStripMenuItem();
-			this.tsmiFirst = new ToolStripMenuItem();
-			this.tsmiPrev = new ToolStripMenuItem();
-			this.tsmiNext = new ToolStripMenuItem();
-			this.tsmiLast = new ToolStripMenuItem();
-			this.tsmiAdd = new ToolStripMenuItem();
-			this.tsmiDel = new ToolStripMenuItem();
-			this.pnlChannel = new CustomPanel();
-			this.nudOffsetFreq = new CustomNumericUpDown();
-			this.lblOffsetFreq = new Label();
-			this.cmbOffsetDirection = new ComboBox();
-			this.lblOffsetDirection = new Label();
-			this.cmbOffsetStep = new ComboBox();
-			this.lblOffsetStep = new Label();
-			this.btnCopy = new Button();
-			this.cmbScanList = new CustomCombo();
-			this.txtName = new SGTextBox();
-			this.cmbSquelch = new ComboBox();
-			this.cmbSql = new ComboBox();
-			this.cmbAdmitCriteria = new ComboBox();
-			this.lblSquelch = new Label();
-			this.nudRssiThreshold = new CustomNumericUpDown();
-			this.lblSql = new Label();
-			this.grpDigit = new DoubleClickGroupBox();
-			this.nudTxColor = new CustomNumericUpDown();
-			this.nudRxColor = new CustomNumericUpDown();
-			this.cmbTimingPreference = new ComboBox();
-			this.cmbRepeaterSlot = new ComboBox();
-			this.lblTimingPreference = new Label();
-			this.cmbArs = new ComboBox();
-			this.lblRepeaterSlot = new Label();
-			this.cmbKeySwitch = new ComboBox();
-			this.lblArs = new Label();
-			this.cmbKey = new CustomCombo();
-			this.lblKeySwitch = new Label();
-			this.lblKey = new Label();
-			this.cmbRxGroup = new CustomCombo();
-			this.lblTxColor = new Label();
-			this.cmbEmgSystem = new CustomCombo();
-			this.lblEmgSystem = new Label();
-			this.cmbContact = new CustomCombo();
-			this.lblContact = new Label();
-			this.chkDualCapacity = new CheckBox();
-			this.chkUdpDataHead = new CheckBox();
-			this.chkAllowTxInterupt = new CheckBox();
-			this.chkTxInteruptFreq = new CheckBox();
-			this.chkPrivateCall = new CheckBox();
-			this.chkDataCall = new CheckBox();
-			this.chkEmgConfirmed = new CheckBox();
-			this.chkEnhancedChAccess = new CheckBox();
-			this.lblRxColor = new Label();
-			this.lblRxGroup = new Label();
-			this.chkRxOnly = new CheckBox();
-			this.cmbRxRefFreq = new ComboBox();
-			this.chkAllowTalkaround = new CheckBox();
-			this.grpAnalog = new DoubleClickGroupBox();
-			this.nudArtsInterval = new CustomNumericUpDown();
-			this.cmbChBandwidth = new ComboBox();
-			this.lblChBandwidth = new Label();
-			this.cmbVoiceEmphasis = new ComboBox();
-			this.cmbSte = new ComboBox();
-			this.lblVoiceEmphasis = new Label();
-			this.cmbNonSte = new ComboBox();
-			this.lblSte = new Label();
-			this.cmbRxTone = new ComboBox();
-			this.lblNonSte = new Label();
-			this.cmbRxSignaling = new ComboBox();
-			this.lblRxTone = new Label();
-			this.cmbUnmuteRule = new ComboBox();
-			this.lblRxSignaling = new Label();
-			this.cmbArts = new CustomCombo();
-			this.cmbPttidType = new ComboBox();
-			this.lblUnmuteRule = new Label();
-			this.lblArtsInterval = new Label();
-			this.lblArts = new Label();
-			this.lblPttidType = new Label();
-			this.cmbTxSignaling = new ComboBox();
-			this.lblTxSignaling = new Label();
-			this.cmbTxTone = new ComboBox();
-			this.lblTxTone = new Label();
-			this.chkDataPl = new CheckBox();
-			this.chkLoneWoker = new CheckBox();
-			this.chkVox = new CheckBox();
-			this.chkAutoScan = new CheckBox();
-			this.cmbChMode = new ComboBox();
-			this.lblChName = new Label();
-			this.txtTxFreq = new TextBox();
-			this.lblChMode = new Label();
-			this.lblTot = new Label();
-			this.txtRxFreq = new TextBox();
-			this.lblTotRekey = new Label();
-			this.lblRssiThreshold = new Label();
-			this.lblRxRefFreq = new Label();
-			this.lblBandType = new Label();
-			this.lblTxRefFreq = new Label();
-			this.cmbPower = new ComboBox();
-			this.lblRxFreq = new Label();
-			this.cmbBandType = new ComboBox();
-			this.cmbTxRefFreq = new ComboBox();
-			this.lblPower = new Label();
-			this.lblAdmitCriteria = new Label();
-			this.nudTotRekey = new CustomNumericUpDown();
-			this.lblTxFreq = new Label();
-			this.nudTot = new CustomNumericUpDown();
-			this.lblScanList = new Label();
-			this.mnsCh.SuspendLayout();
-			this.pnlChannel.SuspendLayout();
-			((ISupportInitialize)this.nudOffsetFreq).BeginInit();
-			((ISupportInitialize)this.nudRssiThreshold).BeginInit();
-			this.grpDigit.SuspendLayout();
-			((ISupportInitialize)this.nudTxColor).BeginInit();
-			((ISupportInitialize)this.nudRxColor).BeginInit();
-			this.grpAnalog.SuspendLayout();
-			((ISupportInitialize)this.nudArtsInterval).BeginInit();
-			((ISupportInitialize)this.nudTotRekey).BeginInit();
-			((ISupportInitialize)this.nudTot).BeginInit();
-			base.SuspendLayout();
-			this.mnsCh.AllowMerge = false;
-			this.mnsCh.Items.AddRange(new ToolStripItem[1]
-			{
-				this.tsmiCh
-			});
-			this.mnsCh.Location = new Point(0, 0);
-			this.mnsCh.Name = "mnsCh";
-			this.mnsCh.Size = new Size(1104, 25);
-			this.mnsCh.TabIndex = 32;
-			this.mnsCh.Text = "menuStrip1";
-			this.mnsCh.Visible = false;
-			this.tsmiCh.DropDownItems.AddRange(new ToolStripItem[6]
-			{
-				this.tsmiFirst,
-				this.tsmiPrev,
-				this.tsmiNext,
-				this.tsmiLast,
-				this.tsmiAdd,
-				this.tsmiDel
-			});
-			this.tsmiCh.Name = "tsmiCh";
-			this.tsmiCh.Size = new Size(44, 21);
-			this.tsmiCh.Text = "操作";
-			this.tsmiFirst.Name = "tsmiFirst";
-			this.tsmiFirst.Size = new Size(159, 22);
-			this.tsmiFirst.Text = "First";
-			this.tsmiPrev.Name = "tsmiPrev";
-			this.tsmiPrev.Size = new Size(159, 22);
-			this.tsmiPrev.Text = "Previous";
-			this.tsmiNext.Name = "tsmiNext";
-			this.tsmiNext.Size = new Size(159, 22);
-			this.tsmiNext.Text = "Next";
-			this.tsmiLast.Name = "tsmiLast";
-			this.tsmiLast.Size = new Size(159, 22);
-			this.tsmiLast.Text = "Last";
-			this.tsmiAdd.Name = "tsmiAdd";
-			this.tsmiAdd.Size = new Size(159, 22);
-			this.tsmiAdd.Text = "Add";
-			this.tsmiDel.Name = "tsmiDel";
-			this.tsmiDel.Size = new Size(159, 22);
-			this.tsmiDel.Text = "Delete";
-			this.pnlChannel.AutoScroll = true;
-			this.pnlChannel.AutoSize = true;
-			this.pnlChannel.Controls.Add(this.nudOffsetFreq);
-			this.pnlChannel.Controls.Add(this.lblOffsetFreq);
-			this.pnlChannel.Controls.Add(this.cmbOffsetDirection);
-			this.pnlChannel.Controls.Add(this.lblOffsetDirection);
-			this.pnlChannel.Controls.Add(this.cmbOffsetStep);
-			this.pnlChannel.Controls.Add(this.lblOffsetStep);
-			this.pnlChannel.Controls.Add(this.btnCopy);
-			this.pnlChannel.Controls.Add(this.cmbScanList);
-			this.pnlChannel.Controls.Add(this.txtName);
-			this.pnlChannel.Controls.Add(this.cmbSquelch);
-			this.pnlChannel.Controls.Add(this.cmbSql);
-			this.pnlChannel.Controls.Add(this.cmbAdmitCriteria);
-			this.pnlChannel.Controls.Add(this.lblSquelch);
-			this.pnlChannel.Controls.Add(this.nudRssiThreshold);
-			this.pnlChannel.Controls.Add(this.lblSql);
-			this.pnlChannel.Controls.Add(this.grpDigit);
-			this.pnlChannel.Controls.Add(this.chkRxOnly);
-			this.pnlChannel.Controls.Add(this.cmbRxRefFreq);
-			this.pnlChannel.Controls.Add(this.chkAllowTalkaround);
-			this.pnlChannel.Controls.Add(this.grpAnalog);
-			this.pnlChannel.Controls.Add(this.chkLoneWoker);
-			this.pnlChannel.Controls.Add(this.chkVox);
-			this.pnlChannel.Controls.Add(this.chkAutoScan);
-			this.pnlChannel.Controls.Add(this.cmbChMode);
-			this.pnlChannel.Controls.Add(this.lblChName);
-			this.pnlChannel.Controls.Add(this.txtTxFreq);
-			this.pnlChannel.Controls.Add(this.lblChMode);
-			this.pnlChannel.Controls.Add(this.lblTot);
-			this.pnlChannel.Controls.Add(this.txtRxFreq);
-			this.pnlChannel.Controls.Add(this.lblTotRekey);
-			this.pnlChannel.Controls.Add(this.lblRssiThreshold);
-			this.pnlChannel.Controls.Add(this.lblRxRefFreq);
-			this.pnlChannel.Controls.Add(this.lblBandType);
-			this.pnlChannel.Controls.Add(this.lblTxRefFreq);
-			this.pnlChannel.Controls.Add(this.cmbPower);
-			this.pnlChannel.Controls.Add(this.lblRxFreq);
-			this.pnlChannel.Controls.Add(this.cmbBandType);
-			this.pnlChannel.Controls.Add(this.cmbTxRefFreq);
-			this.pnlChannel.Controls.Add(this.lblPower);
-			this.pnlChannel.Controls.Add(this.lblAdmitCriteria);
-			this.pnlChannel.Controls.Add(this.nudTotRekey);
-			this.pnlChannel.Controls.Add(this.lblTxFreq);
-			this.pnlChannel.Controls.Add(this.nudTot);
-			this.pnlChannel.Controls.Add(this.lblScanList);
-			this.pnlChannel.Dock = DockStyle.Fill;
-			this.pnlChannel.Location = new Point(0, 0);
-			this.pnlChannel.Name = "pnlChannel";
-			this.pnlChannel.Size = new Size(1104, 684);
-			this.pnlChannel.TabIndex = 0;
-			this.pnlChannel.TabStop = true;
-			this.nudOffsetFreq.DecimalPlaces = 2;
-			this.nudOffsetFreq.Increment = new decimal(new int[4]
-			{
-				1,
-				0,
-				0,
-				131072
-			});
-			this.nudOffsetFreq.method_2(null);
-			this.nudOffsetFreq.Location = new Point(364, 199);
-			this.nudOffsetFreq.Name = "nudOffsetFreq";
-			this.nudOffsetFreq.method_6(null);
-			CustomNumericUpDown @class = this.nudOffsetFreq;
-			int[] bits = new int[4];
-			this.nudOffsetFreq.method_4(new decimal(bits));
-			this.nudOffsetFreq.Size = new Size(120, 21);
-			this.nudOffsetFreq.TabIndex = 37;
-			this.lblOffsetFreq.Location = new Point(245, 199);
-			this.lblOffsetFreq.Name = "lblOffsetFreq";
-			this.lblOffsetFreq.Size = new Size(113, 20);
-			this.lblOffsetFreq.TabIndex = 36;
-			this.lblOffsetFreq.Text = "Offset Freq [k]";
-			this.lblOffsetFreq.TextAlign = ContentAlignment.MiddleRight;
-			this.cmbOffsetDirection.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbOffsetDirection.FormattingEnabled = true;
-			this.cmbOffsetDirection.Location = new Point(364, 173);
-			this.cmbOffsetDirection.Name = "cmbOffsetDirection";
-			this.cmbOffsetDirection.Size = new Size(120, 20);
-			this.cmbOffsetDirection.TabIndex = 35;
-			this.lblOffsetDirection.Location = new Point(245, 173);
-			this.lblOffsetDirection.Name = "lblOffsetDirection";
-			this.lblOffsetDirection.Size = new Size(113, 20);
-			this.lblOffsetDirection.TabIndex = 34;
-			this.lblOffsetDirection.Text = "Offset Direction";
-			this.lblOffsetDirection.TextAlign = ContentAlignment.MiddleRight;
-			this.cmbOffsetStep.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbOffsetStep.FormattingEnabled = true;
-			this.cmbOffsetStep.Location = new Point(364, 144);
-			this.cmbOffsetStep.Name = "cmbOffsetStep";
-			this.cmbOffsetStep.Size = new Size(120, 20);
-			this.cmbOffsetStep.TabIndex = 33;
-			this.lblOffsetStep.Location = new Point(245, 144);
-			this.lblOffsetStep.Name = "lblOffsetStep";
-			this.lblOffsetStep.Size = new Size(113, 20);
-			this.lblOffsetStep.TabIndex = 32;
-			this.lblOffsetStep.Text = "Offset Step";
-			this.lblOffsetStep.TextAlign = ContentAlignment.MiddleRight;
-			this.btnCopy.Location = new Point(490, 26);
-			this.btnCopy.Name = "btnCopy";
-			this.btnCopy.Size = new Size(33, 23);
-			this.btnCopy.TabIndex = 31;
-			this.btnCopy.Text = ">>";
-			this.btnCopy.UseVisualStyleBackColor = true;
-			this.btnCopy.Click += this.btnCopy_Click;
-			this.cmbScanList.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbScanList.FormattingEnabled = true;
-			this.cmbScanList.Location = new Point(900, 56);
-			this.cmbScanList.Name = "cmbScanList";
-			this.cmbScanList.Size = new Size(120, 20);
-			this.cmbScanList.TabIndex = 24;
-			this.cmbScanList.SelectedIndexChanged += this.cmbScanList_SelectedIndexChanged;
-			this.txtName.InputString = null;
-			this.txtName.Location = new Point(94, 56);
-			this.txtName.MaxByteLength = 0;
-			this.txtName.Name = "txtName";
-			this.txtName.Size = new Size(120, 21);
-			this.txtName.TabIndex = 3;
-			this.txtName.Leave += this.txtName_Leave;
-			this.cmbSquelch.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbSquelch.FormattingEnabled = true;
-			this.cmbSquelch.Location = new Point(364, 56);
-			this.cmbSquelch.Name = "cmbSquelch";
-			this.cmbSquelch.Size = new Size(120, 20);
-			this.cmbSquelch.TabIndex = 3;
-			this.cmbSql.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbSql.FormattingEnabled = true;
-			this.cmbSql.Location = new Point(364, 117);
-			this.cmbSql.Name = "cmbSql";
-			this.cmbSql.Size = new Size(120, 20);
-			this.cmbSql.TabIndex = 3;
-			this.cmbSql.Visible = true;
-			this.cmbAdmitCriteria.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbAdmitCriteria.FormattingEnabled = true;
-			this.cmbAdmitCriteria.Location = new Point(900, 26);
-			this.cmbAdmitCriteria.Name = "cmbAdmitCriteria";
-			this.cmbAdmitCriteria.Size = new Size(120, 20);
-			this.cmbAdmitCriteria.TabIndex = 20;
-			this.lblSquelch.Location = new Point(245, 56);
-			this.lblSquelch.Name = "lblSquelch";
-			this.lblSquelch.Size = new Size(113, 20);
-			this.lblSquelch.TabIndex = 2;
-			this.lblSquelch.Text = "Squelch";
-			this.lblSquelch.TextAlign = ContentAlignment.MiddleRight;
-			this.nudRssiThreshold.method_2(null);
-			this.nudRssiThreshold.Location = new Point(900, -3);
-			this.nudRssiThreshold.Name = "nudRssiThreshold";
-			this.nudRssiThreshold.method_6(null);
-			CustomNumericUpDown class2 = this.nudRssiThreshold;
-			int[] bits2 = new int[4];
-			this.nudRssiThreshold.method_4(new decimal(bits2));
-			this.nudRssiThreshold.Size = new Size(120, 21);
-			this.nudRssiThreshold.TabIndex = 22;
-			this.nudRssiThreshold.Visible = false;
-			this.lblSql.Location = new Point(180, 117);
-			this.lblSql.Name = "lblSql";
-			this.lblSql.Size = new Size(180, 20);
-			this.lblSql.TabIndex = 2;
-			this.lblSql.Text = "Squelch Level";
-			this.lblSql.TextAlign = ContentAlignment.MiddleRight;
-			this.lblSql.Visible = true;
-			this.grpDigit.method_3(true);
-			this.grpDigit.Controls.Add(this.nudTxColor);
-			this.grpDigit.Controls.Add(this.nudRxColor);
-			this.grpDigit.Controls.Add(this.cmbTimingPreference);
-			this.grpDigit.Controls.Add(this.cmbRepeaterSlot);
-			this.grpDigit.Controls.Add(this.lblTimingPreference);
-			this.grpDigit.Controls.Add(this.cmbArs);
-			this.grpDigit.Controls.Add(this.lblRepeaterSlot);
-			this.grpDigit.Controls.Add(this.cmbKeySwitch);
-			this.grpDigit.Controls.Add(this.lblArs);
-			this.grpDigit.Controls.Add(this.cmbKey);
-			this.grpDigit.Controls.Add(this.lblKeySwitch);
-			this.grpDigit.Controls.Add(this.lblKey);
-			this.grpDigit.Controls.Add(this.cmbRxGroup);
-			this.grpDigit.Controls.Add(this.lblTxColor);
-			this.grpDigit.Controls.Add(this.cmbEmgSystem);
-			this.grpDigit.Controls.Add(this.lblEmgSystem);
-			this.grpDigit.Controls.Add(this.cmbContact);
-			this.grpDigit.Controls.Add(this.lblContact);
-			this.grpDigit.Controls.Add(this.chkDualCapacity);
-			this.grpDigit.Controls.Add(this.chkUdpDataHead);
-			this.grpDigit.Controls.Add(this.chkAllowTxInterupt);
-			this.grpDigit.Controls.Add(this.chkTxInteruptFreq);
-			this.grpDigit.Controls.Add(this.chkPrivateCall);
-			this.grpDigit.Controls.Add(this.chkDataCall);
-			this.grpDigit.Controls.Add(this.chkEmgConfirmed);
-			this.grpDigit.Controls.Add(this.chkEnhancedChAccess);
-			this.grpDigit.Controls.Add(this.lblRxColor);
-			this.grpDigit.Controls.Add(this.lblRxGroup);
-			this.grpDigit.method_1(false);
-			this.grpDigit.Location = new Point(578, 237);
-			this.grpDigit.Name = "grpDigit";
-			this.grpDigit.Size = new Size(499, 408);
-			this.grpDigit.TabIndex = 30;
-			this.grpDigit.TabStop = false;
-			this.grpDigit.Text = "Digital";
-			this.nudTxColor.method_2(null);
-			this.nudTxColor.Location = new Point(233, 118);
-			this.nudTxColor.Name = "nudTxColor";
-			this.nudTxColor.method_6(null);
-			CustomNumericUpDown class3 = this.nudTxColor;
-			int[] bits3 = new int[4];
-			this.nudTxColor.method_4(new decimal(bits3));
-			this.nudTxColor.Size = new Size(120, 21);
-			this.nudTxColor.TabIndex = 17;
-			this.nudRxColor.method_2(null);
-			this.nudRxColor.Location = new Point(101, 314);
-			this.nudRxColor.Name = "nudRxColor";
-			this.nudRxColor.method_6(null);
-			CustomNumericUpDown class4 = this.nudRxColor;
-			int[] bits4 = new int[4];
-			this.nudRxColor.method_4(new decimal(bits4));
-			this.nudRxColor.Size = new Size(120, 21);
-			this.nudRxColor.TabIndex = 13;
-			this.nudRxColor.Visible = false;
-			this.cmbTimingPreference.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbTimingPreference.FormattingEnabled = true;
-			this.cmbTimingPreference.Location = new Point(101, 344);
-			this.cmbTimingPreference.Name = "cmbTimingPreference";
-			this.cmbTimingPreference.Size = new Size(120, 20);
-			this.cmbTimingPreference.TabIndex = 2;
-			this.cmbTimingPreference.Visible = false;
-			this.cmbRepeaterSlot.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbRepeaterSlot.FormattingEnabled = true;
-			this.cmbRepeaterSlot.Location = new Point(233, 206);
-			this.cmbRepeaterSlot.Name = "cmbRepeaterSlot";
-			this.cmbRepeaterSlot.Size = new Size(120, 20);
-			this.cmbRepeaterSlot.TabIndex = 4;
-			this.lblTimingPreference.Location = new Point(-52, 344);
-			this.lblTimingPreference.Name = "lblTimingPreference";
-			this.lblTimingPreference.Size = new Size(143, 20);
-			this.lblTimingPreference.TabIndex = 1;
-			this.lblTimingPreference.Text = "Timing Leader Prefernce";
-			this.lblTimingPreference.TextAlign = ContentAlignment.MiddleRight;
-			this.lblTimingPreference.Visible = false;
-			this.cmbArs.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbArs.FormattingEnabled = true;
-			this.cmbArs.Location = new Point(101, 370);
-			this.cmbArs.Name = "cmbArs";
-			this.cmbArs.Size = new Size(120, 20);
-			this.cmbArs.TabIndex = 6;
-			this.cmbArs.Visible = false;
-			this.lblRepeaterSlot.Location = new Point(55, 206);
-			this.lblRepeaterSlot.Name = "lblRepeaterSlot";
-			this.lblRepeaterSlot.Size = new Size(166, 20);
-			this.lblRepeaterSlot.TabIndex = 3;
-			this.lblRepeaterSlot.Text = "Repeater/Time Slot";
-			this.lblRepeaterSlot.TextAlign = ContentAlignment.MiddleRight;
-			this.cmbKeySwitch.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbKeySwitch.FormattingEnabled = true;
-			this.cmbKeySwitch.Location = new Point(233, 30);
-			this.cmbKeySwitch.Name = "cmbKeySwitch";
-			this.cmbKeySwitch.Size = new Size(120, 20);
-			this.cmbKeySwitch.TabIndex = 8;
-			this.cmbKeySwitch.SelectedIndexChanged += this.cmbKeySwitch_SelectedIndexChanged;
-			this.lblArs.Location = new Point(-52, 370);
-			this.lblArs.Name = "lblArs";
-			this.lblArs.Size = new Size(143, 20);
-			this.lblArs.TabIndex = 5;
-			this.lblArs.Text = "ARS";
-			this.lblArs.TextAlign = ContentAlignment.MiddleRight;
-			this.lblArs.Visible = false;
-			this.cmbKey.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbKey.FormattingEnabled = true;
-			this.cmbKey.Location = new Point(233, 60);
-			this.cmbKey.Name = "cmbKey";
-			this.cmbKey.Size = new Size(120, 20);
-			this.cmbKey.TabIndex = 10;
-			this.lblKeySwitch.Location = new Point(55, 30);
-			this.lblKeySwitch.Name = "lblKeySwitch";
-			this.lblKeySwitch.Size = new Size(166, 20);
-			this.lblKeySwitch.TabIndex = 7;
-			this.lblKeySwitch.Text = "Privacy";
-			this.lblKeySwitch.TextAlign = ContentAlignment.MiddleRight;
-			this.lblKey.Location = new Point(55, 60);
-			this.lblKey.Name = "lblKey";
-			this.lblKey.Size = new Size(166, 20);
-			this.lblKey.TabIndex = 9;
-			this.lblKey.Text = "Privacy Group";
-			this.lblKey.TextAlign = ContentAlignment.MiddleRight;
-			this.cmbRxGroup.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbRxGroup.FormattingEnabled = true;
-			this.cmbRxGroup.Location = new Point(233, 89);
-			this.cmbRxGroup.Name = "cmbRxGroup";
-			this.cmbRxGroup.Size = new Size(120, 20);
-			this.cmbRxGroup.TabIndex = 15;
-			this.lblTxColor.Location = new Point(55, 118);
-			this.lblTxColor.Name = "lblTxColor";
-			this.lblTxColor.Size = new Size(166, 20);
-			this.lblTxColor.TabIndex = 16;
-			this.lblTxColor.Text = "Color Code";
-			this.lblTxColor.TextAlign = ContentAlignment.MiddleRight;
-			this.cmbEmgSystem.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbEmgSystem.FormattingEnabled = true;
-			this.cmbEmgSystem.Location = new Point(233, 148);
-			this.cmbEmgSystem.Name = "cmbEmgSystem";
-			this.cmbEmgSystem.Size = new Size(120, 20);
-			this.cmbEmgSystem.TabIndex = 19;
-			this.cmbEmgSystem.SelectedIndexChanged += this.cmbEmgSystem_SelectedIndexChanged;
-			this.lblEmgSystem.Location = new Point(55, 148);
-			this.lblEmgSystem.Name = "lblEmgSystem";
-			this.lblEmgSystem.Size = new Size(166, 20);
-			this.lblEmgSystem.TabIndex = 18;
-			this.lblEmgSystem.Text = "Emergency System";
-			this.lblEmgSystem.TextAlign = ContentAlignment.MiddleRight;
-			this.cmbContact.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbContact.FormattingEnabled = true;
-			this.cmbContact.Location = new Point(233, 178);
-			this.cmbContact.Name = "cmbContact";
-			this.cmbContact.Size = new Size(120, 20);
-			this.cmbContact.TabIndex = 21;
-			this.lblContact.Location = new Point(55, 178);
-			this.lblContact.Name = "lblContact";
-			this.lblContact.Size = new Size(166, 20);
-			this.lblContact.TabIndex = 20;
-			this.lblContact.Text = "Contact Name";
-			this.lblContact.TextAlign = ContentAlignment.MiddleRight;
-			this.chkDualCapacity.AutoSize = true;
-			this.chkDualCapacity.Location = new Point(155, 329);
-			this.chkDualCapacity.Name = "chkDualCapacity";
-			this.chkDualCapacity.Size = new Size(174, 16);
-			this.chkDualCapacity.TabIndex = 0;
-			this.chkDualCapacity.Text = "Dual Capacity Direct Mode";
-			this.chkDualCapacity.UseVisualStyleBackColor = true;
-			this.chkDualCapacity.CheckedChanged += this.chkDualCapacity_CheckedChanged;
-			this.chkUdpDataHead.AutoSize = true;
-			this.chkUdpDataHead.Location = new Point(285, 273);
-			this.chkUdpDataHead.Name = "chkUdpDataHead";
-			this.chkUdpDataHead.Size = new Size(180, 16);
-			this.chkUdpDataHead.TabIndex = 11;
-			this.chkUdpDataHead.Text = "Compressed UDP Data Header";
-			this.chkUdpDataHead.UseVisualStyleBackColor = true;
-			this.chkUdpDataHead.Visible = false;
-			this.chkAllowTxInterupt.AutoSize = true;
-			this.chkAllowTxInterupt.Location = new Point(285, 303);
-			this.chkAllowTxInterupt.Name = "chkAllowTxInterupt";
-			this.chkAllowTxInterupt.Size = new Size(132, 16);
-			this.chkAllowTxInterupt.TabIndex = 22;
-			this.chkAllowTxInterupt.Text = "Allow Interruption";
-			this.chkAllowTxInterupt.UseVisualStyleBackColor = true;
-			this.chkAllowTxInterupt.Visible = false;
-			this.chkTxInteruptFreq.AutoSize = true;
-			this.chkTxInteruptFreq.Location = new Point(285, 329);
-			this.chkTxInteruptFreq.Name = "chkTxInteruptFreq";
-			this.chkTxInteruptFreq.Size = new Size(192, 16);
-			this.chkTxInteruptFreq.TabIndex = 23;
-			this.chkTxInteruptFreq.Text = "Tx Interruptible Frequencies";
-			this.chkTxInteruptFreq.UseVisualStyleBackColor = true;
-			this.chkTxInteruptFreq.Visible = false;
-			this.chkPrivateCall.AutoSize = true;
-			this.chkPrivateCall.Location = new Point(155, 243);
-			this.chkPrivateCall.Name = "chkPrivateCall";
-			this.chkPrivateCall.Size = new Size(156, 16);
-			this.chkPrivateCall.TabIndex = 24;
-			this.chkPrivateCall.Text = "Private Call Confirmed";
-			this.chkPrivateCall.UseVisualStyleBackColor = true;
-			this.chkDataCall.AutoSize = true;
-			this.chkDataCall.Location = new Point(155, 273);
-			this.chkDataCall.Name = "chkDataCall";
-			this.chkDataCall.Size = new Size(138, 16);
-			this.chkDataCall.TabIndex = 25;
-			this.chkDataCall.Text = "Data Call Confirmed";
-			this.chkDataCall.UseVisualStyleBackColor = true;
-			this.chkEmgConfirmed.AutoSize = true;
-			this.chkEmgConfirmed.Location = new Point(155, 303);
-			this.chkEmgConfirmed.Name = "chkEmgConfirmed";
-			this.chkEmgConfirmed.Size = new Size(138, 16);
-			this.chkEmgConfirmed.TabIndex = 26;
-			this.chkEmgConfirmed.Text = "Emergency Alarm Ack";
-			this.chkEmgConfirmed.UseVisualStyleBackColor = true;
-			this.chkEnhancedChAccess.AutoSize = true;
-			this.chkEnhancedChAccess.Location = new Point(285, 354);
-			this.chkEnhancedChAccess.Name = "chkEnhancedChAccess";
-			this.chkEnhancedChAccess.Size = new Size(162, 16);
-			this.chkEnhancedChAccess.TabIndex = 27;
-			this.chkEnhancedChAccess.Text = "Enhanced Channel Access";
-			this.chkEnhancedChAccess.UseVisualStyleBackColor = true;
-			this.chkEnhancedChAccess.Visible = false;
-			this.lblRxColor.Location = new Point(-52, 314);
-			this.lblRxColor.Name = "lblRxColor";
-			this.lblRxColor.Size = new Size(143, 20);
-			this.lblRxColor.TabIndex = 12;
-			this.lblRxColor.Text = "Rx Color Code";
-			this.lblRxColor.TextAlign = ContentAlignment.MiddleRight;
-			this.lblRxColor.Visible = false;
-			this.lblRxGroup.Location = new Point(55, 89);
-			this.lblRxGroup.Name = "lblRxGroup";
-			this.lblRxGroup.Size = new Size(166, 20);
-			this.lblRxGroup.TabIndex = 14;
-			this.lblRxGroup.Text = "Rx Group List";
-			this.lblRxGroup.TextAlign = ContentAlignment.MiddleRight;
-			this.chkRxOnly.AutoSize = true;
-			this.chkRxOnly.Location = new Point(900, 156);
-			this.chkRxOnly.Name = "chkRxOnly";
-			this.chkRxOnly.Size = new Size(66, 16);
-			this.chkRxOnly.TabIndex = 28;
-			this.chkRxOnly.Text = "Rx Only";
-			this.chkRxOnly.UseVisualStyleBackColor = true;
-			this.chkRxOnly.CheckedChanged += this.chkRxOnly_CheckedChanged;
-			this.cmbRxRefFreq.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbRxRefFreq.FormattingEnabled = true;
-			this.cmbRxRefFreq.Location = new Point(364, 86);
-			this.cmbRxRefFreq.Name = "cmbRxRefFreq";
-			this.cmbRxRefFreq.Size = new Size(120, 20);
-			this.cmbRxRefFreq.TabIndex = 7;
-			this.cmbRxRefFreq.Visible = false;
-			this.chkAllowTalkaround.AutoSize = true;
-			this.chkAllowTalkaround.Location = new Point(900, 134);
-			this.chkAllowTalkaround.Name = "chkAllowTalkaround";
-			this.chkAllowTalkaround.Size = new Size(120, 16);
-			this.chkAllowTalkaround.TabIndex = 27;
-			this.chkAllowTalkaround.Text = "Allow Talkaround";
-			this.chkAllowTalkaround.UseVisualStyleBackColor = true;
-			this.grpAnalog.method_3(true);
-			this.grpAnalog.Controls.Add(this.nudArtsInterval);
-			this.grpAnalog.Controls.Add(this.cmbChBandwidth);
-			this.grpAnalog.Controls.Add(this.lblChBandwidth);
-			this.grpAnalog.Controls.Add(this.cmbVoiceEmphasis);
-			this.grpAnalog.Controls.Add(this.cmbSte);
-			this.grpAnalog.Controls.Add(this.lblVoiceEmphasis);
-			this.grpAnalog.Controls.Add(this.cmbNonSte);
-			this.grpAnalog.Controls.Add(this.lblSte);
-			this.grpAnalog.Controls.Add(this.cmbRxTone);
-			this.grpAnalog.Controls.Add(this.lblNonSte);
-			this.grpAnalog.Controls.Add(this.cmbRxSignaling);
-			this.grpAnalog.Controls.Add(this.lblRxTone);
-			this.grpAnalog.Controls.Add(this.cmbUnmuteRule);
-			this.grpAnalog.Controls.Add(this.lblRxSignaling);
-			this.grpAnalog.Controls.Add(this.cmbArts);
-			this.grpAnalog.Controls.Add(this.cmbPttidType);
-			this.grpAnalog.Controls.Add(this.lblUnmuteRule);
-			this.grpAnalog.Controls.Add(this.lblArtsInterval);
-			this.grpAnalog.Controls.Add(this.lblArts);
-			this.grpAnalog.Controls.Add(this.lblPttidType);
-			this.grpAnalog.Controls.Add(this.cmbTxSignaling);
-			this.grpAnalog.Controls.Add(this.lblTxSignaling);
-			this.grpAnalog.Controls.Add(this.cmbTxTone);
-			this.grpAnalog.Controls.Add(this.lblTxTone);
-			this.grpAnalog.Controls.Add(this.chkDataPl);
-			this.grpAnalog.method_1(false);
-			this.grpAnalog.Location = new Point(28, 237);
-			this.grpAnalog.Name = "grpAnalog";
-			this.grpAnalog.Size = new Size(531, 408);
-			this.grpAnalog.TabIndex = 29;
-			this.grpAnalog.TabStop = false;
-			this.grpAnalog.Text = "Analog";
-			this.nudArtsInterval.method_2(null);
-			this.nudArtsInterval.Location = new Point(401, 263);
-			this.nudArtsInterval.Name = "nudArtsInterval";
-			this.nudArtsInterval.method_6(null);
-			CustomNumericUpDown class5 = this.nudArtsInterval;
-			int[] bits5 = new int[4];
-			this.nudArtsInterval.method_4(new decimal(bits5));
-			this.nudArtsInterval.Size = new Size(120, 21);
-			this.nudArtsInterval.TabIndex = 25;
-			this.nudArtsInterval.Visible = false;
-			this.cmbChBandwidth.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbChBandwidth.FormattingEnabled = true;
-			this.cmbChBandwidth.Location = new Point(250, 29);
-			this.cmbChBandwidth.Name = "cmbChBandwidth";
-			this.cmbChBandwidth.Size = new Size(120, 20);
-			this.cmbChBandwidth.TabIndex = 1;
-			this.lblChBandwidth.Location = new Point(96, 29);
-			this.lblChBandwidth.Name = "lblChBandwidth";
-			this.lblChBandwidth.Size = new Size(143, 20);
-			this.lblChBandwidth.TabIndex = 0;
-			this.lblChBandwidth.Text = "Channel Bandwidth [KHz]";
-			this.lblChBandwidth.TextAlign = ContentAlignment.MiddleRight;
-			this.cmbVoiceEmphasis.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbVoiceEmphasis.FormattingEnabled = true;
-			this.cmbVoiceEmphasis.Location = new Point(250, 119);
-			this.cmbVoiceEmphasis.Name = "cmbVoiceEmphasis";
-			this.cmbVoiceEmphasis.Size = new Size(120, 20);
-			this.cmbVoiceEmphasis.TabIndex = 5;
-			this.cmbVoiceEmphasis.Visible = false;
-			this.cmbSte.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbSte.FormattingEnabled = true;
-			this.cmbSte.Location = new Point(250, 60);
-			this.cmbSte.Name = "cmbSte";
-			this.cmbSte.Size = new Size(120, 20);
-			this.cmbSte.TabIndex = 7;
-			this.lblVoiceEmphasis.Location = new Point(96, 119);
-			this.lblVoiceEmphasis.Name = "lblVoiceEmphasis";
-			this.lblVoiceEmphasis.Size = new Size(143, 20);
-			this.lblVoiceEmphasis.TabIndex = 4;
-			this.lblVoiceEmphasis.Text = "Voice Emphasis";
-			this.lblVoiceEmphasis.TextAlign = ContentAlignment.MiddleRight;
-			this.lblVoiceEmphasis.Visible = false;
-			this.cmbNonSte.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbNonSte.FormattingEnabled = true;
-			this.cmbNonSte.Location = new Point(250, 90);
-			this.cmbNonSte.Name = "cmbNonSte";
-			this.cmbNonSte.Size = new Size(120, 20);
-			this.cmbNonSte.TabIndex = 9;
-			this.lblSte.Location = new Point(96, 60);
-			this.lblSte.Name = "lblSte";
-			this.lblSte.Size = new Size(143, 20);
-			this.lblSte.TabIndex = 6;
-			this.lblSte.Text = "STE";
-			this.lblSte.TextAlign = ContentAlignment.MiddleRight;
-			this.cmbRxTone.FormattingEnabled = true;
-			this.cmbRxTone.Location = new Point(137, 151);
-			this.cmbRxTone.MaxLength = 5;
-			this.cmbRxTone.Name = "cmbRxTone";
-			this.cmbRxTone.Size = new Size(120, 20);
-			this.cmbRxTone.TabIndex = 11;
-			this.cmbRxTone.Validating += this.cmbRxTone_Validating;
-			this.cmbRxTone.SelectedIndexChanged += this.cmbRxTone_SelectedIndexChanged;
-			this.cmbRxTone.KeyDown += this.cmbRxTone_KeyDown;
-			this.lblNonSte.Location = new Point(96, 90);
-			this.lblNonSte.Name = "lblNonSte";
-			this.lblNonSte.Size = new Size(143, 20);
-			this.lblNonSte.TabIndex = 8;
-			this.lblNonSte.Text = "Non STE";
-			this.lblNonSte.TextAlign = ContentAlignment.MiddleRight;
-			this.cmbRxSignaling.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbRxSignaling.FormattingEnabled = true;
-			this.cmbRxSignaling.Location = new Point(137, 181);
-			this.cmbRxSignaling.Name = "cmbRxSignaling";
-			this.cmbRxSignaling.Size = new Size(120, 20);
-			this.cmbRxSignaling.TabIndex = 13;
-			this.cmbRxSignaling.SelectedIndexChanged += this.cmbRxSignaling_SelectedIndexChanged;
-			this.lblRxTone.Location = new Point(9, 151);
-			this.lblRxTone.Name = "lblRxTone";
-			this.lblRxTone.Size = new Size(119, 20);
-			this.lblRxTone.TabIndex = 10;
-			this.lblRxTone.Text = "Rx CTCSS/DCS [Hz]";
-			this.lblRxTone.TextAlign = ContentAlignment.MiddleRight;
-			this.cmbUnmuteRule.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbUnmuteRule.FormattingEnabled = true;
-			this.cmbUnmuteRule.Location = new Point(137, 239);
-			this.cmbUnmuteRule.Name = "cmbUnmuteRule";
-			this.cmbUnmuteRule.Size = new Size(120, 20);
-			this.cmbUnmuteRule.TabIndex = 15;
-			this.cmbUnmuteRule.Visible = false;
-			this.lblRxSignaling.Location = new Point(9, 181);
-			this.lblRxSignaling.Name = "lblRxSignaling";
-			this.lblRxSignaling.Size = new Size(119, 20);
-			this.lblRxSignaling.TabIndex = 12;
-			this.lblRxSignaling.Text = "Rx Signaling System";
-			this.lblRxSignaling.TextAlign = ContentAlignment.MiddleRight;
-			this.cmbArts.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbArts.FormattingEnabled = true;
-			this.cmbArts.Location = new Point(401, 237);
-			this.cmbArts.Name = "cmbArts";
-			this.cmbArts.Size = new Size(120, 20);
-			this.cmbArts.TabIndex = 22;
-			this.cmbPttidType.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbPttidType.FormattingEnabled = true;
-			this.cmbPttidType.Location = new Point(401, 211);
-			this.cmbPttidType.Name = "cmbPttidType";
-			this.cmbPttidType.Size = new Size(120, 20);
-			this.cmbPttidType.TabIndex = 22;
-			this.lblUnmuteRule.Location = new Point(9, 239);
-			this.lblUnmuteRule.Name = "lblUnmuteRule";
-			this.lblUnmuteRule.Size = new Size(119, 20);
-			this.lblUnmuteRule.TabIndex = 14;
-			this.lblUnmuteRule.Text = "Unmute Rule";
-			this.lblUnmuteRule.TextAlign = ContentAlignment.MiddleRight;
-			this.lblUnmuteRule.Visible = false;
-			this.lblArtsInterval.Location = new Point(271, 263);
-			this.lblArtsInterval.Name = "lblArtsInterval";
-			this.lblArtsInterval.Size = new Size(119, 20);
-			this.lblArtsInterval.TabIndex = 24;
-			this.lblArtsInterval.Text = "ARTS Interval [s]";
-			this.lblArtsInterval.TextAlign = ContentAlignment.MiddleRight;
-			this.lblArtsInterval.Visible = false;
-			this.lblArts.Location = new Point(271, 237);
-			this.lblArts.Name = "lblArts";
-			this.lblArts.Size = new Size(119, 20);
-			this.lblArts.TabIndex = 21;
-			this.lblArts.Text = "ARTS";
-			this.lblArts.TextAlign = ContentAlignment.MiddleRight;
-			this.lblPttidType.Location = new Point(271, 211);
-			this.lblPttidType.Name = "lblPttidType";
-			this.lblPttidType.Size = new Size(119, 20);
-			this.lblPttidType.TabIndex = 21;
-			this.lblPttidType.Text = "PTTID Type";
-			this.lblPttidType.TextAlign = ContentAlignment.MiddleRight;
-			this.cmbTxSignaling.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbTxSignaling.FormattingEnabled = true;
-			this.cmbTxSignaling.Location = new Point(401, 181);
-			this.cmbTxSignaling.Name = "cmbTxSignaling";
-			this.cmbTxSignaling.Size = new Size(120, 20);
-			this.cmbTxSignaling.TabIndex = 20;
-			this.cmbTxSignaling.SelectedIndexChanged += this.cmbTxSignaling_SelectedIndexChanged;
-			this.lblTxSignaling.Location = new Point(271, 181);
-			this.lblTxSignaling.Name = "lblTxSignaling";
-			this.lblTxSignaling.Size = new Size(119, 20);
-			this.lblTxSignaling.TabIndex = 19;
-			this.lblTxSignaling.Text = "Tx Signaling System";
-			this.lblTxSignaling.TextAlign = ContentAlignment.MiddleRight;
-			this.cmbTxTone.FormattingEnabled = true;
-			this.cmbTxTone.Location = new Point(401, 151);
-			this.cmbTxTone.MaxLength = 5;
-			this.cmbTxTone.Name = "cmbTxTone";
-			this.cmbTxTone.Size = new Size(120, 20);
-			this.cmbTxTone.TabIndex = 18;
-			this.cmbTxTone.Validating += this.cmbTxTone_Validating;
-			this.cmbTxTone.SelectedIndexChanged += this.SwsqRwFuko;
-			this.cmbTxTone.KeyDown += this.cmbTxTone_KeyDown;
-			this.lblTxTone.Location = new Point(271, 151);
-			this.lblTxTone.Name = "lblTxTone";
-			this.lblTxTone.Size = new Size(119, 20);
-			this.lblTxTone.TabIndex = 17;
-			this.lblTxTone.Text = "Tx CTCSS/DCS [Hz]";
-			this.lblTxTone.TextAlign = ContentAlignment.MiddleRight;
-			this.chkDataPl.AutoSize = true;
-			this.chkDataPl.Location = new Point(137, 215);
-			this.chkDataPl.Name = "chkDataPl";
-			this.chkDataPl.Size = new Size(90, 16);
-			this.chkDataPl.TabIndex = 16;
-			this.chkDataPl.Text = "PL for Data";
-			this.chkDataPl.UseVisualStyleBackColor = true;
-			this.chkLoneWoker.AutoSize = true;
-			this.chkLoneWoker.Location = new Point(900, 110);
-			this.chkLoneWoker.Name = "chkLoneWoker";
-			this.chkLoneWoker.Size = new Size(90, 16);
-			this.chkLoneWoker.TabIndex = 26;
-			this.chkLoneWoker.Text = "Lone Worker";
-			this.chkLoneWoker.UseVisualStyleBackColor = true;
-			this.chkVox.AutoSize = true;
-			this.chkVox.Location = new Point(651, 146);
-			this.chkVox.Name = "chkVox";
-			this.chkVox.Size = new Size(42, 16);
-			this.chkVox.TabIndex = 18;
-			this.chkVox.Text = "Vox";
-			this.chkVox.UseVisualStyleBackColor = true;
-			this.chkAutoScan.AutoSize = true;
-			this.chkAutoScan.Location = new Point(900, 87);
-			this.chkAutoScan.Name = "chkAutoScan";
-			this.chkAutoScan.Size = new Size(78, 16);
-			this.chkAutoScan.TabIndex = 25;
-			this.chkAutoScan.Text = "Auto Scan";
-			this.chkAutoScan.UseVisualStyleBackColor = true;
-			this.cmbChMode.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbChMode.FormattingEnabled = true;
-			this.cmbChMode.Location = new Point(93, 26);
-			this.cmbChMode.Name = "cmbChMode";
-			this.cmbChMode.Size = new Size(120, 20);
-			this.cmbChMode.TabIndex = 1;
-			this.cmbChMode.SelectedIndexChanged += this.modeChangedHandler;
-			this.lblChName.Location = new Point(38, 56);
-			this.lblChName.Name = "lblChName";
-			this.lblChName.Size = new Size(47, 20);
-			this.lblChName.TabIndex = 2;
-			this.lblChName.Text = "Name";
-			this.lblChName.TextAlign = ContentAlignment.MiddleRight;
-			this.txtTxFreq.Location = new Point(651, 26);
-			this.txtTxFreq.Name = "txtTxFreq";
-			this.txtTxFreq.Size = new Size(120, 21);
-			this.txtTxFreq.TabIndex = 9;
-			this.txtTxFreq.Validating += this.txtTxFreq_Validating;
-			this.lblChMode.Location = new Point(38, 26);
-			this.lblChMode.Name = "lblChMode";
-			this.lblChMode.Size = new Size(47, 20);
-			this.lblChMode.TabIndex = 0;
-			this.lblChMode.Text = "Mode";
-			this.lblChMode.TextAlign = ContentAlignment.MiddleRight;
-			this.lblTot.Location = new Point(524, 86);
-			this.lblTot.Name = "lblTot";
-			this.lblTot.Size = new Size(119, 20);
-			this.lblTot.TabIndex = 14;
-			this.lblTot.Text = "TOT [s]";
-			this.lblTot.TextAlign = ContentAlignment.MiddleRight;
-			this.txtRxFreq.BackColor = SystemColors.Window;
-			this.txtRxFreq.Location = new Point(364, 26);
-			this.txtRxFreq.Name = "txtRxFreq";
-			this.txtRxFreq.Size = new Size(120, 21);
-			this.txtRxFreq.TabIndex = 5;
-			this.txtRxFreq.Validating += this.txtRxFreq_Validating;
-			this.lblTotRekey.Location = new Point(524, 116);
-			this.lblTotRekey.Name = "lblTotRekey";
-			this.lblTotRekey.Size = new Size(119, 20);
-			this.lblTotRekey.TabIndex = 16;
-			this.lblTotRekey.Text = "TOT Rekey Delay [s]";
-			this.lblTotRekey.TextAlign = ContentAlignment.MiddleRight;
-			this.lblRssiThreshold.Location = new Point(767, -3);
-			this.lblRssiThreshold.Name = "lblRssiThreshold";
-			this.lblRssiThreshold.Size = new Size(125, 20);
-			this.lblRssiThreshold.TabIndex = 21;
-			this.lblRssiThreshold.Text = "RSSI Threshold [dBm]";
-			this.lblRssiThreshold.TextAlign = ContentAlignment.MiddleRight;
-			this.lblRssiThreshold.Visible = false;
-			this.lblRxRefFreq.Location = new Point(221, 86);
-			this.lblRxRefFreq.Name = "lblRxRefFreq";
-			this.lblRxRefFreq.Size = new Size(137, 20);
-			this.lblRxRefFreq.TabIndex = 6;
-			this.lblRxRefFreq.Text = "Rx Reference Frequency";
-			this.lblRxRefFreq.TextAlign = ContentAlignment.MiddleRight;
-			this.lblRxRefFreq.Visible = false;
-			this.lblBandType.Location = new Point(524, 200);
-			this.lblBandType.Name = "lblBandType";
-			this.lblBandType.Size = new Size(119, 20);
-			this.lblBandType.TabIndex = 10;
-			this.lblBandType.Text = "Band Type";
-			this.lblBandType.TextAlign = ContentAlignment.MiddleRight;
-			this.lblBandType.Visible = false;
-			this.lblTxRefFreq.Location = new Point(506, 172);
-			this.lblTxRefFreq.Name = "lblTxRefFreq";
-			this.lblTxRefFreq.Size = new Size(137, 20);
-			this.lblTxRefFreq.TabIndex = 10;
-			this.lblTxRefFreq.Text = "Tx Reference Frequency";
-			this.lblTxRefFreq.TextAlign = ContentAlignment.MiddleRight;
-			this.lblTxRefFreq.Visible = false;
-			this.cmbPower.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbPower.FormattingEnabled = true;
-			this.cmbPower.Location = new Point(651, 56);
-			this.cmbPower.Name = "cmbPower";
-			this.cmbPower.Size = new Size(120, 20);
-			this.cmbPower.TabIndex = 13;
-			this.lblRxFreq.Location = new Point(245, 26);
-			this.lblRxFreq.Name = "lblRxFreq";
-			this.lblRxFreq.Size = new Size(113, 20);
-			this.lblRxFreq.TabIndex = 4;
-			this.lblRxFreq.Text = "Rx Frequency [MHz]";
-			this.lblRxFreq.TextAlign = ContentAlignment.MiddleRight;
-			this.cmbBandType.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbBandType.FormattingEnabled = true;
-			this.cmbBandType.Location = new Point(651, 200);
-			this.cmbBandType.Name = "cmbBandType";
-			this.cmbBandType.Size = new Size(120, 20);
-			this.cmbBandType.TabIndex = 11;
-			this.cmbBandType.Visible = false;
-			this.cmbTxRefFreq.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.cmbTxRefFreq.FormattingEnabled = true;
-			this.cmbTxRefFreq.Location = new Point(651, 172);
-			this.cmbTxRefFreq.Name = "cmbTxRefFreq";
-			this.cmbTxRefFreq.Size = new Size(120, 20);
-			this.cmbTxRefFreq.TabIndex = 11;
-			this.cmbTxRefFreq.Visible = false;
-			this.lblPower.Location = new Point(524, 56);
-			this.lblPower.Name = "lblPower";
-			this.lblPower.Size = new Size(119, 20);
-			this.lblPower.TabIndex = 12;
-			this.lblPower.Text = "Power Level";
-			this.lblPower.TextAlign = ContentAlignment.MiddleRight;
-			this.lblAdmitCriteria.Location = new Point(767, 26);
-			this.lblAdmitCriteria.Name = "lblAdmitCriteria";
-			this.lblAdmitCriteria.Size = new Size(125, 20);
-			this.lblAdmitCriteria.TabIndex = 19;
-			this.lblAdmitCriteria.Text = "Admit Criteria";
-			this.lblAdmitCriteria.TextAlign = ContentAlignment.MiddleRight;
-			this.nudTotRekey.method_2(null);
-			this.nudTotRekey.Location = new Point(651, 116);
-			this.nudTotRekey.Name = "nudTotRekey";
-			this.nudTotRekey.method_6(null);
-			CustomNumericUpDown class6 = this.nudTotRekey;
-			int[] bits6 = new int[4];
-			this.nudTotRekey.method_4(new decimal(bits6));
-			this.nudTotRekey.Size = new Size(120, 21);
-			this.nudTotRekey.TabIndex = 17;
-			this.lblTxFreq.Location = new Point(524, 26);
-			this.lblTxFreq.Name = "lblTxFreq";
-			this.lblTxFreq.Size = new Size(119, 20);
-			this.lblTxFreq.TabIndex = 8;
-			this.lblTxFreq.Text = "Tx Frequency [MHz]";
-			this.lblTxFreq.TextAlign = ContentAlignment.MiddleRight;
-			this.nudTot.method_2(null);
-			this.nudTot.Location = new Point(651, 86);
-			this.nudTot.Name = "nudTot";
-			this.nudTot.method_6(null);
-			CustomNumericUpDown class7 = this.nudTot;
-			int[] bits7 = new int[4];
-			this.nudTot.method_4(new decimal(bits7));
-			this.nudTot.Size = new Size(120, 21);
-			this.nudTot.TabIndex = 15;
-			this.nudTot.Value = new decimal(new int[4]
-			{
-				50,
-				0,
-				0,
-				0
-			});
-			this.nudTot.ValueChanged += this.nudTot_ValueChanged;
-			this.lblScanList.Location = new Point(767, 56);
-			this.lblScanList.Name = "lblScanList";
-			this.lblScanList.Size = new Size(125, 20);
-			this.lblScanList.TabIndex = 23;
-			this.lblScanList.Text = "Scan List";
-			this.lblScanList.TextAlign = ContentAlignment.MiddleRight;
+            this.mnsCh = new System.Windows.Forms.MenuStrip();
+            this.tsmiCh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFirst = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPrev = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiNext = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiLast = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDel = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnlChannel = new CustomPanel();
+            this.nudOffsetFreq = new CustomNumericUpDown();
+            this.lblOffsetFreq = new System.Windows.Forms.Label();
+            this.cmbOffsetDirection = new System.Windows.Forms.ComboBox();
+            this.lblOffsetDirection = new System.Windows.Forms.Label();
+            this.cmbOffsetStep = new System.Windows.Forms.ComboBox();
+            this.lblOffsetStep = new System.Windows.Forms.Label();
+            this.btnCopy = new System.Windows.Forms.Button();
+            this.cmbScanList = new CustomCombo();
+            this.txtName = new DMR.SGTextBox();
+            this.cmbSquelch = new System.Windows.Forms.ComboBox();
+            this.cmbAdmitCriteria = new System.Windows.Forms.ComboBox();
+            this.lblSquelch = new System.Windows.Forms.Label();
+            this.nudRssiThreshold = new CustomNumericUpDown();
+            this.grpDigit = new DoubleClickGroupBox();
+            this.nudTxColor = new CustomNumericUpDown();
+            this.nudRxColor = new CustomNumericUpDown();
+            this.cmbTimingPreference = new System.Windows.Forms.ComboBox();
+            this.cmbRepeaterSlot = new System.Windows.Forms.ComboBox();
+            this.lblTimingPreference = new System.Windows.Forms.Label();
+            this.cmbArs = new System.Windows.Forms.ComboBox();
+            this.lblRepeaterSlot = new System.Windows.Forms.Label();
+            this.cmbKeySwitch = new System.Windows.Forms.ComboBox();
+            this.lblArs = new System.Windows.Forms.Label();
+            this.cmbKey = new CustomCombo();
+            this.lblKeySwitch = new System.Windows.Forms.Label();
+            this.lblKey = new System.Windows.Forms.Label();
+            this.cmbRxGroup = new CustomCombo();
+            this.lblTxColor = new System.Windows.Forms.Label();
+            this.cmbEmgSystem = new CustomCombo();
+            this.lblEmgSystem = new System.Windows.Forms.Label();
+            this.cmbContact = new CustomCombo();
+            this.lblContact = new System.Windows.Forms.Label();
+            this.chkDualCapacity = new System.Windows.Forms.CheckBox();
+            this.chkUdpDataHead = new System.Windows.Forms.CheckBox();
+            this.chkAllowTxInterupt = new System.Windows.Forms.CheckBox();
+            this.chkTxInteruptFreq = new System.Windows.Forms.CheckBox();
+            this.chkPrivateCall = new System.Windows.Forms.CheckBox();
+            this.chkDataCall = new System.Windows.Forms.CheckBox();
+            this.chkEmgConfirmed = new System.Windows.Forms.CheckBox();
+            this.chkEnhancedChAccess = new System.Windows.Forms.CheckBox();
+            this.lblRxColor = new System.Windows.Forms.Label();
+            this.lblRxGroup = new System.Windows.Forms.Label();
+            this.chkRxOnly = new System.Windows.Forms.CheckBox();
+            this.cmbRxRefFreq = new System.Windows.Forms.ComboBox();
+            this.chkAllowTalkaround = new System.Windows.Forms.CheckBox();
+            this.grpAnalog = new DoubleClickGroupBox();
+            this.nudArtsInterval = new CustomNumericUpDown();
+            this.cmbChBandwidth = new System.Windows.Forms.ComboBox();
+            this.lblChBandwidth = new System.Windows.Forms.Label();
+            this.cmbVoiceEmphasis = new System.Windows.Forms.ComboBox();
+            this.cmbSte = new System.Windows.Forms.ComboBox();
+            this.lblVoiceEmphasis = new System.Windows.Forms.Label();
+            this.cmbNonSte = new System.Windows.Forms.ComboBox();
+            this.lblSte = new System.Windows.Forms.Label();
+            this.cmbRxTone = new System.Windows.Forms.ComboBox();
+            this.lblNonSte = new System.Windows.Forms.Label();
+            this.cmbSql = new System.Windows.Forms.ComboBox();
+            this.cmbRxSignaling = new System.Windows.Forms.ComboBox();
+            this.lblRxTone = new System.Windows.Forms.Label();
+            this.cmbUnmuteRule = new System.Windows.Forms.ComboBox();
+            this.lblSql = new System.Windows.Forms.Label();
+            this.lblRxSignaling = new System.Windows.Forms.Label();
+            this.cmbArts = new CustomCombo();
+            this.cmbPttidType = new System.Windows.Forms.ComboBox();
+            this.lblUnmuteRule = new System.Windows.Forms.Label();
+            this.lblArtsInterval = new System.Windows.Forms.Label();
+            this.lblArts = new System.Windows.Forms.Label();
+            this.lblPttidType = new System.Windows.Forms.Label();
+            this.cmbTxSignaling = new System.Windows.Forms.ComboBox();
+            this.lblTxSignaling = new System.Windows.Forms.Label();
+            this.cmbTxTone = new System.Windows.Forms.ComboBox();
+            this.lblTxTone = new System.Windows.Forms.Label();
+            this.chkDataPl = new System.Windows.Forms.CheckBox();
+            this.chkOpenGD77ScanAllSkip = new System.Windows.Forms.CheckBox();
+            this.chkVox = new System.Windows.Forms.CheckBox();
+            this.chkOpenGD77ScanZoneSkip = new System.Windows.Forms.CheckBox();
+            this.cmbChMode = new System.Windows.Forms.ComboBox();
+            this.lblChName = new System.Windows.Forms.Label();
+            this.txtTxFreq = new System.Windows.Forms.TextBox();
+            this.lblChMode = new System.Windows.Forms.Label();
+            this.lblTot = new System.Windows.Forms.Label();
+            this.txtRxFreq = new System.Windows.Forms.TextBox();
+            this.lblTotRekey = new System.Windows.Forms.Label();
+            this.lblRssiThreshold = new System.Windows.Forms.Label();
+            this.lblRxRefFreq = new System.Windows.Forms.Label();
+            this.lblBandType = new System.Windows.Forms.Label();
+            this.lblTxRefFreq = new System.Windows.Forms.Label();
+            this.cmbPower = new System.Windows.Forms.ComboBox();
+            this.lblRxFreq = new System.Windows.Forms.Label();
+            this.cmbBandType = new System.Windows.Forms.ComboBox();
+            this.cmbTxRefFreq = new System.Windows.Forms.ComboBox();
+            this.lblPower = new System.Windows.Forms.Label();
+            this.lblAdmitCriteria = new System.Windows.Forms.Label();
+            this.nudTotRekey = new CustomNumericUpDown();
+            this.lblTxFreq = new System.Windows.Forms.Label();
+            this.nudTot = new CustomNumericUpDown();
+            this.lblScanList = new System.Windows.Forms.Label();
+            this.mnsCh.SuspendLayout();
+            this.pnlChannel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudOffsetFreq)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRssiThreshold)).BeginInit();
+            this.grpDigit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTxColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRxColor)).BeginInit();
+            this.grpAnalog.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudArtsInterval)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTotRekey)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTot)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // mnsCh
+            // 
+            this.mnsCh.AllowMerge = false;
+            this.mnsCh.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCh});
+            this.mnsCh.Location = new System.Drawing.Point(0, 0);
+            this.mnsCh.Name = "mnsCh";
+            this.mnsCh.Size = new System.Drawing.Size(1104, 25);
+            this.mnsCh.TabIndex = 32;
+            this.mnsCh.Text = "menuStrip1";
+            this.mnsCh.Visible = false;
+            // 
+            // tsmiCh
+            // 
+            this.tsmiCh.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiFirst,
+            this.tsmiPrev,
+            this.tsmiNext,
+            this.tsmiLast,
+            this.tsmiAdd,
+            this.tsmiDel});
+            this.tsmiCh.Name = "tsmiCh";
+            this.tsmiCh.Size = new System.Drawing.Size(43, 21);
+            this.tsmiCh.Text = "操作";
+            // 
+            // tsmiFirst
+            // 
+            this.tsmiFirst.Name = "tsmiFirst";
+            this.tsmiFirst.Size = new System.Drawing.Size(119, 22);
+            this.tsmiFirst.Text = "First";
+            // 
+            // tsmiPrev
+            // 
+            this.tsmiPrev.Name = "tsmiPrev";
+            this.tsmiPrev.Size = new System.Drawing.Size(119, 22);
+            this.tsmiPrev.Text = "Previous";
+            // 
+            // tsmiNext
+            // 
+            this.tsmiNext.Name = "tsmiNext";
+            this.tsmiNext.Size = new System.Drawing.Size(119, 22);
+            this.tsmiNext.Text = "Next";
+            // 
+            // tsmiLast
+            // 
+            this.tsmiLast.Name = "tsmiLast";
+            this.tsmiLast.Size = new System.Drawing.Size(119, 22);
+            this.tsmiLast.Text = "Last";
+            // 
+            // tsmiAdd
+            // 
+            this.tsmiAdd.Name = "tsmiAdd";
+            this.tsmiAdd.Size = new System.Drawing.Size(119, 22);
+            this.tsmiAdd.Text = "Add";
+            // 
+            // tsmiDel
+            // 
+            this.tsmiDel.Name = "tsmiDel";
+            this.tsmiDel.Size = new System.Drawing.Size(119, 22);
+            this.tsmiDel.Text = "Delete";
+            // 
+            // pnlChannel
+            // 
+            this.pnlChannel.AutoScroll = true;
+            this.pnlChannel.AutoSize = true;
+            this.pnlChannel.Controls.Add(this.nudOffsetFreq);
+            this.pnlChannel.Controls.Add(this.lblOffsetFreq);
+            this.pnlChannel.Controls.Add(this.cmbOffsetDirection);
+            this.pnlChannel.Controls.Add(this.lblOffsetDirection);
+            this.pnlChannel.Controls.Add(this.cmbOffsetStep);
+            this.pnlChannel.Controls.Add(this.lblOffsetStep);
+            this.pnlChannel.Controls.Add(this.btnCopy);
+            this.pnlChannel.Controls.Add(this.cmbScanList);
+            this.pnlChannel.Controls.Add(this.txtName);
+            this.pnlChannel.Controls.Add(this.cmbSquelch);
+            this.pnlChannel.Controls.Add(this.lblSquelch);
+            this.pnlChannel.Controls.Add(this.nudRssiThreshold);
+            this.pnlChannel.Controls.Add(this.grpDigit);
+            this.pnlChannel.Controls.Add(this.chkRxOnly);
+            this.pnlChannel.Controls.Add(this.cmbRxRefFreq);
+            this.pnlChannel.Controls.Add(this.chkAllowTalkaround);
+            this.pnlChannel.Controls.Add(this.grpAnalog);
+            this.pnlChannel.Controls.Add(this.chkOpenGD77ScanAllSkip);
+            this.pnlChannel.Controls.Add(this.chkVox);
+            this.pnlChannel.Controls.Add(this.chkOpenGD77ScanZoneSkip);
+            this.pnlChannel.Controls.Add(this.cmbChMode);
+            this.pnlChannel.Controls.Add(this.lblChName);
+            this.pnlChannel.Controls.Add(this.txtTxFreq);
+            this.pnlChannel.Controls.Add(this.lblChMode);
+            this.pnlChannel.Controls.Add(this.lblTot);
+            this.pnlChannel.Controls.Add(this.txtRxFreq);
+            this.pnlChannel.Controls.Add(this.lblTotRekey);
+            this.pnlChannel.Controls.Add(this.lblRssiThreshold);
+            this.pnlChannel.Controls.Add(this.lblRxRefFreq);
+            this.pnlChannel.Controls.Add(this.lblBandType);
+            this.pnlChannel.Controls.Add(this.lblTxRefFreq);
+            this.pnlChannel.Controls.Add(this.cmbPower);
+            this.pnlChannel.Controls.Add(this.lblRxFreq);
+            this.pnlChannel.Controls.Add(this.cmbBandType);
+            this.pnlChannel.Controls.Add(this.cmbTxRefFreq);
+            this.pnlChannel.Controls.Add(this.lblPower);
+            this.pnlChannel.Controls.Add(this.nudTotRekey);
+            this.pnlChannel.Controls.Add(this.lblTxFreq);
+            this.pnlChannel.Controls.Add(this.nudTot);
+            this.pnlChannel.Controls.Add(this.lblScanList);
+            this.pnlChannel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlChannel.Location = new System.Drawing.Point(0, 0);
+            this.pnlChannel.Name = "pnlChannel";
+            this.pnlChannel.Size = new System.Drawing.Size(1147, 298);
+            this.pnlChannel.TabIndex = 0;
+            this.pnlChannel.TabStop = true;
+            // 
+            // nudOffsetFreq
+            // 
+            this.nudOffsetFreq.DecimalPlaces = 2;
+            this.nudOffsetFreq.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nudOffsetFreq.Location = new System.Drawing.Point(157, 675);
+            this.nudOffsetFreq.Name = "nudOffsetFreq";
+            this.nudOffsetFreq.Size = new System.Drawing.Size(120, 23);
+            this.nudOffsetFreq.TabIndex = 37;
+            // 
+            // lblOffsetFreq
+            // 
+            this.lblOffsetFreq.Location = new System.Drawing.Point(38, 675);
+            this.lblOffsetFreq.Name = "lblOffsetFreq";
+            this.lblOffsetFreq.Size = new System.Drawing.Size(113, 20);
+            this.lblOffsetFreq.TabIndex = 36;
+            this.lblOffsetFreq.Text = "Offset Freq [k]";
+            this.lblOffsetFreq.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmbOffsetDirection
+            // 
+            this.cmbOffsetDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbOffsetDirection.FormattingEnabled = true;
+            this.cmbOffsetDirection.Location = new System.Drawing.Point(157, 649);
+            this.cmbOffsetDirection.Name = "cmbOffsetDirection";
+            this.cmbOffsetDirection.Size = new System.Drawing.Size(120, 24);
+            this.cmbOffsetDirection.TabIndex = 35;
+            // 
+            // lblOffsetDirection
+            // 
+            this.lblOffsetDirection.Location = new System.Drawing.Point(38, 649);
+            this.lblOffsetDirection.Name = "lblOffsetDirection";
+            this.lblOffsetDirection.Size = new System.Drawing.Size(113, 20);
+            this.lblOffsetDirection.TabIndex = 34;
+            this.lblOffsetDirection.Text = "Offset Direction";
+            this.lblOffsetDirection.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmbOffsetStep
+            // 
+            this.cmbOffsetStep.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbOffsetStep.FormattingEnabled = true;
+            this.cmbOffsetStep.Location = new System.Drawing.Point(183, 610);
+            this.cmbOffsetStep.Name = "cmbOffsetStep";
+            this.cmbOffsetStep.Size = new System.Drawing.Size(120, 24);
+            this.cmbOffsetStep.TabIndex = 33;
+            // 
+            // lblOffsetStep
+            // 
+            this.lblOffsetStep.Location = new System.Drawing.Point(64, 610);
+            this.lblOffsetStep.Name = "lblOffsetStep";
+            this.lblOffsetStep.Size = new System.Drawing.Size(113, 20);
+            this.lblOffsetStep.TabIndex = 32;
+            this.lblOffsetStep.Text = "Offset Step";
+            this.lblOffsetStep.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.Location = new System.Drawing.Point(490, 26);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(33, 23);
+            this.btnCopy.TabIndex = 31;
+            this.btnCopy.Text = ">>";
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            // 
+            // cmbScanList
+            // 
+            this.cmbScanList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbScanList.FormattingEnabled = true;
+            this.cmbScanList.Location = new System.Drawing.Point(832, 596);
+            this.cmbScanList.Name = "cmbScanList";
+            this.cmbScanList.Size = new System.Drawing.Size(120, 24);
+            this.cmbScanList.TabIndex = 24;
+            this.cmbScanList.SelectedIndexChanged += new System.EventHandler(this.cmbScanList_SelectedIndexChanged);
+            // 
+            // txtName
+            // 
+            this.txtName.InputString = null;
+            this.txtName.Location = new System.Drawing.Point(94, 56);
+            this.txtName.MaxByteLength = 0;
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(120, 23);
+            this.txtName.TabIndex = 3;
+            this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
+            // 
+            // cmbSquelch
+            // 
+            this.cmbSquelch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSquelch.FormattingEnabled = true;
+            this.cmbSquelch.Location = new System.Drawing.Point(477, 592);
+            this.cmbSquelch.Name = "cmbSquelch";
+            this.cmbSquelch.Size = new System.Drawing.Size(120, 24);
+            this.cmbSquelch.TabIndex = 3;
+            // 
+            // cmbAdmitCriteria
+            // 
+            this.cmbAdmitCriteria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAdmitCriteria.FormattingEnabled = true;
+            this.cmbAdmitCriteria.Location = new System.Drawing.Point(38, 52);
+            this.cmbAdmitCriteria.Name = "cmbAdmitCriteria";
+            this.cmbAdmitCriteria.Size = new System.Drawing.Size(120, 24);
+            this.cmbAdmitCriteria.TabIndex = 20;
+            this.cmbAdmitCriteria.Visible = false;
+            // 
+            // lblSquelch
+            // 
+            this.lblSquelch.Location = new System.Drawing.Point(358, 592);
+            this.lblSquelch.Name = "lblSquelch";
+            this.lblSquelch.Size = new System.Drawing.Size(113, 20);
+            this.lblSquelch.TabIndex = 2;
+            this.lblSquelch.Text = "Squelch";
+            this.lblSquelch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // nudRssiThreshold
+            // 
+            this.nudRssiThreshold.Location = new System.Drawing.Point(757, 655);
+            this.nudRssiThreshold.Name = "nudRssiThreshold";
+            this.nudRssiThreshold.Size = new System.Drawing.Size(120, 23);
+            this.nudRssiThreshold.TabIndex = 22;
+            this.nudRssiThreshold.Visible = false;
+            // 
+            // grpDigit
+            // 
+            this.grpDigit.Controls.Add(this.nudTxColor);
+            this.grpDigit.Controls.Add(this.nudRxColor);
+            this.grpDigit.Controls.Add(this.cmbTimingPreference);
+            this.grpDigit.Controls.Add(this.cmbRepeaterSlot);
+            this.grpDigit.Controls.Add(this.lblTimingPreference);
+            this.grpDigit.Controls.Add(this.cmbArs);
+            this.grpDigit.Controls.Add(this.lblRepeaterSlot);
+            this.grpDigit.Controls.Add(this.cmbKeySwitch);
+            this.grpDigit.Controls.Add(this.lblArs);
+            this.grpDigit.Controls.Add(this.cmbKey);
+            this.grpDigit.Controls.Add(this.cmbAdmitCriteria);
+            this.grpDigit.Controls.Add(this.lblKeySwitch);
+            this.grpDigit.Controls.Add(this.lblKey);
+            this.grpDigit.Controls.Add(this.cmbRxGroup);
+            this.grpDigit.Controls.Add(this.lblTxColor);
+            this.grpDigit.Controls.Add(this.cmbEmgSystem);
+            this.grpDigit.Controls.Add(this.lblEmgSystem);
+            this.grpDigit.Controls.Add(this.cmbContact);
+            this.grpDigit.Controls.Add(this.lblContact);
+            this.grpDigit.Controls.Add(this.chkDualCapacity);
+            this.grpDigit.Controls.Add(this.chkUdpDataHead);
+            this.grpDigit.Controls.Add(this.chkAllowTxInterupt);
+            this.grpDigit.Controls.Add(this.chkTxInteruptFreq);
+            this.grpDigit.Controls.Add(this.chkPrivateCall);
+            this.grpDigit.Controls.Add(this.chkDataCall);
+            this.grpDigit.Controls.Add(this.chkEmgConfirmed);
+            this.grpDigit.Controls.Add(this.chkEnhancedChAccess);
+            this.grpDigit.Controls.Add(this.lblRxColor);
+            this.grpDigit.Controls.Add(this.lblRxGroup);
+            this.grpDigit.Controls.Add(this.lblAdmitCriteria);
+            this.grpDigit.Location = new System.Drawing.Point(589, 136);
+            this.grpDigit.Name = "grpDigit";
+            this.grpDigit.Size = new System.Drawing.Size(526, 150);
+            this.grpDigit.TabIndex = 30;
+            this.grpDigit.TabStop = false;
+            this.grpDigit.Text = "Digital";
+            // 
+            // nudTxColor
+            // 
+            this.nudTxColor.Location = new System.Drawing.Point(388, 59);
+            this.nudTxColor.Name = "nudTxColor";
+            this.nudTxColor.Size = new System.Drawing.Size(120, 23);
+            this.nudTxColor.TabIndex = 17;
+            // 
+            // nudRxColor
+            // 
+            this.nudRxColor.Location = new System.Drawing.Point(101, 314);
+            this.nudRxColor.Name = "nudRxColor";
+            this.nudRxColor.Size = new System.Drawing.Size(120, 23);
+            this.nudRxColor.TabIndex = 13;
+            this.nudRxColor.Visible = false;
+            // 
+            // cmbTimingPreference
+            // 
+            this.cmbTimingPreference.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTimingPreference.FormattingEnabled = true;
+            this.cmbTimingPreference.Location = new System.Drawing.Point(101, 344);
+            this.cmbTimingPreference.Name = "cmbTimingPreference";
+            this.cmbTimingPreference.Size = new System.Drawing.Size(120, 24);
+            this.cmbTimingPreference.TabIndex = 2;
+            this.cmbTimingPreference.Visible = false;
+            // 
+            // cmbRepeaterSlot
+            // 
+            this.cmbRepeaterSlot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRepeaterSlot.FormattingEnabled = true;
+            this.cmbRepeaterSlot.Location = new System.Drawing.Point(388, 116);
+            this.cmbRepeaterSlot.Name = "cmbRepeaterSlot";
+            this.cmbRepeaterSlot.Size = new System.Drawing.Size(120, 24);
+            this.cmbRepeaterSlot.TabIndex = 4;
+            // 
+            // lblTimingPreference
+            // 
+            this.lblTimingPreference.Location = new System.Drawing.Point(-52, 344);
+            this.lblTimingPreference.Name = "lblTimingPreference";
+            this.lblTimingPreference.Size = new System.Drawing.Size(143, 20);
+            this.lblTimingPreference.TabIndex = 1;
+            this.lblTimingPreference.Text = "Timing Leader Prefernce";
+            this.lblTimingPreference.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblTimingPreference.Visible = false;
+            // 
+            // cmbArs
+            // 
+            this.cmbArs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbArs.FormattingEnabled = true;
+            this.cmbArs.Location = new System.Drawing.Point(101, 370);
+            this.cmbArs.Name = "cmbArs";
+            this.cmbArs.Size = new System.Drawing.Size(120, 24);
+            this.cmbArs.TabIndex = 6;
+            this.cmbArs.Visible = false;
+            // 
+            // lblRepeaterSlot
+            // 
+            this.lblRepeaterSlot.Location = new System.Drawing.Point(210, 116);
+            this.lblRepeaterSlot.Name = "lblRepeaterSlot";
+            this.lblRepeaterSlot.Size = new System.Drawing.Size(166, 20);
+            this.lblRepeaterSlot.TabIndex = 3;
+            this.lblRepeaterSlot.Text = "Repeater/Time Slot";
+            this.lblRepeaterSlot.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmbKeySwitch
+            // 
+            this.cmbKeySwitch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbKeySwitch.FormattingEnabled = true;
+            this.cmbKeySwitch.Location = new System.Drawing.Point(361, 350);
+            this.cmbKeySwitch.Name = "cmbKeySwitch";
+            this.cmbKeySwitch.Size = new System.Drawing.Size(120, 24);
+            this.cmbKeySwitch.TabIndex = 8;
+            this.cmbKeySwitch.Visible = false;
+            this.cmbKeySwitch.SelectedIndexChanged += new System.EventHandler(this.cmbKeySwitch_SelectedIndexChanged);
+            // 
+            // lblArs
+            // 
+            this.lblArs.Location = new System.Drawing.Point(-52, 370);
+            this.lblArs.Name = "lblArs";
+            this.lblArs.Size = new System.Drawing.Size(143, 20);
+            this.lblArs.TabIndex = 5;
+            this.lblArs.Text = "ARS";
+            this.lblArs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblArs.Visible = false;
+            // 
+            // cmbKey
+            // 
+            this.cmbKey.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbKey.FormattingEnabled = true;
+            this.cmbKey.Location = new System.Drawing.Point(361, 380);
+            this.cmbKey.Name = "cmbKey";
+            this.cmbKey.Size = new System.Drawing.Size(120, 24);
+            this.cmbKey.TabIndex = 10;
+            this.cmbKey.Visible = false;
+            // 
+            // lblKeySwitch
+            // 
+            this.lblKeySwitch.Location = new System.Drawing.Point(183, 350);
+            this.lblKeySwitch.Name = "lblKeySwitch";
+            this.lblKeySwitch.Size = new System.Drawing.Size(166, 20);
+            this.lblKeySwitch.TabIndex = 7;
+            this.lblKeySwitch.Text = "Privacy";
+            this.lblKeySwitch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblKeySwitch.Visible = false;
+            // 
+            // lblKey
+            // 
+            this.lblKey.Location = new System.Drawing.Point(183, 380);
+            this.lblKey.Name = "lblKey";
+            this.lblKey.Size = new System.Drawing.Size(166, 20);
+            this.lblKey.TabIndex = 9;
+            this.lblKey.Text = "Privacy Group";
+            this.lblKey.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblKey.Visible = false;
+            // 
+            // cmbRxGroup
+            // 
+            this.cmbRxGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRxGroup.FormattingEnabled = true;
+            this.cmbRxGroup.Location = new System.Drawing.Point(388, 30);
+            this.cmbRxGroup.Name = "cmbRxGroup";
+            this.cmbRxGroup.Size = new System.Drawing.Size(120, 24);
+            this.cmbRxGroup.TabIndex = 15;
+            // 
+            // lblTxColor
+            // 
+            this.lblTxColor.Location = new System.Drawing.Point(210, 59);
+            this.lblTxColor.Name = "lblTxColor";
+            this.lblTxColor.Size = new System.Drawing.Size(166, 20);
+            this.lblTxColor.TabIndex = 16;
+            this.lblTxColor.Text = "Color Code";
+            this.lblTxColor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmbEmgSystem
+            // 
+            this.cmbEmgSystem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEmgSystem.FormattingEnabled = true;
+            this.cmbEmgSystem.Location = new System.Drawing.Point(335, 259);
+            this.cmbEmgSystem.Name = "cmbEmgSystem";
+            this.cmbEmgSystem.Size = new System.Drawing.Size(120, 24);
+            this.cmbEmgSystem.TabIndex = 19;
+            this.cmbEmgSystem.Visible = false;
+            this.cmbEmgSystem.SelectedIndexChanged += new System.EventHandler(this.cmbEmgSystem_SelectedIndexChanged);
+            // 
+            // lblEmgSystem
+            // 
+            this.lblEmgSystem.Location = new System.Drawing.Point(157, 259);
+            this.lblEmgSystem.Name = "lblEmgSystem";
+            this.lblEmgSystem.Size = new System.Drawing.Size(166, 20);
+            this.lblEmgSystem.TabIndex = 18;
+            this.lblEmgSystem.Text = "Emergency System";
+            this.lblEmgSystem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblEmgSystem.Visible = false;
+            // 
+            // cmbContact
+            // 
+            this.cmbContact.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbContact.FormattingEnabled = true;
+            this.cmbContact.Location = new System.Drawing.Point(388, 88);
+            this.cmbContact.Name = "cmbContact";
+            this.cmbContact.Size = new System.Drawing.Size(120, 24);
+            this.cmbContact.TabIndex = 21;
+            // 
+            // lblContact
+            // 
+            this.lblContact.Location = new System.Drawing.Point(210, 88);
+            this.lblContact.Name = "lblContact";
+            this.lblContact.Size = new System.Drawing.Size(166, 20);
+            this.lblContact.TabIndex = 20;
+            this.lblContact.Text = "Contact Name";
+            this.lblContact.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // chkDualCapacity
+            // 
+            this.chkDualCapacity.AutoSize = true;
+            this.chkDualCapacity.Location = new System.Drawing.Point(155, 329);
+            this.chkDualCapacity.Name = "chkDualCapacity";
+            this.chkDualCapacity.Size = new System.Drawing.Size(195, 20);
+            this.chkDualCapacity.TabIndex = 0;
+            this.chkDualCapacity.Text = "Dual Capacity Direct Mode";
+            this.chkDualCapacity.UseVisualStyleBackColor = true;
+            this.chkDualCapacity.Visible = false;
+            this.chkDualCapacity.CheckedChanged += new System.EventHandler(this.chkDualCapacity_CheckedChanged);
+            // 
+            // chkUdpDataHead
+            // 
+            this.chkUdpDataHead.AutoSize = true;
+            this.chkUdpDataHead.Location = new System.Drawing.Point(285, 273);
+            this.chkUdpDataHead.Name = "chkUdpDataHead";
+            this.chkUdpDataHead.Size = new System.Drawing.Size(223, 20);
+            this.chkUdpDataHead.TabIndex = 11;
+            this.chkUdpDataHead.Text = "Compressed UDP Data Header";
+            this.chkUdpDataHead.UseVisualStyleBackColor = true;
+            this.chkUdpDataHead.Visible = false;
+            // 
+            // chkAllowTxInterupt
+            // 
+            this.chkAllowTxInterupt.AutoSize = true;
+            this.chkAllowTxInterupt.Location = new System.Drawing.Point(285, 303);
+            this.chkAllowTxInterupt.Name = "chkAllowTxInterupt";
+            this.chkAllowTxInterupt.Size = new System.Drawing.Size(135, 20);
+            this.chkAllowTxInterupt.TabIndex = 22;
+            this.chkAllowTxInterupt.Text = "Allow Interruption";
+            this.chkAllowTxInterupt.UseVisualStyleBackColor = true;
+            this.chkAllowTxInterupt.Visible = false;
+            // 
+            // chkTxInteruptFreq
+            // 
+            this.chkTxInteruptFreq.AutoSize = true;
+            this.chkTxInteruptFreq.Location = new System.Drawing.Point(285, 329);
+            this.chkTxInteruptFreq.Name = "chkTxInteruptFreq";
+            this.chkTxInteruptFreq.Size = new System.Drawing.Size(204, 20);
+            this.chkTxInteruptFreq.TabIndex = 23;
+            this.chkTxInteruptFreq.Text = "Tx Interruptible Frequencies";
+            this.chkTxInteruptFreq.UseVisualStyleBackColor = true;
+            this.chkTxInteruptFreq.Visible = false;
+            // 
+            // chkPrivateCall
+            // 
+            this.chkPrivateCall.AutoSize = true;
+            this.chkPrivateCall.Location = new System.Drawing.Point(155, 243);
+            this.chkPrivateCall.Name = "chkPrivateCall";
+            this.chkPrivateCall.Size = new System.Drawing.Size(168, 20);
+            this.chkPrivateCall.TabIndex = 24;
+            this.chkPrivateCall.Text = "Private Call Confirmed";
+            this.chkPrivateCall.UseVisualStyleBackColor = true;
+            this.chkPrivateCall.Visible = false;
+            // 
+            // chkDataCall
+            // 
+            this.chkDataCall.AutoSize = true;
+            this.chkDataCall.Location = new System.Drawing.Point(155, 273);
+            this.chkDataCall.Name = "chkDataCall";
+            this.chkDataCall.Size = new System.Drawing.Size(154, 20);
+            this.chkDataCall.TabIndex = 25;
+            this.chkDataCall.Text = "Data Call Confirmed";
+            this.chkDataCall.UseVisualStyleBackColor = true;
+            this.chkDataCall.Visible = false;
+            // 
+            // chkEmgConfirmed
+            // 
+            this.chkEmgConfirmed.AutoSize = true;
+            this.chkEmgConfirmed.Location = new System.Drawing.Point(155, 303);
+            this.chkEmgConfirmed.Name = "chkEmgConfirmed";
+            this.chkEmgConfirmed.Size = new System.Drawing.Size(163, 20);
+            this.chkEmgConfirmed.TabIndex = 26;
+            this.chkEmgConfirmed.Text = "Emergency Alarm Ack";
+            this.chkEmgConfirmed.UseVisualStyleBackColor = true;
+            this.chkEmgConfirmed.Visible = false;
+            // 
+            // chkEnhancedChAccess
+            // 
+            this.chkEnhancedChAccess.AutoSize = true;
+            this.chkEnhancedChAccess.Location = new System.Drawing.Point(285, 354);
+            this.chkEnhancedChAccess.Name = "chkEnhancedChAccess";
+            this.chkEnhancedChAccess.Size = new System.Drawing.Size(196, 20);
+            this.chkEnhancedChAccess.TabIndex = 27;
+            this.chkEnhancedChAccess.Text = "Enhanced Channel Access";
+            this.chkEnhancedChAccess.UseVisualStyleBackColor = true;
+            this.chkEnhancedChAccess.Visible = false;
+            // 
+            // lblRxColor
+            // 
+            this.lblRxColor.Location = new System.Drawing.Point(-52, 314);
+            this.lblRxColor.Name = "lblRxColor";
+            this.lblRxColor.Size = new System.Drawing.Size(143, 20);
+            this.lblRxColor.TabIndex = 12;
+            this.lblRxColor.Text = "Rx Color Code";
+            this.lblRxColor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblRxColor.Visible = false;
+            // 
+            // lblRxGroup
+            // 
+            this.lblRxGroup.Location = new System.Drawing.Point(210, 30);
+            this.lblRxGroup.Name = "lblRxGroup";
+            this.lblRxGroup.Size = new System.Drawing.Size(166, 20);
+            this.lblRxGroup.TabIndex = 14;
+            this.lblRxGroup.Text = "Rx Group List";
+            this.lblRxGroup.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // chkRxOnly
+            // 
+            this.chkRxOnly.Location = new System.Drawing.Point(802, 75);
+            this.chkRxOnly.Name = "chkRxOnly";
+            this.chkRxOnly.Size = new System.Drawing.Size(295, 20);
+            this.chkRxOnly.TabIndex = 28;
+            this.chkRxOnly.Text = "Rx Only";
+            this.chkRxOnly.UseVisualStyleBackColor = true;
+            this.chkRxOnly.CheckedChanged += new System.EventHandler(this.chkRxOnly_CheckedChanged);
+            // 
+            // cmbRxRefFreq
+            // 
+            this.cmbRxRefFreq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRxRefFreq.FormattingEnabled = true;
+            this.cmbRxRefFreq.Location = new System.Drawing.Point(477, 622);
+            this.cmbRxRefFreq.Name = "cmbRxRefFreq";
+            this.cmbRxRefFreq.Size = new System.Drawing.Size(120, 24);
+            this.cmbRxRefFreq.TabIndex = 7;
+            this.cmbRxRefFreq.Visible = false;
+            // 
+            // chkAllowTalkaround
+            // 
+            this.chkAllowTalkaround.AutoSize = true;
+            this.chkAllowTalkaround.Location = new System.Drawing.Point(53, 305);
+            this.chkAllowTalkaround.Name = "chkAllowTalkaround";
+            this.chkAllowTalkaround.Size = new System.Drawing.Size(133, 20);
+            this.chkAllowTalkaround.TabIndex = 27;
+            this.chkAllowTalkaround.Text = "Allow Talkaround";
+            this.chkAllowTalkaround.UseVisualStyleBackColor = true;
+            this.chkAllowTalkaround.Visible = false;
+            // 
+            // grpAnalog
+            // 
+            this.grpAnalog.Controls.Add(this.nudArtsInterval);
+            this.grpAnalog.Controls.Add(this.cmbChBandwidth);
+            this.grpAnalog.Controls.Add(this.lblChBandwidth);
+            this.grpAnalog.Controls.Add(this.cmbVoiceEmphasis);
+            this.grpAnalog.Controls.Add(this.cmbSte);
+            this.grpAnalog.Controls.Add(this.lblVoiceEmphasis);
+            this.grpAnalog.Controls.Add(this.cmbNonSte);
+            this.grpAnalog.Controls.Add(this.lblSte);
+            this.grpAnalog.Controls.Add(this.cmbRxTone);
+            this.grpAnalog.Controls.Add(this.lblNonSte);
+            this.grpAnalog.Controls.Add(this.cmbSql);
+            this.grpAnalog.Controls.Add(this.cmbRxSignaling);
+            this.grpAnalog.Controls.Add(this.lblRxTone);
+            this.grpAnalog.Controls.Add(this.cmbUnmuteRule);
+            this.grpAnalog.Controls.Add(this.lblSql);
+            this.grpAnalog.Controls.Add(this.lblRxSignaling);
+            this.grpAnalog.Controls.Add(this.cmbArts);
+            this.grpAnalog.Controls.Add(this.cmbPttidType);
+            this.grpAnalog.Controls.Add(this.lblUnmuteRule);
+            this.grpAnalog.Controls.Add(this.lblArtsInterval);
+            this.grpAnalog.Controls.Add(this.lblArts);
+            this.grpAnalog.Controls.Add(this.lblPttidType);
+            this.grpAnalog.Controls.Add(this.cmbTxSignaling);
+            this.grpAnalog.Controls.Add(this.lblTxSignaling);
+            this.grpAnalog.Controls.Add(this.cmbTxTone);
+            this.grpAnalog.Controls.Add(this.lblTxTone);
+            this.grpAnalog.Controls.Add(this.chkDataPl);
+            this.grpAnalog.Location = new System.Drawing.Point(41, 136);
+            this.grpAnalog.Name = "grpAnalog";
+            this.grpAnalog.Size = new System.Drawing.Size(531, 150);
+            this.grpAnalog.TabIndex = 29;
+            this.grpAnalog.TabStop = false;
+            this.grpAnalog.Text = "Analog";
+            // 
+            // nudArtsInterval
+            // 
+            this.nudArtsInterval.Location = new System.Drawing.Point(401, 263);
+            this.nudArtsInterval.Name = "nudArtsInterval";
+            this.nudArtsInterval.Size = new System.Drawing.Size(120, 23);
+            this.nudArtsInterval.TabIndex = 25;
+            this.nudArtsInterval.Visible = false;
+            // 
+            // cmbChBandwidth
+            // 
+            this.cmbChBandwidth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbChBandwidth.FormattingEnabled = true;
+            this.cmbChBandwidth.Location = new System.Drawing.Point(401, 29);
+            this.cmbChBandwidth.Name = "cmbChBandwidth";
+            this.cmbChBandwidth.Size = new System.Drawing.Size(120, 24);
+            this.cmbChBandwidth.TabIndex = 1;
+            // 
+            // lblChBandwidth
+            // 
+            this.lblChBandwidth.Location = new System.Drawing.Point(247, 29);
+            this.lblChBandwidth.Name = "lblChBandwidth";
+            this.lblChBandwidth.Size = new System.Drawing.Size(143, 20);
+            this.lblChBandwidth.TabIndex = 0;
+            this.lblChBandwidth.Text = "Channel Bandwidth [KHz]";
+            this.lblChBandwidth.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmbVoiceEmphasis
+            // 
+            this.cmbVoiceEmphasis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbVoiceEmphasis.FormattingEnabled = true;
+            this.cmbVoiceEmphasis.Location = new System.Drawing.Point(401, 376);
+            this.cmbVoiceEmphasis.Name = "cmbVoiceEmphasis";
+            this.cmbVoiceEmphasis.Size = new System.Drawing.Size(120, 24);
+            this.cmbVoiceEmphasis.TabIndex = 5;
+            this.cmbVoiceEmphasis.Visible = false;
+            // 
+            // cmbSte
+            // 
+            this.cmbSte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSte.FormattingEnabled = true;
+            this.cmbSte.Location = new System.Drawing.Point(401, 317);
+            this.cmbSte.Name = "cmbSte";
+            this.cmbSte.Size = new System.Drawing.Size(120, 24);
+            this.cmbSte.TabIndex = 7;
+            this.cmbSte.Visible = false;
+            // 
+            // lblVoiceEmphasis
+            // 
+            this.lblVoiceEmphasis.Location = new System.Drawing.Point(247, 376);
+            this.lblVoiceEmphasis.Name = "lblVoiceEmphasis";
+            this.lblVoiceEmphasis.Size = new System.Drawing.Size(143, 20);
+            this.lblVoiceEmphasis.TabIndex = 4;
+            this.lblVoiceEmphasis.Text = "Voice Emphasis";
+            this.lblVoiceEmphasis.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblVoiceEmphasis.Visible = false;
+            // 
+            // cmbNonSte
+            // 
+            this.cmbNonSte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNonSte.FormattingEnabled = true;
+            this.cmbNonSte.Location = new System.Drawing.Point(401, 347);
+            this.cmbNonSte.Name = "cmbNonSte";
+            this.cmbNonSte.Size = new System.Drawing.Size(120, 24);
+            this.cmbNonSte.TabIndex = 9;
+            this.cmbNonSte.Visible = false;
+            // 
+            // lblSte
+            // 
+            this.lblSte.Location = new System.Drawing.Point(247, 317);
+            this.lblSte.Name = "lblSte";
+            this.lblSte.Size = new System.Drawing.Size(143, 20);
+            this.lblSte.TabIndex = 6;
+            this.lblSte.Text = "STE";
+            this.lblSte.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSte.Visible = false;
+            // 
+            // cmbRxTone
+            // 
+            this.cmbRxTone.FormattingEnabled = true;
+            this.cmbRxTone.Location = new System.Drawing.Point(137, 59);
+            this.cmbRxTone.MaxLength = 5;
+            this.cmbRxTone.Name = "cmbRxTone";
+            this.cmbRxTone.Size = new System.Drawing.Size(120, 24);
+            this.cmbRxTone.TabIndex = 11;
+            this.cmbRxTone.SelectedIndexChanged += new System.EventHandler(this.cmbRxTone_SelectedIndexChanged);
+            this.cmbRxTone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRxTone_KeyDown);
+            this.cmbRxTone.Validating += new System.ComponentModel.CancelEventHandler(this.cmbRxTone_Validating);
+            // 
+            // lblNonSte
+            // 
+            this.lblNonSte.Location = new System.Drawing.Point(247, 347);
+            this.lblNonSte.Name = "lblNonSte";
+            this.lblNonSte.Size = new System.Drawing.Size(143, 20);
+            this.lblNonSte.TabIndex = 8;
+            this.lblNonSte.Text = "Non STE";
+            this.lblNonSte.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblNonSte.Visible = false;
+            // 
+            // cmbSql
+            // 
+            this.cmbSql.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSql.FormattingEnabled = true;
+            this.cmbSql.Location = new System.Drawing.Point(401, 89);
+            this.cmbSql.Name = "cmbSql";
+            this.cmbSql.Size = new System.Drawing.Size(120, 24);
+            this.cmbSql.TabIndex = 3;
+            // 
+            // cmbRxSignaling
+            // 
+            this.cmbRxSignaling.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRxSignaling.FormattingEnabled = true;
+            this.cmbRxSignaling.Location = new System.Drawing.Point(137, 181);
+            this.cmbRxSignaling.Name = "cmbRxSignaling";
+            this.cmbRxSignaling.Size = new System.Drawing.Size(120, 24);
+            this.cmbRxSignaling.TabIndex = 13;
+            this.cmbRxSignaling.Visible = false;
+            this.cmbRxSignaling.SelectedIndexChanged += new System.EventHandler(this.cmbRxSignaling_SelectedIndexChanged);
+            // 
+            // lblRxTone
+            // 
+            this.lblRxTone.Location = new System.Drawing.Point(9, 59);
+            this.lblRxTone.Name = "lblRxTone";
+            this.lblRxTone.Size = new System.Drawing.Size(119, 20);
+            this.lblRxTone.TabIndex = 10;
+            this.lblRxTone.Text = "Rx CTCSS/DCS [Hz]";
+            this.lblRxTone.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmbUnmuteRule
+            // 
+            this.cmbUnmuteRule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUnmuteRule.FormattingEnabled = true;
+            this.cmbUnmuteRule.Location = new System.Drawing.Point(137, 239);
+            this.cmbUnmuteRule.Name = "cmbUnmuteRule";
+            this.cmbUnmuteRule.Size = new System.Drawing.Size(120, 24);
+            this.cmbUnmuteRule.TabIndex = 15;
+            this.cmbUnmuteRule.Visible = false;
+            // 
+            // lblSql
+            // 
+            this.lblSql.Location = new System.Drawing.Point(217, 89);
+            this.lblSql.Name = "lblSql";
+            this.lblSql.Size = new System.Drawing.Size(180, 20);
+            this.lblSql.TabIndex = 2;
+            this.lblSql.Text = "Squelch Level";
+            this.lblSql.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblRxSignaling
+            // 
+            this.lblRxSignaling.Location = new System.Drawing.Point(9, 181);
+            this.lblRxSignaling.Name = "lblRxSignaling";
+            this.lblRxSignaling.Size = new System.Drawing.Size(119, 20);
+            this.lblRxSignaling.TabIndex = 12;
+            this.lblRxSignaling.Text = "Rx Signaling System";
+            this.lblRxSignaling.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblRxSignaling.Visible = false;
+            // 
+            // cmbArts
+            // 
+            this.cmbArts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbArts.FormattingEnabled = true;
+            this.cmbArts.Location = new System.Drawing.Point(401, 237);
+            this.cmbArts.Name = "cmbArts";
+            this.cmbArts.Size = new System.Drawing.Size(120, 24);
+            this.cmbArts.TabIndex = 22;
+            this.cmbArts.Visible = false;
+            // 
+            // cmbPttidType
+            // 
+            this.cmbPttidType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPttidType.FormattingEnabled = true;
+            this.cmbPttidType.Location = new System.Drawing.Point(401, 211);
+            this.cmbPttidType.Name = "cmbPttidType";
+            this.cmbPttidType.Size = new System.Drawing.Size(120, 24);
+            this.cmbPttidType.TabIndex = 22;
+            this.cmbPttidType.Visible = false;
+            // 
+            // lblUnmuteRule
+            // 
+            this.lblUnmuteRule.Location = new System.Drawing.Point(9, 239);
+            this.lblUnmuteRule.Name = "lblUnmuteRule";
+            this.lblUnmuteRule.Size = new System.Drawing.Size(119, 20);
+            this.lblUnmuteRule.TabIndex = 14;
+            this.lblUnmuteRule.Text = "Unmute Rule";
+            this.lblUnmuteRule.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblUnmuteRule.Visible = false;
+            // 
+            // lblArtsInterval
+            // 
+            this.lblArtsInterval.Location = new System.Drawing.Point(271, 263);
+            this.lblArtsInterval.Name = "lblArtsInterval";
+            this.lblArtsInterval.Size = new System.Drawing.Size(119, 20);
+            this.lblArtsInterval.TabIndex = 24;
+            this.lblArtsInterval.Text = "ARTS Interval [s]";
+            this.lblArtsInterval.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblArtsInterval.Visible = false;
+            // 
+            // lblArts
+            // 
+            this.lblArts.Location = new System.Drawing.Point(271, 237);
+            this.lblArts.Name = "lblArts";
+            this.lblArts.Size = new System.Drawing.Size(119, 20);
+            this.lblArts.TabIndex = 21;
+            this.lblArts.Text = "ARTS";
+            this.lblArts.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblArts.Visible = false;
+            // 
+            // lblPttidType
+            // 
+            this.lblPttidType.Location = new System.Drawing.Point(271, 211);
+            this.lblPttidType.Name = "lblPttidType";
+            this.lblPttidType.Size = new System.Drawing.Size(119, 20);
+            this.lblPttidType.TabIndex = 21;
+            this.lblPttidType.Text = "PTTID Type";
+            this.lblPttidType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblPttidType.Visible = false;
+            // 
+            // cmbTxSignaling
+            // 
+            this.cmbTxSignaling.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTxSignaling.FormattingEnabled = true;
+            this.cmbTxSignaling.Location = new System.Drawing.Point(401, 181);
+            this.cmbTxSignaling.Name = "cmbTxSignaling";
+            this.cmbTxSignaling.Size = new System.Drawing.Size(120, 24);
+            this.cmbTxSignaling.TabIndex = 20;
+            this.cmbTxSignaling.Visible = false;
+            this.cmbTxSignaling.SelectedIndexChanged += new System.EventHandler(this.cmbTxSignaling_SelectedIndexChanged);
+            // 
+            // lblTxSignaling
+            // 
+            this.lblTxSignaling.Location = new System.Drawing.Point(271, 181);
+            this.lblTxSignaling.Name = "lblTxSignaling";
+            this.lblTxSignaling.Size = new System.Drawing.Size(119, 20);
+            this.lblTxSignaling.TabIndex = 19;
+            this.lblTxSignaling.Text = "Tx Signaling System";
+            this.lblTxSignaling.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblTxSignaling.Visible = false;
+            // 
+            // cmbTxTone
+            // 
+            this.cmbTxTone.FormattingEnabled = true;
+            this.cmbTxTone.Location = new System.Drawing.Point(401, 59);
+            this.cmbTxTone.MaxLength = 5;
+            this.cmbTxTone.Name = "cmbTxTone";
+            this.cmbTxTone.Size = new System.Drawing.Size(120, 24);
+            this.cmbTxTone.TabIndex = 18;
+            this.cmbTxTone.SelectedIndexChanged += new System.EventHandler(this.SwsqRwFuko);
+            this.cmbTxTone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbTxTone_KeyDown);
+            this.cmbTxTone.Validating += new System.ComponentModel.CancelEventHandler(this.cmbTxTone_Validating);
+            // 
+            // lblTxTone
+            // 
+            this.lblTxTone.Location = new System.Drawing.Point(271, 59);
+            this.lblTxTone.Name = "lblTxTone";
+            this.lblTxTone.Size = new System.Drawing.Size(119, 20);
+            this.lblTxTone.TabIndex = 17;
+            this.lblTxTone.Text = "Tx CTCSS/DCS [Hz]";
+            this.lblTxTone.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // chkDataPl
+            // 
+            this.chkDataPl.AutoSize = true;
+            this.chkDataPl.Location = new System.Drawing.Point(137, 215);
+            this.chkDataPl.Name = "chkDataPl";
+            this.chkDataPl.Size = new System.Drawing.Size(98, 20);
+            this.chkDataPl.TabIndex = 16;
+            this.chkDataPl.Text = "PL for Data";
+            this.chkDataPl.UseVisualStyleBackColor = true;
+            this.chkDataPl.Visible = false;
+            // 
+            // chkOpenGD77ScanAllSkip
+            // 
+            this.chkOpenGD77ScanAllSkip.Location = new System.Drawing.Point(802, 49);
+            this.chkOpenGD77ScanAllSkip.Name = "chkOpenGD77ScanAllSkip";
+            this.chkOpenGD77ScanAllSkip.Size = new System.Drawing.Size(295, 20);
+            this.chkOpenGD77ScanAllSkip.TabIndex = 26;
+            this.chkOpenGD77ScanAllSkip.Text = "Lone Worker";
+            this.chkOpenGD77ScanAllSkip.UseVisualStyleBackColor = true;
+            // 
+            // chkVox
+            // 
+            this.chkVox.Location = new System.Drawing.Point(802, 101);
+            this.chkVox.Name = "chkVox";
+            this.chkVox.Size = new System.Drawing.Size(295, 20);
+            this.chkVox.TabIndex = 18;
+            this.chkVox.Text = "Vox";
+            this.chkVox.UseVisualStyleBackColor = true;
+            // 
+            // chkOpenGD77ScanZoneSkip
+            // 
+            this.chkOpenGD77ScanZoneSkip.Location = new System.Drawing.Point(802, 26);
+            this.chkOpenGD77ScanZoneSkip.Name = "chkOpenGD77ScanZoneSkip";
+            this.chkOpenGD77ScanZoneSkip.Size = new System.Drawing.Size(295, 20);
+            this.chkOpenGD77ScanZoneSkip.TabIndex = 25;
+            this.chkOpenGD77ScanZoneSkip.Text = "Auto Scan";
+            this.chkOpenGD77ScanZoneSkip.UseVisualStyleBackColor = true;
+            // 
+            // cmbChMode
+            // 
+            this.cmbChMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbChMode.FormattingEnabled = true;
+            this.cmbChMode.Location = new System.Drawing.Point(93, 26);
+            this.cmbChMode.Name = "cmbChMode";
+            this.cmbChMode.Size = new System.Drawing.Size(120, 24);
+            this.cmbChMode.TabIndex = 1;
+            this.cmbChMode.SelectedIndexChanged += new System.EventHandler(this.modeChangedHandler);
+            // 
+            // lblChName
+            // 
+            this.lblChName.Location = new System.Drawing.Point(38, 56);
+            this.lblChName.Name = "lblChName";
+            this.lblChName.Size = new System.Drawing.Size(47, 20);
+            this.lblChName.TabIndex = 2;
+            this.lblChName.Text = "Name";
+            this.lblChName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtTxFreq
+            // 
+            this.txtTxFreq.Location = new System.Drawing.Point(651, 26);
+            this.txtTxFreq.Name = "txtTxFreq";
+            this.txtTxFreq.Size = new System.Drawing.Size(120, 23);
+            this.txtTxFreq.TabIndex = 9;
+            this.txtTxFreq.Validating += new System.ComponentModel.CancelEventHandler(this.txtTxFreq_Validating);
+            // 
+            // lblChMode
+            // 
+            this.lblChMode.Location = new System.Drawing.Point(38, 26);
+            this.lblChMode.Name = "lblChMode";
+            this.lblChMode.Size = new System.Drawing.Size(47, 20);
+            this.lblChMode.TabIndex = 0;
+            this.lblChMode.Text = "Mode";
+            this.lblChMode.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTot
+            // 
+            this.lblTot.Location = new System.Drawing.Point(524, 86);
+            this.lblTot.Name = "lblTot";
+            this.lblTot.Size = new System.Drawing.Size(119, 20);
+            this.lblTot.TabIndex = 14;
+            this.lblTot.Text = "TOT [s]";
+            this.lblTot.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtRxFreq
+            // 
+            this.txtRxFreq.BackColor = System.Drawing.SystemColors.Window;
+            this.txtRxFreq.Location = new System.Drawing.Point(364, 26);
+            this.txtRxFreq.Name = "txtRxFreq";
+            this.txtRxFreq.Size = new System.Drawing.Size(120, 23);
+            this.txtRxFreq.TabIndex = 5;
+            this.txtRxFreq.Validating += new System.ComponentModel.CancelEventHandler(this.txtRxFreq_Validating);
+            // 
+            // lblTotRekey
+            // 
+            this.lblTotRekey.Location = new System.Drawing.Point(647, 626);
+            this.lblTotRekey.Name = "lblTotRekey";
+            this.lblTotRekey.Size = new System.Drawing.Size(119, 20);
+            this.lblTotRekey.TabIndex = 16;
+            this.lblTotRekey.Text = "TOT Rekey Delay [s]";
+            this.lblTotRekey.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblRssiThreshold
+            // 
+            this.lblRssiThreshold.Location = new System.Drawing.Point(624, 655);
+            this.lblRssiThreshold.Name = "lblRssiThreshold";
+            this.lblRssiThreshold.Size = new System.Drawing.Size(125, 20);
+            this.lblRssiThreshold.TabIndex = 21;
+            this.lblRssiThreshold.Text = "RSSI Threshold [dBm]";
+            this.lblRssiThreshold.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblRssiThreshold.Visible = false;
+            // 
+            // lblRxRefFreq
+            // 
+            this.lblRxRefFreq.Location = new System.Drawing.Point(334, 622);
+            this.lblRxRefFreq.Name = "lblRxRefFreq";
+            this.lblRxRefFreq.Size = new System.Drawing.Size(137, 20);
+            this.lblRxRefFreq.TabIndex = 6;
+            this.lblRxRefFreq.Text = "Rx Reference Frequency";
+            this.lblRxRefFreq.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblRxRefFreq.Visible = false;
+            // 
+            // lblBandType
+            // 
+            this.lblBandType.Location = new System.Drawing.Point(317, 676);
+            this.lblBandType.Name = "lblBandType";
+            this.lblBandType.Size = new System.Drawing.Size(119, 20);
+            this.lblBandType.TabIndex = 10;
+            this.lblBandType.Text = "Band Type";
+            this.lblBandType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblBandType.Visible = false;
+            // 
+            // lblTxRefFreq
+            // 
+            this.lblTxRefFreq.Location = new System.Drawing.Point(299, 648);
+            this.lblTxRefFreq.Name = "lblTxRefFreq";
+            this.lblTxRefFreq.Size = new System.Drawing.Size(137, 20);
+            this.lblTxRefFreq.TabIndex = 10;
+            this.lblTxRefFreq.Text = "Tx Reference Frequency";
+            this.lblTxRefFreq.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblTxRefFreq.Visible = false;
+            // 
+            // cmbPower
+            // 
+            this.cmbPower.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPower.FormattingEnabled = true;
+            this.cmbPower.Location = new System.Drawing.Point(651, 56);
+            this.cmbPower.Name = "cmbPower";
+            this.cmbPower.Size = new System.Drawing.Size(120, 24);
+            this.cmbPower.TabIndex = 13;
+            // 
+            // lblRxFreq
+            // 
+            this.lblRxFreq.Location = new System.Drawing.Point(245, 26);
+            this.lblRxFreq.Name = "lblRxFreq";
+            this.lblRxFreq.Size = new System.Drawing.Size(113, 20);
+            this.lblRxFreq.TabIndex = 4;
+            this.lblRxFreq.Text = "Rx Frequency [MHz]";
+            this.lblRxFreq.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cmbBandType
+            // 
+            this.cmbBandType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBandType.FormattingEnabled = true;
+            this.cmbBandType.Location = new System.Drawing.Point(444, 676);
+            this.cmbBandType.Name = "cmbBandType";
+            this.cmbBandType.Size = new System.Drawing.Size(120, 24);
+            this.cmbBandType.TabIndex = 11;
+            this.cmbBandType.Visible = false;
+            // 
+            // cmbTxRefFreq
+            // 
+            this.cmbTxRefFreq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTxRefFreq.FormattingEnabled = true;
+            this.cmbTxRefFreq.Location = new System.Drawing.Point(444, 648);
+            this.cmbTxRefFreq.Name = "cmbTxRefFreq";
+            this.cmbTxRefFreq.Size = new System.Drawing.Size(120, 24);
+            this.cmbTxRefFreq.TabIndex = 11;
+            this.cmbTxRefFreq.Visible = false;
+            // 
+            // lblPower
+            // 
+            this.lblPower.Location = new System.Drawing.Point(524, 56);
+            this.lblPower.Name = "lblPower";
+            this.lblPower.Size = new System.Drawing.Size(119, 20);
+            this.lblPower.TabIndex = 12;
+            this.lblPower.Text = "Power Level";
+            this.lblPower.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblAdmitCriteria
+            // 
+            this.lblAdmitCriteria.Location = new System.Drawing.Point(6, 29);
+            this.lblAdmitCriteria.Name = "lblAdmitCriteria";
+            this.lblAdmitCriteria.Size = new System.Drawing.Size(125, 20);
+            this.lblAdmitCriteria.TabIndex = 19;
+            this.lblAdmitCriteria.Text = "Admit Criteria";
+            this.lblAdmitCriteria.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblAdmitCriteria.Visible = false;
+            // 
+            // nudTotRekey
+            // 
+            this.nudTotRekey.Location = new System.Drawing.Point(774, 626);
+            this.nudTotRekey.Name = "nudTotRekey";
+            this.nudTotRekey.Size = new System.Drawing.Size(120, 23);
+            this.nudTotRekey.TabIndex = 17;
+            // 
+            // lblTxFreq
+            // 
+            this.lblTxFreq.Location = new System.Drawing.Point(524, 26);
+            this.lblTxFreq.Name = "lblTxFreq";
+            this.lblTxFreq.Size = new System.Drawing.Size(119, 20);
+            this.lblTxFreq.TabIndex = 8;
+            this.lblTxFreq.Text = "Tx Frequency [MHz]";
+            this.lblTxFreq.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // nudTot
+            // 
+            this.nudTot.Location = new System.Drawing.Point(651, 86);
+            this.nudTot.Name = "nudTot";
+            this.nudTot.Size = new System.Drawing.Size(120, 23);
+            this.nudTot.TabIndex = 15;
+            this.nudTot.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.nudTot.ValueChanged += new System.EventHandler(this.nudTot_ValueChanged);
+            // 
+            // lblScanList
+            // 
+            this.lblScanList.Location = new System.Drawing.Point(699, 596);
+            this.lblScanList.Name = "lblScanList";
+            this.lblScanList.Size = new System.Drawing.Size(125, 20);
+            this.lblScanList.TabIndex = 23;
+            this.lblScanList.Text = "Scan List";
+            this.lblScanList.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // VfoForm
+            // 
+            this.ClientSize = new System.Drawing.Size(1147, 298);
+            this.Controls.Add(this.pnlChannel);
+            this.Controls.Add(this.mnsCh);
+            this.Font = new System.Drawing.Font("Arial", 10F);
+            this.MainMenuStrip = this.mnsCh;
+            this.Name = "VfoForm";
+            this.Text = "VFO";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VfoForm_FormClosing);
+            this.Load += new System.EventHandler(this.VfoForm_Load);
+            this.mnsCh.ResumeLayout(false);
+            this.mnsCh.PerformLayout();
+            this.pnlChannel.ResumeLayout(false);
+            this.pnlChannel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudOffsetFreq)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRssiThreshold)).EndInit();
+            this.grpDigit.ResumeLayout(false);
+            this.grpDigit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTxColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRxColor)).EndInit();
+            this.grpAnalog.ResumeLayout(false);
+            this.grpAnalog.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudArtsInterval)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTotRekey)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTot)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
-			/*
-			 * 
-			 * Disable unused items for VFO mode.
-			 * 
-			 * Radioddity did this in version 3.1.x of the official CPS but this issue also applies to existing version(s) e.g. 3.0.6
-			 * So I have removed it as a bug fix to both.
-			 * 
-			this.lblScanList.Visible = false;					
-			this.chkAutoScan.Visible = false;
-			this.cmbScanList.Visible = false;
-			*/
-
-			base.AutoScaleDimensions = new SizeF(6f, 12f);
-//			base.AutoScaleMode = AutoScaleMode.Font;
-			base.ClientSize = new Size(1104, 684);
-			base.Controls.Add(this.pnlChannel);
-			base.Controls.Add(this.mnsCh);
-            this.Font = new Font("Arial", 10f, FontStyle.Regular);
-			base.MainMenuStrip = this.mnsCh;
-			base.Name = "VfoForm";
-			this.Text = "VFO";
-			base.Load += this.VfoForm_Load;
-			base.FormClosing += this.VfoForm_FormClosing;
-			this.mnsCh.ResumeLayout(false);
-			this.mnsCh.PerformLayout();
-			this.pnlChannel.ResumeLayout(false);
-			this.pnlChannel.PerformLayout();
-			((ISupportInitialize)this.nudOffsetFreq).EndInit();
-			((ISupportInitialize)this.nudRssiThreshold).EndInit();
-			this.grpDigit.ResumeLayout(false);
-			this.grpDigit.PerformLayout();
-			((ISupportInitialize)this.nudTxColor).EndInit();
-			((ISupportInitialize)this.nudRxColor).EndInit();
-			this.grpAnalog.ResumeLayout(false);
-			this.grpAnalog.PerformLayout();
-			((ISupportInitialize)this.nudArtsInterval).EndInit();
-			((ISupportInitialize)this.nudTotRekey).EndInit();
-			((ISupportInitialize)this.nudTot).EndInit();
-			base.ResumeLayout(false);
-			base.PerformLayout();
 		}
 
 		public void SaveData()
@@ -3039,8 +3319,8 @@ namespace DMR
 			value.AdmitCriteria = this.cmbAdmitCriteria.SelectedIndex;
 			value.RssiThreshold = this.nudRssiThreshold.Value;
 			value.ScanList = this.cmbScanList.method_3();
-			value.AutoScan = this.chkAutoScan.Checked;
-			value.LoneWoker = this.chkLoneWoker.Checked;
+			value.AutoScan = this.chkOpenGD77ScanZoneSkip.Checked;
+			value.LoneWoker = this.chkOpenGD77ScanAllSkip.Checked;
 			value.AllowTalkaround = this.chkAllowTalkaround.Checked;
 			value.OnlyRx = this.chkRxOnly.Checked;
 			value.Bandwidth = this.cmbChBandwidth.SelectedIndex;
@@ -3113,8 +3393,8 @@ namespace DMR
 			this.cmbAdmitCriteria.SelectedIndex = channelOne.AdmitCriteria;
 			this.nudRssiThreshold.Value = channelOne.RssiThreshold;
 			this.cmbScanList.method_2(channelOne.ScanList);
-			this.chkAutoScan.Checked = channelOne.AutoScan;
-			this.chkLoneWoker.Checked = channelOne.LoneWoker;
+			this.chkOpenGD77ScanZoneSkip.Checked = channelOne.AutoScan;
+			this.chkOpenGD77ScanAllSkip.Checked = channelOne.LoneWoker;
 			this.chkAllowTalkaround.Checked = channelOne.AllowTalkaround;
 			this.chkRxOnly.Checked = channelOne.OnlyRx;
 			this.method_13();
@@ -3447,11 +3727,12 @@ namespace DMR
 
 		private void method_5()
 		{
-			this.chkLoneWoker.Enabled = (this.cmbEmgSystem.SelectedIndex != 0 && this.cmbChMode.SelectedIndex == 1);
-			if (!this.chkLoneWoker.Enabled)
+			/*
+			this.chkOpenGD77ScanAllSkip.Enabled = (this.cmbEmgSystem.SelectedIndex != 0 && this.cmbChMode.SelectedIndex == 1);
+			if (!this.chkOpenGD77ScanAllSkip.Enabled)
 			{
-				this.chkLoneWoker.Checked = false;
-			}
+				this.chkOpenGD77ScanAllSkip.Checked = false;
+			}*/
 		}
 
 		private void method_6()
@@ -3510,7 +3791,7 @@ namespace DMR
 
 		private void cmbScanList_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			this.chkAutoScan.Enabled = (this.cmbScanList.SelectedIndex > 0);
+			//this.chkOpenGD77ScanZoneSkip.Enabled = (this.cmbScanList.SelectedIndex > 0);
 		}
 
 		private void method_9()

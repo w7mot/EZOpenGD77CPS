@@ -93,6 +93,7 @@
 			<Control Id="chkVox" Text="Vox" />
 			<Control Id="chkAutoScan" Text="Avto skeniranje" />
 			<Control Id="lblChName" Text="Ime" />
+      <Control Id="chkOpenGD77ScanAllSkip" Text="Scan: All skip" />
       <Control Id="chkOpenGD77ScanZoneSkip" Text="Scan: Zone skip" />
 			<Control Id="lblChMode" Text="Način" />
 			<Control Id="lblTot" Text="TOT [s]" />
@@ -652,6 +653,8 @@
 			<Control Id="lblTxSignaling" Text="TX Signaliziranje" />
 			<Control Id="lblTxTone" Text="TX Ton [Hz]" />
 			<Control Id="chkDataPl" Text="PL za podatke" />
+      <Control Id="chkOpenGD77ScanAllSkip" Text="Scan: All skip" />
+      <Control Id="chkOpenGD77ScanZoneSkip" Text="Scan: Zone skip" />
 			<Control Id="chkLoneWoker" Text="Samostojno delo" />
 			<Control Id="chkVox" Text="Vox" />
 			<Control Id="chkAutoScan" Text="Avto Skeniranje" />
