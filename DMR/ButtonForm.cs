@@ -522,7 +522,7 @@ namespace DMR
 			this.class4_1.Name = "cmbSk1Short";
 			this.class4_1.Size = new Size(179, 24);
 			this.class4_1.TabIndex = 7;
-			this.class4_1.SelectedIndexChanged += this.class4_1_SelectedIndexChanged;
+			this.class4_1.SelectedIndexChanged += new EventHandler(this.class4_1_SelectedIndexChanged);
 			this.dgvOneTouch.AllowUserToAddRows = false;
 			dataGridViewCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 			dataGridViewCellStyle.BackColor = SystemColors.Control;
@@ -540,9 +540,9 @@ namespace DMR
 			this.dgvOneTouch.RowTemplate.Height = 23;
 			this.dgvOneTouch.Size = new Size(574, 212);
 			this.dgvOneTouch.TabIndex = 15;
-			this.dgvOneTouch.CellValueChanged += this.dgvOneTouch_CellValueChanged;
-			this.dgvOneTouch.RowPostPaint += this.dgvOneTouch_RowPostPaint;
-			this.dgvOneTouch.DataError += this.dgvOneTouch_DataError;
+			this.dgvOneTouch.CellValueChanged += new DataGridViewCellEventHandler(this.dgvOneTouch_CellValueChanged);
+			this.dgvOneTouch.RowPostPaint += new DataGridViewRowPostPaintEventHandler(this.dgvOneTouch_RowPostPaint);
+			this.dgvOneTouch.DataError += new DataGridViewDataErrorEventHandler(this.dgvOneTouch_DataError);
 			this.cmbMode.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
 			this.cmbMode.HeaderText = "Mode";
 			this.cmbMode.Name = "cmbMode";
@@ -569,7 +569,7 @@ namespace DMR
 			this.class4_2.Name = "cmbSk1Long";
 			this.class4_2.Size = new Size(179, 24);
 			this.class4_2.TabIndex = 8;
-			this.class4_2.SelectedIndexChanged += this.class4_2_SelectedIndexChanged;
+			this.class4_2.SelectedIndexChanged += new EventHandler(this.class4_2_SelectedIndexChanged);
 			this.lblLongDur.Location = new Point(106, 68);
 			this.lblLongDur.Name = "lblLongDur";
 			this.lblLongDur.Size = new Size(245, 24);
@@ -582,7 +582,7 @@ namespace DMR
 			this.cmbTkLong.Name = "cmbTkLong";
 			this.cmbTkLong.Size = new Size(179, 24);
 			this.cmbTkLong.TabIndex = 14;
-			this.cmbTkLong.SelectedIndexChanged += this.cmbTkLong_SelectedIndexChanged;
+			this.cmbTkLong.SelectedIndexChanged += new EventHandler(this.cmbTkLong_SelectedIndexChanged);
 			this.nudEmgShortDur.Increment = new decimal(new int[4]
 			{
 				50,
@@ -608,9 +608,9 @@ namespace DMR
 			});
 			this.nudEmgShortDur.Name = "nudEmgShortDur";
 			this.nudEmgShortDur.method_6(null);
-			CustomNumericUpDown @class = this.nudEmgShortDur;
+			//CustomNumericUpDown @class = this.nudEmgShortDur;
 			int[] bits = new int[4];
-			@class.method_4(new decimal(bits));
+			this.nudEmgShortDur.method_4(new decimal(bits));
 			this.nudEmgShortDur.Size = new Size(120, 23);
 			this.nudEmgShortDur.TabIndex = 1;
 			this.nudEmgShortDur.Value = new decimal(new int[4]
@@ -627,7 +627,7 @@ namespace DMR
 			this.cmbTkShort.Name = "cmbTkShort";
 			this.cmbTkShort.Size = new Size(179, 24);
 			this.cmbTkShort.TabIndex = 13;
-			this.cmbTkShort.SelectedIndexChanged += this.cmbTkShort_SelectedIndexChanged;
+			this.cmbTkShort.SelectedIndexChanged += new EventHandler( this.cmbTkShort_SelectedIndexChanged);
 			this.nudLongDur.Increment = new decimal(new int[4]
 			{
 				250,
@@ -653,9 +653,9 @@ namespace DMR
 			});
 			this.nudLongDur.Name = "nudLongDur";
 			this.nudLongDur.method_6(null);
-			CustomNumericUpDown class2 = this.nudLongDur;
+
 			int[] bits2 = new int[4];
-			class2.method_4(new decimal(bits2));
+			this.nudLongDur.method_4(new decimal(bits2));
 			this.nudLongDur.Size = new Size(120, 23);
 			this.nudLongDur.TabIndex = 3;
 			this.nudLongDur.Value = new decimal(new int[4]
@@ -677,7 +677,7 @@ namespace DMR
 			this.class4_3.Name = "cmbSk2Long";
 			this.class4_3.Size = new Size(179, 24);
 			this.class4_3.TabIndex = 11;
-			this.class4_3.SelectedIndexChanged += this.class4_3_SelectedIndexChanged;
+			this.class4_3.SelectedIndexChanged += new EventHandler(this.class4_3_SelectedIndexChanged);
 			this.lblSK1.Location = new Point(86, 137);
 			this.lblSK1.Name = "lblSK1";
 			this.lblSK1.Size = new Size(76, 24);
@@ -690,7 +690,7 @@ namespace DMR
 			this.class4_0.Name = "cmbSk2Short";
 			this.class4_0.Size = new Size(179, 24);
 			this.class4_0.TabIndex = 10;
-			this.class4_0.SelectedIndexChanged += this.class4_0_SelectedIndexChanged;
+			this.class4_0.SelectedIndexChanged += new EventHandler(this.class4_0_SelectedIndexChanged);
 			this.lblSK2.Location = new Point(86, 167);
 			this.lblSK2.Name = "lblSK2";
 			this.lblSK2.Size = new Size(76, 24);
@@ -722,8 +722,8 @@ namespace DMR
 			this.Font = new Font("Arial", 10f, FontStyle.Regular);
 			base.Name = "ButtonForm";
 			this.Text = "Buttons";
-			base.Load += this.ButtonForm_Load;
-			base.FormClosing += this.ButtonForm_FormClosing;
+			base.Load += new EventHandler(this.ButtonForm_Load);
+			base.FormClosing += new FormClosingEventHandler(this.ButtonForm_FormClosing);
 			this.pnlButton.ResumeLayout(false);
 			((ISupportInitialize)this.dgvOneTouch).EndInit();
 			((ISupportInitialize)this.nudEmgShortDur).EndInit();

@@ -1255,9 +1255,9 @@ namespace DMR
 			});
 			this.nudOtherDur.Name = "nudOtherDur";
 			this.nudOtherDur.method_6(null);
-			CustomNumericUpDown @class = this.nudOtherDur;
+
 			int[] bits = new int[4];
-			@class.method_4(new decimal(bits));
+			this.nudOtherDur.method_4(new decimal(bits));
 			this.nudOtherDur.Size = new Size(140, 23);
 			this.nudOtherDur.TabIndex = 30;
 			this.lblDecTime.Location = new Point(47, 421);
@@ -1286,9 +1286,9 @@ namespace DMR
 			});
 			this.nudFstDur.Name = "nudFstDur";
 			this.nudFstDur.method_6(null);
-			CustomNumericUpDown class2 = this.nudFstDur;
+
 			int[] bits2 = new int[4];
-			class2.method_4(new decimal(bits2));
+			this.nudFstDur.method_4(new decimal(bits2));
 			this.nudFstDur.Size = new Size(140, 23);
 			this.nudFstDur.TabIndex = 28;
 			this.lblWakeCode.Location = new Point(47, 143);
@@ -1323,9 +1323,8 @@ namespace DMR
 			});
 			this.nudFstDlyTime.Name = "nudFstDlyTime";
 			this.nudFstDlyTime.method_6(null);
-			CustomNumericUpDown class3 = this.nudFstDlyTime;
 			int[] bits3 = new int[4];
-			class3.method_4(new decimal(bits3));
+			this.nudFstDlyTime.method_4(new decimal(bits3));
 			this.nudFstDlyTime.Size = new Size(140, 23);
 			this.nudFstDlyTime.TabIndex = 26;
 			this.nudFstDlyTime.Value = new decimal(new int[4]
@@ -1368,9 +1367,8 @@ namespace DMR
 			});
 			this.nudDecTime.Name = "nudDecTime";
 			this.nudDecTime.method_6(null);
-			CustomNumericUpDown class4 = this.nudDecTime;
 			int[] bits4 = new int[4];
-			class4.method_4(new decimal(bits4));
+			this.nudDecTime.method_4(new decimal(bits4));
 			this.nudDecTime.Size = new Size(140, 23);
 			this.nudDecTime.TabIndex = 19;
 			this.nudDecTime.Value = new decimal(new int[4]
@@ -1406,9 +1404,8 @@ namespace DMR
 			});
 			this.nudAutoResetTimer.Name = "nudAutoResetTimer";
 			this.nudAutoResetTimer.method_6(null);
-			CustomNumericUpDown class5 = this.nudAutoResetTimer;
 			int[] bits5 = new int[4];
-			class5.method_4(new decimal(bits5));
+			this.nudAutoResetTimer.method_4(new decimal(bits5));
 			this.nudAutoResetTimer.Size = new Size(140, 23);
 			this.nudAutoResetTimer.TabIndex = 13;
 			this.nudAutoResetTimer.Value = new decimal(new int[4]
@@ -1451,9 +1448,8 @@ namespace DMR
 			});
 			this.nudRespHoldTime.Name = "nudRespHoldTime";
 			this.nudRespHoldTime.method_6(null);
-			CustomNumericUpDown class6 = this.nudRespHoldTime;
 			int[] bits6 = new int[4];
-			class6.method_4(new decimal(bits6));
+			this.nudRespHoldTime.method_4(new decimal(bits6));
 			this.nudRespHoldTime.Size = new Size(140, 23);
 			this.nudRespHoldTime.TabIndex = 34;
 			this.nudRespHoldTime.Value = new decimal(new int[4]
@@ -1494,7 +1490,7 @@ namespace DMR
 			this.txtWakeCode.Name = "txtWakeCode";
 			this.txtWakeCode.Size = new Size(139, 23);
 			this.txtWakeCode.TabIndex = 5;
-			this.txtWakeCode.Validating += this.txtWakeCode_Validating;
+			this.txtWakeCode.Validating += new CancelEventHandler( this.txtWakeCode_Validating);
 			this.lblFstDur.Location = new Point(383, 223);
 			this.lblFstDur.Name = "lblFstDur";
 			this.lblFstDur.Size = new Size(156, 24);
@@ -1510,7 +1506,7 @@ namespace DMR
 			this.txtKillCode.Name = "txtKillCode";
 			this.txtKillCode.Size = new Size(139, 23);
 			this.txtKillCode.TabIndex = 3;
-			this.txtKillCode.Validating += this.txtKillCode_Validating;
+			this.txtKillCode.Validating += new CancelEventHandler( this.txtKillCode_Validating);
 			this.lblKillType.Location = new Point(47, 383);
 			this.lblKillType.Name = "lblKillType";
 			this.lblKillType.Size = new Size(131, 24);
@@ -1525,7 +1521,7 @@ namespace DMR
 			this.sgtextBox_0.Name = "txtSelfID";
 			this.sgtextBox_0.Size = new Size(139, 23);
 			this.sgtextBox_0.TabIndex = 1;
-			this.sgtextBox_0.Validating += this.sgtextBox_0_Validating;
+			this.sgtextBox_0.Validating += new CancelEventHandler( this.sgtextBox_0_Validating);
 			this.lblOtherDur.Location = new Point(383, 262);
 			this.lblOtherDur.Name = "lblOtherDur";
 			this.lblOtherDur.Size = new Size(156, 24);
@@ -1555,8 +1551,8 @@ namespace DMR
 			base.Margin = new Padding(3, 4, 3, 4);
 			base.Name = "DtmfForm";
 			this.Text = "DTMF";
-			base.Load += this.DtmfForm_Load;
-			base.FormClosing += this.DtmfForm_FormClosing;
+			base.Load += new EventHandler(this.DtmfForm_Load);
+			base.FormClosing += new FormClosingEventHandler( this.DtmfForm_FormClosing);
 			this.pnlDtmf.ResumeLayout(false);
 			this.pnlDtmf.PerformLayout();
 			((ISupportInitialize)this.nudOtherDur).EndInit();
