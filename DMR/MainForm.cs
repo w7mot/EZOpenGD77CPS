@@ -1485,7 +1485,10 @@ namespace DMR
 						treeNodeItem.Type == typeof(DtmfContactForm) ||
 						treeNodeItem.Type == typeof(DtmfForm) ||
 						treeNodeItem.Type == typeof(SignalingBasicForm) ||
-						treeNodeItem.Type == typeof(EncryptForm))
+						treeNodeItem.Type == typeof(EncryptForm) ||
+						treeNodeItem.Type == typeof(NormalScanForm) ||
+						treeNodeItem.Type == typeof(EmergencyForm)
+						)
 					{
 						MessageBox.Show("This feature is not supported in the OpenGD77 firmware");
 						return null;
