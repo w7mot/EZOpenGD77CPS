@@ -2051,7 +2051,6 @@ namespace DMR
             this.cmbScanList = new CustomCombo();
             this.txtName = new DMR.SGTextBox();
             this.cmbSquelch = new System.Windows.Forms.ComboBox();
-            this.cmbAdmitCriteria = new System.Windows.Forms.ComboBox();
             this.lblSquelch = new System.Windows.Forms.Label();
             this.nudRssiThreshold = new CustomNumericUpDown();
             this.grpDigit = new DoubleClickGroupBox();
@@ -2065,6 +2064,7 @@ namespace DMR
             this.cmbKeySwitch = new System.Windows.Forms.ComboBox();
             this.lblArs = new System.Windows.Forms.Label();
             this.cmbKey = new CustomCombo();
+            this.cmbAdmitCriteria = new System.Windows.Forms.ComboBox();
             this.lblKeySwitch = new System.Windows.Forms.Label();
             this.lblKey = new System.Windows.Forms.Label();
             this.cmbRxGroup = new CustomCombo();
@@ -2083,6 +2083,7 @@ namespace DMR
             this.chkEnhancedChAccess = new System.Windows.Forms.CheckBox();
             this.lblRxColor = new System.Windows.Forms.Label();
             this.lblRxGroup = new System.Windows.Forms.Label();
+            this.lblAdmitCriteria = new System.Windows.Forms.Label();
             this.chkRxOnly = new System.Windows.Forms.CheckBox();
             this.cmbRxRefFreq = new System.Windows.Forms.ComboBox();
             this.chkAllowTalkaround = new System.Windows.Forms.CheckBox();
@@ -2133,7 +2134,6 @@ namespace DMR
             this.cmbBandType = new System.Windows.Forms.ComboBox();
             this.cmbTxRefFreq = new System.Windows.Forms.ComboBox();
             this.lblPower = new System.Windows.Forms.Label();
-            this.lblAdmitCriteria = new System.Windows.Forms.Label();
             this.nudTotRekey = new CustomNumericUpDown();
             this.lblTxFreq = new System.Windows.Forms.Label();
             this.nudTot = new CustomNumericUpDown();
@@ -2360,16 +2360,6 @@ namespace DMR
             this.cmbSquelch.Size = new System.Drawing.Size(120, 24);
             this.cmbSquelch.TabIndex = 3;
             // 
-            // cmbAdmitCriteria
-            // 
-            this.cmbAdmitCriteria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbAdmitCriteria.FormattingEnabled = true;
-            this.cmbAdmitCriteria.Location = new System.Drawing.Point(38, 52);
-            this.cmbAdmitCriteria.Name = "cmbAdmitCriteria";
-            this.cmbAdmitCriteria.Size = new System.Drawing.Size(120, 24);
-            this.cmbAdmitCriteria.TabIndex = 20;
-            this.cmbAdmitCriteria.Visible = false;
-            // 
             // lblSquelch
             // 
             this.lblSquelch.Location = new System.Drawing.Point(358, 592);
@@ -2519,6 +2509,16 @@ namespace DMR
             this.cmbKey.Size = new System.Drawing.Size(120, 24);
             this.cmbKey.TabIndex = 10;
             this.cmbKey.Visible = false;
+            // 
+            // cmbAdmitCriteria
+            // 
+            this.cmbAdmitCriteria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAdmitCriteria.FormattingEnabled = true;
+            this.cmbAdmitCriteria.Location = new System.Drawing.Point(38, 52);
+            this.cmbAdmitCriteria.Name = "cmbAdmitCriteria";
+            this.cmbAdmitCriteria.Size = new System.Drawing.Size(120, 24);
+            this.cmbAdmitCriteria.TabIndex = 20;
+            this.cmbAdmitCriteria.Visible = false;
             // 
             // lblKeySwitch
             // 
@@ -2704,6 +2704,16 @@ namespace DMR
             this.lblRxGroup.TabIndex = 14;
             this.lblRxGroup.Text = "Rx Group List";
             this.lblRxGroup.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblAdmitCriteria
+            // 
+            this.lblAdmitCriteria.Location = new System.Drawing.Point(6, 29);
+            this.lblAdmitCriteria.Name = "lblAdmitCriteria";
+            this.lblAdmitCriteria.Size = new System.Drawing.Size(125, 20);
+            this.lblAdmitCriteria.TabIndex = 19;
+            this.lblAdmitCriteria.Text = "Admit Criteria";
+            this.lblAdmitCriteria.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblAdmitCriteria.Visible = false;
             // 
             // chkRxOnly
             // 
@@ -3106,7 +3116,7 @@ namespace DMR
             // 
             // lblTot
             // 
-            this.lblTot.Location = new System.Drawing.Point(524, 86);
+            this.lblTot.Location = new System.Drawing.Point(524, 56);
             this.lblTot.Name = "lblTot";
             this.lblTot.Size = new System.Drawing.Size(119, 20);
             this.lblTot.TabIndex = 14;
@@ -3175,10 +3185,11 @@ namespace DMR
             // 
             this.cmbPower.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPower.FormattingEnabled = true;
-            this.cmbPower.Location = new System.Drawing.Point(651, 56);
+            this.cmbPower.Location = new System.Drawing.Point(177, 100);
             this.cmbPower.Name = "cmbPower";
             this.cmbPower.Size = new System.Drawing.Size(120, 24);
             this.cmbPower.TabIndex = 13;
+            this.cmbPower.Visible = false;
             // 
             // lblRxFreq
             // 
@@ -3211,22 +3222,13 @@ namespace DMR
             // 
             // lblPower
             // 
-            this.lblPower.Location = new System.Drawing.Point(524, 56);
+            this.lblPower.Location = new System.Drawing.Point(50, 100);
             this.lblPower.Name = "lblPower";
             this.lblPower.Size = new System.Drawing.Size(119, 20);
             this.lblPower.TabIndex = 12;
             this.lblPower.Text = "Power Level";
             this.lblPower.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblAdmitCriteria
-            // 
-            this.lblAdmitCriteria.Location = new System.Drawing.Point(6, 29);
-            this.lblAdmitCriteria.Name = "lblAdmitCriteria";
-            this.lblAdmitCriteria.Size = new System.Drawing.Size(125, 20);
-            this.lblAdmitCriteria.TabIndex = 19;
-            this.lblAdmitCriteria.Text = "Admit Criteria";
-            this.lblAdmitCriteria.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblAdmitCriteria.Visible = false;
+            this.lblPower.Visible = false;
             // 
             // nudTotRekey
             // 
@@ -3246,7 +3248,7 @@ namespace DMR
             // 
             // nudTot
             // 
-            this.nudTot.Location = new System.Drawing.Point(651, 86);
+            this.nudTot.Location = new System.Drawing.Point(651, 56);
             this.nudTot.Name = "nudTot";
             this.nudTot.Size = new System.Drawing.Size(120, 23);
             this.nudTot.TabIndex = 15;
