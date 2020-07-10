@@ -127,6 +127,7 @@ namespace DMR
 			Button button1 = new System.Windows.Forms.Button();
 			Button button2 = new System.Windows.Forms.Button();
 			Button button3 = new System.Windows.Forms.Button();
+			form.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);// Roger Clark. Added correct icon on main form!
 
 			form.SuspendLayout();
 
@@ -338,14 +339,14 @@ namespace DMR
 
 				if ((releaseURL.Length > 0) && (develURL.Length > 0))
 				{
-					message = "It will download and install a firmware.\n\nPlease choose between Stable and Development version.";
+					message = "Please choose between Stable and Development version to download and install.";
 				}
 				else
 				{
 					message = "It will download and install a firmware.\n\nPlease make you choice.";
 				}
 
-				DialogResult res = DialogBox("Question", message, buttonsLabel[0], buttonsLabel[1]);
+				DialogResult res = DialogBox("Select version", message, buttonsLabel[0], buttonsLabel[1]);
 
 				switch (res)
 				{
