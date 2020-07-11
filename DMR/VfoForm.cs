@@ -2259,7 +2259,7 @@ namespace DMR
             this.pnlChannel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlChannel.Location = new System.Drawing.Point(0, 0);
             this.pnlChannel.Name = "pnlChannel";
-            this.pnlChannel.Size = new System.Drawing.Size(1147, 298);
+            this.pnlChannel.Size = new System.Drawing.Size(1147, 304);
             this.pnlChannel.TabIndex = 0;
             this.pnlChannel.TabStop = true;
             // 
@@ -2271,50 +2271,54 @@ namespace DMR
             0,
             0,
             131072});
-            this.nudOffsetFreq.Location = new System.Drawing.Point(157, 675);
+            this.nudOffsetFreq.Location = new System.Drawing.Point(151, 429);
             this.nudOffsetFreq.Name = "nudOffsetFreq";
             this.nudOffsetFreq.Size = new System.Drawing.Size(120, 23);
             this.nudOffsetFreq.TabIndex = 37;
+            this.nudOffsetFreq.Visible = false;
             // 
             // lblOffsetFreq
             // 
-            this.lblOffsetFreq.Location = new System.Drawing.Point(38, 675);
+            this.lblOffsetFreq.Location = new System.Drawing.Point(32, 429);
             this.lblOffsetFreq.Name = "lblOffsetFreq";
             this.lblOffsetFreq.Size = new System.Drawing.Size(113, 20);
             this.lblOffsetFreq.TabIndex = 36;
             this.lblOffsetFreq.Text = "Offset Freq [k]";
             this.lblOffsetFreq.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblOffsetFreq.Visible = false;
             // 
             // cmbOffsetDirection
             // 
             this.cmbOffsetDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOffsetDirection.FormattingEnabled = true;
-            this.cmbOffsetDirection.Location = new System.Drawing.Point(157, 649);
+            this.cmbOffsetDirection.Location = new System.Drawing.Point(151, 403);
             this.cmbOffsetDirection.Name = "cmbOffsetDirection";
             this.cmbOffsetDirection.Size = new System.Drawing.Size(120, 24);
             this.cmbOffsetDirection.TabIndex = 35;
+            this.cmbOffsetDirection.Visible = false;
             // 
             // lblOffsetDirection
             // 
-            this.lblOffsetDirection.Location = new System.Drawing.Point(38, 649);
+            this.lblOffsetDirection.Location = new System.Drawing.Point(32, 403);
             this.lblOffsetDirection.Name = "lblOffsetDirection";
             this.lblOffsetDirection.Size = new System.Drawing.Size(113, 20);
             this.lblOffsetDirection.TabIndex = 34;
             this.lblOffsetDirection.Text = "Offset Direction";
             this.lblOffsetDirection.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblOffsetDirection.Visible = false;
             // 
             // cmbOffsetStep
             // 
             this.cmbOffsetStep.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOffsetStep.FormattingEnabled = true;
-            this.cmbOffsetStep.Location = new System.Drawing.Point(183, 610);
+            this.cmbOffsetStep.Location = new System.Drawing.Point(364, 56);
             this.cmbOffsetStep.Name = "cmbOffsetStep";
             this.cmbOffsetStep.Size = new System.Drawing.Size(120, 24);
             this.cmbOffsetStep.TabIndex = 33;
             // 
             // lblOffsetStep
             // 
-            this.lblOffsetStep.Location = new System.Drawing.Point(64, 610);
+            this.lblOffsetStep.Location = new System.Drawing.Point(245, 56);
             this.lblOffsetStep.Name = "lblOffsetStep";
             this.lblOffsetStep.Size = new System.Drawing.Size(113, 20);
             this.lblOffsetStep.TabIndex = 32;
@@ -2335,10 +2339,11 @@ namespace DMR
             // 
             this.cmbScanList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbScanList.FormattingEnabled = true;
-            this.cmbScanList.Location = new System.Drawing.Point(832, 596);
+            this.cmbScanList.Location = new System.Drawing.Point(826, 350);
             this.cmbScanList.Name = "cmbScanList";
             this.cmbScanList.Size = new System.Drawing.Size(120, 24);
             this.cmbScanList.TabIndex = 24;
+            this.cmbScanList.Visible = false;
             this.cmbScanList.SelectedIndexChanged += new System.EventHandler(this.cmbScanList_SelectedIndexChanged);
             // 
             // txtName
@@ -2355,23 +2360,25 @@ namespace DMR
             // 
             this.cmbSquelch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSquelch.FormattingEnabled = true;
-            this.cmbSquelch.Location = new System.Drawing.Point(477, 592);
+            this.cmbSquelch.Location = new System.Drawing.Point(471, 346);
             this.cmbSquelch.Name = "cmbSquelch";
             this.cmbSquelch.Size = new System.Drawing.Size(120, 24);
             this.cmbSquelch.TabIndex = 3;
+            this.cmbSquelch.Visible = false;
             // 
             // lblSquelch
             // 
-            this.lblSquelch.Location = new System.Drawing.Point(358, 592);
+            this.lblSquelch.Location = new System.Drawing.Point(352, 346);
             this.lblSquelch.Name = "lblSquelch";
             this.lblSquelch.Size = new System.Drawing.Size(113, 20);
             this.lblSquelch.TabIndex = 2;
             this.lblSquelch.Text = "Squelch";
             this.lblSquelch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSquelch.Visible = false;
             // 
             // nudRssiThreshold
             // 
-            this.nudRssiThreshold.Location = new System.Drawing.Point(757, 655);
+            this.nudRssiThreshold.Location = new System.Drawing.Point(751, 409);
             this.nudRssiThreshold.Name = "nudRssiThreshold";
             this.nudRssiThreshold.Size = new System.Drawing.Size(120, 23);
             this.nudRssiThreshold.TabIndex = 22;
@@ -2729,7 +2736,7 @@ namespace DMR
             // 
             this.cmbRxRefFreq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRxRefFreq.FormattingEnabled = true;
-            this.cmbRxRefFreq.Location = new System.Drawing.Point(477, 622);
+            this.cmbRxRefFreq.Location = new System.Drawing.Point(471, 376);
             this.cmbRxRefFreq.Name = "cmbRxRefFreq";
             this.cmbRxRefFreq.Size = new System.Drawing.Size(120, 24);
             this.cmbRxRefFreq.TabIndex = 7;
@@ -3134,16 +3141,17 @@ namespace DMR
             // 
             // lblTotRekey
             // 
-            this.lblTotRekey.Location = new System.Drawing.Point(647, 626);
+            this.lblTotRekey.Location = new System.Drawing.Point(641, 380);
             this.lblTotRekey.Name = "lblTotRekey";
             this.lblTotRekey.Size = new System.Drawing.Size(119, 20);
             this.lblTotRekey.TabIndex = 16;
             this.lblTotRekey.Text = "TOT Rekey Delay [s]";
             this.lblTotRekey.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblTotRekey.Visible = false;
             // 
             // lblRssiThreshold
             // 
-            this.lblRssiThreshold.Location = new System.Drawing.Point(624, 655);
+            this.lblRssiThreshold.Location = new System.Drawing.Point(618, 409);
             this.lblRssiThreshold.Name = "lblRssiThreshold";
             this.lblRssiThreshold.Size = new System.Drawing.Size(125, 20);
             this.lblRssiThreshold.TabIndex = 21;
@@ -3153,7 +3161,7 @@ namespace DMR
             // 
             // lblRxRefFreq
             // 
-            this.lblRxRefFreq.Location = new System.Drawing.Point(334, 622);
+            this.lblRxRefFreq.Location = new System.Drawing.Point(328, 376);
             this.lblRxRefFreq.Name = "lblRxRefFreq";
             this.lblRxRefFreq.Size = new System.Drawing.Size(137, 20);
             this.lblRxRefFreq.TabIndex = 6;
@@ -3163,7 +3171,7 @@ namespace DMR
             // 
             // lblBandType
             // 
-            this.lblBandType.Location = new System.Drawing.Point(317, 676);
+            this.lblBandType.Location = new System.Drawing.Point(311, 430);
             this.lblBandType.Name = "lblBandType";
             this.lblBandType.Size = new System.Drawing.Size(119, 20);
             this.lblBandType.TabIndex = 10;
@@ -3173,7 +3181,7 @@ namespace DMR
             // 
             // lblTxRefFreq
             // 
-            this.lblTxRefFreq.Location = new System.Drawing.Point(299, 648);
+            this.lblTxRefFreq.Location = new System.Drawing.Point(293, 402);
             this.lblTxRefFreq.Name = "lblTxRefFreq";
             this.lblTxRefFreq.Size = new System.Drawing.Size(137, 20);
             this.lblTxRefFreq.TabIndex = 10;
@@ -3185,7 +3193,7 @@ namespace DMR
             // 
             this.cmbPower.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPower.FormattingEnabled = true;
-            this.cmbPower.Location = new System.Drawing.Point(177, 100);
+            this.cmbPower.Location = new System.Drawing.Point(364, 86);
             this.cmbPower.Name = "cmbPower";
             this.cmbPower.Size = new System.Drawing.Size(120, 24);
             this.cmbPower.TabIndex = 13;
@@ -3204,7 +3212,7 @@ namespace DMR
             // 
             this.cmbBandType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBandType.FormattingEnabled = true;
-            this.cmbBandType.Location = new System.Drawing.Point(444, 676);
+            this.cmbBandType.Location = new System.Drawing.Point(438, 430);
             this.cmbBandType.Name = "cmbBandType";
             this.cmbBandType.Size = new System.Drawing.Size(120, 24);
             this.cmbBandType.TabIndex = 11;
@@ -3214,7 +3222,7 @@ namespace DMR
             // 
             this.cmbTxRefFreq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTxRefFreq.FormattingEnabled = true;
-            this.cmbTxRefFreq.Location = new System.Drawing.Point(444, 648);
+            this.cmbTxRefFreq.Location = new System.Drawing.Point(438, 402);
             this.cmbTxRefFreq.Name = "cmbTxRefFreq";
             this.cmbTxRefFreq.Size = new System.Drawing.Size(120, 24);
             this.cmbTxRefFreq.TabIndex = 11;
@@ -3222,7 +3230,7 @@ namespace DMR
             // 
             // lblPower
             // 
-            this.lblPower.Location = new System.Drawing.Point(50, 100);
+            this.lblPower.Location = new System.Drawing.Point(237, 86);
             this.lblPower.Name = "lblPower";
             this.lblPower.Size = new System.Drawing.Size(119, 20);
             this.lblPower.TabIndex = 12;
@@ -3232,10 +3240,11 @@ namespace DMR
             // 
             // nudTotRekey
             // 
-            this.nudTotRekey.Location = new System.Drawing.Point(774, 626);
+            this.nudTotRekey.Location = new System.Drawing.Point(768, 380);
             this.nudTotRekey.Name = "nudTotRekey";
             this.nudTotRekey.Size = new System.Drawing.Size(120, 23);
             this.nudTotRekey.TabIndex = 17;
+            this.nudTotRekey.Visible = false;
             // 
             // lblTxFreq
             // 
@@ -3261,16 +3270,17 @@ namespace DMR
             // 
             // lblScanList
             // 
-            this.lblScanList.Location = new System.Drawing.Point(699, 596);
+            this.lblScanList.Location = new System.Drawing.Point(693, 350);
             this.lblScanList.Name = "lblScanList";
             this.lblScanList.Size = new System.Drawing.Size(125, 20);
             this.lblScanList.TabIndex = 23;
             this.lblScanList.Text = "Scan List";
             this.lblScanList.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblScanList.Visible = false;
             // 
             // VfoForm
             // 
-            this.ClientSize = new System.Drawing.Size(1147, 298);
+            this.ClientSize = new System.Drawing.Size(1147, 304);
             this.Controls.Add(this.pnlChannel);
             this.Controls.Add(this.mnsCh);
             this.Font = new System.Drawing.Font("Arial", 10F);
