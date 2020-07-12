@@ -2221,7 +2221,7 @@ namespace DMR
 					else if (treeNodeItem.SubType == typeof(RxGroupListForm))
 					{
 						this.AddTreeViewNode(selectedNode.Nodes, text, new TreeNodeItem(this.cmsSub, treeNodeItem.SubType, null, 0, num, 19, treeNodeItem.Data));
-						this.DispChildForm(typeof(ZoneForm), num);
+						this.DispChildForm(typeof(RxGroupListForm), num);
 					}
 					else if (treeNodeItem.SubType == typeof(EmergencyForm))
 					{
