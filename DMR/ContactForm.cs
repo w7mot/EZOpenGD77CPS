@@ -426,7 +426,7 @@ namespace DMR
 				{
 					if (num < this.Count)
 					{
-						if (this.DataIsValid(num) && this[num].CallType == 2)
+						if (this.DataIsValid(num) && this[num].CallType == (int)CallTypeE.AllCall)
 						{
 							break;
 						}
@@ -723,7 +723,16 @@ namespace DMR
 			{
 				if (index < 1024)
 				{
-					return this.contactList[index].CallType == 0;
+					return this.contactList[index].CallType == (int)CallTypeE.GroupCall;
+				}
+				return false;
+			}
+
+			public bool IsPrivateCall(int index)
+			{
+				if (index < 1024)
+				{
+					return this.contactList[index].CallType == (int)CallTypeE.PrivateCall;
 				}
 				return false;
 			}
@@ -732,7 +741,7 @@ namespace DMR
 			{
 				if (index < 1024)
 				{
-					return this.contactList[index].CallType == 2;
+					return this.contactList[index].CallType == (int)CallTypeE.AllCall;
 				}
 				return false;
 			}

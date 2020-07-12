@@ -64,7 +64,9 @@ namespace DMR
 			get
 			{
 				List<ushort> list = new List<ushort>(this.contactList);
-				List<ushort> list2 = list.FindAll(RxListOneData.smethod_0);
+				//List<ushort> list2 = list.FindAll(RxListOneData.isValidGroupCall1);
+				List<ushort> list2 = list.FindAll(RxListOneData.isValidGroupOrPrivateCallCall);
+				
 				return (byte)list2.Count;
 			}
 		}
@@ -80,7 +82,8 @@ namespace DMR
 		public void Verify()
 		{
 			List<ushort> list = new List<ushort>(this.contactList);
-			List<ushort> list2 = list.FindAll(RxListOneData.smethod_1);
+			//List<ushort> list2 = list.FindAll(RxListOneData.isValidGroupCall2);
+			List<ushort> list2 = list.FindAll(RxListOneData.isValidGroupOrPrivateCallCall);
 			while (list2.Count < this.contactList.Length)
 			{
 				list2.Add(0);
@@ -94,7 +97,7 @@ namespace DMR
 		}
 
 		[CompilerGenerated]
-		private static bool smethod_0(ushort ushort_0)
+		private static bool isValidGroupCall1(ushort ushort_0)
 		{
 			if (ushort_0 != 0 && ContactForm.data.DataIsValid(ushort_0 - 1))
 			{
@@ -104,7 +107,7 @@ namespace DMR
 		}
 
 		[CompilerGenerated]
-		private static bool smethod_1(ushort ushort_0)
+		private static bool isValidGroupCall2(ushort ushort_0)
 		{
 			if (ushort_0 != 0 && ContactForm.data.DataIsValid(ushort_0 - 1))
 			{
@@ -112,6 +115,16 @@ namespace DMR
 			}
 			return false;
 		}
+
+		private static bool isValidGroupOrPrivateCallCall(ushort ushort_0)
+		{
+			if (ushort_0 != 0 && ContactForm.data.DataIsValid(ushort_0 - 1))
+			{
+				return ContactForm.data.IsGroupCall(ushort_0 - 1) || ContactForm.data.IsPrivateCall(ushort_0 - 1);
+			}
+			return false;
+		}
+
 	}
 
 }

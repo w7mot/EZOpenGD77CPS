@@ -36,23 +36,14 @@ namespace DMR
 		private Button btnDel;
 
 		private Button btnAdd;
-
 		private ListBox lstSelected;
-
 		private ListBox lstUnselected;
-
 		private SGTextBox txtName;
-
 		private Label lblName;
-
 		private GroupBox grpUnselected;
-
 		private GroupBox grpSelected;
-
 		private Button btnUp;
-
 		private Button btnDown;
-
 		private CustomPanel pnlRxGrpList;
 
 		public static RxListData data;
@@ -432,7 +423,7 @@ namespace DMR
 					num3 = RxGroupListForm.data[num2].ContactList[num];
 					if (ContactForm.data.DataIsValid(num3 - 1))
 					{
-						if (ContactForm.data.IsGroupCall(num3 - 1))
+						if (ContactForm.data.IsGroupCall(num3 - 1) || ContactForm.data.IsPrivateCall(num3 - 1))
 						{
 							text = ContactForm.data[num3 - 1].Name;
 							this.lstSelected.Items.Add(new SelectedItemUtils(num, num3, text));
@@ -451,7 +442,9 @@ namespace DMR
 				this.lstUnselected.Items.Clear();
 				for (num = 0; num < 1024; num++)
 				{
-					if (!RxGroupListForm.data[num2].ContactList.Contains((ushort)(num + 1)) && ContactForm.data.DataIsValid(num) && ContactForm.data[num].CallType == 0)
+					if (!RxGroupListForm.data[num2].ContactList.Contains((ushort)(num + 1)) && ContactForm.data.DataIsValid(num) && 
+						(ContactForm.data[num].CallType == (int)CallTypeE.GroupCall || ContactForm.data[num].CallType == (int)CallTypeE.PrivateCall)
+						)
 					{
 						this.lstUnselected.Items.Add(new SelectedItemUtils(-1, num + 1, ContactForm.data[num].Name));
 					}
