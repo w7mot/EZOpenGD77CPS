@@ -1477,6 +1477,7 @@ namespace DMR
 						break;
 					case 1:
 						txtCallId.Text = data.results[0].id;
+						cmbCallType.SelectedIndex = (int)CallTypeE.PrivateCall;
 						break;
 					default:
 						MessageBox.Show("This station has more than one ID");
