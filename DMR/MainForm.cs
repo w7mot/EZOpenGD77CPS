@@ -454,22 +454,22 @@ namespace DMR
 			this.tsmiExit.Size = new Size(108, 22);
 			this.tsmiExit.Text = "Exit";
 			this.tsmiExit.Click += this.tsmiExit_Click;
-			this.tsmiSetting.DropDownItems.AddRange(new ToolStripItem[15]
+			this.tsmiSetting.DropDownItems.AddRange(new ToolStripItem[7]
 			{
-				this.tsmiDeviceInfo,
+				//this.tsmiDeviceInfo,
 				this.tsmiBootItem,
-				this.tsmiMenu,
-				this.tsmiNumKeyContact,
+				//this.tsmiMenu,
+				//this.tsmiNumKeyContact,
 				this.tsmiGerneralSet,
-				this.tsmiButton,
-				this.tsmiTextMsg,
-				this.tsmiEncrypt,
-				this.tsmiSignaling,
+				//this.tsmiButton,
+				//this.tsmiTextMsg,
+				//this.tsmiEncrypt,
+				//this.tsmiSignaling,
 				this.tsmiContact,
 				this.tsmiGrpRxList,
 				this.tsmiZone,
 				this.tsmiChannels,
-				this.tsmiScan,
+				//this.tsmiScan,
 				this.tsmiVfos
 			});
 			this.tsmiSetting.Name = "tsmiSetting";
@@ -1491,7 +1491,7 @@ namespace DMR
 						)
 					{
 						MessageBox.Show("This feature is not supported in the OpenGD77 firmware");
-						return null;
+						//return null;
 					}
 
 					if (treeNodeItem.Type == typeof(ZoneBasicForm))
@@ -3824,24 +3824,24 @@ namespace DMR
 		{
 			this.lstTreeNodeItem.Clear();
 			this.lstTreeNodeItem.Add(new TreeNodeItem(null, null, null, 0, -1, 18, null));
-			this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(DeviceInfoForm), null, 0, -1, 20, null));
+			//this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(DeviceInfoForm), null, 0, -1, 20, null));
 			this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(BootItemForm), null, 0, -1, 30, null));
-			this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(MenuForm), null, 0, -1, 38, null));
-			this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(DigitalKeyContactForm), null, 0, -1, 15, null));
+			//this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(MenuForm), null, 0, -1, 38, null));
+			//this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(DigitalKeyContactForm), null, 0, -1, 15, null));
 			this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(GeneralSetForm), null, 0, -1, 5, null));
-			this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(ButtonForm), null, 0, -1, 4, null));
-			this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(TextMsgForm), null, 0, -1, 22, null));
-			this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(EncryptForm), null, 0, -1, 35, null));
-			this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(SignalingBasicForm), null, 0, -1, 16, null));
-			this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(DtmfForm), null, 0, -1, 39, null));
-			this.lstTreeNodeItem.Add(new TreeNodeItem(this.cmsGroup, null, typeof(EmergencyForm), 32, -1, 17, EmergencyForm.data));
+			//this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(ButtonForm), null, 0, -1, 4, null));
+			//this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(TextMsgForm), null, 0, -1, 22, null));
+			//this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(EncryptForm), null, 0, -1, 35, null));
+			//this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(SignalingBasicForm), null, 0, -1, 16, null));
+			//this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(DtmfForm), null, 0, -1, 39, null));
+			//this.lstTreeNodeItem.Add(new TreeNodeItem(this.cmsGroup, null, typeof(EmergencyForm), 32, -1, 17, EmergencyForm.data));
 			this.lstTreeNodeItem.Add(new TreeNodeItem(null, null, null, 0, -1, 17, null));
-			this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(DtmfContactForm), null, 0, -1, 49, null));
+			//this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(DtmfContactForm), null, 0, -1, 49, null));
 			this.lstTreeNodeItem.Add(new TreeNodeItem(this.cmsGroupContact, typeof(ContactsForm), typeof(ContactForm), 1024, -1, 17, ContactForm.data));
 			this.lstTreeNodeItem.Add(new TreeNodeItem(this.cmsGroup, null, typeof(RxGroupListForm), RxListData.CNT_RX_LIST, -1, 17, RxGroupListForm.data));
 			this.lstTreeNodeItem.Add(new TreeNodeItem(this.cmsGroup, typeof(ZoneBasicForm), typeof(ZoneForm), ZoneForm.NUM_ZONES, -1, 16, ZoneForm.data));
 			this.lstTreeNodeItem.Add(new TreeNodeItem(this.cmsGroup, typeof(ChannelsForm), typeof(ChannelForm), ChannelForm.CurCntCh, -1, 17, ChannelForm.data));
-			this.lstTreeNodeItem.Add(new TreeNodeItem(this.cmsGroup, typeof(ScanBasicForm), typeof(NormalScanForm), 64, -1, 16, NormalScanForm.data));
+			//this.lstTreeNodeItem.Add(new TreeNodeItem(this.cmsGroup, typeof(ScanBasicForm), typeof(NormalScanForm), 64, -1, 16, NormalScanForm.data));
 			this.lstTreeNodeItem.Add(new TreeNodeItem(null, null, null, 0, -1, 17, null));
 			int num = 0;
 			for (int i = 0; i < 2; i++)
@@ -3871,24 +3871,24 @@ namespace DMR
 			dataTable.Columns.Add("Name");
 			dataTable.Columns.Add("ParentId");
 			dataTable.Rows.Add("00", "Model", "-1");
-			dataTable.Rows.Add("0001", "BasicInfo", "00");
+			//dataTable.Rows.Add("0001", "BasicInfo", "00");
 			dataTable.Rows.Add("0002", "BootItem", "00");
-			dataTable.Rows.Add("0003", "Menu", "00");
-			dataTable.Rows.Add("0004", "NumKeyAssign", "00");
+			//dataTable.Rows.Add("0003", "Menu", "00");
+			//dataTable.Rows.Add("0004", "NumKeyAssign", "00");
 			dataTable.Rows.Add("0005", "GeneralSetting", "00");
-			dataTable.Rows.Add("0006", "Buttons", "00");
-			dataTable.Rows.Add("0007", "TextMsg", "00");
-			dataTable.Rows.Add("0008", "Pivacy", "00");
-			dataTable.Rows.Add("0009", "SignalingSys", "00");
-			dataTable.Rows.Add("000900", "DtmfSignal", "0009");
-			dataTable.Rows.Add("000901", "EmergencySys", "0009");
+			//dataTable.Rows.Add("0006", "Buttons", "00");
+			//dataTable.Rows.Add("0007", "TextMsg", "00");
+			//dataTable.Rows.Add("0008", "Pivacy", "00");
+			//dataTable.Rows.Add("0009", "SignalingSys", "00");
+			//dataTable.Rows.Add("000900", "DtmfSignal", "0009");
+			//dataTable.Rows.Add("000901", "EmergencySys", "0009");
 			dataTable.Rows.Add("0011", "Contact", "00");
-			dataTable.Rows.Add("001100", "DtmfContact", "0011");
+			//dataTable.Rows.Add("001100", "DtmfContact", "0011");
 			dataTable.Rows.Add("001101", "DigitalContact", "0011");
 			dataTable.Rows.Add("0012", "RxGroupList", "00");
 			dataTable.Rows.Add("0013", "Zone", "00");
 			dataTable.Rows.Add("0014", "Channel", "00");
-			dataTable.Rows.Add("0015", "Scan", "00");
+			//dataTable.Rows.Add("0015", "Scan", "00");
 			dataTable.Rows.Add("0016", "VFO", "00");
 			dataTable.Rows.Add("001600", "VFOA", "0016");
 			dataTable.Rows.Add("001601", "VFOB", "0016");
