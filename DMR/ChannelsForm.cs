@@ -102,29 +102,7 @@ namespace DMR
 
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
-			int selectedIndex = this.cmbAddChMode.SelectedIndex;
-			int minIndex = ChannelForm.data.GetMinIndex();
-			MainForm mainForm = base.MdiParent as MainForm;
-			string minName = ChannelForm.data.GetMinName(this.Node);
-			string text = this.cmbAddChMode.Text;
-			ChannelForm.data.SetIndex(minIndex, 1);
-			ChannelForm.data.SetChName(minIndex, minName);
-			ChannelForm.data.SetDefaultFreq(minIndex);
-			ChannelForm.data.Default(minIndex);
-			ChannelForm.data.SetChMode(minIndex, text);
-			ChannelForm.ChannelOne channelOne = ChannelForm.data[minIndex];
-			this.dgvChannels.Rows.Insert(minIndex, (minIndex + 1).ToString(), channelOne.Name, channelOne.RxFreq, channelOne.TxFreq, channelOne.ChModeS, channelOne.PowerString, channelOne.RxTone, channelOne.TxTone, channelOne.TxColor.ToString(), channelOne.RxGroupListString, channelOne.ContactString, channelOne.RepeaterSlotS);
-			this.dgvChannels.Rows[minIndex].Tag = minIndex;
-			this.updateAddAndDeleteButtons();
-			int[] array = new int[3]
-			{
-				2,
-				6,
-				54
-			};
-			mainForm.InsertTreeViewNode(this.Node, minIndex, typeof(ChannelForm), array[selectedIndex], ChannelForm.data);
-			mainForm.RefreshRelatedForm(base.GetType());
-			mainForm.DispChildForm(typeof(ChannelForm), minIndex);
+			handleInsertClick();
 		}
 
 		private int AddDigitalContact(string contactName, int contactType, string contactID)
@@ -193,33 +171,7 @@ namespace DMR
 
 		private void btnDeleteSelected_Click(object sender, EventArgs e)
 		{
-			int num = 0;
-			int num2 = 0;
-			int num3 = 0;
-			int count = this.dgvChannels.SelectedRows.Count;
-			MainForm mainForm = base.MdiParent as MainForm;
-			while (this.dgvChannels.SelectedRows.Count > 0)
-			{
-				num = this.dgvChannels.SelectedRows[0].Index;
-				num2 = (int)this.dgvChannels.SelectedRows[0].Tag;
-				//if (num != 0)
-				{
-					this.dgvChannels.Rows.Remove(this.dgvChannels.SelectedRows[0]);
-					ChannelForm.data.ClearIndexAndReset(num2);
-					//mainForm.DeleteTreeViewNode(this.Node, num);// Doesnt seem to work. so init the whole tree afterwards
-					num3++;
-					if (num3 == count)
-					{
-						break;
-					}
-					continue;
-				}
-				//MessageBox.Show(Settings.dicCommon["FirstNotDelete"]);
-				break;
-			}
-			this.updateAddAndDeleteButtons();
-			mainForm.RefreshRelatedForm(base.GetType());
-			mainForm.InitTree();
+			handleDeleteClick();
 		}
 
 		private void btnExport_Click(object sender, EventArgs e)
@@ -1152,6 +1104,83 @@ namespace DMR
 			}
 		}
 
+
+		private void handleDeleteClick()
+		{
+			int num = 0;
+			int num2 = 0;
+			int num3 = 0;
+			int count = this.dgvChannels.SelectedRows.Count;
+			MainForm mainForm = base.MdiParent as MainForm;
+			while (this.dgvChannels.SelectedRows.Count > 0)
+			{
+				num = this.dgvChannels.SelectedRows[0].Index;
+				num2 = (int)this.dgvChannels.SelectedRows[0].Tag;
+				//if (num != 0)
+				{
+					this.dgvChannels.Rows.Remove(this.dgvChannels.SelectedRows[0]);
+					ChannelForm.data.ClearIndexAndReset(num2);
+					//mainForm.DeleteTreeViewNode(this.Node, num);// Doesnt seem to work. so init the whole tree afterwards
+					num3++;
+					if (num3 == count)
+					{
+						break;
+					}
+					continue;
+				}
+				//MessageBox.Show(Settings.dicCommon["FirstNotDelete"]);
+				break;
+			}
+			this.updateAddAndDeleteButtons();
+			mainForm.RefreshRelatedForm(base.GetType());
+			mainForm.InitTree();
+		}
+
+		private void handleInsertClick()
+		{
+			int selectedIndex = this.cmbAddChMode.SelectedIndex;
+			int minIndex = ChannelForm.data.GetMinIndex();
+			MainForm mainForm = base.MdiParent as MainForm;
+			string minName = ChannelForm.data.GetMinName(this.Node);
+			string text = this.cmbAddChMode.Text;
+			ChannelForm.data.SetIndex(minIndex, 1);
+			ChannelForm.data.SetChName(minIndex, minName);
+			ChannelForm.data.SetDefaultFreq(minIndex);
+			ChannelForm.data.Default(minIndex);
+			ChannelForm.data.SetChMode(minIndex, text);
+			ChannelForm.ChannelOne channelOne = ChannelForm.data[minIndex];
+			this.dgvChannels.Rows.Insert(minIndex, (minIndex + 1).ToString(), channelOne.Name, channelOne.RxFreq, channelOne.TxFreq, channelOne.ChModeS, channelOne.PowerString, channelOne.RxTone, channelOne.TxTone, channelOne.TxColor.ToString(), channelOne.RxGroupListString, channelOne.ContactString, channelOne.RepeaterSlotS);
+			this.dgvChannels.Rows[minIndex].Tag = minIndex;
+			this.updateAddAndDeleteButtons();
+			int[] array = new int[3]
+			{
+				2,
+				6,
+				54
+			};
+			mainForm.InsertTreeViewNode(this.Node, minIndex, typeof(ChannelForm), array[selectedIndex], ChannelForm.data);
+			mainForm.RefreshRelatedForm(base.GetType());
+			mainForm.DispChildForm(typeof(ChannelForm), minIndex);
+		
+		}
+
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+		{
+			if ((keyData == (Keys.Control | Keys.Insert)) || (keyData == (Keys.Control | Keys.I)))
+			{
+				handleInsertClick();
+				return true;
+			}
+
+			if (keyData == (Keys.Control | Keys.Delete))
+			{
+				handleDeleteClick();
+				return true;
+			}
+
+
+			return base.ProcessCmdKey(ref msg, keyData);
+		}
 
 	}
 }
