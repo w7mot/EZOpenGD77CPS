@@ -3934,7 +3934,7 @@ namespace DMR
 		public void InitDynamicNode()
 		{
 			TreeNode parentNode = this.method_8(typeof(EmergencyForm), this.tvwMain.Nodes);
-			this.InitEmergencySystems(parentNode);
+			//this.InitEmergencySystems(parentNode);
 			parentNode = this.method_9(typeof(ContactsForm), this.tvwMain.Nodes);
 			this.InitDigitContacts(parentNode);
 			parentNode = this.method_8(typeof(RxGroupListForm), this.tvwMain.Nodes);
@@ -3944,7 +3944,7 @@ namespace DMR
 			parentNode = this.method_9(typeof(ChannelsForm), this.tvwMain.Nodes);
 			this.InitChannels(parentNode);
 			parentNode = this.method_9(typeof(ScanBasicForm), this.tvwMain.Nodes);
-			this.InitScans(parentNode);
+			//this.InitScans(parentNode);
 		}
 
 		public void InitChannelsImportNodes()
