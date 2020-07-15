@@ -3142,6 +3142,54 @@ namespace DMR
 			}
 		}
 
+
+		private void handleInsertClick()
+		{
+			if (this.Node.Parent.Nodes.Count < ChannelForm.CurCntCh)
+			{
+				this.SaveData();
+				TreeNodeItem treeNodeItem = this.Node.Tag as TreeNodeItem;
+				int minIndex = ChannelForm.data.GetMinIndex();
+				string minName = ChannelForm.data.GetMinName(this.Node);
+				ChannelForm.data.SetIndex(minIndex, 1);
+				TreeNodeItem tag = new TreeNodeItem(treeNodeItem.Cms, treeNodeItem.Type, null, 0, minIndex, treeNodeItem.ImageIndex, treeNodeItem.Data);
+				TreeNode treeNode = new TreeNode(minName);
+				treeNode.Tag = tag;
+				treeNode.ImageIndex = 2;
+				treeNode.SelectedImageIndex = 2;
+				this.Node.Parent.Nodes.Insert(minIndex, treeNode);
+				ChannelForm.data.SetName(minIndex, minName);
+				this.Node = treeNode;
+				base.Tag = minIndex;
+				this.DispData();
+				this.method_5();
+			}
+		}
+		private void handleDeleteClick()
+		{
+			if (this.Node.Parent.Nodes.Count > 1 && this.Node.Index != 0)
+			{
+				if (ZoneForm.data.FstZoneFstCh == (int)base.Tag + 1)
+				{
+					MessageBox.Show(Settings.dicCommon["FirstChNotDelete"]);
+				}
+				else
+				{
+					this.SaveData();
+					TreeNode node = this.Node.NextNode ?? this.Node.PrevNode;
+					TreeNodeItem treeNodeItem = this.Node.Tag as TreeNodeItem;
+					ChannelForm.data.ClearIndex(treeNodeItem.Index);
+					this.Node.Remove();
+					this.Node = node;
+					TreeNodeItem treeNodeItem2 = this.Node.Tag as TreeNodeItem;
+					base.Tag = treeNodeItem2.Index;
+					this.DispData();
+					this.method_5();
+				}
+			}
+		}
+
+
 		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
 		{
 			if (keyData == Keys.Return)
@@ -3149,6 +3197,20 @@ namespace DMR
 				SendKeys.Send("{TAB}");
 				return true;
 			}
+
+			if ((keyData == (Keys.Control | Keys.Insert)) || (keyData == (Keys.Control | Keys.I)))
+			{
+				handleInsertClick();
+				return true;
+			}
+
+			if (keyData == (Keys.Control | Keys.Delete))
+			{
+				handleDeleteClick();
+				return true;
+			}
+
+
 			return base.ProcessCmdKey(ref msg, keyData);
 		}
 
@@ -3562,49 +3624,12 @@ namespace DMR
 
 		private void tsmiAdd_Click(object sender, EventArgs e)
 		{
-			if (this.Node.Parent.Nodes.Count < ChannelForm.CurCntCh)
-			{
-				this.SaveData();
-				TreeNodeItem treeNodeItem = this.Node.Tag as TreeNodeItem;
-				int minIndex = ChannelForm.data.GetMinIndex();
-				string minName = ChannelForm.data.GetMinName(this.Node);
-				ChannelForm.data.SetIndex(minIndex, 1);
-				TreeNodeItem tag = new TreeNodeItem(treeNodeItem.Cms, treeNodeItem.Type, null, 0, minIndex, treeNodeItem.ImageIndex, treeNodeItem.Data);
-				TreeNode treeNode = new TreeNode(minName);
-				treeNode.Tag = tag;
-				treeNode.ImageIndex = 2;
-				treeNode.SelectedImageIndex = 2;
-				this.Node.Parent.Nodes.Insert(minIndex, treeNode);
-				ChannelForm.data.SetName(minIndex, minName);
-				this.Node = treeNode;
-				base.Tag = minIndex;
-				this.DispData();
-				this.method_5();
-			}
+			handleInsertClick();
 		}
 
 		private void tsmiDel_Click(object sender, EventArgs e)
 		{
-			if (this.Node.Parent.Nodes.Count > 1 && this.Node.Index != 0)
-			{
-				if (ZoneForm.data.FstZoneFstCh == (int)base.Tag + 1)
-				{
-					MessageBox.Show(Settings.dicCommon["FirstChNotDelete"]);
-				}
-				else
-				{
-					this.SaveData();
-					TreeNode node = this.Node.NextNode ?? this.Node.PrevNode;
-					TreeNodeItem treeNodeItem = this.Node.Tag as TreeNodeItem;
-					ChannelForm.data.ClearIndex(treeNodeItem.Index);
-					this.Node.Remove();
-					this.Node = node;
-					TreeNodeItem treeNodeItem2 = this.Node.Tag as TreeNodeItem;
-					base.Tag = treeNodeItem2.Index;
-					this.DispData();
-					this.method_5();
-				}
-			}
+			handleDeleteClick();
 		}
 
 		private void configureNavigationButtons()
