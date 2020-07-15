@@ -393,57 +393,12 @@ namespace DMR
 
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
-			int selectedIndex = this.cmbAddType.SelectedIndex;
-			int minIndex = ContactForm.data.GetMinIndex();
-			MainForm mainForm = base.MdiParent as MainForm;
-			string minCallID = ContactForm.data.GetMinCallID(selectedIndex, minIndex);
-			string minName = ContactForm.data.GetMinName(this.Node);
-			string callRxToneS = ContactForm.DefaultContact.CallRxToneS;
-			string ringStyleS = ContactForm.DefaultContact.RingStyleS;
-			string text = this.cmbAddType.Text;
-			ContactForm.data.SetIndex(minIndex, 1);
-			ContactForm.ContactOne value = new ContactForm.ContactOne(minIndex);
-			value.Name = minName;
-			value.CallId = minCallID;
-			value.CallTypeS = text;
-			value.RingStyleS = ringStyleS;
-			value.CallRxToneS = callRxToneS;
-			ContactForm.data[minIndex] = value;
-			this.dgvContacts.Rows.Insert(minIndex, (minIndex + 1).ToString(), minName, minCallID, text, ringStyleS, callRxToneS);
-			this.dgvContacts.Rows[minIndex].Tag = minIndex;
-			this.method_1();
-			int[] array = new int[3]
-			{
-				8,
-				10,
-				7
-			};
-			mainForm.InsertTreeViewNode(this.Node, minIndex, typeof(ContactForm), array[selectedIndex], ContactForm.data);
-			mainForm.RefreshRelatedForm(base.GetType());
-
-			mainForm.DispChildForm(typeof(ContactForm), minIndex);
+			handleInsertClick();
 		}
 
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
-			if (this.dgvContacts.CurrentRow != null && this.dgvContacts.CurrentRow.Tag != null)
-			{
-				int index = this.dgvContacts.CurrentRow.Index;
-				int index2 = (int)this.dgvContacts.CurrentRow.Tag;
-				if (index == 0)
-				{
-					MessageBox.Show(Settings.dicCommon["FirstNotDelete"]);
-				}
-				else
-				{
-					this.dgvContacts.Rows.Remove(this.dgvContacts.CurrentRow);
-					ContactForm.data.ClearIndex(index2);
-					this.method_1();
-					MainForm mainForm = base.MdiParent as MainForm;
-					mainForm.DeleteTreeViewNode(this.Node, index);
-					mainForm.RefreshRelatedForm(base.GetType());
-				}
-			}
+			handleDeleteClick();
 		}
 
 		private void btnClear_Click(object sender, EventArgs e)
@@ -896,5 +851,79 @@ namespace DMR
 				}
 			}
 		}
+
+		private void handleInsertClick()
+        {
+			int selectedIndex = this.cmbAddType.SelectedIndex;
+			int minIndex = ContactForm.data.GetMinIndex();
+			MainForm mainForm = base.MdiParent as MainForm;
+			string minCallID = ContactForm.data.GetMinCallID(selectedIndex, minIndex);
+			string minName = ContactForm.data.GetMinName(this.Node);
+			string callRxToneS = ContactForm.DefaultContact.CallRxToneS;
+			string ringStyleS = ContactForm.DefaultContact.RingStyleS;
+			string text = this.cmbAddType.Text;
+			ContactForm.data.SetIndex(minIndex, 1);
+			ContactForm.ContactOne value = new ContactForm.ContactOne(minIndex);
+			value.Name = minName;
+			value.CallId = minCallID;
+			value.CallTypeS = text;
+			value.RingStyleS = ringStyleS;
+			value.CallRxToneS = callRxToneS;
+			ContactForm.data[minIndex] = value;
+			this.dgvContacts.Rows.Insert(minIndex, (minIndex + 1).ToString(), minName, minCallID, text, ringStyleS, callRxToneS);
+			this.dgvContacts.Rows[minIndex].Tag = minIndex;
+			this.method_1();
+			int[] array = new int[3]
+			{
+				8,
+				10,
+				7
+			};
+			mainForm.InsertTreeViewNode(this.Node, minIndex, typeof(ContactForm), array[selectedIndex], ContactForm.data);
+			mainForm.RefreshRelatedForm(base.GetType());
+
+			mainForm.DispChildForm(typeof(ContactForm), minIndex);
+		}
+
+		private void handleDeleteClick()
+        {
+			if (this.dgvContacts.CurrentRow != null && this.dgvContacts.CurrentRow.Tag != null)
+			{
+				int index = this.dgvContacts.CurrentRow.Index;
+				int index2 = (int)this.dgvContacts.CurrentRow.Tag;
+				if (index == 0)
+				{
+					MessageBox.Show(Settings.dicCommon["FirstNotDelete"]);
+				}
+				else
+				{
+					this.dgvContacts.Rows.Remove(this.dgvContacts.CurrentRow);
+					ContactForm.data.ClearIndex(index2);
+					this.method_1();
+					MainForm mainForm = base.MdiParent as MainForm;
+					mainForm.DeleteTreeViewNode(this.Node, index);
+					mainForm.RefreshRelatedForm(base.GetType());
+				}
+			}
+		}
+
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+		{
+			if ((keyData == (Keys.Control | Keys.Insert)) || (keyData == (Keys.Control | Keys.I)))
+			{
+				handleInsertClick();
+				return true;
+			}
+
+			if (keyData == (Keys.Control | Keys.Delete))
+			{
+				handleDeleteClick();
+				return true;
+			}
+
+
+			return base.ProcessCmdKey(ref msg, keyData);
+		}
+
 	}
 }
