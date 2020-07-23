@@ -556,7 +556,7 @@ namespace DMR
 			public int GetCallIndexFromIdString(int callId)
 			{
 				int num = 0;
-				string callIdStr = string.Format("{0:d8}", callId);
+				string callIdStr = callId.ToString();// string.Format("{0:d8}", callId);
 
 				while (num < this.Count)
 				{
