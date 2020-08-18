@@ -141,7 +141,7 @@
     <Compile Include="Extras\FirmwareLoader\FirmwareDataTable.cs" />
     <Compile Include="Extras\FirmwareLoader\FirmwareLoader.cs" />
     <Compile Include="Extras\FirmwareLoader\FirmwareLoaderUI.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Extras\FirmwareLoader\FirmwareLoaderUI.Designer.cs">
       <DependentUpon>FirmwareLoaderUI.cs</DependentUpon>
@@ -340,6 +340,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="IsSetup.ini" />
+    <None Include="Language\Chinese.chm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Language\SpanishCatalan.chm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -436,6 +439,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="help.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Language\Chinese.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Language\SpanishCatalan.xml">
