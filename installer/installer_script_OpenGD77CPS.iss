@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "OpenGD77 CPS"
-#define MyAppVersion "2020.08.01"
+#define MyAppVersion "2020.08.18"
 #define MyAppURL "https://github.com/rogerclarkmelbourne/OpenGD77CPS"
 #define MyAppExeName "OpenGD77CPS.exe"
 
@@ -68,6 +68,8 @@ Source: "..\Language\SpanishCatalan.xml"; DestDir: "{app}\Language"; Flags: igno
 Source: "..\Language\SpanishCatalan.chm"; DestDir: "{app}\Language"; Flags: ignoreversion
 Source: "..\Language\Ukrainian.xml"; DestDir: "{app}\Language"; Flags: ignoreversion
 Source: "..\Language\Ukrainian.chm"; DestDir: "{app}\Language"; Flags: ignoreversion
+Source: "..\Language\Chinese.xml"; DestDir: "{app}\Language"; Flags: ignoreversion
+Source: "..\Language\Chinese.chm"; DestDir: "{app}\Language"; Flags: ignoreversion
 
 Source: "..\OpenGD77CommDriver\wdi-simple.exe"; DestDir: "{%TEMP}\OpenGD77CommDriver"; Flags: ignoreversion
 
