@@ -436,6 +436,8 @@
       <MenuItem Id="tsmiContactsDownload" Text="Descarregar contactes" />
       <MenuItem Id="tsmiDMRID" Text="DMR ID" />
       <MenuItem Id="tsmiCalibration" Text="Calibració" />
+      <MenuItem Id="tsmiOpenGD77" Text="OpenGD77 support" />
+      <MenuItem Id="tsmiFirmwareLoader" Text="Firmware loader" />
     </MenuStrip>
 		<ContextMenuStrip>
 			<MenuItem Id="tsmiAdd" Text="Afegir" />

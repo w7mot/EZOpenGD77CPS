@@ -445,6 +445,8 @@
       <MenuItem Id="tsmiContactsDownload" Text="Завантажте контакти" />
       <MenuItem Id="tsmiDMRID" Text="DMR ID" />
       <MenuItem Id="tsmiCalibration" Text="глядач" />
+      <MenuItem Id="tsmiOpenGD77" Text="OpenGD77 support" />
+      <MenuItem Id="tsmiFirmwareLoader" Text="Firmware loader" />
     </MenuStrip>
 		<ContextMenuStrip>
 			<MenuItem Id="tsmiAdd" Text="Додати"/>
