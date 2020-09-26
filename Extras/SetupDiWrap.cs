@@ -14,7 +14,7 @@ namespace DMR
 			Guid[] guids = GetClassGUIDs(className);
 
 			System.Text.RegularExpressions.Regex friendlyNameToComPort =
-				new System.Text.RegularExpressions.Regex(@".? \((COM\d+)\)$");  // "..... (COMxxx)" -> COMxxxx
+				new System.Text.RegularExpressions.Regex(@".? \((COM\d+)\)\s?$");  // "..... (COMxxx)" -> COMxxxx
 
 			foreach (Guid guid in guids)
 			{
