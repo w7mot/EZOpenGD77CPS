@@ -1483,7 +1483,7 @@ namespace DMR
 						treeNodeItem.Type == typeof(DeviceInfoForm) ||
 						treeNodeItem.Type == typeof(ScanBasicForm) ||
 						//treeNodeItem.Type == typeof(DtmfContactForm) ||
-						//treeNodeItem.Type == typeof(DtmfForm) ||
+						treeNodeItem.Type == typeof(DtmfForm) ||
 						treeNodeItem.Type == typeof(SignalingBasicForm) ||
 						treeNodeItem.Type == typeof(EncryptForm) ||
 						treeNodeItem.Type == typeof(NormalScanForm) ||
