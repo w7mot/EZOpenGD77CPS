@@ -1482,8 +1482,8 @@ namespace DMR
 						treeNodeItem.Type == typeof(MenuForm) ||
 						treeNodeItem.Type == typeof(DeviceInfoForm) ||
 						treeNodeItem.Type == typeof(ScanBasicForm) ||
-						treeNodeItem.Type == typeof(DtmfContactForm) ||
-						treeNodeItem.Type == typeof(DtmfForm) ||
+						//treeNodeItem.Type == typeof(DtmfContactForm) ||
+						//treeNodeItem.Type == typeof(DtmfForm) ||
 						treeNodeItem.Type == typeof(SignalingBasicForm) ||
 						treeNodeItem.Type == typeof(EncryptForm) ||
 						treeNodeItem.Type == typeof(NormalScanForm) ||
@@ -3836,7 +3836,7 @@ namespace DMR
 			//this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(DtmfForm), null, 0, -1, 39, null));
 			//this.lstTreeNodeItem.Add(new TreeNodeItem(this.cmsGroup, null, typeof(EmergencyForm), 32, -1, 17, EmergencyForm.data));
 			this.lstTreeNodeItem.Add(new TreeNodeItem(null, null, null, 0, -1, 17, null));
-			//this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(DtmfContactForm), null, 0, -1, 49, null));
+			this.lstTreeNodeItem.Add(new TreeNodeItem(null, typeof(DtmfContactForm), null, 0, -1, 49, null));
 			this.lstTreeNodeItem.Add(new TreeNodeItem(this.cmsGroupContact, typeof(ContactsForm), typeof(ContactForm), 1024, -1, 17, ContactForm.data));
 			this.lstTreeNodeItem.Add(new TreeNodeItem(this.cmsGroup, null, typeof(RxGroupListForm), RxListData.CNT_RX_LIST, -1, 17, RxGroupListForm.data));
 			this.lstTreeNodeItem.Add(new TreeNodeItem(this.cmsGroup, typeof(ZoneBasicForm), typeof(ZoneForm), ZoneForm.NUM_ZONES, -1, 16, ZoneForm.data));
@@ -3883,7 +3883,7 @@ namespace DMR
 			//dataTable.Rows.Add("000900", "DtmfSignal", "0009");
 			//dataTable.Rows.Add("000901", "EmergencySys", "0009");
 			dataTable.Rows.Add("0011", "Contact", "00");
-			//dataTable.Rows.Add("001100", "DtmfContact", "0011");
+			dataTable.Rows.Add("001100", "DtmfContact", "0011");
 			dataTable.Rows.Add("001101", "DigitalContact", "0011");
 			dataTable.Rows.Add("0012", "RxGroupList", "00");
 			dataTable.Rows.Add("0013", "Zone", "00");
