@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "OpenGD77 CPS"
-#define MyAppVersion "2020.09.26"
+#define MyAppVersion "2020.09.27"
 #define MyAppURL "https://github.com/rogerclarkmelbourne/OpenGD77CPS"
 #define MyAppExeName "OpenGD77CPS.exe"
 
