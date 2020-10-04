@@ -102,7 +102,7 @@
 			<Control Id="lblRxRefFreq" Text="RX Referencčna Frekvenca" />
 			<Control Id="lblTxRefFreq" Text="TX Referenčna Frekvenca" />
 			<Control Id="lblRxFreq" Text="RX Frek [MHz]" />
-			<Control Id="lblPower" Text="Nivo moči" />
+			<Control Id="lblLibreDMR_Power" Text="Nivo moči" />
 			<Control Id="lblAdmitCriteria" Text="Sprejmi merila" />
 			<Control Id="lblTxFreq" Text="TX Frek [MHz]" />
 			<Control Id="lblScanList" Text="Skeniranje" />
@@ -121,6 +121,7 @@
 		<Commons>
 			<Item Id="ChMode" Text="Analogno,Digitalno" />
 			<Item Id="RefFreq" Text="Mala,Srednja,Velika" />
+			<Item Id="LibreDMR_Power" Text="Master,50mW,250mW,500mW,750mW,1W,2W,3W,4W,5W,5W++" />
 			<Item Id="Power" Text="Mala,Velika" />
 			<Item Id="AdmitCriterica" Text="Vedno,Prosti kanal,CTCSS/DCS" />
 			<Item Id="AdmitCritericaD" Text="Vedno,Prosti kanal,Barvna koda" />
@@ -246,7 +247,7 @@
 			<Control Id="btnDel" Text="Izbriši" />
 		</Controls>
 	</DtmfContactForm>
-	<DtmfForm Text="DTMF">
+	<DtmfForm Text="Nastavitve DTMF">
 		<Controls>
 			<Control Id="chkSideTone" Text="DTMF Stranski ton" />
 			<Control Id="lblUpCode" Text="PTT ID Zgornja koda" />
@@ -381,7 +382,7 @@
 			<TreeNode Id="Zone" Text="Cone" />
 			<TreeNode Id="Channel" Text="Kanali" />
 			<TreeNode Id="Scan" Text="Skeniranje" />
-			<TreeNode Id="DtmfSignal" Text="DTMF" />
+			<TreeNode Id="DtmfSignal" Text="Nastavitve DTMF" />
 			<TreeNode Id="VFO" Text="VFO" />
 			<TreeNode Id="VFOA" Text="VFO A" />
 			<TreeNode Id="VFOB" Text="VFO B" />
@@ -668,7 +669,7 @@
 			<Control Id="lblRxRefFreq" Text="RX Referenčna Frekvenca" />
 			<Control Id="lblTxRefFreq" Text="TX Referenčna frekvenca" />
 			<Control Id="lblRxFreq" Text="RX Frek [MHz]" />
-			<Control Id="lblPower" Text="Nivo moči" />
+			<Control Id="lblLibreDMR_Power" Text="Nivo moči" />
 			<Control Id="lblAdmitCriteria" Text="Sprejmi merila" />
 			<Control Id="lblTxFreq" Text="TX Frek [MHz]" />
 			<Control Id="lblScanList" Text="Seznam skeniranj" />

@@ -102,7 +102,7 @@
 			<Control Id="lblRxRefFreq" Text="Rx Reference Frequency" />
 			<Control Id="lblTxRefFreq" Text="Tx Reference Frequency" />
 			<Control Id="lblRxFreq" Text="Rx Freq [MHz]" />
-			<Control Id="lblPower" Text="Power Level" />
+			<Control Id="lblLibreDMR_Power" Text="Power Level" />
 			<Control Id="lblAdmitCriteria" Text="Admit Criteria" />
 			<Control Id="lblTxFreq" Text="Tx Freq [MHz]" />
 			<Control Id="lblScanList" Text="Scan List" />
@@ -121,6 +121,7 @@
 		<Commons>
 			<Item Id="ChMode" Text="Analog,Digital" />
 			<Item Id="RefFreq" Text="Low,Middle,High" />
+			<Item Id="LibreDMR_Power" Text="Master,50mW,250mW,500mW,750mW,1W,2W,3W,4W,5W,5W++" />
 			<Item Id="Power" Text="Low,High" />
 			<Item Id="AdmitCriterica" Text="Always,Channel Free,CTCSS/DCS" />
 			<Item Id="AdmitCritericaD" Text="Always,Channel Free,Color Code" />
@@ -248,7 +249,7 @@
 			<Control Id="btnDel" Text="Delete" />
 		</Controls>
 	</DtmfContactForm>
-	<DtmfForm Text="DTMF">
+	<DtmfForm Text="DTMF Settings">
 		<Controls>
 			<Control Id="chkSideTone" Text="DTMF Side Tone" />
 			<Control Id="lblUpCode" Text="PTTID Up Code" />
@@ -383,7 +384,7 @@
 			<TreeNode Id="Zone" Text="Zones" />
 			<TreeNode Id="Channel" Text="Channels" />
 			<TreeNode Id="Scan" Text="Scan" />
-			<TreeNode Id="DtmfSignal" Text="DTMF" />
+			<TreeNode Id="DtmfSignal" Text="DTMF Settings" />
 			<TreeNode Id="VFO" Text="VFO" />
 			<TreeNode Id="VFOA" Text="VFO A" />
 			<TreeNode Id="VFOB" Text="VFO B" />
@@ -672,7 +673,7 @@
 			<Control Id="lblRxRefFreq" Text="Rx Reference Frequency" />
 			<Control Id="lblTxRefFreq" Text="Tx Reference Frequency" />
 			<Control Id="lblRxFreq" Text="Rx Freq [MHz]" />
-			<Control Id="lblPower" Text="Power Level" />
+			<Control Id="lblLibreDMR_Power" Text="Power Level" />
 			<Control Id="lblAdmitCriteria" Text="Admit Criteria" />
 			<Control Id="lblTxFreq" Text="Tx Freq [MHz]" />
 			<Control Id="lblScanList" Text="Scan List" />

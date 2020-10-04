@@ -102,7 +102,7 @@
 			<Control Id="lblRxRefFreq" Text="Rx Reference Frequency"/>
 			<Control Id="lblTxRefFreq" Text="Tx Reference Frequency"/>
 			<Control Id="lblRxFreq" Text="ПРМ частота [МГц]"/>
-			<Control Id="lblPower" Text="Потужність"/>
+			<Control Id="lblLibreDMR_Power" Text="Потужність"/>
 			<Control Id="lblAdmitCriteria" Text="Критерій дозволу"/>
 			<Control Id="lblTxFreq" Text="ПРД частота [МГЦ]"/>
 			<Control Id="lblScanList" Text="Список сканув"/>
@@ -121,6 +121,7 @@
 		<Commons>
 			<Item Id="ChMode" Text="Аналоговий,Цифровий"/>
 			<Item Id="RefFreq" Text="Низька,Середня,Висока"/>
+			<Item Id="LibreDMR_Power" Text="Master,50mW,250mW,500mW,750mW,1W,2W,3W,4W,5W,5W++" />			
 			<Item Id="Power" Text="Низька,Висока"/>
 			<Item Id="AdmitCriterica" Text="Завжди,Вільний канал,CTCSS/DCS"/>
 			<Item Id="AdmitCritericaD" Text="Завжди,Вільний канал,Колірний код"/>
@@ -246,7 +247,7 @@
 			<Control Id="btnDel" Text="Видалити"/>
 		</Controls>
 	</DtmfContactForm>
-	<DtmfForm Text="DTMF">
+	<DtmfForm Text="DTMF налаштування">
 		<Controls>
 			<Control Id="chkSideTone" Text="DTMF Side Tone"/>
 			<Control Id="lblUpCode" Text="PTTID Up Code"/>
@@ -383,7 +384,7 @@
 			<TreeNode Id="SignalingSys" Text="Signaling System"/>
 			<TreeNode Id="EmergencySys" Text="Аварійна система"/>
 			<TreeNode Id="Contact" Text="Контакт"/>
-			<TreeNode Id="DtmfContact" Text="DTMF"/>
+			<TreeNode Id="DtmfContact" Text="DTMF  налаштування"/>
 			<TreeNode Id="DigitalContact" Text="Цифровий контакт"/>
 			<TreeNode Id="RxGroupList" Text="Список прийому"/>
 			<TreeNode Id="Zone" Text="Зона"/>
@@ -686,7 +687,7 @@
 			<Control Id="lblRxRefFreq" Text="Rx Reference Frequency"/>
 			<Control Id="lblTxRefFreq" Text="Tx Reference Frequency"/>
 			<Control Id="lblRxFreq" Text="ПРМ частота [МГц]"/>
-			<Control Id="lblPower" Text="Потужність"/>
+			<Control Id="lblLibreDMR_Power" Text="Потужність"/>
 			<Control Id="lblAdmitCriteria" Text="Критерій дозволу"/>
 			<Control Id="lblTxFreq" Text="ПРД частота [МГЦ]"/>
 			<Control Id="lblScanList" Text="Список сканув."/>

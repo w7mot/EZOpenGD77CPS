@@ -102,7 +102,7 @@
 			<Control Id="lblRxRefFreq" Text="RX Referenz Frequenz" />
 			<Control Id="lblTxRefFreq" Text="TX Referenz Frequenz" />
 			<Control Id="lblRxFreq" Text="RX Freq. [MHz]" />
-			<Control Id="lblPower" Text="Sendeleistung" />
+			<Control Id="lblLibreDMR_Power" Text="Sendeleistung" />
 			<Control Id="lblAdmitCriteria" Text="TX-Freigabe" />
 			<Control Id="lblTxFreq" Text="TX Freq. [MHz]" />
 			<Control Id="lblScanList" Text="Scanliste" />
@@ -121,6 +121,7 @@
 		<Commons>
 			<Item Id="ChMode" Text="FM Analog,DMR Digital" />
 			<Item Id="RefFreq" Text="Niedrig,Mittel,Hoch" />
+			<Item Id="LibreDMR_Power" Text="Gerätevorgabe,50mW,250mW,500mW,750mW,1W,2W,3W,4W,5W,5W++" />			
 			<Item Id="Power" Text="Niedrig,Hoch" />
 			<Item Id="AdmitCriterica" Text="Immer,Kanal frei,CTCSS/DCS" />
 			<Item Id="AdmitCritericaD" Text="Immer,Kanal frei,Color Code" />
@@ -242,11 +243,11 @@
 				<ControlItem Id="txtName" Text="Name" />
 				<ControlItem Id="txtCode" Text="Nummer" />
 			</Control>
-			<Control Id="btnAdd" Text="Hinzufügen" />
+			<Control Id="btnAdd" Text="Hinzu" />
 			<Control Id="btnDel" Text="Löschen" />
 		</Controls>
 	</DtmfContactForm>
-	<DtmfForm Text="DTMF">
+	<DtmfForm Text="DTMF Einstellungen">
 		<Controls>
 			<Control Id="chkSideTone" Text="DTMF Mithörton" />
 			<Control Id="lblUpCode" Text="PTT ID Up Code" />
@@ -374,14 +375,14 @@
 			<TreeNode Id="Pivacy" Text="Verschlüsselung" />
 			<TreeNode Id="SignalingSys" Text="DTMF-/Signalisierung" />
 			<TreeNode Id="EmergencySys" Text="Notfall System" />
-			<TreeNode Id="Contact" Text="TG-/Kontakte" />
-			<TreeNode Id="DtmfContact" Text="DTMF" />
-			<TreeNode Id="DigitalContact" Text="Digitale Kontakten" />
+			<TreeNode Id="Contact" Text="Kontakte" />
+			<TreeNode Id="DtmfContact" Text="DTMF Kontakte" />
+			<TreeNode Id="DigitalContact" Text="TG-/Kontakte" />
 			<TreeNode Id="RxGroupList" Text="Empfangsgruppen" />
 			<TreeNode Id="Zone" Text="Zonen" />
 			<TreeNode Id="Channel" Text="Kanäle" />
 			<TreeNode Id="Scan" Text="Suchlauf" />
-			<TreeNode Id="DtmfSignal" Text="DTMF" />
+			<TreeNode Id="DtmfSignal" Text="DTMF Einstellungen" />
 			<TreeNode Id="VFO" Text="VFO" />
 			<TreeNode Id="VFOA" Text="VFO A" />
 			<TreeNode Id="VFOB" Text="VFO B" />
@@ -402,11 +403,11 @@
 			<MenuItem Id="tsmiTextMsg" Text="Text Nachrichten" />
 			<MenuItem Id="tsmiEncrypt" Text="Verschlüsselung" />
 			<MenuItem Id="tsmiSignalingSystem" Text="Signalisierungs-System" />
-      <MenuItem Id="tsmiSignaling" Text="Signalisierungs" />
+      <MenuItem Id="tsmiSignaling" Text="Signalisierung" />
 			<MenuItem Id="tsmiDtmf" Text="DTMF" />
 			<MenuItem Id="tsmiEmgSystem" Text="Notfall System" />
 			<MenuItem Id="tsmiContact" Text="Kontakte" />
-			<MenuItem Id="tsmiDtmfContact" Text="DTMF" />
+			<MenuItem Id="tsmiDtmfContact" Text="DTMF Kontakte" />
 			<MenuItem Id="tsmiDmrContact" Text="Digitale Kontakte" />
 			<MenuItem Id="tsmiContacts" Text="Kontakte" />
 			<MenuItem Id="tsmiGrpRxList" Text="RX Gruppenlisten" />
@@ -421,7 +422,7 @@
 			<MenuItem Id="tsmiBasic" Text="Vereinfacht" />
 			<MenuItem Id="tsmiView" Text="Ansicht" />
 			<MenuItem Id="tsmiTree" Text="Gliederung" />
-			<MenuItem Id="tsmiHelp" Text="Hife" />
+			<MenuItem Id="tsmiHelp" Text="Hilfe" />
 			<MenuItem Id="tsmiToolBar" Text="Werkzeugleiste" />
 			<MenuItem Id="tsmiStatusBar" Text="Statusleiste" />
 			<MenuItem Id="tsmiWindow" Text="Fenster" />
@@ -437,6 +438,8 @@
       <MenuItem Id="tsmiContactsDownload" Text="Kontakte herunterladen" />
       <MenuItem Id="tsmiDMRID" Text="DMR ID" />
       <MenuItem Id="tsmiCalibration" Text="Kalibrierungsanzeige" />
+			<MenuItem Id="tsmiOpenGD77" Text="OpenGD77 support" />
+			<MenuItem Id="tsmiFirmwareLoader" Text="Firmware loader" />
     </MenuStrip>
 		<ContextMenuStrip>
 			<MenuItem Id="tsmiAdd" Text="Hinzufügen" />
@@ -448,7 +451,7 @@
 			<MenuItem Id="tsmiCopy" Text="Kopieren" />
 			<MenuItem Id="tsmiPaste" Text="Einfügen" />
 			<MenuItem Id="tsmiMoveUp" Text="Nach oben" />
-			<MenuItem Id="tsmiMoveDown" Text="Nach unten" />  
+			<MenuItem Id="tsmiMoveDown" Text="Nach unten" />
 		</ContextMenuStrip>
 		<ContextMenuStrip>
 			<MenuItem Id="tsmiCollapseAll" Text="Alle zuklappen" />
@@ -466,7 +469,7 @@
 			<ToolItem Id="tsbtnSave" Text="Speichern" />
 			<ToolItem Id="tsbtnRead" Text="Lesen" />
 			<ToolItem Id="tsbtnWrite" Text="Schreiben" />
-			<ToolItem Id="tsbtnAbout" Text="Über2" />
+			<ToolItem Id="tsbtnAbout" Text="Info" />
 		</ToolStrip>
 	</MainForm>
 	<MenuForm Text="Menu">
@@ -531,7 +534,7 @@
 			<Control Id="grpSelected" Text="Mitglied" />
 			<Control Id="chkTalkback" Text="Talkback" />
 			<Control Id="grpUnselected" Text="Verfügbar" />
-			<Control Id="grpListParam" Text="Scanparameter" />			
+			<Control Id="grpListParam" Text="Scanparameter" />
 			<Control Id="chkChMark" Text="Kanal Markierung" />
 			<Control Id="lblTxDesignatedCh" Text="TX bestimmter Kanal" />
 			<Control Id="lblPriorityCh1" Text="Prioritäts-Kanal 1" />
@@ -667,7 +670,7 @@
 			<Control Id="lblRxRefFreq" Text="RX Referenz-Frequenz" />
 			<Control Id="lblTxRefFreq" Text="TX Referenz-Frequenz" />
 			<Control Id="lblRxFreq" Text="RX Freq [MHz]" />
-			<Control Id="lblPower" Text="Sendeleistung" />
+			<Control Id="lblLibreDMR_Power" Text="Sendeleistung" />
 			<Control Id="lblAdmitCriteria" Text="TX erlaubt" />
 			<Control Id="lblTxFreq" Text="TX Freq [MHz]" />
 			<Control Id="lblScanList" Text="Scan" />
@@ -744,7 +747,7 @@
   </DownloadContactsForm>
   <DMRIDForm Text="DMR ID">
     <Controls>
-      <Control Id="lblMessage" Text="Geben Sie den ID-Präfix-Code für Ihre Region ein und drücken Sie Download, um sie an die Liste anzuhängen" />
+      <Control Id="lblMessage" Text="ID-Präfix-Code für Ihre Region eingeben und gewünschte Option drücken:" />
       <Control Id="lblRegionId" Text="Region" />
       <Control Id="lblInactivityFilter" Text="Inaktivitätsfilter (Tage)" />
       <Control Id="btnDownload" Text="Herunterladen von Hamdigital" />
@@ -757,8 +760,8 @@
 	<Commons>
 		<Item Id="None" Text="Kein" />
 		<Item Id="Selected" Text="Ausgewählt" />
-		<Item Id="RadioIdNotEmpty" Text="Geräte ID darf nicht leer sein!" />
-		<Item Id="RadioIdOutOfRange" Text="Geräte ID außerhalb des erlaubten Bereichs!" />
+		<Item Id="RadioIdNotEmpty" Text="DMR ID darf nicht leer sein!" />
+		<Item Id="RadioIdOutOfRange" Text="DMR ID außerhalb des erlaubten Bereichs!" />
 		<Item Id="Read" Text="Lesen" />
 		<Item Id="Write" Text="Schreiben" />
 		<Item Id="ReadComplete" Text="Lesen abgeschlossen" />
@@ -803,14 +806,14 @@
 		<Item Id="DMRIDWrite" Text="Schreibe DMR ID Datenbank in das GD-77" />
 		<Item Id="CalibrationRead" Text="Lese Kalibrierungsdaten vom GD-77" />
 		<Item Id="CalibrationWrite" Text="Schreibe Kalibrierungsdaten in das GD-77" />
-    <Item Id="IdAlreadyExists" Text="ID / TS already exists！" />
-    <Item Id="IdOutOfRange" Text="ID out of range!" />
-    <Item Id="IdNotEmpty" Text="ID can not be empty!" />
-    <Item Id="ContactNameDuplicate" Text="Warning. Duplicate contact name." />
+    <Item Id="IdAlreadyExists" Text="ID / TS existiert bereits!" />
+    <Item Id="IdOutOfRange" Text="ID außer Bereich!" />
+    <Item Id="IdNotEmpty" Text="ID darf nicht leer sein!" />
+    <Item Id="ContactNameDuplicate" Text="Warnung. Doppelter Kontakt-Name." />
     <Item Id="EnableMemoryAccessMode" Text ="The GD-77 does not seem to be in Memory Access modeHold keys SK2 (Blue side key), Green Menu and * when turning on the transceiver, and try again" />
-    <Item Id="dataRead" Text="Reading data from GD-77"/>
-    <Item Id="dataWrite" Text="Writing data to GD-77"/>
-    <Item Id="DMRIdContcatsTotal" Text="Total number of IDs = {0}. Max of {1} can be uploaded" />
-    <Item Id="ErrorParsingData" Text="Error while parsing data" />
+    <Item Id="dataRead" Text="Lese Daten vom GD-77"/>
+    <Item Id="dataWrite" Text="Schreibe Daten zum GD-77"/>
+    <Item Id="DMRIdContcatsTotal" Text="Anzahl der IDs = {0}. Max {1} können hochgeladen werden" />
+    <Item Id="ErrorParsingData" Text="Fehler beim Einlesen" />
   </Commons>
 </Resource>

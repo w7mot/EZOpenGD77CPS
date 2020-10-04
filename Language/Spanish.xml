@@ -13,7 +13,7 @@
 		</Controls>
 	</AboutForm>
 	<BootItemForm Text="Elementos Inicio">
-		<Controls>
+		<Controls>3
 			<Control Id="grpBootScreen" Text="Pantalla" />
 			<Control Id="lblBootScreen" Text="Pantalla Inicial" />
 			<Control Id="lblLine2" Text="Línea 2" />
@@ -102,7 +102,7 @@
 			<Control Id="lblRxRefFreq" Text="Frec Ref RX" />
 			<Control Id="lblTxRefFreq" Text="Frec Ref TX" />
 			<Control Id="lblRxFreq" Text="Frec RX [MHz]" />
-			<Control Id="lblPower" Text="Potencia TX" />
+			<Control Id="lblLibreDMR_Power" Text="Potencia TX" />
 			<Control Id="lblAdmitCriteria" Text="Criterio TX" />
 			<Control Id="lblTxFreq" Text="Frec TX [MHz]" />
 			<Control Id="lblScanList" Text="Explorar" />
@@ -121,6 +121,7 @@
 		<Commons>
 			<Item Id="ChMode" Text="Analógico,Digital" />
 			<Item Id="RefFreq" Text="Bajo,Medio,Alto" />
+			<Item Id="LibreDMR_Power" Text="Master,50mW,250mW,500mW,750mW,1W,2W,3W,4W,5W,5W++" />			
 			<Item Id="Power" Text="Baja,Alta" />
 			<Item Id="AdmitCriterica" Text="Siempre,Canal Libre,CTCSS/DCS" />
 			<Item Id="AdmitCritericaD" Text="Siempre,Canal Libre,Color" />
@@ -246,7 +247,7 @@
 			<Control Id="btnDel" Text="Borrar" />
 		</Controls>
 	</DtmfContactForm>
-	<DtmfForm Text="DTMF">
+	<DtmfForm Text="Configuración DTMF">
 		<Controls>
 			<Control Id="chkSideTone" Text="Monitorizar DTMF" />
 			<Control Id="lblUpCode" Text="DTMFID Final PTT" />
@@ -381,7 +382,7 @@
 			<TreeNode Id="Zone" Text="Zonas" />
 			<TreeNode Id="Channel" Text="Canales" />
 			<TreeNode Id="Scan" Text="Exploración" />
-			<TreeNode Id="DtmfSignal" Text="DTMF" />
+			<TreeNode Id="DtmfSignal" Text="Configuración DTMF" />
 			<TreeNode Id="VFO" Text="VFO" />
 			<TreeNode Id="VFOA" Text="VFO A" />
 			<TreeNode Id="VFOB" Text="VFO B" />
@@ -668,7 +669,7 @@
 			<Control Id="lblRxRefFreq" Text="Frequencia Referencia RX" />
 			<Control Id="lblTxRefFreq" Text="Frequencia Referencia TX" />
 			<Control Id="lblRxFreq" Text="Frec RX [MHz]" />
-			<Control Id="lblPower" Text="Potencia TX" />
+			<Control Id="lblLibreDMR_Power" Text="Potencia TX" />
 			<Control Id="lblAdmitCriteria" Text="Criterio Admisión" />
 			<Control Id="lblTxFreq" Text="Frec TX [MHz]" />
 			<Control Id="lblScanList" Text="Lista Exploración" />

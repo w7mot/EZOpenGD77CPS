@@ -99,7 +99,7 @@
 			<Control Id="lblRxRefFreq" Text="接收参考频率" />
 			<Control Id="lblTxRefFreq" Text="发射参考频率" />
 			<Control Id="lblRxFreq" Text="接收频率 [MHz]" />
-			<Control Id="lblPower" Text="功率" />
+			<Control Id="lblLibreDMR_Power" Text="功率" />
 			<Control Id="lblAdmitCriteria" Text="准许条件" />
 			<Control Id="lblTxFreq" Text="发射频率 [MHz]" />
 			<Control Id="lblScanList" Text="扫描列表" />
@@ -117,6 +117,7 @@
 		<Commons>
 			<Item Id="ChMode" Text="模拟,数字" />
 			<Item Id="RefFreq" Text="低,中,高" />
+			<Item Id="LibreDMR_Power" Text="主,50mW,250mW,500mW,750mW,1W,2W,3W,4W,5W,5W++" />	
 			<Item Id="Power" Text="低,高" />
 			<Item Id="AdmitCriterica" Text="始终,信道空闲,CTCSS/DCS" />
 			<Item Id="AdmitCritericaD" Text="始终,信道空闲,色码" />
@@ -236,7 +237,7 @@
 			<Control Id="btnDel" Text="删除" />
 		</Controls>
 	</DtmfContactForm>
-	<DtmfForm Text="DTMF">
+	<DtmfForm Text="设定值 DTMF">
 		<Controls>
 			<Control Id="chkSideTone" Text="DTMF 侧音" />
 			<Control Id="lblUpCode" Text="PTTID 上线码" />
@@ -380,7 +381,7 @@
 			<TreeNode Id="Zone" Text="区域" />
 			<TreeNode Id="Channel" Text="信道" />
 			<TreeNode Id="Scan" Text="扫描" />
-			<TreeNode Id="DtmfSignal" Text="DTMF" />
+			<TreeNode Id="DtmfSignal" Text="设定值 DTMF" />
 			<TreeNode Id="VFO" Text="VFO" />
 			<TreeNode Id="VFOA" Text="VFO A" />
 			<TreeNode Id="VFOB" Text="VFO B" />
@@ -672,7 +673,7 @@
 			<Control Id="lblRxRefFreq" Text="接收参考频率" />
 			<Control Id="lblTxRefFreq" Text="发射参考频率" />
 			<Control Id="lblRxFreq" Text="接收频率 [MHz]" />
-			<Control Id="lblPower" Text="功率" />
+			<Control Id="lblLibreDMR_Power" Text="功率" />
 			<Control Id="lblAdmitCriteria" Text="准许条件" />
 			<Control Id="lblTxFreq" Text="发射频率 [MHz]" />
 			<Control Id="lblScanList" Text="扫描列表" />

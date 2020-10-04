@@ -102,7 +102,7 @@
 			<Control Id="lblRxRefFreq" Text="Freq Ref RX" />
 			<Control Id="lblTxRefFreq" Text="Freq Ref TX" />
 			<Control Id="lblRxFreq" Text="Freq RX [MHz]" />
-			<Control Id="lblPower" Text="Potència TX" />
+			<Control Id="lblLibreDMR_Power" Text="Potència TX" />
 			<Control Id="lblAdmitCriteria" Text="Criteri TX" />
 			<Control Id="lblTxFreq" Text="Freq TX [MHz]" />
 			<Control Id="lblScanList" Text="Explorar" />
@@ -121,6 +121,7 @@
 		<Commons>
 			<Item Id="ChMode" Text="Analògic,Digital" />
 			<Item Id="RefFreq" Text="Baixa,Mitjana,Alta" />
+			<Item Id="LibreDMR_Power" Text="Master,50mW,250mW,500mW,750mW,1W,2W,3W,4W,5W,5W++" />			
 			<Item Id="Power" Text="Baixa,Alta" />
 			<Item Id="AdmitCriterica" Text="Sempre,Canal Lliure,CTCSS/DCS" />
 			<Item Id="AdmitCritericaD" Text="Sempre,Canal Lliure,Color" />
@@ -246,7 +247,7 @@
 			<Control Id="btnDel" Text="Esborrar" />
 		</Controls>
 	</DtmfContactForm>
-	<DtmfForm Text="DTMF">
+	<DtmfForm Text="Configuració DTMF">
 		<Controls>
 			<Control Id="chkSideTone" Text="Monitoritzar DTMF" />
 			<Control Id="lblUpCode" Text="DTMFID Final PTT" />
@@ -380,7 +381,7 @@
 			<TreeNode Id="Zone" Text="Zones" />
 			<TreeNode Id="Channel" Text="Canals" />
 			<TreeNode Id="Scan" Text="Exploració" />
-			<TreeNode Id="DtmfSignal" Text="DTMF" />
+			<TreeNode Id="DtmfSignal" Text="Configuració DTMF" />
 			<TreeNode Id="VFO" Text="VFO" />
 			<TreeNode Id="VFOA" Text="VFO A" />
 			<TreeNode Id="VFOB" Text="VFO B" />
@@ -667,7 +668,7 @@
 			<Control Id="lblRxRefFreq" Text="Freqüència Referència RX" />
 			<Control Id="lblTxRefFreq" Text="Freqüència Referència TX" />
 			<Control Id="lblRxFreq" Text="Freq RX [MHz]" />
-			<Control Id="lblPower" Text="Potència TX" />
+			<Control Id="lblLibreDMR_Power" Text="Potència TX" />
 			<Control Id="lblAdmitCriteria" Text="Criteri Admisió" />
 			<Control Id="lblTxFreq" Text="Freq TX [MHz]" />
 			<Control Id="lblScanList" Text="Llista Exploració" />
