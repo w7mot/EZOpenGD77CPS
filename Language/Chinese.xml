@@ -434,7 +434,7 @@
 			<MenuItem Id="tsmiChinese" Text="中文" />
       <MenuItem Id="tsmiExtras" Text="Extras" />
       <MenuItem Id="tsmiContactsDownload" Text="Download contacts" />
-      <MenuItem Id="tsmiDMRID" Text="DMR ID" />
+      <MenuItem Id="tsmiDMRID" Text="Download callsigns database" />
       <MenuItem Id="tsmiCalibration" Text="Calibration" />
 
       <MenuItem Id="tsmiOpenGD77" Text="OpenGD77 support" />
@@ -734,6 +734,19 @@
 			<Control Id="lblName" Text="名称" />
 		</Controls>
 	</ZoneForm>
+  <DMRIDForm Text="DMR ID">
+    <Controls>
+      <Control Id="lblMessage" Text="Enter ID prefix code for your region and press Download, to append to the list" />
+      <Control Id="lblRegionId" Text="Region" />
+      <Control Id="lblInactivityFilter" Text="HamDigital - Inactivity filter (days)" />
+      <Control Id="btnDownload" Text="Download from HamDigital" />
+      <Control Id="btnDownloadFromRadioId" Text="Download from RadioID.net" />
+      <Control Id="btnImportCSV" Text="Import CSV" />
+      <Control Id="btnRead" Text="Read from GD-77" />
+      <Control Id="btnWrite" Text="Write to GD-77" />
+      <Control Id="btnClear" Text="Clear" />
+    </Controls>
+  </DMRIDForm>
 	<Commons>
 		<Item Id="RadioIdNotEmpty" Text="对讲机ID不能为空" />
 		<Item Id="RadioIdOutOfRange" Text="对讲机ID超出范围" />
@@ -764,5 +777,6 @@
 		<Item Id="CommError" Text="通信出错" />
 		<Item Id="Add" Text="添加：" />		
 		<Item Id="ScanSelected" Text="不能操作选定的" />
+    <Item Id="N/A" Text="N/A"/>
 	</Commons>
 </Resource>

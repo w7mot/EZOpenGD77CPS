@@ -267,6 +267,7 @@
 			<Control Id="lblKillType" Text="Tipus DESHABILITAR" />
 			<Control Id="lblOtherDur" Text="*# Durada [ms]" />
 			<Control Id="lblRate" Text="Velocitat DTMF" />
+			<Control Id="lblTail" Text="DTMF Tail [ms]" />
 		</Controls>
 		<Commons>
 			<Item Id="DecodeResp" Text="Cap,Recordatori,Resposta,Recordar i Respondre" />
@@ -435,7 +436,7 @@
 			<MenuItem Id="tsmiChinese" Text="Espanyol" />
       <MenuItem Id="tsmiExtras" Text="Utilitas" />
       <MenuItem Id="tsmiContactsDownload" Text="Descarregar contactes" />
-      <MenuItem Id="tsmiDMRID" Text="DMR ID" />
+      <MenuItem Id="tsmiDMRID" Text="Descarregar Indicatiu" />
       <MenuItem Id="tsmiCalibration" Text="Calibració" />
       <MenuItem Id="tsmiOpenGD77" Text="OpenGD77 support" />
       <MenuItem Id="tsmiFirmwareLoader" Text="Firmware loader" />
@@ -751,7 +752,8 @@
       <Control Id="lblMessage" Text="Introdueix codi prefixe d'ID de vostra regió i premeu Descarregar, per afegir-ho al llistat" />
       <Control Id="lblRegionId" Text="Regió" />
       <Control Id="lblInactivityFilter" Text="Filtre d'inactivitat (díes)" />
-      <Control Id="btnDownload" Text="Descarregar" />
+      <Control Id="btnDownload" Text="Descarregar HamDigital" />
+      <Control Id="btnDownloadFromRadioId" Text="Descarregar RadioID.net" />
       <Control Id="btnRead" Text="Llegir el GD-77" />
       <Control Id="btnWrite" Text="Escriure al GD-77" />
       <Control Id="btnClear" Text="Natejar" />
@@ -814,6 +816,7 @@
     <Item Id="dataRead" Text="Llegint dades del GD-77"/>
     <Item Id="dataWrite" Text="Escrivint dades al GD-77"/>
     <Item Id="DMRIdContcatsTotal" Text="Número Total d'IDs = {0}. De... {1} que hi caben" />
-    <Item Id="ErrorParsingData" Text="Error analitzant dades" />    
+    <Item Id="ErrorParsingData" Text="Error analitzant dades" />
+    <Item Id="N/A" Text="N/A"/>
   </Commons>
 </Resource>

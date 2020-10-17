@@ -267,6 +267,7 @@
 			<Control Id="lblKillType" Text="Kill Type"/>
 			<Control Id="lblOtherDur" Text="*# Тривалість [мс]"/>
 			<Control Id="lblRate" Text="DTMF Rate"/>
+			<Control Id="lblTail" Text="DTMF Tail [ms]" />
 		</Controls>
 		<Commons>
 			<Item Id="DecodeResp" Text="Немає,Нагадування,Відповідь,Нагадування та відповідь"/>
@@ -444,7 +445,7 @@
 			<MenuItem Id="tsmiChinese" Text="Китайська"/>
 			<MenuItem Id="tsmiExtras" Text="Додаткові можливості"/>
       <MenuItem Id="tsmiContactsDownload" Text="Завантажте контакти" />
-      <MenuItem Id="tsmiDMRID" Text="DMR ID" />
+      <MenuItem Id="tsmiDMRID" Text="Завантажте Позивний" />
       <MenuItem Id="tsmiCalibration" Text="глядач" />
       <MenuItem Id="tsmiOpenGD77" Text="OpenGD77 support" />
       <MenuItem Id="tsmiFirmwareLoader" Text="Firmware loader" />
@@ -768,6 +769,7 @@
       <Control Id="lblRegionId" Text="Регіон" />
       <Control Id="lblInactivityFilter" Text="Фільтр бездіяльності (днів)" />
       <Control Id="btnDownload" Text="Завантажити HamDigital" />
+      <Control Id="btnDownloadFromRadioId" Text="Завантажити RadioID.net" />
       <Control Id="btnImportCSV" Text="Імпортувати CSV - Фільтр pегіон" />     
       <Control Id="btnRead" Text="Читайте від GD-77" />
       <Control Id="btnWrite" Text="Напишіть GD-77" />
@@ -827,6 +829,7 @@
     <Item Id="dataRead" Text="Reading data from GD-77"/>
     <Item Id="dataWrite" Text="Writing data to GD-77"/>
     <Item Id="DMRIdContcatsTotal" Text="Total number of IDs = {0}. Max of {1} can be uploaded" />
-    <Item Id="ErrorParsingData" Text="Error while parsing data" />    
+    <Item Id="ErrorParsingData" Text="Error while parsing data" />
+    <Item Id="N/A" Text="N/A"/>
 	</Commons>
 </Resource>

@@ -267,6 +267,7 @@
 			<Control Id="lblKillType" Text="Tipo DESABILITAR" />
 			<Control Id="lblOtherDur" Text="*# Duração [ms]" />
 			<Control Id="lblRate" Text="Velocidade DTMF" />
+			<Control Id="lblTail" Text="DTMF Tail [ms]" />
 		</Controls>
 		<Commons>
 			<Item Id="DecodeResp" Text="Nenhum,Recordar,Resposta,Recordar e Responder" />
@@ -435,7 +436,7 @@
 			<MenuItem Id="tsmiChinese" Text="Português" />
       <MenuItem Id="tsmiExtras" Text="Extras" />
       <MenuItem Id="tsmiContactsDownload" Text="Download de contatos" />
-      <MenuItem Id="tsmiDMRID" Text="DMR ID" />
+      <MenuItem Id="tsmiDMRID" Text="Download Chamada" />
       <MenuItem Id="tsmiCalibration" Text="Calibração" />
       <MenuItem Id="tsmiOpenGD77" Text="OpenGD77 support" />
       <MenuItem Id="tsmiFirmwareLoader" Text="Firmware loader" />
@@ -752,6 +753,7 @@
     <Control Id="lblRegionId" Text="Região" />
     <Control Id="lblInactivityFilter" Text="Filtro de inatividade (dias)" />
     <Control Id="btnDownload" Text="Baixar HamDigital" />
+    <Control Id="btnDownloadFromRadioId" Text="Baixar RadioID.net" />
     <Control Id="btnImportCSV" Text="Importar CSV - Filtro de região" />
     <Control Id="btnRead" Text="Leia a partir do GD-77" />
     <Control Id="btnWrite" Text="Escreva para GD-77" />
@@ -816,5 +818,6 @@
     <Item Id="dataWrite" Text="Writing data to GD-77"/>
     <Item Id="DMRIdContcatsTotal" Text="Total number of IDs = {0}. Max of {1} can be uploaded" />
     <Item Id="ErrorParsingData" Text="Error while parsing data" />
+    <Item Id="N/A" Text="N/A"/>
   </Commons>
 </Resource>

@@ -267,6 +267,7 @@
 			<Control Id="lblKillType" Text="Tip spanja" />
 			<Control Id="lblOtherDur" Text="*# Trajanje [ms]" />
 			<Control Id="lblRate" Text="DTMF ocena" />
+			<Control Id="lblTail" Text="DTMF Tail [ms]" />
 		</Controls>
 		<Commons>
 			<Item Id="DecodeResp" Text="Nič,Opomnik,Odgovori,Opomnik in odgovori" />
@@ -436,7 +437,7 @@
 			<MenuItem Id="tsmiChinese" Text="Kitajski" />
       <MenuItem Id="tsmiExtras" Text="Posebno" />
       <MenuItem Id="tsmiContactsDownload" Text="Naloži stike" />
-      <MenuItem Id="tsmiDMRID" Text="DMR ID" />
+      <MenuItem Id="tsmiDMRID" Text="Naloži Klicni" />
       <MenuItem Id="tsmiCalibration" Text="Kalibracije" />
       <MenuItem Id="tsmiOpenGD77" Text="OpenGD77 support" />
       <MenuItem Id="tsmiFirmwareLoader" Text="Firmware loader" />
@@ -748,7 +749,8 @@
       <Control Id="lblMessage" Text="Vpišite kodo predpona ID za svojo regijo in pritisnite Prenesi, da dodate na seznam" />
       <Control Id="lblRegionId" Text="Regija" />
       <Control Id="lblInactivityFilter" Text="Filter neaktivnosti (dni))" />
-      <Control Id="btnDownload" Text="Prenesi" />
+      <Control Id="btnDownload" Text="Prenesi HamDigital" />
+      <Control Id="btnDownloadFromRadioId" Text="Prenesi RadioID.net" />
       <Control Id="btnImportCSV" Text="Uvoz CSV - filter Regija" />
       <Control Id="btnRead" Text="Preberite od GD-77" />
       <Control Id="btnWrite" Text="Napišite GD-77" />
@@ -807,5 +809,6 @@
     <Item Id="dataWrite" Text="Writing data to GD-77"/>
     <Item Id="DMRIdContcatsTotal" Text="Total number of IDs = {0}. Max of {1} can be uploaded" />
     <Item Id="ErrorParsingData" Text="Error while parsing data" />
+    <Item Id="N/A" Text="N/A"/>
   </Commons>
 </Resource>

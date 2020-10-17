@@ -9,7 +9,7 @@
 			<Control Id="lblVersion" Text="" />
 			<Control Id="lblCompany" Text="Radioddity und GD-77 Community" />
 			<Control Id="btnClose" Text="OK" />
-      <Control Id="lblTranslationCredit" Text="German version by DG9VH and DL2MF" />
+      <Control Id="lblTranslationCredit" Text="German version by DG9VH, DL2MF and DG3GSP" />
 		</Controls>
 	</AboutForm>
 	<BootItemForm Text="Gerätestart">
@@ -267,6 +267,7 @@
 			<Control Id="lblKillType" Text="Kill Typ" />
 			<Control Id="lblOtherDur" Text="*# Dauer [ms]" />
 			<Control Id="lblRate" Text="DTMF Rate" />
+			<Control Id="lblTail" Text="DTMF Tail [ms]" />
 		</Controls>
 		<Commons>
 			<Item Id="DecodeResp" Text="Kein,Erinnerung,Antwort,Erinnerung und Antwort" />
@@ -436,10 +437,10 @@
 			<MenuItem Id="tsmiChinese" Text="Chinese" />
       <MenuItem Id="tsmiExtras" Text="Extras" />
       <MenuItem Id="tsmiContactsDownload" Text="Kontakte herunterladen" />
-      <MenuItem Id="tsmiDMRID" Text="DMR ID" />
+      <MenuItem Id="tsmiDMRID" Text="DMR ID-Liste herunterladen" />
       <MenuItem Id="tsmiCalibration" Text="Kalibrierungsanzeige" />
 			<MenuItem Id="tsmiOpenGD77" Text="OpenGD77 support" />
-			<MenuItem Id="tsmiFirmwareLoader" Text="Firmware loader" />
+			<MenuItem Id="tsmiFirmwareLoader" Text="Firmware aktualisieren" />
     </MenuStrip>
 		<ContextMenuStrip>
 			<MenuItem Id="tsmiAdd" Text="Hinzufügen" />
@@ -751,6 +752,7 @@
       <Control Id="lblRegionId" Text="Region" />
       <Control Id="lblInactivityFilter" Text="Inaktivitätsfilter (Tage)" />
       <Control Id="btnDownload" Text="Herunterladen von Hamdigital" />
+      <Control Id="btnDownloadFromRadioId" Text="Herunterladen von RadioID.net" />
       <Control Id="btnImportCSV" Text="Import CSV - filter von region" />
       <Control Id="btnRead" Text="Lesen von GD-77" />
       <Control Id="btnWrite" Text="Schreiben an GD-77" />
@@ -815,5 +817,6 @@
     <Item Id="dataWrite" Text="Schreibe Daten zum GD-77"/>
     <Item Id="DMRIdContcatsTotal" Text="Anzahl der IDs = {0}. Max {1} können hochgeladen werden" />
     <Item Id="ErrorParsingData" Text="Fehler beim Einlesen" />
+    <Item Id="N/A" Text="N/A"/>
   </Commons>
 </Resource>

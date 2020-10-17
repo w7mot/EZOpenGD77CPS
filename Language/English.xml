@@ -12,18 +12,18 @@
       <Control Id="lblTranslationCredit" Text="" />
 		</Controls>
 	</AboutForm>
-	<BootItemForm Text="Boot Item">
+	<BootItemForm Text="Boot screen">
 		<Controls>
-			<Control Id="grpBootScreen" Text="Intro Screen" />
-			<Control Id="lblBootScreen" Text="Intro Screen" />
+			<Control Id="grpBootScreen" Text="Boot Screen" />
+			<Control Id="lblBootScreen" Text="Display mode" />
 			<Control Id="lblLine2" Text="Line 2" />
 			<Control Id="lblLine1" Text="Line 1" />
 			<Control Id="lblBootPwd" Text="Power On Password" />
 			<Control Id="chkBootPwdEnable" Text="Power On Password Enable" />
-			<Control Id="chkBootScreen" Text="Intro Screen" />
+			<Control Id="chkBootScreen" Text="Boot Screen" />
 		</Controls>
 		<Commons>
-			<Item Id="BootScreen" Text="Picture,Char String" />
+			<Item Id="BootScreen" Text="Picture,Text" />
 		</Commons>
 	</BootItemForm>
 	<ButtonForm Text="Buttons">
@@ -269,6 +269,7 @@
 			<Control Id="lblKillType" Text="Kill Type" />
 			<Control Id="lblOtherDur" Text="*# Duration [ms]" />
 			<Control Id="lblRate" Text="DTMF Rate" />
+			<Control Id="lblTail" Text="DTMF Tail [ms]" />
 		</Controls>
 		<Commons>
 			<Item Id="DecodeResp" Text="None,Reminder,Reply,Reminder and Reply" />
@@ -309,7 +310,7 @@
 			<Item Id="EncryptType" Text="None,Basic" />
 		</Commons>
 	</EncryptForm>
-	<GeneralSetForm Text="General Setting">
+	<GeneralSetForm Text="General Settings">
 		<Controls>
 			<Control Id="chkTxExitTone" Text="Tx Exit Tone" />
 			<Control Id="grpBeep" Text="Alert Tone" />
@@ -335,8 +336,8 @@
 			<Control Id="lblPrivateHang" Text="Private Call Hang Time [ms]" />
 			<Control Id="lblGrpHold" Text="Group Call Hang Time [ms]" />
 			<Control Id="chkDisableAllLeds" Text="Disable All LED" />
-			<Control Id="lblRadioName" Text="Radio Name" />
-			<Control Id="lblRadioID" Text="Radio ID" />
+			<Control Id="lblRadioName" Text="Callsign" />
+			<Control Id="lblRadioID" Text="Radio DMR ID" />
 			<Control Id="lblTxPreambleDur" Text="Tx Preamble Duration [ms]" />
 			<Control Id="lblProgramPwd" Text="Program Password" />
 			<Control Id="lblRxLowBatt" Text="Rx Low Battery Interval [s]" />
@@ -368,10 +369,10 @@
 		<TreeView>
 			<TreeNode Id="Model" Text="GD-77" />
 			<TreeNode Id="BasicInfo" Text="Basic Information" />
-			<TreeNode Id="BootItem" Text="Boot Item" />
+			<TreeNode Id="BootItem" Text="Boot screen" />
 			<TreeNode Id="Menu" Text="Menu" />
 			<TreeNode Id="NumKeyAssign" Text="Number Key Assign" />
-			<TreeNode Id="GeneralSetting" Text="General Setting" />
+			<TreeNode Id="GeneralSetting" Text="General Settings" />
 			<TreeNode Id="Buttons" Text="Buttons" />
 			<TreeNode Id="TextMsg" Text="Text Message" />
 			<TreeNode Id="Pivacy" Text="Privacy" />
@@ -397,16 +398,16 @@
 			<MenuItem Id="tsmiExit" Text="Exit" />
 			<MenuItem Id="tsmiSetting" Text="Setting" />
 			<MenuItem Id="tsmiDeviceInfo" Text="Basic Information" />
-			<MenuItem Id="tsmiBootItem" Text="Boot Item" />
+			<MenuItem Id="tsmiBootItem" Text="Boot screen" />
 			<MenuItem Id="tsmiMenu" Text="Menu" />
 			<MenuItem Id="tsmiNumKeyContact" Text="Number Key Assign" />
-			<MenuItem Id="tsmiGerneralSet" Text="General Setting" />
+			<MenuItem Id="tsmiGerneralSet" Text="General Settings" />
 			<MenuItem Id="tsmiButton" Text="Buttons" />
 			<MenuItem Id="tsmiTextMsg" Text="Text Message" />
 			<MenuItem Id="tsmiEncrypt" Text="Privacy" />
 			<MenuItem Id="tsmiSignaling" Text="Signaling" />
       <MenuItem Id="tsmiSignalingSystem" Text="Signaling System" />
-			<MenuItem Id="tsmiDtmf" Text="DTMF" />
+			<MenuItem Id="tsmiDtmf" Text="DTMF Settings" />
 			<MenuItem Id="tsmiEmgSystem" Text="Emergency System" />
 			<MenuItem Id="tsmiContact" Text="Contact" />
 			<MenuItem Id="tsmiDtmfContact" Text="DTMF" />
@@ -439,7 +440,7 @@
 			<MenuItem Id="tsmiChinese" Text="Chinese" />
       <MenuItem Id="tsmiExtras" Text="Extras" />
       <MenuItem Id="tsmiContactsDownload" Text="Download contacts" />
-      <MenuItem Id="tsmiDMRID" Text="DMR ID" />
+      <MenuItem Id="tsmiDMRID" Text="Download callsign database" />
       <MenuItem Id="tsmiCalibration" Text="Calibration" />     
       
       <MenuItem Id="tsmiOpenGD77" Text="OpenGD77 support" />
@@ -498,7 +499,7 @@
 			<Control Id="lblMenuLang" Text="Menu Lanugage" />
 			<Control Id="lblWorkMode" Text="Work Mode" />
 			<Control Id="chkPower" Text="Power" />
-			<Control Id="chkBootScreen" Text="Intro Screen" />
+			<Control Id="chkBootScreen" Text="Boot Screen" />
 			<Control Id="chkEncrypt" Text="Privacy" />
 			<Control Id="lblKeyLockTime" Text="Keypad Lock Time [s]" />
 			<Control Id="chkTalkAround" Text="Talkaround" />
@@ -828,13 +829,14 @@
       <Control Id="lblMessageDownloading" Text="Downloading" />
     </Controls>
   </CalibrationForm>
-  <DMRIDForm Text="DMR ID">
+  <DMRIDForm Text="Download callsign database">
     <Controls>
       <Control Id="lblMessage" Text="Enter ID prefix code for your region and press Download, to append to the list" />
       <Control Id="lblRegionId" Text="Region" />
-      <Control Id="lblInactivityFilter" Text="Inactivity filter (days)" />      
-      <Control Id="btnDownload" Text="Download from HamDigital - filtered by region and inactivity" />
-      <Control Id="btnImportCSV" Text="Import CSV - filtered by region code" />
+      <Control Id="lblInactivityFilter" Text="HamDigital - Inactivity filter (days)" />      
+      <Control Id="btnDownload" Text="Download from HamDigital" />
+      <Control Id="btnDownloadFromRadioId" Text="Download from RadioID.net" />
+      <Control Id="btnImportCSV" Text="Import CSV" />
       <Control Id="btnRead" Text="Read from GD-77" />
       <Control Id="btnWrite" Text="Write to GD-77" />
       <Control Id="btnClear" Text="Clear" />      
@@ -898,5 +900,6 @@
     <Item Id="dataWrite" Text="Writing data to GD-77"/>
     <Item Id="DMRIdContcatsTotal" Text="Total number of IDs = {0}. Max of {1} can be uploaded" />
     <Item Id="ErrorParsingData" Text="Error while parsing data" />
+    <Item Id="N/A" Text="N/A"/>
   </Commons>
 </Resource>
