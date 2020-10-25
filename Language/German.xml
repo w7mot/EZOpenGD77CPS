@@ -212,17 +212,17 @@
 			<Item Id="HeaderText" Text="Nummer,Name,Ruf ID,Typ,Kingelton,Anruf erhalten Ton,Repeater Slot override," />
 		</Commons>
 	</ContactsForm>
-	<DeviceInfoForm Text="Grundeinstellungen">
+	<DeviceInfoForm Text="Bandgrenzen">
 		<Controls>
 			<Control Id="lblTo1" Text="-" />
 			<Control Id="lblTo2" Text="-" />
-			<Control Id="lblSection1" Text="Frequenzbereich 1 [MHz]" />
+			<Control Id="lblSection1" Text="UHF Bereich [MHz]" />
 			<Control Id="lblDspFwVer" Text="DSP Version" />
 			<Control Id="lblFirmwareVer" Text="Firmware Version" />
 			<Control Id="lblHardwareVer" Text="Hardware Version" />
 			<Control Id="lblCpsSwVer" Text="CPS Version" />
 			<Control Id="lblSn" Text="Seriennummer" />
-			<Control Id="lblSection2" Text="Frequenzbereich 2 [MHz]" />
+			<Control Id="lblSection2" Text="VHF Bereich [MHz]" />
 			<Control Id="lblLastPrgTime" Text="Zuletzt programmiert am" />
 			<Control Id="lblModel" Text="Modelbezeichnung" />
 		</Controls>
@@ -308,7 +308,7 @@
 			<Item Id="EncryptType" Text="Keine,Basic" />
 		</Commons>
 	</EncryptForm>
-	<GeneralSetForm Text="Generelle Einstellungen">
+	<GeneralSetForm Text="Rufzeichen und DMR-ID">
 		<Controls>
 			<Control Id="chkTxExitTone" Text="TX Ende Ton" />
 			<Control Id="grpBeep" Text="Signal Ton" />
@@ -334,8 +334,8 @@
 			<Control Id="lblPrivateHang" Text="Direktruf-Haltezeit [ms]" />
 			<Control Id="lblGrpHold" Text="Gruppenruf-Haltezeit [ms]" />
 			<Control Id="chkDisableAllLeds" Text="Deaktiviere Alle LED" />
-			<Control Id="lblRadioName" Text="Funkgeräte Name" />
-			<Control Id="lblRadioID" Text="Funkgeräte ID" />
+			<Control Id="lblRadioName" Text="Rufzeichen" />
+			<Control Id="lblRadioID" Text="DMR ID" />
 			<Control Id="lblTxPreambleDur" Text="TX Präambel Dauer [ms]" />
 			<Control Id="lblProgramPwd" Text="Programmier-Password" />
 			<Control Id="lblRxLowBatt" Text="RX Batterie Leer Intervall [s]" />
@@ -348,7 +348,7 @@
 			<Control Id="chkPrivateCall" Text="Direktruf" />
 			<Control Id="chkTxInhibit" Text="TX-Verbot überschreiben" />
 			<Control Id="lblUpChMode" Text="Oberer Kanal Modus" />
-			<Control Id="lblDownChMode" Text="Unterer Kabal Modus" />
+			<Control Id="lblDownChMode" Text="Unterer Kanal Modus" />
 			<Control Id="grpScan" Text="Scan" />
 			<Control Id="lblScanMode" Text="Scan Modus" />
 		</Controls>
@@ -363,14 +363,14 @@
 	<HelpForm Text="Hilfe">
 		<Controls />
 	</HelpForm>
-	<MainForm Text="Radioddity GD-77 CPS 3.0.6 Community Edition">
+	<MainForm Text="OpenGD77 CPS">
 		<TreeView>
 			<TreeNode Id="Model" Text="GD-77" />
-			<TreeNode Id="BasicInfo" Text="Grundeinstellungen" />
+			<TreeNode Id="BasicInfo" Text="Bandgrenzen" />
 			<TreeNode Id="BootItem" Text="Starteinstellungen" />
 			<TreeNode Id="Menu" Text="Gerätemenü" />
 			<TreeNode Id="NumKeyAssign" Text="Tastaturbelegung" />
-			<TreeNode Id="GeneralSetting" Text="Generelle Einstellungen" />
+			<TreeNode Id="GeneralSetting" Text="Rufzeichen und DMR-ID" />
 			<TreeNode Id="Buttons" Text="Tasten" />
 			<TreeNode Id="TextMsg" Text="Text-/Kurznachrichten" />
 			<TreeNode Id="Pivacy" Text="Verschlüsselung" />
@@ -395,11 +395,11 @@
 			<MenuItem Id="tsmiOpen" Text="Öffnen" />
 			<MenuItem Id="tsmiExit" Text="Beenden" />
 			<MenuItem Id="tsmiSetting" Text="Einstellungen" />
-			<MenuItem Id="tsmiDeviceInfo" Text="Grundeinstellungen" />
+			<MenuItem Id="tsmiDeviceInfo" Text="Bandgrenzen" />
 			<MenuItem Id="tsmiBootItem" Text="Starteinstellungen" />
 			<MenuItem Id="tsmiMenu" Text="Menü" />
 			<MenuItem Id="tsmiNumKeyContact" Text="Zifferntasten-Belegung" />
-			<MenuItem Id="tsmiGerneralSet" Text="Generelle Einstellungen" />
+			<MenuItem Id="tsmiGerneralSet" Text="Rufzeichen und DMR-ID" />
 			<MenuItem Id="tsmiButton" Text="Tasten" />
 			<MenuItem Id="tsmiTextMsg" Text="Text Nachrichten" />
 			<MenuItem Id="tsmiEncrypt" Text="Verschlüsselung" />
@@ -409,7 +409,7 @@
 			<MenuItem Id="tsmiEmgSystem" Text="Notfall System" />
 			<MenuItem Id="tsmiContact" Text="Kontakte" />
 			<MenuItem Id="tsmiDtmfContact" Text="DTMF Kontakte" />
-			<MenuItem Id="tsmiDmrContact" Text="Digitale Kontakte" />
+			<MenuItem Id="tsmiDmrContact" Text="TG-/Kontakte" />
 			<MenuItem Id="tsmiContacts" Text="Kontakte" />
 			<MenuItem Id="tsmiGrpRxList" Text="RX Gruppenlisten" />
 			<MenuItem Id="tsmiZone" Text="Zonen" />
