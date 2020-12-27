@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "OpenGD77 CPS"
-#define MyAppVersion "2020.09.27"
+#define MyAppVersion "R2020.12.13.01"
 #define MyAppURL "https://github.com/rogerclarkmelbourne/OpenGD77CPS"
 #define MyAppExeName "OpenGD77CPS.exe"
 
@@ -50,6 +50,7 @@ Source: "..\bin\ReleaseOpenGD77\help.xml"; DestDir: "{app}"; Flags: ignoreversio
 Source: "..\Setup.ini"; DestDir: "{app}";  Components: portable; Flags: ignoreversion
 Source: "..\bin\ReleaseOpenGD77\Tone.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\bin\ReleaseOpenGD77\WeifenLuo.WinFormsUI.Docking.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\bin\ReleaseOpenGD77\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Language\English.chm"; DestDir: "{app}\Language"; Flags: ignoreversion
 Source: "..\Language\English.xml"; DestDir: "{app}\Language"; Flags: ignoreversion
 Source: "..\Language\French.chm"; DestDir: "{app}\Language"; Flags: ignoreversion
@@ -70,6 +71,8 @@ Source: "..\Language\Ukrainian.xml"; DestDir: "{app}\Language"; Flags: ignorever
 Source: "..\Language\Ukrainian.chm"; DestDir: "{app}\Language"; Flags: ignoreversion
 Source: "..\Language\Chinese.xml"; DestDir: "{app}\Language"; Flags: ignoreversion
 Source: "..\Language\Chinese.chm"; DestDir: "{app}\Language"; Flags: ignoreversion
+Source: "..\Language\Japanese.xml"; DestDir: "{app}\Language"; Flags: ignoreversion
+Source: "..\Language\Japanese.chm"; DestDir: "{app}\Language"; Flags: ignoreversion
 
 Source: "..\OpenGD77CommDriver\wdi-simple.exe"; DestDir: "{%TEMP}\OpenGD77CommDriver"; Flags: ignoreversion
 

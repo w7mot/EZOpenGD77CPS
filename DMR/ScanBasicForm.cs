@@ -505,14 +505,8 @@ namespace DMR
 				0,
 				0
 			});
-#if OpenGD77
 			this.nudScanTime.Visible = true;
 			this.lblScanTime.Visible = true;
-#elif CP_VER_3_1_X
-			this.nudScanTime.Visible = true;
-			this.lblScanTime.Visible = true;
-#endif
-
 			this.nudStartVoteRssi.method_2(null);
 			this.nudStartVoteRssi.Location = new Point(261, 234);
 			this.nudStartVoteRssi.Maximum = new decimal(new int[4]
@@ -692,8 +686,8 @@ namespace DMR
 			this.Font = new Font("Arial", 10f, FontStyle.Regular);
 			base.Name = "ScanBasicForm";
 			this.Text = "Scan";
-			base.Load += this.ScanBasicForm_Load;
-			base.FormClosing += this.ScanBasicForm_FormClosing;
+			base.Load += new EventHandler(this.ScanBasicForm_Load);
+			base.FormClosing += new FormClosingEventHandler(this.ScanBasicForm_FormClosing);
 			this.pnlScanBasic.ResumeLayout(false);
 			this.pnlScanBasic.PerformLayout();
 			((ISupportInitialize)this.nudAnalogHang).EndInit();

@@ -11,2027 +11,2052 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace DMR
 {
-	public class VfoForm : DockContent, IDisp
-	{
-
-		public enum ChModeE
-		{
-			Analog,
-			Digital
-		}
-
-		private enum RefFreqE
-		{
-			Low,
-			Middle,
-			High
-		}
-
-		private enum AdmitCritericaE
-		{
-			Always,
-			ChFree,
-			CtcssDcs,
-			ColorCode = 2,
-			CorectPl
-		}
-
-		private enum BandwidthE
-		{
-			Band12_5,
-			Band25
-		}
-
-		private enum SquelchE
-		{
-			Tight,
-			Normal
-		}
-
-		private enum VoiceEmphasisE
-		{
-			None,
-			DeEmphasisAndPreEmphasis,
-			DeEmphasis,
-			PreEmphasis
-		}
-
-		private enum SteE
-		{
-			Frequency,
-			Ste120,
-			Ste180,
-			Ste240
-		}
-
-		private enum NoneSteE
-		{
-			Off,
-			Frequency
-		}
-
-		private enum SignalingSystemE
-		{
-			Off,
-			Dtmf
-		}
-
-		private enum UnmuteRuleE
-		{
-			StdUnmuteMute,
-			AndUnmuteMute,
-			AndUnmuteOrMute
-		}
+    public class VfoForm : DockContent, IDisp
+    {
+
+        public enum ChModeE
+        {
+            Analog,
+            Digital
+        }
+
+        private enum LibreDMR_Power_E
+        {
+            Power_NoOverride = 0,
+            Power_50mW,
+            Power_250mW,
+            Power_500mW,
+            Power_750mW,
+            Power_1W,
+            Power_2W,
+            Power_3W,
+            Power_4W,
+            Power_5W,
+            Power_5W_Plus
+        }
+
+        private enum RefFreqE
+        {
+            Low,
+            Middle,
+            High
+        }
+
+        private enum AdmitCritericaE
+        {
+            Always,
+            ChFree,
+            CtcssDcs,
+            ColorCode = 2,
+            CorectPl
+        }
+
+        private enum BandwidthE
+        {
+            Band12_5,
+            Band25
+        }
+
+        private enum SquelchE
+        {
+            Tight,
+            Normal
+        }
+
+        private enum VoiceEmphasisE
+        {
+            None,
+            DeEmphasisAndPreEmphasis,
+            DeEmphasis,
+            PreEmphasis
+        }
+
+        private enum SteE
+        {
+            Frequency,
+            Ste120,
+            Ste180,
+            Ste240
+        }
+
+        private enum NoneSteE
+        {
+            Off,
+            Frequency
+        }
+
+        private enum SignalingSystemE
+        {
+            Off,
+            Dtmf
+        }
+
+        private enum UnmuteRuleE
+        {
+            StdUnmuteMute,
+            AndUnmuteMute,
+            AndUnmuteOrMute
+        }
+
+        private enum PttidTypeE
+        {
+            None,
+            Front,
+            Post,
+            FrontAndPost
+        }
 
-		private enum PttidTypeE
-		{
-			None,
-			Front,
-			Post,
-			FrontAndPost
-		}
+        private enum TimingPreference
+        {
+            First,
+            Qualified,
+            Unqualified
+        }
 
-		private enum TimingPreference
-		{
-			First,
-			Qualified,
-			Unqualified
-		}
+        public class ChModeChangeEventArgs : EventArgs
+        {
+            public int ChIndex
+            {
+                get;
+                set;
+            }
 
-		public class ChModeChangeEventArgs : EventArgs
-		{
-			public int ChIndex
-			{
-				get;
-				set;
-			}
-
-			public int ChMode
-			{
-				get;
-				set;
-			}
-
-			public ChModeChangeEventArgs(int chIndex, int chMode)
-			{
-				
-				//base._002Ector();
-				this.ChIndex = chIndex;
-				this.ChMode = chMode;
-			}
-		}
+            public int ChMode
+            {
+                get;
+                set;
+            }
 
-		[Serializable]
-		[StructLayout(LayoutKind.Sequential, Pack = 1)]
-		public struct ChannelOne : IVerify<ChannelOne>
-		{
-			[MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
-			private byte[] name;
+            public ChModeChangeEventArgs(int chIndex, int chMode)
+            {
 
-			private uint rxFreq;
+                //base._002Ector();
+                this.ChIndex = chIndex;
+                this.ChMode = chMode;
+            }
+        }
 
-			private uint txFreq;
+        [Serializable]
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct ChannelOne : IVerify<ChannelOne>
+        {
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
+            private byte[] name;
 
-			private byte chMode;
+            private uint rxFreq;
 
-			private byte rxRefFreq;
+            private uint txFreq;
 
-			private byte txRefFreq;
+            private byte chMode;
 
-			private byte tot;
+            private byte libreDMR_Power;
 
-			private byte totRekey;
+            private byte txRefFreq;
 
-			private byte admitCriteria;
+            private byte tot;
 
-			private byte rssiThreshold;
+            private byte totRekey;
 
-			private byte scanList;
+            private byte admitCriteria;
 
-			private ushort rxTone;
+            private byte rssiThreshold;
 
-			private ushort txTone;
+            private byte scanList;
 
-			private byte voiceEmphasis;
-
-			private byte txSignaling;
-
-			private byte unmuteRule;
-
-			private byte rxSignaling;
-
-			private byte artsInterval;
-
-			private byte encrypt;
-
-			private byte rxColor;
-
-			private byte rxGroupList;
-
-			private byte txColor;
-
-			private byte emgSystem;
-
-			private ushort contact;
-
-			private byte flag1;
-
-			private byte flag2;
-
-			private byte flag3;
-
-			private byte flag4;
-
-			private ushort offsetFreq;
-
-			private byte flag5;
-
-			private byte sql;
-
-			public string Name
-			{
-				get
-				{
-					return Settings.smethod_25(this.name);
-				}
-				set
-				{
-					byte[] array = Settings.smethod_23(value);
-					this.name.Fill((byte)255);
-					Array.Copy(array, 0, this.name, 0, Math.Min(array.Length, this.name.Length));
-				}
-			}
-
-			public string RxFreq
-			{
-				get
-				{
-					try
-					{
-						uint num = 0u;
-						string s = string.Format("{0:x}", this.rxFreq);
-						double double_ = (double)int.Parse(s) / 100000.0;
-						if (Settings.smethod_19(double_, ref num) == -1)
-						{
-							double_ = (double)num;
-						}
-						return double_.ToString("f5");
-					}
-					catch (Exception)
-					{
-						return "";
-					}
-				}
-				set
-				{
-					try
-					{
-						string s = value.Replace(".", "");
-						this.rxFreq = uint.Parse(s, NumberStyles.HexNumber);
-					}
-					catch (Exception ex)
-					{
-						Console.WriteLine(ex.Message);
-						this.rxFreq = 4294967295u;
-					}
-				}
-			}
-
-			public uint UInt32_0
-			{
-				get
-				{
-					return this.rxFreq;
-				}
-				set
-				{
-					this.rxFreq = value;
-				}
-			}
-
-			public uint RxFreqDec
-			{
-				get
-				{
-					return Settings.smethod_34(this.rxFreq);
-				}
-				set
-				{
-					this.rxFreq = Settings.smethod_35(value);
-				}
-			}
-
-			public string TxFreq
-			{
-				get
-				{
-					try
-					{
-						uint num = 0u;
-						string s = string.Format("{0:x}", this.txFreq);
-						double double_ = (double)int.Parse(s) / 100000.0;
-						if (Settings.smethod_19(double_, ref num) == -1)
-						{
-							double_ = (double)num;
-						}
-						return double_.ToString("f5");
-					}
-					catch (Exception)
-					{
-						return "";
-					}
-				}
-				set
-				{
-					try
-					{
-						string s = value.Replace(".", "");
-						this.txFreq = uint.Parse(s, NumberStyles.HexNumber);
-					}
-					catch (Exception ex)
-					{
-						Console.WriteLine(ex.Message);
-						this.rxFreq = 4294967295u;
-					}
-				}
-			}
-
-			public uint UInt32_1
-			{
-				get
-				{
-					return this.txFreq;
-				}
-				set
-				{
-					this.txFreq = value;
-				}
-			}
-
-			public uint TxFreqDec
-			{
-				get
-				{
-					return Settings.smethod_34(this.txFreq);
-				}
-				set
-				{
-					this.txFreq = Settings.smethod_35(value);
-				}
-			}
-
-			public int ChMode
-			{
-				get
-				{
-					if (Enum.IsDefined(typeof(ChModeE), (int)this.chMode))
-					{
-						return this.chMode;
-					}
-					return 0;
-				}
-				set
-				{
-					if (Enum.IsDefined(typeof(ChModeE), value))
-					{
-						this.chMode = (byte)value;
-					}
-				}
-			}
-
-			public int RxRefFreq
-			{
-				get
-				{
-					if (Enum.IsDefined(typeof(RefFreqE), (int)this.rxRefFreq))
-					{
-						return this.rxRefFreq;
-					}
-					return 0;
-				}
-				set
-				{
-					if (Enum.IsDefined(typeof(RefFreqE), value))
-					{
-						this.rxRefFreq = (byte)value;
-					}
-				}
-			}
-
-			public int TxRefFreq
-			{
-				get
-				{
-					if (Enum.IsDefined(typeof(RefFreqE), (int)this.txRefFreq))
-					{
-						return this.txRefFreq;
-					}
-					return 0;
-				}
-				set
-				{
-					if (Enum.IsDefined(typeof(RefFreqE), value))
-					{
-						this.txRefFreq = (byte)value;
-					}
-				}
-			}
-
-			public decimal Tot
-			{
-				get
-				{
-					if (this.tot >= 0 && this.tot <= 33)
-					{
-						return this.tot * 15;
-					}
-					return 0m;
-				}
-				set
-				{
-					int num = (int)(value / 15m);
-					if (num >= 0 && num <= 33)
-					{
-						this.tot = (byte)num;
-					}
-					else
-					{
-						this.tot = 0;
-					}
-				}
-			}
-
-			public decimal TotRekey
-			{
-				get
-				{
-					if (this.totRekey >= 0 && this.totRekey <= 255)
-					{
-						return (int)this.totRekey;
-					}
-					return 0m;
-				}
-				set
-				{
-					int num = (int)(value / 1m);
-					if (num >= 0 && num <= 255)
-					{
-						this.totRekey = (byte)num;
-					}
-					else
-					{
-						this.totRekey = 0;
-					}
-				}
-			}
-
-			public int AdmitCriteria
-			{
-				get
-				{
-					if (Enum.IsDefined(typeof(AdmitCritericaE), (int)this.admitCriteria))
-					{
-						return this.admitCriteria;
-					}
-					return 0;
-				}
-				set
-				{
-					if (Enum.IsDefined(typeof(AdmitCritericaE), value))
-					{
-						this.admitCriteria = (byte)value;
-					}
-				}
-			}
-
-			public decimal RssiThreshold
-			{
-				get
-				{
-					if (this.rssiThreshold >= 80 && this.rssiThreshold <= 124)
-					{
-						return this.rssiThreshold * -1;
-					}
-					return -80m;
-				}
-				set
-				{
-					decimal num = value * -1m;
-					if (num >= 80m && num <= 124m)
-					{
-						this.rssiThreshold = (byte)num;
-					}
-					else
-					{
-						this.rssiThreshold = 80;
-					}
-				}
-			}
-
-			public int ScanList
-			{
-				get
-				{
-					return this.scanList;
-				}
-				set
-				{
-					if (value <= NormalScanForm.data.Count)
-					{
-						this.scanList = (byte)value;
-					}
-				}
-			}
-
-			public string RxTone
-			{
-				get
-				{
-					if (this.rxTone != 65535 && this.rxTone != 0)
-					{
-						if ((this.rxTone & 0xC000) == 49152)
-						{
-							return string.Format("D{0:x3}I", this.rxTone & 0xFFF);
-						}
-						if ((this.rxTone & 0xC000) == 32768)
-						{
-							return string.Format("D{0:x3}N", this.rxTone & 0xFFF);
-						}
-						string text = string.Format("{0:x}", this.rxTone);
-						return text.Insert(text.Length - 1, ".");
-					}
-					return Settings.SZ_NONE;
-				}
-				set
-				{
-					string text = "";
-					this.rxTone = 65535;
-					if (!string.IsNullOrEmpty(value) && value != Settings.SZ_NONE)
-					{
-						string pattern = "D[0-7]{3}N$";
-						Regex regex = new Regex(pattern);
-						if (regex.IsMatch(value))
-						{
-							text = value.Substring(1, 3);
-							this.rxTone = (ushort)(ushort.Parse(text, NumberStyles.HexNumber) + 32768);
-						}
-						else
-						{
-							pattern = "D[0-7]{3}I$";
-							regex = new Regex(pattern);
-							if (regex.IsMatch(value))
-							{
-								text = value.Substring(1, 3);
-								this.rxTone = (ushort)(ushort.Parse(text, NumberStyles.HexNumber) + 49152);
-							}
-							else
-							{
-								double num = double.Parse(value);
-								if (num > 60.0 && num < 260.0)
-								{
-									text = value.Replace(".", "");
-									this.rxTone = ushort.Parse(text, NumberStyles.HexNumber);
-								}
-							}
-						}
-					}
-				}
-			}
-
-			public string TxTone
-			{
-				get
-				{
-					if (this.txTone != 65535 && this.txTone != 0)
-					{
-						if ((this.txTone & 0xC000) == 49152)
-						{
-							return string.Format("D{0:x3}I", this.txTone & 0xFFF);
-						}
-						if ((this.txTone & 0xC000) == 32768)
-						{
-							return string.Format("D{0:x3}N", this.txTone & 0xFFF);
-						}
-						string text = string.Format("{0:x}", this.txTone);
-						return text.Insert(text.Length - 1, ".");
-					}
-					return Settings.SZ_NONE;
-				}
-				set
-				{
-					string text = "";
-					this.txTone = 65535;
-					if (!string.IsNullOrEmpty(value) && value != Settings.SZ_NONE)
-					{
-						string pattern = "D[0-7]{3}N$";
-						Regex regex = new Regex(pattern);
-						if (regex.IsMatch(value))
-						{
-							text = value.Substring(1, 3);
-							this.txTone = (ushort)(ushort.Parse(text, NumberStyles.HexNumber) + 32768);
-						}
-						else
-						{
-							pattern = "D[0-7]{3}I$";
-							regex = new Regex(pattern);
-							if (regex.IsMatch(value))
-							{
-								text = value.Substring(1, 3);
-								this.txTone = (ushort)(ushort.Parse(text, NumberStyles.HexNumber) + 49152);
-							}
-							else
-							{
-								double num = double.Parse(value);
-								if (num > 60.0 && num < 260.0)
-								{
-									text = value.Replace(".", "");
-									this.txTone = ushort.Parse(text, NumberStyles.HexNumber);
-								}
-							}
-						}
-					}
-				}
-			}
-
-			public int VoiceEmphasis
-			{
-				get
-				{
-					if (Enum.IsDefined(typeof(VoiceEmphasisE), (int)this.voiceEmphasis))
-					{
-						return this.voiceEmphasis;
-					}
-					return 0;
-				}
-				set
-				{
-					if (Enum.IsDefined(typeof(VoiceEmphasisE), value))
-					{
-						this.voiceEmphasis = (byte)value;
-					}
-				}
-			}
-
-			public int TxSignaling
-			{
-				get
-				{
-					if (Enum.IsDefined(typeof(SignalingSystemE), (int)this.txSignaling))
-					{
-						return this.txSignaling;
-					}
-					return 0;
-				}
-				set
-				{
-					if (Enum.IsDefined(typeof(SignalingSystemE), value))
-					{
-						this.txSignaling = (byte)value;
-					}
-				}
-			}
-
-			public int UnmuteRule
-			{
-				get
-				{
-					if (Enum.IsDefined(typeof(UnmuteRuleE), (int)this.unmuteRule))
-					{
-						return this.unmuteRule;
-					}
-					return 0;
-				}
-				set
-				{
-					if (Enum.IsDefined(typeof(UnmuteRuleE), value))
-					{
-						this.unmuteRule = (byte)value;
-					}
-				}
-			}
-
-			public int RxSignaling
-			{
-				get
-				{
-					if (Enum.IsDefined(typeof(SignalingSystemE), (int)this.rxSignaling))
-					{
-						return this.rxSignaling;
-					}
-					return 0;
-				}
-				set
-				{
-					if (Enum.IsDefined(typeof(SignalingSystemE), value))
-					{
-						this.rxSignaling = (byte)value;
-					}
-				}
-			}
-
-			public decimal ArtsInterval
-			{
-				get
-				{
-					if (this.artsInterval >= 22 && this.artsInterval <= 55)
-					{
-						return this.artsInterval;
-					}
-					return 22m;
-				}
-				set
-				{
-					byte b = (byte)(value * 1m);
-					if (b >= 22 && b <= 55)
-					{
-						this.artsInterval = b;
-					}
-					else
-					{
-						this.artsInterval = 22;
-					}
-				}
-			}
-
-			public int Key
-			{
-				get
-				{
-					if (this.encrypt <= EncryptForm.data.Count)
-					{
-						return this.encrypt;
-					}
-					return 0;
-				}
-				set
-				{
-					if (value <= EncryptForm.data.Count)
-					{
-						this.encrypt = (byte)value;
-					}
-				}
-			}
-
-			public decimal RxColor
-			{
-				get
-				{
-					if (this.rxColor >= 0 && this.rxColor <= 15)
-					{
-						return this.rxColor;
-					}
-					return 0m;
-				}
-				set
-				{
-					if (value >= 0m && value <= 15m)
-					{
-						this.rxColor = (byte)value;
-					}
-				}
-			}
-
-			public int RxGroupList
-			{
-				get
-				{
-					return this.rxGroupList;
-				}
-				set
-				{
-					if (value <= RxGroupListForm.data.Count)
-					{
-						this.rxGroupList = (byte)value;
-					}
-				}
-			}
-
-			public decimal TxColor
-			{
-				get
-				{
-					if (this.txColor >= 0 && this.txColor <= 15)
-					{
-						return this.txColor;
-					}
-					return 0m;
-				}
-				set
-				{
-					if (value >= 0m && value <= 15m)
-					{
-						this.txColor = (byte)value;
-						this.rxColor = (byte)value;
-					}
-				}
-			}
-
-			public int EmgSystem
-			{
-				get
-				{
-					if (this.emgSystem <= EmergencyForm.data.Count)
-					{
-						return this.emgSystem;
-					}
-					return 0;
-				}
-				set
-				{
-					if (value <= EmergencyForm.data.Count)
-					{
-						this.emgSystem = (byte)value;
-					}
-				}
-			}
-
-			public int Contact
-			{
-				get
-				{
-					if (this.contact <= ContactForm.data.Count)
-					{
-						return this.contact;
-					}
-					return 0;
-				}
-				set
-				{
-					if (value <= ContactForm.data.Count)
-					{
-						this.contact = (byte)value;
-					}
-				}
-			}
-
-			public byte Flag1
-			{
-				get
-				{
-					return this.flag1;
-				}
-				set
-				{
-					this.flag1 = value;
-				}
-			}
-
-			public byte Flag2
-			{
-				get
-				{
-					return this.flag2;
-				}
-				set
-				{
-					this.flag2 = value;
-				}
-			}
-
-			public byte Flag3
-			{
-				get
-				{
-					return this.flag3;
-				}
-				set
-				{
-					this.flag3 = value;
-				}
-			}
-
-			public byte Flag4
-			{
-				get
-				{
-					return this.flag4;
-				}
-				set
-				{
-					this.flag4 = value;
-				}
-			}
-
-			public int Power
-			{
-				get
-				{
-					return (this.flag4 & 0x80) >> 7;
-				}
-				set
-				{
-					this.flag4 &= 127;
-					value = (value << 7 & 0x80);
-					this.flag4 |= (byte)value;
-				}
-			}
-
-			public bool Vox
-			{
-				get
-				{
-					return Convert.ToBoolean(this.flag4 & 0x40);
-				}
-				set
-				{
-					if (value)
-					{
-						this.flag4 |= 64;
-					}
-					else
-					{
-						this.flag4 &= 191;
-					}
-				}
-			}
-
-			public bool AutoScan
-			{
-				get
-				{
-					return Convert.ToBoolean(this.flag4 & 0x20);
-				}
-				set
-				{
-					if (value)
-					{
-						this.flag4 |= 32;
-					}
-					else
-					{
-						this.flag4 &= 223;
-					}
-				}
-			}
-
-			public bool LoneWoker
-			{
-				get
-				{
-					return Convert.ToBoolean(this.flag4 & 0x10);
-				}
-				set
-				{
-					if (value)
-					{
-						this.flag4 |= 16;
-					}
-					else
-					{
-						this.flag4 &= 239;
-					}
-				}
-			}
-
-			public bool AllowTalkaround
-			{
-				get
-				{
-					return Convert.ToBoolean(this.flag4 & 8);
-				}
-				set
-				{
-					if (value)
-					{
-						this.flag4 |= 8;
-					}
-					else
-					{
-						this.flag4 &= 247;
-					}
-				}
-			}
-
-			public bool OnlyRx
-			{
-				get
-				{
-					return Convert.ToBoolean(this.flag4 & 4);
-				}
-				set
-				{
-					if (value)
-					{
-						this.flag4 |= 4;
-					}
-					else
-					{
-						this.flag4 &= 251;
-					}
-				}
-			}
-
-			public int Bandwidth
-			{
-				get
-				{
-					return (this.flag4 & 2) >> 1;
-				}
-				set
-				{
-					this.flag4 &= 253;
-					value = (value << 1 & 2);
-					this.flag4 |= (byte)value;
-				}
-			}
-
-			public int Squelch
-			{
-				get
-				{
-					return this.flag4 & 1;
-				}
-				set
-				{
-					this.flag4 &= 254;
-					this.flag4 |= (byte)(value & 1);
-				}
-			}
-
-			public int Ste
-			{
-				get
-				{
-					return (this.flag3 & 0xC0) >> 6;
-				}
-				set
-				{
-					value = (value << 6 & 0xC0);
-					this.flag3 &= 63;
-					this.flag3 |= (byte)value;
-				}
-			}
-
-			public int NonSte
-			{
-				get
-				{
-					return (this.flag3 & 0x20) >> 5;
-				}
-				set
-				{
-					value = (value << 5 & 0x20);
-					this.flag3 &= 223;
-					this.flag3 |= (byte)value;
-				}
-			}
-
-			public bool DataPl
-			{
-				get
-				{
-					return Convert.ToBoolean(this.flag3 & 0x10);
-				}
-				set
-				{
-					if (value)
-					{
-						this.flag3 |= 16;
-					}
-					else
-					{
-						this.flag3 &= 239;
-					}
-				}
-			}
-
-			public int PttidType
-			{
-				get
-				{
-					return (this.flag3 & 0xC) >> 2;
-				}
-				set
-				{
-					value = (value << 2 & 0xC);
-					this.flag3 &= 243;
-					this.flag3 |= (byte)value;
-				}
-			}
-
-			public bool DualCapacity
-			{
-				get
-				{
-					return Convert.ToBoolean(this.flag3 & 1);
-				}
-				set
-				{
-					if (value)
-					{
-						this.flag3 |= 1;
-					}
-					else
-					{
-						this.flag3 &= 254;
-					}
-				}
-			}
-
-			public int TimingPreference
-			{
-				get
-				{
-					return (this.flag2 & 0x80) >> 7;
-				}
-				set
-				{
-					value = (value << 7 & 0x80);
-					this.flag2 &= 127;
-					this.flag2 |= (byte)value;
-				}
-			}
-
-			public int RepateSlot
-			{
-				get
-				{
-					return (this.flag2 & 0x40) >> 6;
-				}
-				set
-				{
-					value = (value << 6 & 0x40);
-					this.flag2 &= 191;
-					this.flag2 |= (byte)value;
-				}
-			}
-
-			public int Ars
-			{
-				get
-				{
-					return (this.flag2 & 0x20) >> 5;
-				}
-				set
-				{
-					value = (value << 5 & 0x20);
-					this.flag2 &= 223;
-					this.flag2 |= (byte)value;
-				}
-			}
-
-			public int KeySwitch
-			{
-				get
-				{
-					return (this.flag2 & 0x10) >> 4;
-				}
-				set
-				{
-					value = (value << 4 & 0x10);
-					this.flag2 &= 239;
-					this.flag2 |= (byte)value;
-				}
-			}
-
-			public bool UdpDataHead
-			{
-				get
-				{
-					return Convert.ToBoolean(this.flag2 & 8);
-				}
-				set
-				{
-					if (value)
-					{
-						this.flag2 |= 8;
-					}
-					else
-					{
-						this.flag2 &= 247;
-					}
-				}
-			}
-
-			public bool AllowTxInterupt
-			{
-				get
-				{
-					return Convert.ToBoolean(this.flag2 & 4);
-				}
-				set
-				{
-					if (value)
-					{
-						this.flag2 |= 4;
-					}
-					else
-					{
-						this.flag2 &= 251;
-					}
-				}
-			}
-
-			public bool TxInteruptFreq
-			{
-				get
-				{
-					return Convert.ToBoolean(this.flag2 & 2);
-				}
-				set
-				{
-					if (value)
-					{
-						this.flag2 |= 2;
-					}
-					else
-					{
-						this.flag2 &= 253;
-					}
-				}
-			}
-
-			public bool PrivateCall
-			{
-				get
-				{
-					return Convert.ToBoolean(this.flag2 & 1);
-				}
-				set
-				{
-					if (value)
-					{
-						this.flag2 |= 1;
-					}
-					else
-					{
-						this.flag2 &= 254;
-					}
-				}
-			}
-
-			public bool DataCall
-			{
-				get
-				{
-					return Convert.ToBoolean(this.flag1 & 0x80);
-				}
-				set
-				{
-					if (value)
-					{
-						this.flag1 |= 128;
-					}
-					else
-					{
-						this.flag1 &= 127;
-					}
-				}
-			}
-
-			public bool EmgConfirmed
-			{
-				get
-				{
-					return Convert.ToBoolean(this.flag1 & 0x40);
-				}
-				set
-				{
-					if (value)
-					{
-						this.flag1 |= 64;
-					}
-					else
-					{
-						this.flag1 &= 191;
-					}
-				}
-			}
-
-			public bool EnchancedChAccess
-			{
-				get
-				{
-					return Convert.ToBoolean(this.flag1 & 0x20);
-				}
-				set
-				{
-					if (value)
-					{
-						this.flag1 |= 32;
-					}
-					else
-					{
-						this.flag1 &= 223;
-					}
-				}
-			}
-
-			public int BandType
-			{
-				get
-				{
-					return (this.flag1 & 4) >> 2;
-				}
-				set
-				{
-					value = (value << 2 & 4);
-					this.flag1 &= 251;
-					this.flag1 |= (byte)value;
-				}
-			}
-
-			public int Arts
-			{
-				get
-				{
-					return this.flag1 & 3;
-				}
-				set
-				{
-					value &= 3;
-					this.flag1 &= 252;
-					this.flag1 |= (byte)value;
-				}
-			}
-
-			public decimal OffsetFreq
-			{
-				get
-				{
-					if (this.offsetFreq >= 1 && this.offsetFreq <= 38400)
-					{
-						return (decimal)this.offsetFreq * 0.01m;
-					}
-					return 10.00m;
-				}
-				set
-				{
-					int num = Convert.ToInt32(value / 0.01m);
-					if (num >= 1 && num <= 38400)
-					{
-						this.offsetFreq = (ushort)num;
-					}
-					else
-					{
-						this.offsetFreq = 1000;
-					}
-				}
-			}
-
-			public int OffsetStep
-			{
-				get
-				{
-					int num = this.flag5 >> 4;
-					if (num >= VfoForm.SZ_OFFSET_STEP.Length)
-					{
-						return 0;
-					}
-					return num;
-				}
-				set
-				{
-					value &= 0xF;
-					this.flag5 &= 15;
-					this.flag5 |= (byte)(value << 4);
-				}
-			}
-
-			public int OffsetDirection
-			{
-				get
-				{
-					int num = (this.flag5 & 0xC) >> 2;
-					if (num >= VfoForm.SZ_OFFSET_DIRECTION.Length)
-					{
-						return 0;
-					}
-					return num;
-				}
-				set
-				{
-					value &= 3;
-					this.flag5 &= 243;
-					this.flag5 |= (byte)(value << 2);
-				}
-			}
-
-			public int Sql
-			{
-				get
-				{
-					if (this.sql >= 0 && this.sql <= 21)
-					{
-						return this.sql;
-					}
-					return 0;
-				}
-				set
-				{
-					if (value >= 0 && this.sql <= 21)
-					{
-						this.sql = (byte)value;
-					}
-				}
-			}
-
-			public ChannelOne(int index)
-			{
-				
-				this = default(ChannelOne);
-				this.name = new byte[16];
-			}
-
-			public void Default()
-			{
-				this.ChMode = VfoForm.DefaultCh.ChMode;
-				this.RxRefFreq = VfoForm.DefaultCh.RxRefFreq;
-				this.Tot = VfoForm.DefaultCh.Tot;
-				this.TotRekey = VfoForm.DefaultCh.TotRekey;
-				this.AdmitCriteria = VfoForm.DefaultCh.AdmitCriteria;
-				this.RssiThreshold = VfoForm.DefaultCh.RssiThreshold;
-				this.ScanList = VfoForm.DefaultCh.ScanList;
-				this.RxTone = VfoForm.DefaultCh.RxTone;
-				this.TxTone = VfoForm.DefaultCh.TxTone;
-				this.VoiceEmphasis = VfoForm.DefaultCh.VoiceEmphasis;
-				this.TxSignaling = VfoForm.DefaultCh.TxSignaling;
-				this.UnmuteRule = VfoForm.DefaultCh.UnmuteRule;
-				this.RxSignaling = VfoForm.DefaultCh.RxSignaling;
-				this.ArtsInterval = VfoForm.DefaultCh.ArtsInterval;
-				this.Key = VfoForm.DefaultCh.Key;
-				this.RxColor = VfoForm.DefaultCh.RxColor;
-				this.TxColor = VfoForm.DefaultCh.TxColor;
-				this.EmgSystem = VfoForm.DefaultCh.EmgSystem;
-				this.Contact = VfoForm.DefaultCh.Contact;
-				this.Flag1 = VfoForm.DefaultCh.Flag1;
-				this.Flag2 = VfoForm.DefaultCh.Flag2;
-				this.Flag3 = VfoForm.DefaultCh.Flag3;
-				this.Flag4 = VfoForm.DefaultCh.Flag4;
-				this.Sql = VfoForm.DefaultCh.Sql;
-			}
-
-			public ChannelOne Clone()
-			{
-				return Settings.smethod_65(this);
-			}
-
-			public void Verify(ChannelOne def)
-			{
-				if (this.OffsetDirection >= VfoForm.SZ_OFFSET_DIRECTION.Length)
-				{
-					this.OffsetDirection = def.OffsetDirection;
-				}
-				if (this.OffsetStep >= VfoForm.SZ_OFFSET_STEP.Length)
-				{
-					this.OffsetStep = def.OffsetStep;
-				}
-				if (!Enum.IsDefined(typeof(ChModeE), this.ChMode))
-				{
-					this.ChMode = def.ChMode;
-				}
-				if (!Enum.IsDefined(typeof(RefFreqE), this.TxRefFreq))
-				{
-					this.TxRefFreq = def.TxRefFreq;
-				}
-				if (!Enum.IsDefined(typeof(RefFreqE), this.RxRefFreq))
-				{
-					this.RxRefFreq = def.RxRefFreq;
-				}
-				Settings.smethod_11(ref this.tot, (byte)0, (byte)33, def.tot);
-				Settings.smethod_11(ref this.rssiThreshold, (byte)80, (byte)124, def.rssiThreshold);
-				if (this.scanList != 0 && this.scanList <= 64)
-				{
-					if (!NormalScanForm.data.DataIsValid(this.scanList - 1))
-					{
-						this.scanList = 0;
-					}
-				}
-				else
-				{
-					this.scanList = 0;
-				}
-				if (!Enum.IsDefined(typeof(VoiceEmphasisE), this.VoiceEmphasis))
-				{
-					this.VoiceEmphasis = def.VoiceEmphasis;
-				}
-				if (!Enum.IsDefined(typeof(UnmuteRuleE), this.UnmuteRule))
-				{
-					this.UnmuteRule = def.UnmuteRule;
-				}
-				if (!Enum.IsDefined(typeof(SignalingSystemE), this.TxSignaling))
-				{
-					this.TxSignaling = def.TxSignaling;
-				}
-				if (!Enum.IsDefined(typeof(SignalingSystemE), this.RxSignaling))
-				{
-					this.RxSignaling = def.RxSignaling;
-				}
-				Settings.smethod_11(ref this.artsInterval, (byte)22, (byte)55, def.artsInterval);
-				if (!Enum.IsDefined(typeof(TimingPreference), this.TimingPreference))
-				{
-					this.TimingPreference = def.TimingPreference;
-				}
-				if (this.encrypt != 0 && !EncryptForm.data.DataIsValid(this.encrypt - 1))
-				{
-					this.encrypt = 0;
-				}
-				Settings.smethod_11(ref this.rxColor, (byte)0, (byte)15, def.rxColor);
-				this.txColor = this.rxColor;
-				if (this.rxGroupList != 0 && this.rxGroupList <= RxListData.CNT_RX_LIST)
-				{
-					if (!RxGroupListForm.data.DataIsValid(this.rxGroupList - 1))
-					{
-						this.rxGroupList = 0;
-					}
-				}
-				else
-				{
-					this.rxGroupList = 0;
-				}
-				if (this.emgSystem != 0 && this.emgSystem <= 32)
-				{
-					if (!EmergencyForm.data.DataIsValid(this.emgSystem - 1))
-					{
-						this.emgSystem = 0;
-					}
-				}
-				else
-				{
-					this.emgSystem = 0;
-				}
-				string pattern = "D[0-7]{3}[N|I]$";
-				Regex regex = new Regex(pattern);
-				if (regex.IsMatch(this.RxTone))
-				{
-					this.Ste = 0;
-				}
-			}
-		}
-
-		[StructLayout(LayoutKind.Sequential, Pack = 1)]
-		public class Vfo : IData
-		{
-			public delegate void ChModeDelegate(object sender, ChModeChangeEventArgs e);
-
-			[MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
-			private ChannelOne[] chList;
-
-			public ChannelOne this[int index]
-			{
-				get
-				{
-					if (index >= 2)
-					{
-						throw new ArgumentOutOfRangeException();
-					}
-					return this.chList[index];
-				}
-				set
-				{
-					if (index >= 2)
-					{
-						throw new ArgumentOutOfRangeException();
-					}
-					this.chList[index] = value;
-				}
-			}
-
-			public int Count
-			{
-				get
-				{
-					throw new NotImplementedException();
-				}
-			}
-
-			public string Format
-			{
-				get
-				{
-					throw new NotImplementedException();
-				}
-			}
-
-			public bool ListIsEmpty
-			{
-				get
-				{
-					throw new NotImplementedException();
-				}
-			}
-
-			public event ChModeDelegate ChModeChangeEvent;
-
-			public Vfo()
-			{
-				
-				//base._002Ector();
-				int num = 0;
-				this.chList = new ChannelOne[2];
-				for (num = 0; num < this.chList.Length; num++)
-				{
-					this.chList[num] = new ChannelOne(num);
-				}
-			}
-
-			public void Verify()
-			{
-				int num = 0;
-				uint num2 = 0u;
-				uint num3 = 0u;
-				uint num4 = 0u;
-				for (num = 0; num < 2; num++)
-				{
-					num2 = this.chList[num].RxFreqDec / 100000u;
-					if (Settings.smethod_19((double)num2, ref num4) < 0)
-					{
-						num2 = num4 * 100000;
-						this.chList[num].RxFreqDec = num2;
-					}
-					num3 = this.chList[num].TxFreqDec / 100000u;
-					if (Settings.smethod_19((double)num3, ref num4) < 0)
-					{
-						this.chList[num].TxFreqDec = this.chList[num].RxFreqDec;
-					}
-					switch (this.chList[num].OffsetDirection)
-					{
-					case 0:
-						this.chList[num].TxFreqDec = this.chList[num].RxFreqDec;
-						break;
-					case 1:
-						num3 = this.chList[num].RxFreqDec - (uint)this.chList[num].OffsetFreq;
-						num3 /= 100000u;
-						if (Settings.smethod_19((double)num3, ref num4) < 0)
-						{
-							this.chList[num].OffsetDirection = 0;
-						}
-						break;
-					case 2:
-						num3 = this.chList[num].RxFreqDec + (uint)this.chList[num].OffsetFreq;
-						num3 /= 100000u;
-						if (Settings.smethod_19((double)num3, ref num4) < 0)
-						{
-							this.chList[num].OffsetDirection = 0;
-						}
-						break;
-					}
-					this.chList[num].Verify(VfoForm.DefaultCh);
-				}
-			}
-
-			public void SetDefaultFreq(int index)
-			{
-				this.chList[index].UInt32_0 = Settings.smethod_35(Settings.MIN_FREQ[0] * 100000);
-				this.chList[index].UInt32_1 = this.chList[index].UInt32_0;
-			}
-
-			public byte[] ToEerom()
-			{
-				int num = 0;
-				int num2 = 0;
-				byte[] array = new byte[2 * VfoForm.SPACE_CH];
-				for (num = 0; num < 2; num++)
-				{
-					byte[] array2 = Settings.objectToByteArray(this.chList[num], Marshal.SizeOf(this.chList[num]));
-					Array.Copy(array2, 0, array, num2, array2.Length);
-					num2 += array2.Length;
-				}
-				return array;
-			}
-
-			public void FromEerom(byte[] data)
-			{
-				int num = 0;
-				int num2 = 0;
-				for (num = 0; num < 2; num++)
-				{
-					byte[] array = new byte[VfoForm.SPACE_CH];
-					Array.Copy(data, num2, array, 0, array.Length);
-					this.chList[num] = (ChannelOne)Settings.smethod_62(array, typeof(ChannelOne));
+            private ushort rxTone;
+
+            private ushort txTone;
+
+            private byte voiceEmphasis;
+
+            private byte txSignaling;
+
+            private byte unmuteRule;
+
+            private byte rxSignaling;
+
+            private byte artsInterval;
+
+            private byte encrypt;
+
+            private byte rxColor;
+
+            private byte rxGroupList;
+
+            private byte txColor;
+
+            private byte emgSystem;
+
+            private ushort contact;
+
+            private byte flag1;
+
+            private byte flag2;
+
+            private byte flag3;
+
+            private byte flag4;
+
+            private ushort offsetFreq;
+
+            private byte flag5;
+
+            private byte sql;
+
+            public string Name
+            {
+                get
+                {
+                    return Settings.smethod_25(this.name);
+                }
+                set
+                {
+                    byte[] array = Settings.smethod_23(value);
+                    this.name.Fill((byte)255);
+                    Array.Copy(array, 0, this.name, 0, Math.Min(array.Length, this.name.Length));
+                }
+            }
+
+            public string RxFreq
+            {
+                get
+                {
+                    try
+                    {
+                        uint num = 0u;
+                        string s = string.Format("{0:x}", this.rxFreq);
+                        double double_ = (double)int.Parse(s) / 100000.0;
+                        if (Settings.smethod_19(double_, ref num) == -1)
+                        {
+                            double_ = (double)num;
+                        }
+                        return double_.ToString("f5");
+                    }
+                    catch (Exception)
+                    {
+                        return "";
+                    }
+                }
+                set
+                {
+                    try
+                    {
+                        // Remove any non numeric characters ie any separators
+                        Regex dp = new Regex("[^0-9]");
+                        string s = dp.Replace(value, "");
+                        this.rxFreq = uint.Parse(s, NumberStyles.HexNumber);
+                        Console.WriteLine("Setting VFO RxFreq to " + s + " " + this.rxFreq);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        this.rxFreq = 4294967295u;
+                    }
+                }
+            }
+
+            public uint UInt32_0
+            {
+                get
+                {
+                    return this.rxFreq;
+                }
+                set
+                {
+                    this.rxFreq = value;
+                }
+            }
+
+            public uint RxFreqDec
+            {
+                get
+                {
+                    return Settings.smethod_34(this.rxFreq);
+                }
+                set
+                {
+                    this.rxFreq = Settings.smethod_35(value);
+                }
+            }
+
+            public string TxFreq
+            {
+                get
+                {
+                    try
+                    {
+                        uint num = 0u;
+                        string s = string.Format("{0:x}", this.txFreq);
+                        double double_ = (double)int.Parse(s) / 100000.0;
+                        if (Settings.smethod_19(double_, ref num) == -1)
+                        {
+                            double_ = (double)num;
+                        }
+                        return double_.ToString("f5");
+                    }
+                    catch (Exception)
+                    {
+                        return "";
+                    }
+                }
+                set
+                {
+                    try
+                    {
+                        // Remove any non numeric characters ie any separators
+                        Regex dp = new Regex("[^0-9]");
+                        string s = dp.Replace(value, "");
+                        this.txFreq = uint.Parse(s, NumberStyles.HexNumber);
+                        Console.WriteLine("Setting VFO txFreq to " + s + " " + this.txFreq);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        this.rxFreq = 4294967295u;
+                    }
+                }
+            }
+
+            public uint UInt32_1
+            {
+                get
+                {
+                    return this.txFreq;
+                }
+                set
+                {
+                    this.txFreq = value;
+                }
+            }
+
+            public uint TxFreqDec
+            {
+                get
+                {
+                    return Settings.smethod_34(this.txFreq);
+                }
+                set
+                {
+                    this.txFreq = Settings.smethod_35(value);
+                }
+            }
+
+            public int ChMode
+            {
+                get
+                {
+                    if (Enum.IsDefined(typeof(ChModeE), (int)this.chMode))
+                    {
+                        return this.chMode;
+                    }
+                    return 0;
+                }
+                set
+                {
+                    if (Enum.IsDefined(typeof(ChModeE), value))
+                    {
+                        this.chMode = (byte)value;
+                    }
+                }
+            }
+
+            public int LibreDMR_Power
+            {
+                get
+                {
+                    if (Enum.IsDefined(typeof(LibreDMR_Power_E), (int)this.libreDMR_Power))
+                    {
+                        return this.libreDMR_Power;
+                    }
+                    return 0;
+                }
+                set
+                {
+                    if (Enum.IsDefined(typeof(LibreDMR_Power_E), value))
+                    {
+                        this.libreDMR_Power = (byte)value;
+                    }
+                }
+            }
+
+            public int TxRefFreq
+            {
+                get
+                {
+                    if (Enum.IsDefined(typeof(RefFreqE), (int)this.txRefFreq))
+                    {
+                        return this.txRefFreq;
+                    }
+                    return 0;
+                }
+                set
+                {
+                    if (Enum.IsDefined(typeof(RefFreqE), value))
+                    {
+                        this.txRefFreq = (byte)value;
+                    }
+                }
+            }
+
+            public decimal Tot
+            {
+                get
+                {
+                    if (this.tot >= 0 && this.tot <= 33)
+                    {
+                        return this.tot * 15;
+                    }
+                    return 0m;
+                }
+                set
+                {
+                    int num = (int)(value / 15m);
+                    if (num >= 0 && num <= 33)
+                    {
+                        this.tot = (byte)num;
+                    }
+                    else
+                    {
+                        this.tot = 0;
+                    }
+                }
+            }
+
+            public decimal TotRekey
+            {
+                get
+                {
+                    if (this.totRekey >= 0 && this.totRekey <= 255)
+                    {
+                        return (int)this.totRekey;
+                    }
+                    return 0m;
+                }
+                set
+                {
+                    int num = (int)(value / 1m);
+                    if (num >= 0 && num <= 255)
+                    {
+                        this.totRekey = (byte)num;
+                    }
+                    else
+                    {
+                        this.totRekey = 0;
+                    }
+                }
+            }
+
+            public int AdmitCriteria
+            {
+                get
+                {
+                    if (Enum.IsDefined(typeof(AdmitCritericaE), (int)this.admitCriteria))
+                    {
+                        return this.admitCriteria;
+                    }
+                    return 0;
+                }
+                set
+                {
+                    if (Enum.IsDefined(typeof(AdmitCritericaE), value))
+                    {
+                        this.admitCriteria = (byte)value;
+                    }
+                }
+            }
+
+            public decimal RssiThreshold
+            {
+                get
+                {
+                    if (this.rssiThreshold >= 80 && this.rssiThreshold <= 124)
+                    {
+                        return this.rssiThreshold * -1;
+                    }
+                    return -80m;
+                }
+                set
+                {
+                    decimal num = value * -1m;
+                    if (num >= 80m && num <= 124m)
+                    {
+                        this.rssiThreshold = (byte)num;
+                    }
+                    else
+                    {
+                        this.rssiThreshold = 80;
+                    }
+                }
+            }
+
+            public int ScanList
+            {
+                get
+                {
+                    return this.scanList;
+                }
+                set
+                {
+                    if (value <= NormalScanForm.data.Count)
+                    {
+                        this.scanList = (byte)value;
+                    }
+                }
+            }
+
+            public string RxTone
+            {
+                get
+                {
+                    if (this.rxTone != 65535 && this.rxTone != 0)
+                    {
+                        if ((this.rxTone & 0xC000) == 49152)
+                        {
+                            return string.Format("D{0:x3}I", this.rxTone & 0xFFF);
+                        }
+                        if ((this.rxTone & 0xC000) == 32768)
+                        {
+                            return string.Format("D{0:x3}N", this.rxTone & 0xFFF);
+                        }
+                        string text = string.Format("{0:x}", this.rxTone);
+                        return text.Insert(text.Length - 1, ".");
+                    }
+                    return Settings.SZ_NONE;
+                }
+                set
+                {
+                    string text = "";
+                    this.rxTone = 65535;
+                    if (!string.IsNullOrEmpty(value) && value != Settings.SZ_NONE)
+                    {
+                        string pattern = "D[0-7]{3}N$";
+                        Regex regex = new Regex(pattern);
+                        if (regex.IsMatch(value))
+                        {
+                            text = value.Substring(1, 3);
+                            this.rxTone = (ushort)(ushort.Parse(text, NumberStyles.HexNumber) + 32768);
+                        }
+                        else
+                        {
+                            pattern = "D[0-7]{3}I$";
+                            regex = new Regex(pattern);
+                            if (regex.IsMatch(value))
+                            {
+                                text = value.Substring(1, 3);
+                                this.rxTone = (ushort)(ushort.Parse(text, NumberStyles.HexNumber) + 49152);
+                            }
+                            else
+                            {
+                                double num = double.Parse(value);
+                                if (num > 60.0 && num < 260.0)
+                                {
+                                    text = value.Replace(".", "");
+                                    this.rxTone = ushort.Parse(text, NumberStyles.HexNumber);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            public string TxTone
+            {
+                get
+                {
+                    if (this.txTone != 65535 && this.txTone != 0)
+                    {
+                        if ((this.txTone & 0xC000) == 49152)
+                        {
+                            return string.Format("D{0:x3}I", this.txTone & 0xFFF);
+                        }
+                        if ((this.txTone & 0xC000) == 32768)
+                        {
+                            return string.Format("D{0:x3}N", this.txTone & 0xFFF);
+                        }
+                        string text = string.Format("{0:x}", this.txTone);
+                        return text.Insert(text.Length - 1, ".");
+                    }
+                    return Settings.SZ_NONE;
+                }
+                set
+                {
+                    string text = "";
+                    this.txTone = 65535;
+                    if (!string.IsNullOrEmpty(value) && value != Settings.SZ_NONE)
+                    {
+                        string pattern = "D[0-7]{3}N$";
+                        Regex regex = new Regex(pattern);
+                        if (regex.IsMatch(value))
+                        {
+                            text = value.Substring(1, 3);
+                            this.txTone = (ushort)(ushort.Parse(text, NumberStyles.HexNumber) + 32768);
+                        }
+                        else
+                        {
+                            pattern = "D[0-7]{3}I$";
+                            regex = new Regex(pattern);
+                            if (regex.IsMatch(value))
+                            {
+                                text = value.Substring(1, 3);
+                                this.txTone = (ushort)(ushort.Parse(text, NumberStyles.HexNumber) + 49152);
+                            }
+                            else
+                            {
+                                double num = double.Parse(value);
+                                if (num > 60.0 && num < 260.0)
+                                {
+                                    text = value.Replace(".", "");
+                                    this.txTone = ushort.Parse(text, NumberStyles.HexNumber);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            public int VoiceEmphasis
+            {
+                get
+                {
+                    if (Enum.IsDefined(typeof(VoiceEmphasisE), (int)this.voiceEmphasis))
+                    {
+                        return this.voiceEmphasis;
+                    }
+                    return 0;
+                }
+                set
+                {
+                    if (Enum.IsDefined(typeof(VoiceEmphasisE), value))
+                    {
+                        this.voiceEmphasis = (byte)value;
+                    }
+                }
+            }
+
+            public int TxSignaling
+            {
+                get
+                {
+                    if (Enum.IsDefined(typeof(SignalingSystemE), (int)this.txSignaling))
+                    {
+                        return this.txSignaling;
+                    }
+                    return 0;
+                }
+                set
+                {
+                    if (Enum.IsDefined(typeof(SignalingSystemE), value))
+                    {
+                        this.txSignaling = (byte)value;
+                    }
+                }
+            }
+
+            public int UnmuteRule
+            {
+                get
+                {
+                    if (Enum.IsDefined(typeof(UnmuteRuleE), (int)this.unmuteRule))
+                    {
+                        return this.unmuteRule;
+                    }
+                    return 0;
+                }
+                set
+                {
+                    if (Enum.IsDefined(typeof(UnmuteRuleE), value))
+                    {
+                        this.unmuteRule = (byte)value;
+                    }
+                }
+            }
+
+            public int RxSignaling
+            {
+                get
+                {
+                    if (Enum.IsDefined(typeof(SignalingSystemE), (int)this.rxSignaling))
+                    {
+                        return this.rxSignaling;
+                    }
+                    return 0;
+                }
+                set
+                {
+                    if (Enum.IsDefined(typeof(SignalingSystemE), value))
+                    {
+                        this.rxSignaling = (byte)value;
+                    }
+                }
+            }
+
+            public decimal ArtsInterval
+            {
+                get
+                {
+                    if (this.artsInterval >= 22 && this.artsInterval <= 55)
+                    {
+                        return this.artsInterval;
+                    }
+                    return 22m;
+                }
+                set
+                {
+                    byte b = (byte)(value * 1m);
+                    if (b >= 22 && b <= 55)
+                    {
+                        this.artsInterval = b;
+                    }
+                    else
+                    {
+                        this.artsInterval = 22;
+                    }
+                }
+            }
+
+            public int Key
+            {
+                get
+                {
+                    if (this.encrypt <= EncryptForm.data.Count)
+                    {
+                        return this.encrypt;
+                    }
+                    return 0;
+                }
+                set
+                {
+                    if (value <= EncryptForm.data.Count)
+                    {
+                        this.encrypt = (byte)value;
+                    }
+                }
+            }
+
+            public decimal RxColor
+            {
+                get
+                {
+                    if (this.rxColor >= 0 && this.rxColor <= 15)
+                    {
+                        return this.rxColor;
+                    }
+                    return 0m;
+                }
+                set
+                {
+                    if (value >= 0m && value <= 15m)
+                    {
+                        this.rxColor = (byte)value;
+                    }
+                }
+            }
+
+            public int RxGroupList
+            {
+                get
+                {
+                    return this.rxGroupList;
+                }
+                set
+                {
+                    if (value <= RxGroupListForm.data.Count)
+                    {
+                        this.rxGroupList = (byte)value;
+                    }
+                }
+            }
+
+            public decimal TxColor
+            {
+                get
+                {
+                    if (this.txColor >= 0 && this.txColor <= 15)
+                    {
+                        return this.txColor;
+                    }
+                    return 0m;
+                }
+                set
+                {
+                    if (value >= 0m && value <= 15m)
+                    {
+                        this.txColor = (byte)value;
+                        this.rxColor = (byte)value;
+                    }
+                }
+            }
+
+            public int EmgSystem
+            {
+                get
+                {
+                    if (this.emgSystem <= EmergencyForm.data.Count)
+                    {
+                        return this.emgSystem;
+                    }
+                    return 0;
+                }
+                set
+                {
+                    if (value <= EmergencyForm.data.Count)
+                    {
+                        this.emgSystem = (byte)value;
+                    }
+                }
+            }
+
+            public int Contact
+            {
+                get
+                {
+                    if (this.contact <= ContactForm.data.Count)
+                    {
+                        return this.contact;
+                    }
+                    return 0;
+                }
+                set
+                {
+                    if (value <= ContactForm.data.Count)
+                    {
+                        this.contact = (byte)value;
+                    }
+                }
+            }
+
+            public byte Flag1
+            {
+                get
+                {
+                    return this.flag1;
+                }
+                set
+                {
+                    this.flag1 = value;
+                }
+            }
+
+            public byte Flag2
+            {
+                get
+                {
+                    return this.flag2;
+                }
+                set
+                {
+                    this.flag2 = value;
+                }
+            }
+
+            public byte Flag3
+            {
+                get
+                {
+                    return this.flag3;
+                }
+                set
+                {
+                    this.flag3 = value;
+                }
+            }
+
+            public byte Flag4
+            {
+                get
+                {
+                    return this.flag4;
+                }
+                set
+                {
+                    this.flag4 = value;
+                }
+            }
+
+            public int Power
+            {
+                get
+                {
+                    return (this.flag4 & 0x80) >> 7;
+                }
+                set
+                {
+                    this.flag4 &= 127;
+                    value = (value << 7 & 0x80);
+                    this.flag4 |= (byte)value;
+                }
+            }
+
+            public bool Vox
+            {
+                get
+                {
+                    return Convert.ToBoolean(this.flag4 & 0x40);
+                }
+                set
+                {
+                    if (value)
+                    {
+                        this.flag4 |= 64;
+                    }
+                    else
+                    {
+                        this.flag4 &= 191;
+                    }
+                }
+            }
+
+            public bool AutoScan
+            {
+                get
+                {
+                    return Convert.ToBoolean(this.flag4 & 0x20);
+                }
+                set
+                {
+                    if (value)
+                    {
+                        this.flag4 |= 32;
+                    }
+                    else
+                    {
+                        this.flag4 &= 223;
+                    }
+                }
+            }
+
+            public bool LoneWoker
+            {
+                get
+                {
+                    return Convert.ToBoolean(this.flag4 & 0x10);
+                }
+                set
+                {
+                    if (value)
+                    {
+                        this.flag4 |= 16;
+                    }
+                    else
+                    {
+                        this.flag4 &= 239;
+                    }
+                }
+            }
+
+            public bool AllowTalkaround
+            {
+                get
+                {
+                    return Convert.ToBoolean(this.flag4 & 8);
+                }
+                set
+                {
+                    if (value)
+                    {
+                        this.flag4 |= 8;
+                    }
+                    else
+                    {
+                        this.flag4 &= 247;
+                    }
+                }
+            }
+
+            public bool OnlyRx
+            {
+                get
+                {
+                    return Convert.ToBoolean(this.flag4 & 4);
+                }
+                set
+                {
+                    if (value)
+                    {
+                        this.flag4 |= 4;
+                    }
+                    else
+                    {
+                        this.flag4 &= 251;
+                    }
+                }
+            }
+
+            public int Bandwidth
+            {
+                get
+                {
+                    return (this.flag4 & 2) >> 1;
+                }
+                set
+                {
+                    this.flag4 &= 253;
+                    value = (value << 1 & 2);
+                    this.flag4 |= (byte)value;
+                }
+            }
+
+            public int Squelch
+            {
+                get
+                {
+                    return this.flag4 & 1;
+                }
+                set
+                {
+                    this.flag4 &= 254;
+                    this.flag4 |= (byte)(value & 1);
+                }
+            }
+
+            public int Ste
+            {
+                get
+                {
+                    return (this.flag3 & 0xC0) >> 6;
+                }
+                set
+                {
+                    value = (value << 6 & 0xC0);
+                    this.flag3 &= 63;
+                    this.flag3 |= (byte)value;
+                }
+            }
+
+            public int NonSte
+            {
+                get
+                {
+                    return (this.flag3 & 0x20) >> 5;
+                }
+                set
+                {
+                    value = (value << 5 & 0x20);
+                    this.flag3 &= 223;
+                    this.flag3 |= (byte)value;
+                }
+            }
+
+            public bool DataPl
+            {
+                get
+                {
+                    return Convert.ToBoolean(this.flag3 & 0x10);
+                }
+                set
+                {
+                    if (value)
+                    {
+                        this.flag3 |= 16;
+                    }
+                    else
+                    {
+                        this.flag3 &= 239;
+                    }
+                }
+            }
+
+            public int PttidType
+            {
+                get
+                {
+                    return (this.flag3 & 0xC) >> 2;
+                }
+                set
+                {
+                    value = (value << 2 & 0xC);
+                    this.flag3 &= 243;
+                    this.flag3 |= (byte)value;
+                }
+            }
+
+            public bool DualCapacity
+            {
+                get
+                {
+                    return Convert.ToBoolean(this.flag3 & 1);
+                }
+                set
+                {
+                    if (value)
+                    {
+                        this.flag3 |= 1;
+                    }
+                    else
+                    {
+                        this.flag3 &= 254;
+                    }
+                }
+            }
+
+            public int TimingPreference
+            {
+                get
+                {
+                    return (this.flag2 & 0x80) >> 7;
+                }
+                set
+                {
+                    value = (value << 7 & 0x80);
+                    this.flag2 &= 127;
+                    this.flag2 |= (byte)value;
+                }
+            }
+
+            public int RepateSlot
+            {
+                get
+                {
+                    return (this.flag2 & 0x40) >> 6;
+                }
+                set
+                {
+                    value = (value << 6 & 0x40);
+                    this.flag2 &= 191;
+                    this.flag2 |= (byte)value;
+                }
+            }
+
+            public int Ars
+            {
+                get
+                {
+                    return (this.flag2 & 0x20) >> 5;
+                }
+                set
+                {
+                    value = (value << 5 & 0x20);
+                    this.flag2 &= 223;
+                    this.flag2 |= (byte)value;
+                }
+            }
+
+            public int KeySwitch
+            {
+                get
+                {
+                    return (this.flag2 & 0x10) >> 4;
+                }
+                set
+                {
+                    value = (value << 4 & 0x10);
+                    this.flag2 &= 239;
+                    this.flag2 |= (byte)value;
+                }
+            }
+
+            public bool UdpDataHead
+            {
+                get
+                {
+                    return Convert.ToBoolean(this.flag2 & 8);
+                }
+                set
+                {
+                    if (value)
+                    {
+                        this.flag2 |= 8;
+                    }
+                    else
+                    {
+                        this.flag2 &= 247;
+                    }
+                }
+            }
+
+            public bool AllowTxInterupt
+            {
+                get
+                {
+                    return Convert.ToBoolean(this.flag2 & 4);
+                }
+                set
+                {
+                    if (value)
+                    {
+                        this.flag2 |= 4;
+                    }
+                    else
+                    {
+                        this.flag2 &= 251;
+                    }
+                }
+            }
+
+            public bool TxInteruptFreq
+            {
+                get
+                {
+                    return Convert.ToBoolean(this.flag2 & 2);
+                }
+                set
+                {
+                    if (value)
+                    {
+                        this.flag2 |= 2;
+                    }
+                    else
+                    {
+                        this.flag2 &= 253;
+                    }
+                }
+            }
+
+            public bool PrivateCall
+            {
+                get
+                {
+                    return Convert.ToBoolean(this.flag2 & 1);
+                }
+                set
+                {
+                    if (value)
+                    {
+                        this.flag2 |= 1;
+                    }
+                    else
+                    {
+                        this.flag2 &= 254;
+                    }
+                }
+            }
+
+            public bool DataCall
+            {
+                get
+                {
+                    return Convert.ToBoolean(this.flag1 & 0x80);
+                }
+                set
+                {
+                    if (value)
+                    {
+                        this.flag1 |= 128;
+                    }
+                    else
+                    {
+                        this.flag1 &= 127;
+                    }
+                }
+            }
+
+            public bool EmgConfirmed
+            {
+                get
+                {
+                    return Convert.ToBoolean(this.flag1 & 0x40);
+                }
+                set
+                {
+                    if (value)
+                    {
+                        this.flag1 |= 64;
+                    }
+                    else
+                    {
+                        this.flag1 &= 191;
+                    }
+                }
+            }
+
+            public bool EnchancedChAccess
+            {
+                get
+                {
+                    return Convert.ToBoolean(this.flag1 & 0x20);
+                }
+                set
+                {
+                    if (value)
+                    {
+                        this.flag1 |= 32;
+                    }
+                    else
+                    {
+                        this.flag1 &= 223;
+                    }
+                }
+            }
+
+            public int BandType
+            {
+                get
+                {
+                    return (this.flag1 & 4) >> 2;
+                }
+                set
+                {
+                    value = (value << 2 & 4);
+                    this.flag1 &= 251;
+                    this.flag1 |= (byte)value;
+                }
+            }
+
+            public int Arts
+            {
+                get
+                {
+                    return this.flag1 & 3;
+                }
+                set
+                {
+                    value &= 3;
+                    this.flag1 &= 252;
+                    this.flag1 |= (byte)value;
+                }
+            }
+
+            public decimal OffsetFreq
+            {
+                get
+                {
+                    if (this.offsetFreq >= 1 && this.offsetFreq <= 38400)
+                    {
+                        return (decimal)this.offsetFreq * 0.01m;
+                    }
+                    return 10.00m;
+                }
+                set
+                {
+                    int num = Convert.ToInt32(value / 0.01m);
+                    if (num >= 1 && num <= 38400)
+                    {
+                        this.offsetFreq = (ushort)num;
+                    }
+                    else
+                    {
+                        this.offsetFreq = 1000;
+                    }
+                }
+            }
+
+            public int OffsetStep
+            {
+                get
+                {
+                    int num = this.flag5 >> 4;
+                    if (num >= VfoForm.SZ_OFFSET_STEP.Length)
+                    {
+                        return 0;
+                    }
+                    return num;
+                }
+                set
+                {
+                    value &= 0xF;
+                    this.flag5 &= 15;
+                    this.flag5 |= (byte)(value << 4);
+                }
+            }
+
+            public int OffsetDirection
+            {
+                get
+                {
+                    int num = (this.flag5 & 0xC) >> 2;
+                    if (num >= VfoForm.SZ_OFFSET_DIRECTION.Length)
+                    {
+                        return 0;
+                    }
+                    return num;
+                }
+                set
+                {
+                    value &= 3;
+                    this.flag5 &= 243;
+                    this.flag5 |= (byte)(value << 2);
+                }
+            }
+
+            public int Sql
+            {
+                get
+                {
+                    if (this.sql >= 0 && this.sql <= 21)
+                    {
+                        return this.sql;
+                    }
+                    return 0;
+                }
+                set
+                {
+                    if (value >= 0 && this.sql <= 21)
+                    {
+                        this.sql = (byte)value;
+                    }
+                }
+            }
+
+            public ChannelOne(int index)
+            {
+
+                this = default(ChannelOne);
+                this.name = new byte[16];
+            }
+
+            public void Default()
+            {
+                this.ChMode = VfoForm.DefaultCh.ChMode;
+                this.LibreDMR_Power = VfoForm.DefaultCh.LibreDMR_Power;
+                this.Tot = VfoForm.DefaultCh.Tot;
+                this.TotRekey = VfoForm.DefaultCh.TotRekey;
+                this.AdmitCriteria = VfoForm.DefaultCh.AdmitCriteria;
+                this.RssiThreshold = VfoForm.DefaultCh.RssiThreshold;
+                this.ScanList = VfoForm.DefaultCh.ScanList;
+                this.RxTone = VfoForm.DefaultCh.RxTone;
+                this.TxTone = VfoForm.DefaultCh.TxTone;
+                this.VoiceEmphasis = VfoForm.DefaultCh.VoiceEmphasis;
+                this.TxSignaling = VfoForm.DefaultCh.TxSignaling;
+                this.UnmuteRule = VfoForm.DefaultCh.UnmuteRule;
+                this.RxSignaling = VfoForm.DefaultCh.RxSignaling;
+                this.ArtsInterval = VfoForm.DefaultCh.ArtsInterval;
+                this.Key = VfoForm.DefaultCh.Key;
+                this.RxColor = VfoForm.DefaultCh.RxColor;
+                this.TxColor = VfoForm.DefaultCh.TxColor;
+                this.EmgSystem = VfoForm.DefaultCh.EmgSystem;
+                this.Contact = VfoForm.DefaultCh.Contact;
+                this.Flag1 = VfoForm.DefaultCh.Flag1;
+                this.Flag2 = VfoForm.DefaultCh.Flag2;
+                this.Flag3 = VfoForm.DefaultCh.Flag3;
+                this.Flag4 = VfoForm.DefaultCh.Flag4;
+                this.Sql = VfoForm.DefaultCh.Sql;
+            }
+
+            public ChannelOne Clone()
+            {
+                return Settings.smethod_65(this);
+            }
+
+            public void Verify(ChannelOne def)
+            {
+                if (this.OffsetDirection >= VfoForm.SZ_OFFSET_DIRECTION.Length)
+                {
+                    this.OffsetDirection = def.OffsetDirection;
+                }
+                if (this.OffsetStep >= VfoForm.SZ_OFFSET_STEP.Length)
+                {
+                    this.OffsetStep = def.OffsetStep;
+                }
+                if (!Enum.IsDefined(typeof(ChModeE), this.ChMode))
+                {
+                    this.ChMode = def.ChMode;
+                }
+                if (!Enum.IsDefined(typeof(RefFreqE), this.TxRefFreq))
+                {
+                    this.TxRefFreq = def.TxRefFreq;
+                }
+                if (!Enum.IsDefined(typeof(RefFreqE), this.LibreDMR_Power))
+                {
+                    this.LibreDMR_Power = def.LibreDMR_Power;
+                }
+                Settings.smethod_11(ref this.tot, (byte)0, (byte)33, def.tot);
+                Settings.smethod_11(ref this.rssiThreshold, (byte)80, (byte)124, def.rssiThreshold);
+                if (this.scanList != 0 && this.scanList <= 64)
+                {
+                    if (!NormalScanForm.data.DataIsValid(this.scanList - 1))
+                    {
+                        this.scanList = 0;
+                    }
+                }
+                else
+                {
+                    this.scanList = 0;
+                }
+                if (!Enum.IsDefined(typeof(VoiceEmphasisE), this.VoiceEmphasis))
+                {
+                    this.VoiceEmphasis = def.VoiceEmphasis;
+                }
+                if (!Enum.IsDefined(typeof(UnmuteRuleE), this.UnmuteRule))
+                {
+                    this.UnmuteRule = def.UnmuteRule;
+                }
+                if (!Enum.IsDefined(typeof(SignalingSystemE), this.TxSignaling))
+                {
+                    this.TxSignaling = def.TxSignaling;
+                }
+                if (!Enum.IsDefined(typeof(SignalingSystemE), this.RxSignaling))
+                {
+                    this.RxSignaling = def.RxSignaling;
+                }
+                Settings.smethod_11(ref this.artsInterval, (byte)22, (byte)55, def.artsInterval);
+                if (!Enum.IsDefined(typeof(TimingPreference), this.TimingPreference))
+                {
+                    this.TimingPreference = def.TimingPreference;
+                }
+                if (this.encrypt != 0 && !EncryptForm.data.DataIsValid(this.encrypt - 1))
+                {
+                    this.encrypt = 0;
+                }
+                Settings.smethod_11(ref this.rxColor, (byte)0, (byte)15, def.rxColor);
+                this.txColor = this.rxColor;
+                if (this.rxGroupList != 0 && this.rxGroupList <= RxListData.CNT_RX_LIST)
+                {
+                    if (!RxGroupListForm.data.DataIsValid(this.rxGroupList - 1))
+                    {
+                        this.rxGroupList = 0;
+                    }
+                }
+                else
+                {
+                    this.rxGroupList = 0;
+                }
+                if (this.emgSystem != 0 && this.emgSystem <= 32)
+                {
+                    if (!EmergencyForm.data.DataIsValid(this.emgSystem - 1))
+                    {
+                        this.emgSystem = 0;
+                    }
+                }
+                else
+                {
+                    this.emgSystem = 0;
+                }
+                string pattern = "D[0-7]{3}[N|I]$";
+                Regex regex = new Regex(pattern);
+                if (regex.IsMatch(this.RxTone))
+                {
+                    this.Ste = 0;
+                }
+            }
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public class Vfo : IData
+        {
+            public delegate void ChModeDelegate(object sender, ChModeChangeEventArgs e);
+
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+            private ChannelOne[] chList;
+
+            public ChannelOne this[int index]
+            {
+                get
+                {
+                    if (index >= 2)
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
+                    return this.chList[index];
+                }
+                set
+                {
+                    if (index >= 2)
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
+                    this.chList[index] = value;
+                }
+            }
+
+            public int Count
+            {
+                get
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public string Format
+            {
+                get
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public bool ListIsEmpty
+            {
+                get
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public event ChModeDelegate ChModeChangeEvent;
+
+            public Vfo()
+            {
+
+                //base._002Ector();
+                int num = 0;
+                this.chList = new ChannelOne[2];
+                for (num = 0; num < this.chList.Length; num++)
+                {
+                    this.chList[num] = new ChannelOne(num);
+                }
+            }
+
+            public void Verify()
+            {
+                int num = 0;
+                uint num2 = 0u;
+                uint num3 = 0u;
+                uint num4 = 0u;
+                for (num = 0; num < 2; num++)
+                {
+                    num2 = this.chList[num].RxFreqDec / 100000u;
+                    if (Settings.smethod_19((double)num2, ref num4) < 0)
+                    {
+                        num2 = num4 * 100000;
+                        this.chList[num].RxFreqDec = num2;
+                    }
+                    num3 = this.chList[num].TxFreqDec / 100000u;
+                    if (Settings.smethod_19((double)num3, ref num4) < 0)
+                    {
+                        this.chList[num].TxFreqDec = this.chList[num].RxFreqDec;
+                    }
+                    switch (this.chList[num].OffsetDirection)
+                    {
+                        case 0:
+                            this.chList[num].TxFreqDec = this.chList[num].RxFreqDec;
+                            break;
+                        case 1:
+                            num3 = this.chList[num].RxFreqDec - (uint)this.chList[num].OffsetFreq;
+                            num3 /= 100000u;
+                            if (Settings.smethod_19((double)num3, ref num4) < 0)
+                            {
+                                this.chList[num].OffsetDirection = 0;
+                            }
+                            break;
+                        case 2:
+                            num3 = this.chList[num].RxFreqDec + (uint)this.chList[num].OffsetFreq;
+                            num3 /= 100000u;
+                            if (Settings.smethod_19((double)num3, ref num4) < 0)
+                            {
+                                this.chList[num].OffsetDirection = 0;
+                            }
+                            break;
+                    }
+                    this.chList[num].Verify(VfoForm.DefaultCh);
+                }
+            }
+
+            public void SetDefaultFreq(int index)
+            {
+                this.chList[index].UInt32_0 = Settings.smethod_35(Settings.MIN_FREQ[0] * 100000);
+                this.chList[index].UInt32_1 = this.chList[index].UInt32_0;
+            }
+
+            public byte[] ToEerom()
+            {
+                int num = 0;
+                int num2 = 0;
+                byte[] array = new byte[2 * VfoForm.SPACE_CH];
+                for (num = 0; num < 2; num++)
+                {
+                    byte[] array2 = Settings.objectToByteArray(this.chList[num], Marshal.SizeOf(this.chList[num]));
+                    Array.Copy(array2, 0, array, num2, array2.Length);
+                    num2 += array2.Length;
+                }
+                return array;
+            }
+
+            public void FromEerom(byte[] data)
+            {
+                int num = 0;
+                int num2 = 0;
+                for (num = 0; num < 2; num++)
+                {
+                    byte[] array = new byte[VfoForm.SPACE_CH];
+                    Array.Copy(data, num2, array, 0, array.Length);
+                    this.chList[num] = (ChannelOne)Settings.smethod_62(array, typeof(ChannelOne));
 
                     // Roger Clark. Workaround for bug in firmware 3.0.6 where Dual Direct Capacity Mode must NOT be enabled in Analog mode
                     if (this.chList[num].ChMode == (int)ChModeE.Analog && this.chList[num].DualCapacity == true)
                     {
                         this.chList[num].DualCapacity = false;
                     }
+                    if (GeneralSetForm.data.CodeplugVersion == 0)
+                    {
+                        this.chList[num].LibreDMR_Power = 0;
+                    }
+                    num2 += array.Length;
+                }
+            }
+
+            public int GetMinIndex()
+            {
+                throw new NotImplementedException();
+            }
+
+            public string GetMinName(TreeNode node)
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool DataIsValid(int index)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void SetIndex(int index, int value)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void ClearIndex(int index)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void SetName(int index, string text)
+            {
+                throw new NotImplementedException();
+            }
+
+            public string GetName(int index)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Default(int index)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Paste(int from, int to)
+            {
+                throw new NotImplementedException();
+            }
+
+            public int GetChMode(int index)
+            {
+                return this.chList[index].ChMode;
+            }
+        }
+
+        public const int CNT_VFO_CH = 2;
+        public const int LEN_CH_NAME = 16;
+        public const string SZ_CH_MODE_NAME = "ChMode";
+        private const int LEN_FREQ = 9;
+        private const int SCL_FREQ = 100000;
+        public const string SZ_REF_FREQ_NAME = "RefFreq";
+        public const string SZ_POWER_NAME = "Power";
+        private const string SZ_INFINITE = "无穷";
+        private const int MIN_TOT = 0;
+        private const int MAX_TOT = 33;
+        private const int INC_TOT = 1;
+        private const int SCL_TOT = 15;
+        private const int LEN_TOT = 3;
+        private const int MIN_TOT_REKEY = 0;
+        private const int MAX_TOT_REKEY = 255;
+        private const int INC_TOT_REKEY = 1;
+        private const int SCL_TOT_REKEY = 1;
+        private const int LEN_TOT_REKEY = 3;
+        public const string SZ_ADMIT_CRITERICA_NAME = "AdmitCriterica";
+        public const string SZ_ADMIT_CRITERICA_D_NAME = "AdmitCritericaD";
+        private const int MIN_RSSI_THRESHOLD = 80;
+        private const int MAX_RSSI_THRESHOLD = 124;
+        private const int INC_RSSI_THRESHOLD = 1;
+        private const int SCL_RSSI_THRESHOLD = -1;
+        private const int LEN_RSSI_THRESHOLD = 4;
+        public const string SZ_SQUELCH_NAME = "Squelch";
+        public const string SZ_SQUELCH_LEVEL_NAME = "SquelchLevel";
+        public const string SZ_VOICE_EMPHASIS_NAME = "VoiceEmphasis";
+        public const string SZ_STE_NAME = "Ste";
+        public const string SZ_NON_STE_NAME = "NonSte";
+        public const string SZ_SIGNALING_SYSTEM_NAME = "SignalingSystem";
+        public const string SZ_UNMUTE_RULE_NAME = "UnmuteRule";
+        public const string SZ_PTTID_TYPE_NAME = "PttidType";
+        public const string SZ_ARTS_NAME = "Arts";
+        private const int MIN_COLOR_CODE = 0;
+        private const int MAX_COLOR_CODE_DUAL_CAPACITY = 14;
+        private const int MAX_COLOR_CODE = 15;
+        private const int INC_COLOR_CODE = 1;
+        private const int SCL_COLOR_CODE = 1;
+        private const int LEN_COLOR_CODE = 2;
+        private const int MIN_ARTS_INTERVAL = 22;
+        private const int MAX_ARTS_INTERVAL = 55;
+        private const int INC_ARTS_INTERVAL = 1;
+        private const int SCL_ARTS_INTERVAL = 1;
+        private const int LEN_ARTS_INTERVAL = 2;
+        public const string SZ_TIMING_PREFERENCE_NAME = "TimingPreference";
+        public const string SZ_ARS_NAME = "Ars";
+        public const string SZ_KEY_SWITCH_NAME = "KeySwitch";
+        public const string SZ_OFFSET_DIRECTION_NAME = "OffsetDirection";
+        private const int INC_OFFSET_FREQ = 1;
+        public static decimal SCL_OFFSET_FREQ = 0.01m;
+        private const int LEN_OFFSET_FREQ = 6;
+        private const int MIN_OFFSET_FREQ = 1;
+        private const int MAX_OFFSET_FREQ = 38400;
+        private const int DEF_OFFSET_FREQ = 1000;
+        private const int SCL_OFFSET_FREQ_MHZ = 1000;
+        //private IContainer components;
+        private CheckBox chkEnhancedChAccess;
+        private CheckBox chkEmgConfirmed;
+        private CheckBox chkDataCall;
+        private CheckBox chkPrivateCall;
+        private CheckBox chkTxInteruptFreq;
+        private CheckBox chkAllowTxInterupt;
+        private Label lblContact;
+        private CustomCombo cmbContact;
+        private Label lblEmgSystem;
+        private CustomCombo cmbEmgSystem;
+        private Label lblTxColor;
+        private Label lblRxGroup;
 
-					num2 += array.Length;
-				}
-			}
-
-			public int GetMinIndex()
-			{
-				throw new NotImplementedException();
-			}
-
-			public string GetMinName(TreeNode node)
-			{
-				throw new NotImplementedException();
-			}
-
-			public bool DataIsValid(int index)
-			{
-				throw new NotImplementedException();
-			}
-
-			public void SetIndex(int index, int value)
-			{
-				throw new NotImplementedException();
-			}
-
-			public void ClearIndex(int index)
-			{
-				throw new NotImplementedException();
-			}
-
-			public void SetName(int index, string text)
-			{
-				throw new NotImplementedException();
-			}
-
-			public string GetName(int index)
-			{
-				throw new NotImplementedException();
-			}
-
-			public void Default(int index)
-			{
-				throw new NotImplementedException();
-			}
-
-			public void Paste(int from, int to)
-			{
-				throw new NotImplementedException();
-			}
-
-			public int GetChMode(int index)
-			{
-				return this.chList[index].ChMode;
-			}
-		}
-
-		public const int CNT_VFO_CH = 2;
-		public const int LEN_CH_NAME = 16;
-		public const string SZ_CH_MODE_NAME = "ChMode";
-		private const int LEN_FREQ = 9;
-		private const int SCL_FREQ = 100000;
-		public const string SZ_REF_FREQ_NAME = "RefFreq";
-		public const string SZ_POWER_NAME = "Power";
-		private const string SZ_INFINITE = "无穷";
-		private const int MIN_TOT = 0;
-		private const int MAX_TOT = 33;
-		private const int INC_TOT = 1;
-		private const int SCL_TOT = 15;
-		private const int LEN_TOT = 3;
-		private const int MIN_TOT_REKEY = 0;
-		private const int MAX_TOT_REKEY = 255;
-		private const int INC_TOT_REKEY = 1;
-		private const int SCL_TOT_REKEY = 1;
-		private const int LEN_TOT_REKEY = 3;
-		public const string SZ_ADMIT_CRITERICA_NAME = "AdmitCriterica";
-		public const string SZ_ADMIT_CRITERICA_D_NAME = "AdmitCritericaD";
-		private const int MIN_RSSI_THRESHOLD = 80;
-		private const int MAX_RSSI_THRESHOLD = 124;
-		private const int INC_RSSI_THRESHOLD = 1;
-		private const int SCL_RSSI_THRESHOLD = -1;
-		private const int LEN_RSSI_THRESHOLD = 4;
-		public const string SZ_SQUELCH_NAME = "Squelch";
-		public const string SZ_SQUELCH_LEVEL_NAME = "SquelchLevel";
-		public const string SZ_VOICE_EMPHASIS_NAME = "VoiceEmphasis";
-		public const string SZ_STE_NAME = "Ste";
-		public const string SZ_NON_STE_NAME = "NonSte";
-		public const string SZ_SIGNALING_SYSTEM_NAME = "SignalingSystem";
-		public const string SZ_UNMUTE_RULE_NAME = "UnmuteRule";
-		public const string SZ_PTTID_TYPE_NAME = "PttidType";
-		public const string SZ_ARTS_NAME = "Arts";
-		private const int MIN_COLOR_CODE = 0;
-		private const int MAX_COLOR_CODE_DUAL_CAPACITY = 14;
-		private const int MAX_COLOR_CODE = 15;
-		private const int INC_COLOR_CODE = 1;
-		private const int SCL_COLOR_CODE = 1;
-		private const int LEN_COLOR_CODE = 2;
-		private const int MIN_ARTS_INTERVAL = 22;
-		private const int MAX_ARTS_INTERVAL = 55;
-		private const int INC_ARTS_INTERVAL = 1;
-		private const int SCL_ARTS_INTERVAL = 1;
-		private const int LEN_ARTS_INTERVAL = 2;
-		public const string SZ_TIMING_PREFERENCE_NAME = "TimingPreference";
-		public const string SZ_ARS_NAME = "Ars";
-		public const string SZ_KEY_SWITCH_NAME = "KeySwitch";
-		public const string SZ_OFFSET_DIRECTION_NAME = "OffsetDirection";
-		private const int INC_OFFSET_FREQ = 1;
-		public  static decimal SCL_OFFSET_FREQ = 0.01m;
-		private const int LEN_OFFSET_FREQ = 6;
-		private const int MIN_OFFSET_FREQ = 1;
-		private const int MAX_OFFSET_FREQ = 38400;
-		private const int DEF_OFFSET_FREQ = 1000;
-		private const int SCL_OFFSET_FREQ_MHZ = 1000;
-		//private IContainer components;
-		private CheckBox chkEnhancedChAccess;
-		private CheckBox chkEmgConfirmed;
-		private CheckBox chkDataCall;
-		private CheckBox chkPrivateCall;
-		private CheckBox chkTxInteruptFreq;
-		private CheckBox chkAllowTxInterupt;
-		private Label lblContact;
-		private CustomCombo cmbContact;
-		private Label lblEmgSystem;
-		private CustomCombo cmbEmgSystem;
-		private Label lblTxColor;
-		private Label lblRxGroup;
+        private CustomCombo cmbRxGroup;
 
-		private CustomCombo cmbRxGroup;
+        private Label lblRxColor;
 
-		private Label lblRxColor;
+        private CheckBox chkUdpDataHead;
 
-		private CheckBox chkUdpDataHead;
+        private Label lblKey;
 
-		private Label lblKey;
+        private CustomCombo cmbKey;
 
-		private CustomCombo cmbKey;
+        private Label lblKeySwitch;
 
-		private Label lblKeySwitch;
+        private ComboBox cmbKeySwitch;
 
-		private ComboBox cmbKeySwitch;
+        private Label lblArs;
 
-		private Label lblArs;
+        private ComboBox cmbArs;
 
-		private ComboBox cmbArs;
+        private Label lblRepeaterSlot;
 
-		private Label lblRepeaterSlot;
+        private ComboBox cmbRepeaterSlot;
 
-		private ComboBox cmbRepeaterSlot;
+        private Label lblTimingPreference;
 
-		private Label lblTimingPreference;
+        private ComboBox cmbTimingPreference;
 
-		private ComboBox cmbTimingPreference;
+        private CheckBox chkDualCapacity;
 
-		private CheckBox chkDualCapacity;
+        private Label lblTxTone;
 
-		private Label lblTxTone;
+        private ComboBox cmbTxTone;
 
-		private ComboBox cmbTxTone;
+        private Label lblTxSignaling;
 
-		private Label lblTxSignaling;
+        private ComboBox cmbTxSignaling;
 
-		private ComboBox cmbTxSignaling;
+        private Label lblPttidType;
 
-		private Label lblPttidType;
+        private ComboBox cmbPttidType;
 
-		private ComboBox cmbPttidType;
+        private Label lblArtsInterval;
 
-		private Label lblArtsInterval;
+        private CustomNumericUpDown nudArtsInterval;
 
-		private CustomNumericUpDown nudArtsInterval;
+        private CheckBox chkDataPl;
 
-		private CheckBox chkDataPl;
+        private Label lblUnmuteRule;
 
-		private Label lblUnmuteRule;
+        private ComboBox cmbUnmuteRule;
 
-		private ComboBox cmbUnmuteRule;
+        private Label lblRxSignaling;
 
-		private Label lblRxSignaling;
+        private ComboBox cmbRxSignaling;
 
-		private ComboBox cmbRxSignaling;
+        private Label lblRxTone;
 
-		private Label lblRxTone;
+        private ComboBox cmbRxTone;
 
-		private ComboBox cmbRxTone;
+        private Label lblNonSte;
 
-		private Label lblNonSte;
+        private ComboBox cmbNonSte;
 
-		private ComboBox cmbNonSte;
+        private Label lblSte;
 
-		private Label lblSte;
+        private ComboBox cmbSte;
 
-		private ComboBox cmbSte;
+        private Label lblVoiceEmphasis;
 
-		private Label lblVoiceEmphasis;
+        private ComboBox cmbVoiceEmphasis;
 
-		private ComboBox cmbVoiceEmphasis;
+        private Label lblSquelch;
 
-		private Label lblSquelch;
+        private ComboBox cmbSquelch;
 
-		private ComboBox cmbSquelch;
+        private Label lblChBandwidth;
 
-		private Label lblChBandwidth;
+        private ComboBox cmbChBandwidth;
 
-		private ComboBox cmbChBandwidth;
+        private Label lblChMode;
 
-		private Label lblChMode;
+        private ComboBox cmbChMode;
 
-		private ComboBox cmbChMode;
+        private Label lblChName;
 
-		private Label lblChName;
+        private SGTextBox txtName;
 
-		private SGTextBox txtName;
+        private Label lblRxFreq;
 
-		private Label lblRxFreq;
+        private TextBox txtRxFreq;
 
-		private TextBox txtRxFreq;
+        private Label lblRxRefFreq;
 
-		private Label lblRxRefFreq;
+        private ComboBox cmbLibreDMR_Power;
 
-		private ComboBox cmbRxRefFreq;
+        private Label lblTxRefFreq;
 
-		private Label lblTxRefFreq;
+        private Label lblTxFreq;
 
-		private Label lblTxFreq;
+        private ComboBox cmbTxRefFreq;
 
-		private ComboBox cmbTxRefFreq;
+        private TextBox txtTxFreq;
 
-		private TextBox txtTxFreq;
+        private Label lblPower;
 
-		private Label lblPower;
+        private ComboBox cmbPower;
 
-		private ComboBox cmbPower;
+        private Label lblTot;
 
-		private Label lblTot;
+        private CustomNumericUpDown nudTot;
 
-		private CustomNumericUpDown nudTot;
+        private Label lblTotRekey;
 
-		private Label lblTotRekey;
+        private CustomNumericUpDown nudTotRekey;
 
-		private CustomNumericUpDown nudTotRekey;
+        private CheckBox chkVox;
 
-		private CheckBox chkVox;
+        private Label lblAdmitCriteria;
 
-		private Label lblAdmitCriteria;
+        private ComboBox cmbAdmitCriteria;
 
-		private ComboBox cmbAdmitCriteria;
+        private Label lblRssiThreshold;
 
-		private Label lblRssiThreshold;
+        private CustomNumericUpDown nudRssiThreshold;
 
-		private CustomNumericUpDown nudRssiThreshold;
+        private Label lblScanList;
 
-		private Label lblScanList;
+        private CustomCombo cmbScanList;
 
-		private CustomCombo cmbScanList;
+        private CheckBox chkOpenGD77ScanZoneSkip;
 
-		private CheckBox chkOpenGD77ScanZoneSkip;
+        private CheckBox chkOpenGD77ScanAllSkip;
 
-		private CheckBox chkOpenGD77ScanAllSkip;
+        private CheckBox chkAllowTalkaround;
 
-		private CheckBox chkAllowTalkaround;
+        private CheckBox chkRxOnly;
 
-		private CheckBox chkRxOnly;
+        private DoubleClickGroupBox grpAnalog;
 
-		private DoubleClickGroupBox grpAnalog;
+        private DoubleClickGroupBox grpDigit;
 
-		private DoubleClickGroupBox grpDigit;
+        private CustomNumericUpDown nudTxColor;
 
-		private CustomNumericUpDown nudTxColor;
+        private CustomNumericUpDown nudRxColor;
 
-		private CustomNumericUpDown nudRxColor;
+        private CustomCombo cmbArts;
 
-		private CustomCombo cmbArts;
+        private Label lblArts;
 
-		private Label lblArts;
+        private ComboBox cmbSql;
 
-		private ComboBox cmbSql;
+        private Label lblSql;
 
-		private Label lblSql;
+        private MenuStrip mnsCh;
 
-		private MenuStrip mnsCh;
+        private ToolStripMenuItem tsmiCh;
 
-		private ToolStripMenuItem tsmiCh;
+        private ToolStripMenuItem tsmiFirst;
 
-		private ToolStripMenuItem tsmiFirst;
+        private ToolStripMenuItem tsmiPrev;
 
-		private ToolStripMenuItem tsmiPrev;
+        private ToolStripMenuItem tsmiNext;
 
-		private ToolStripMenuItem tsmiNext;
+        private ToolStripMenuItem tsmiLast;
 
-		private ToolStripMenuItem tsmiLast;
+        private ToolStripMenuItem tsmiAdd;
 
-		private ToolStripMenuItem tsmiAdd;
+        private ToolStripMenuItem tsmiDel;
 
-		private ToolStripMenuItem tsmiDel;
+        private CustomPanel pnlChannel;
 
-		private CustomPanel pnlChannel;
+        private Button btnCopy;
 
-		private Button btnCopy;
+        private ComboBox cmbOffsetDirection;
 
-		private ComboBox cmbOffsetDirection;
+        private Label lblOffsetDirection;
 
-		private Label lblOffsetDirection;
+        private ComboBox cmbOffsetStep;
 
-		private ComboBox cmbOffsetStep;
+        private Label lblOffsetStep;
 
-		private Label lblOffsetStep;
+        private CustomNumericUpDown nudOffsetFreq;
 
-		private CustomNumericUpDown nudOffsetFreq;
+        private Label lblOffsetFreq;
 
-		private Label lblOffsetFreq;
+        private Label lblBandType;
 
-		private Label lblBandType;
+        private ComboBox cmbBandType;
 
-		private ComboBox cmbBandType;
+        public static readonly int SPACE_CH;
 
-		public static readonly int SPACE_CH;
+        public static readonly string[] SZ_CH_MODE;
 
-		public static readonly string[] SZ_CH_MODE;
+        private static readonly string[] SZ_REF_FREQ;
+        private static readonly string[] SZ_LIBREDMR_POWER;
 
-		private static readonly string[] SZ_REF_FREQ;
+        public static readonly string[] SZ_POWER;
 
-		public static readonly string[] SZ_POWER;
+        private static readonly string[] SZ_BAND_TYPE;
 
-		private static readonly string[] SZ_BAND_TYPE;
+        private static readonly string[] SZ_ADMIT_CRITERICA;
 
-		private static readonly string[] SZ_ADMIT_CRITERICA;
+        private static readonly string[] SZ_ADMIT_CRITERICA_D;
 
-		private static readonly string[] SZ_ADMIT_CRITERICA_D;
+        private static readonly string[] SZ_BANDWIDTH;
 
-		private static readonly string[] SZ_BANDWIDTH;
+        private static readonly string[] SZ_SQUELCH;
+        private static readonly string[] SZ_SQUELCH_LEVEL;
 
-		private static readonly string[] SZ_SQUELCH;
-		private static readonly string[] SZ_SQUELCH_LEVEL;
+        private static readonly string[] SZ_VOICE_EMPHASIS;
 
-		private static readonly string[] SZ_VOICE_EMPHASIS;
+        private static readonly string[] SZ_STE;
 
-		private static readonly string[] SZ_STE;
+        private static readonly string[] SZ_NON_STE;
 
-		private static readonly string[] SZ_NON_STE;
+        private static readonly string[] SZ_SIGNALING_SYSTEM;
 
-		private static readonly string[] SZ_SIGNALING_SYSTEM;
+        private static readonly string[] SZ_UNMUTE_RULE;
 
-		private static readonly string[] SZ_UNMUTE_RULE;
+        private static readonly string[] SZ_PTTID_TYPE;
 
-		private static readonly string[] SZ_PTTID_TYPE;
+        private static readonly string[] SZ_ARTS;
 
-		private static readonly string[] SZ_ARTS;
+        private static readonly string[] SZ_TIMING_PREFERENCE;
 
-		private static readonly string[] SZ_TIMING_PREFERENCE;
+        private static readonly string[] SZ_REPEATER_SOLT;
 
-		private static readonly string[] SZ_REPEATER_SOLT;
+        private static readonly string[] SZ_ARS;
 
-		private static readonly string[] SZ_ARS;
+        private static readonly string[] SZ_KEY_SWITCH;
 
-		private static readonly string[] SZ_KEY_SWITCH;
+        private static readonly string[] SZ_OFFSET_DIRECTION;
 
-		private static readonly string[] SZ_OFFSET_DIRECTION;
+        private static readonly string[] SZ_OFFSET_STEP;
 
-		private static readonly string[] SZ_OFFSET_STEP;
+        public static ChannelOne DefaultCh;
 
-		public static ChannelOne DefaultCh;
+        public static Vfo data;
 
-		public static Vfo data;
+        public static int CurCntCh
+        {
+            get;
+            set;
+        }
 
-		public static int CurCntCh
-		{
-			get;
-			set;
-		}
+        public TreeNode Node
+        {
+            get;
+            set;
+        }
 
-		public TreeNode Node
-		{
-			get;
-			set;
-		}
-
-		protected override void Dispose(bool disposing)
-		{
+        protected override void Dispose(bool disposing)
+        {
             /*
 			if (disposing && this.components != null)
 			{
 				this.components.Dispose();
 			}*/
-			base.Dispose(disposing);
-		}
+            base.Dispose(disposing);
+        }
 
-		private void InitializeComponent()
-		{
+        private void InitializeComponent()
+        {
             this.mnsCh = new System.Windows.Forms.MenuStrip();
             this.tsmiCh = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFirst = new System.Windows.Forms.ToolStripMenuItem();
@@ -2085,7 +2110,7 @@ namespace DMR
             this.lblRxGroup = new System.Windows.Forms.Label();
             this.lblAdmitCriteria = new System.Windows.Forms.Label();
             this.chkRxOnly = new System.Windows.Forms.CheckBox();
-            this.cmbRxRefFreq = new System.Windows.Forms.ComboBox();
+            this.cmbLibreDMR_Power = new System.Windows.Forms.ComboBox();
             this.chkAllowTalkaround = new System.Windows.Forms.CheckBox();
             this.grpAnalog = new DoubleClickGroupBox();
             this.nudArtsInterval = new CustomNumericUpDown();
@@ -2179,37 +2204,37 @@ namespace DMR
             // tsmiFirst
             // 
             this.tsmiFirst.Name = "tsmiFirst";
-            this.tsmiFirst.Size = new System.Drawing.Size(119, 22);
+            this.tsmiFirst.Size = new System.Drawing.Size(115, 22);
             this.tsmiFirst.Text = "First";
             // 
             // tsmiPrev
             // 
             this.tsmiPrev.Name = "tsmiPrev";
-            this.tsmiPrev.Size = new System.Drawing.Size(119, 22);
+            this.tsmiPrev.Size = new System.Drawing.Size(115, 22);
             this.tsmiPrev.Text = "Previous";
             // 
             // tsmiNext
             // 
             this.tsmiNext.Name = "tsmiNext";
-            this.tsmiNext.Size = new System.Drawing.Size(119, 22);
+            this.tsmiNext.Size = new System.Drawing.Size(115, 22);
             this.tsmiNext.Text = "Next";
             // 
             // tsmiLast
             // 
             this.tsmiLast.Name = "tsmiLast";
-            this.tsmiLast.Size = new System.Drawing.Size(119, 22);
+            this.tsmiLast.Size = new System.Drawing.Size(115, 22);
             this.tsmiLast.Text = "Last";
             // 
             // tsmiAdd
             // 
             this.tsmiAdd.Name = "tsmiAdd";
-            this.tsmiAdd.Size = new System.Drawing.Size(119, 22);
+            this.tsmiAdd.Size = new System.Drawing.Size(115, 22);
             this.tsmiAdd.Text = "Add";
             // 
             // tsmiDel
             // 
             this.tsmiDel.Name = "tsmiDel";
-            this.tsmiDel.Size = new System.Drawing.Size(119, 22);
+            this.tsmiDel.Size = new System.Drawing.Size(115, 22);
             this.tsmiDel.Text = "Delete";
             // 
             // pnlChannel
@@ -2230,7 +2255,7 @@ namespace DMR
             this.pnlChannel.Controls.Add(this.nudRssiThreshold);
             this.pnlChannel.Controls.Add(this.grpDigit);
             this.pnlChannel.Controls.Add(this.chkRxOnly);
-            this.pnlChannel.Controls.Add(this.cmbRxRefFreq);
+            this.pnlChannel.Controls.Add(this.cmbLibreDMR_Power);
             this.pnlChannel.Controls.Add(this.chkAllowTalkaround);
             this.pnlChannel.Controls.Add(this.grpAnalog);
             this.pnlChannel.Controls.Add(this.chkOpenGD77ScanAllSkip);
@@ -2555,6 +2580,7 @@ namespace DMR
             this.cmbRxGroup.Name = "cmbRxGroup";
             this.cmbRxGroup.Size = new System.Drawing.Size(120, 24);
             this.cmbRxGroup.TabIndex = 15;
+            this.cmbRxGroup.SelectedIndexChanged += new System.EventHandler(this.cmbRxGrp_SelectedIndexChanged);
             // 
             // lblTxColor
             // 
@@ -2594,6 +2620,8 @@ namespace DMR
             this.cmbContact.Name = "cmbContact";
             this.cmbContact.Size = new System.Drawing.Size(120, 24);
             this.cmbContact.TabIndex = 21;
+            this.cmbContact.SelectedIndexChanged += new System.EventHandler(this.cmbContact_SelectedIndexChanged);
+
             // 
             // lblContact
             // 
@@ -2732,15 +2760,15 @@ namespace DMR
             this.chkRxOnly.UseVisualStyleBackColor = true;
             this.chkRxOnly.CheckedChanged += new System.EventHandler(this.chkRxOnly_CheckedChanged);
             // 
-            // cmbRxRefFreq
+            // cmbLibreDMR_Power
             // 
-            this.cmbRxRefFreq.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRxRefFreq.FormattingEnabled = true;
-            this.cmbRxRefFreq.Location = new System.Drawing.Point(471, 376);
-            this.cmbRxRefFreq.Name = "cmbRxRefFreq";
-            this.cmbRxRefFreq.Size = new System.Drawing.Size(120, 24);
-            this.cmbRxRefFreq.TabIndex = 7;
-            this.cmbRxRefFreq.Visible = false;
+            this.cmbLibreDMR_Power.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLibreDMR_Power.FormattingEnabled = true;
+            this.cmbLibreDMR_Power.Location = new System.Drawing.Point(365, 85);
+            this.cmbLibreDMR_Power.Name = "cmbLibreDMR_Power";
+            this.cmbLibreDMR_Power.Size = new System.Drawing.Size(119, 24);
+            this.cmbLibreDMR_Power.TabIndex = 7;
+            this.cmbLibreDMR_Power.Visible = false;
             // 
             // chkAllowTalkaround
             // 
@@ -3193,7 +3221,7 @@ namespace DMR
             // 
             this.cmbPower.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPower.FormattingEnabled = true;
-            this.cmbPower.Location = new System.Drawing.Point(364, 86);
+            this.cmbPower.Location = new System.Drawing.Point(623, 316);
             this.cmbPower.Name = "cmbPower";
             this.cmbPower.Size = new System.Drawing.Size(120, 24);
             this.cmbPower.TabIndex = 13;
@@ -3284,7 +3312,10 @@ namespace DMR
             this.Controls.Add(this.pnlChannel);
             this.Controls.Add(this.mnsCh);
             this.Font = new System.Drawing.Font("Arial", 10F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.mnsCh;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "VfoForm";
             this.Text = "VFO";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VfoForm_FormClosing);
@@ -3307,70 +3338,73 @@ namespace DMR
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
+        }
 
-		public void SaveData()
-		{
-			int index = Convert.ToInt32(base.Tag);
-			this.ValidateChildren();
-			ChannelOne value = new ChannelOne(index);
-			if (this.txtName.Focused)
-			{
-				this.txtName_Leave(this.txtName, null);
-			}
-			value.ChMode = this.cmbChMode.SelectedIndex;
-			value.Name = this.txtName.Text;
-			value.RxFreq = this.txtRxFreq.Text;
-			value.RxRefFreq = this.cmbRxRefFreq.SelectedIndex;
-			value.TxFreq = this.txtTxFreq.Text;
-			value.TxRefFreq = this.cmbTxRefFreq.SelectedIndex;
-			value.Power = this.cmbPower.SelectedIndex;
-			value.Tot = this.nudTot.Value;
-			value.TotRekey = this.nudTotRekey.Value;
-			value.Vox = this.chkVox.Checked;
-			value.AdmitCriteria = this.cmbAdmitCriteria.SelectedIndex;
-			value.RssiThreshold = this.nudRssiThreshold.Value;
-			value.ScanList = this.cmbScanList.method_3();
-			value.AutoScan = this.chkOpenGD77ScanZoneSkip.Checked;
-			value.LoneWoker = this.chkOpenGD77ScanAllSkip.Checked;
-			value.AllowTalkaround = this.chkAllowTalkaround.Checked;
-			value.OnlyRx = this.chkRxOnly.Checked;
-			value.Bandwidth = this.cmbChBandwidth.SelectedIndex;
-			value.Squelch = this.cmbSquelch.SelectedIndex;
-			value.Sql = this.cmbSql.SelectedIndex;
-			value.VoiceEmphasis = this.cmbVoiceEmphasis.SelectedIndex;
-			value.Ste = this.cmbSte.SelectedIndex;
-			value.NonSte = this.cmbNonSte.SelectedIndex;
-			value.RxTone = this.cmbRxTone.Text;
-			value.TxSignaling = this.cmbTxSignaling.SelectedIndex;
-			value.UnmuteRule = this.cmbUnmuteRule.SelectedIndex;
-			value.DataPl = this.chkDataPl.Checked;
-			value.TxTone = this.cmbTxTone.Text;
-			value.RxSignaling = this.cmbRxSignaling.SelectedIndex;
-			value.PttidType = this.cmbPttidType.SelectedIndex;
-			value.Arts = this.cmbArts.method_3();
-			value.ArtsInterval = this.nudArtsInterval.Value;
-			value.DualCapacity = this.chkDualCapacity.Checked;
-			value.TimingPreference = this.cmbTimingPreference.SelectedIndex;
-			value.RepateSlot = this.cmbRepeaterSlot.SelectedIndex;
-			value.Ars = this.cmbArs.SelectedIndex;
-			value.KeySwitch = this.cmbKeySwitch.SelectedIndex;
-			value.Key = this.cmbKey.method_3();
-			value.UdpDataHead = this.chkUdpDataHead.Checked;
-			value.RxColor = this.nudRxColor.Value;
-			value.RxGroupList = this.cmbRxGroup.method_3();
-			value.TxColor = this.nudTxColor.Value;
-			value.EmgSystem = this.cmbEmgSystem.method_3();
-			value.Contact = this.cmbContact.method_3();
-			value.AllowTxInterupt = this.chkAllowTxInterupt.Checked;
-			value.TxInteruptFreq = this.chkTxInteruptFreq.Checked;
-			value.PrivateCall = this.chkPrivateCall.Checked;
-			value.DataCall = this.chkDataCall.Checked;
-			value.EmgConfirmed = this.chkEmgConfirmed.Checked;
-			value.EnchancedChAccess = this.chkEnhancedChAccess.Checked;
-			value.OffsetDirection = this.cmbOffsetDirection.SelectedIndex;
-			value.OffsetStep = this.cmbOffsetStep.SelectedIndex;
-			value.OffsetFreq = this.nudOffsetFreq.Value;
+        public void SaveData()
+        {
+            int index = Convert.ToInt32(base.Tag);
+            this.ValidateChildren();
+            ChannelOne value = new ChannelOne(index);
+            if (this.txtName.Focused)
+            {
+                this.txtName_Leave(this.txtName, null);
+            }
+            value.ChMode = this.cmbChMode.SelectedIndex;
+            value.Name = this.txtName.Text;
+            value.RxFreq = this.txtRxFreq.Text;
+            value.LibreDMR_Power = this.cmbLibreDMR_Power.SelectedIndex;
+            value.TxFreq = this.txtTxFreq.Text;
+            value.TxRefFreq = this.cmbTxRefFreq.SelectedIndex;
+            value.Power = this.cmbPower.SelectedIndex;
+            value.Tot = this.nudTot.Value;
+            value.TotRekey = this.nudTotRekey.Value;
+            value.Vox = this.chkVox.Checked;
+            value.AdmitCriteria = this.cmbAdmitCriteria.SelectedIndex;
+            value.RssiThreshold = this.nudRssiThreshold.Value;
+            value.ScanList = this.cmbScanList.method_3();
+            value.AutoScan = this.chkOpenGD77ScanZoneSkip.Checked;
+            value.LoneWoker = this.chkOpenGD77ScanAllSkip.Checked;
+            value.AllowTalkaround = this.chkAllowTalkaround.Checked;
+            value.OnlyRx = this.chkRxOnly.Checked;
+            value.Bandwidth = this.cmbChBandwidth.SelectedIndex;
+            value.Squelch = this.cmbSquelch.SelectedIndex;
+            value.Sql = this.cmbSql.SelectedIndex;
+            value.VoiceEmphasis = this.cmbVoiceEmphasis.SelectedIndex;
+            value.Ste = this.cmbSte.SelectedIndex;
+            value.NonSte = this.cmbNonSte.SelectedIndex;
+            value.RxTone = this.cmbRxTone.Text;
+            value.TxSignaling = this.cmbTxSignaling.SelectedIndex;
+            value.UnmuteRule = this.cmbUnmuteRule.SelectedIndex;
+            value.DataPl = this.chkDataPl.Checked;
+            value.TxTone = this.cmbTxTone.Text;
+            value.RxSignaling = this.cmbRxSignaling.SelectedIndex;
+            value.PttidType = this.cmbPttidType.SelectedIndex;
+            value.Arts = this.cmbArts.method_3();
+            value.ArtsInterval = this.nudArtsInterval.Value;
+            value.DualCapacity = this.chkDualCapacity.Checked;
+            value.TimingPreference = this.cmbTimingPreference.SelectedIndex;
+            value.RepateSlot = this.cmbRepeaterSlot.SelectedIndex;
+            value.Ars = this.cmbArs.SelectedIndex;
+            value.KeySwitch = this.cmbKeySwitch.SelectedIndex;
+            value.Key = this.cmbKey.method_3();
+            value.UdpDataHead = this.chkUdpDataHead.Checked;
+            value.RxColor = this.nudRxColor.Value;
+            value.RxGroupList = this.cmbRxGroup.method_3();
+            value.TxColor = this.nudTxColor.Value;
+            value.EmgSystem = this.cmbEmgSystem.method_3();
+            value.Contact = this.cmbContact.method_3();
+            value.AllowTxInterupt = this.chkAllowTxInterupt.Checked;
+            value.TxInteruptFreq = this.chkTxInteruptFreq.Checked;
+            value.PrivateCall = this.chkPrivateCall.Checked;
+            value.DataCall = this.chkDataCall.Checked;
+            value.EmgConfirmed = this.chkEmgConfirmed.Checked;
+            value.EnchancedChAccess = this.chkEnhancedChAccess.Checked;
+            value.OffsetDirection = this.cmbOffsetDirection.SelectedIndex;
+            value.OffsetStep = this.cmbOffsetStep.SelectedIndex;
+            value.OffsetFreq = this.nudOffsetFreq.Value;
+            /*
+			 * VK3KYY. Note.
+			 * I've no idea what this does, but it seems to change the VFO frequencies, so I've commented it out
 			if (value.OffsetDirection == 1)
 			{
 				value.TxFreqDec = value.RxFreqDec + (uint)(value.OffsetFreq * 1000m);
@@ -3382,907 +3416,973 @@ namespace DMR
 			else if (value.OffsetDirection == 0)
 			{
 				value.TxFreqDec = value.RxFreqDec;
-			}
-			VfoForm.data[index] = value;
-		}
+			}*/
+            VfoForm.data[index] = value;
+        }
 
-		public void DispData()
-		{
-			int index = Convert.ToInt32(base.Tag);
-			this.Text = this.Node.Text;
-			ChannelOne channelOne = VfoForm.data[index];
-			this.method_2();
-			this.cmbChMode.SelectedIndex = channelOne.ChMode;
-			this.txtName.Text = channelOne.Name;
-			this.txtRxFreq.Text = channelOne.RxFreq;
-			this.cmbRxRefFreq.SelectedIndex = channelOne.RxRefFreq;
-			this.txtTxFreq.Text = channelOne.TxFreq;
-			this.cmbTxRefFreq.SelectedIndex = channelOne.TxRefFreq;
-			this.cmbPower.SelectedIndex = channelOne.Power;
-			this.nudTot.Value = channelOne.Tot;
-			this.nudTotRekey.Value = channelOne.TotRekey;
-			this.chkVox.Checked = channelOne.Vox;
-			this.cmbAdmitCriteria.SelectedIndex = channelOne.AdmitCriteria;
-			this.nudRssiThreshold.Value = channelOne.RssiThreshold;
-			this.cmbScanList.method_2(channelOne.ScanList);
-			this.chkOpenGD77ScanZoneSkip.Checked = channelOne.AutoScan;
-			this.chkOpenGD77ScanAllSkip.Checked = channelOne.LoneWoker;
-			this.chkAllowTalkaround.Checked = channelOne.AllowTalkaround;
-			this.chkRxOnly.Checked = channelOne.OnlyRx;
-			this.method_13();
-			this.method_14(channelOne.RxTone);
-			this.cmbChBandwidth.SelectedIndex = channelOne.Bandwidth;
-			this.cmbSquelch.SelectedIndex = channelOne.Squelch;
-			this.cmbSql.SelectedIndex = channelOne.Sql;
-			this.cmbVoiceEmphasis.SelectedIndex = channelOne.VoiceEmphasis;
-			this.cmbSte.SelectedIndex = channelOne.Ste;
-			this.cmbNonSte.SelectedIndex = channelOne.NonSte;
-			this.cmbRxTone.Text = channelOne.RxTone;
-			this.cmbTxSignaling.SelectedIndex = channelOne.TxSignaling;
-			this.cmbUnmuteRule.SelectedIndex = channelOne.UnmuteRule;
-			this.chkDataPl.Checked = channelOne.DataPl;
-			this.cmbTxTone.Text = channelOne.TxTone;
-			this.cmbRxSignaling.SelectedIndex = channelOne.RxSignaling;
-			this.cmbPttidType.SelectedIndex = channelOne.PttidType;
-			this.cmbArts.method_2(channelOne.Arts);
-			this.nudArtsInterval.Value = channelOne.ArtsInterval;
-			this.chkDualCapacity.Checked = channelOne.DualCapacity;
-			this.cmbTimingPreference.SelectedIndex = channelOne.TimingPreference;
-			this.cmbRepeaterSlot.SelectedIndex = channelOne.RepateSlot;
-			this.cmbArs.SelectedIndex = channelOne.Ars;
-			this.cmbKeySwitch.SelectedIndex = channelOne.KeySwitch;
-			this.cmbKey.method_2(channelOne.Key);
-			this.chkUdpDataHead.Checked = channelOne.UdpDataHead;
-			this.nudRxColor.Value = channelOne.RxColor;
-			this.cmbRxGroup.method_2(channelOne.RxGroupList);
-			this.nudTxColor.Value = channelOne.TxColor;
-			this.cmbEmgSystem.method_2(channelOne.EmgSystem);
-			this.cmbContact.method_2(channelOne.Contact);
-			this.chkAllowTxInterupt.Checked = channelOne.AllowTxInterupt;
-			this.chkTxInteruptFreq.Checked = channelOne.TxInteruptFreq;
-			this.chkPrivateCall.Checked = channelOne.PrivateCall;
-			this.chkDataCall.Checked = channelOne.DataCall;
-			this.chkEmgConfirmed.Checked = channelOne.EmgConfirmed;
-			this.chkEnhancedChAccess.Checked = channelOne.EnchancedChAccess;
-			this.cmbOffsetStep.SelectedIndex = channelOne.OffsetStep;
-			this.cmbOffsetDirection.SelectedIndex = channelOne.OffsetDirection;
-			this.nudOffsetFreq.Value = channelOne.OffsetFreq;
-			this.method_8();
-			this.method_11();
-			this.method_10();
-			this.method_12();
-			this.method_15();
-			this.method_16();
-			this.method_17();
-		}
+        public void DispData()
+        {
+            int index = Convert.ToInt32(base.Tag);
+            this.Text = this.Node.Text;
+            ChannelOne channelOne = VfoForm.data[index];
 
-		public void RefreshName()
-		{
-			int index = Convert.ToInt32(base.Tag);
-			this.txtName.Text = VfoForm.data[index].Name;
-		}
+            if (channelOne.ChMode == 1)
+            {
+                if (channelOne.RxGroupList != 0)
+                {
+                    channelOne.Contact = 0;
+                }
+            }
+            else
+            {
+                channelOne.RxGroupList = 0;
+                channelOne.Contact = 0;
+            }
 
-		public VfoForm()
-		{
-			this.InitializeComponent();
-			this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);// Roger Clark. Added correct icon on main form!
-			VfoForm.CurCntCh = 1024;
-		}
 
-		private void method_1()
-		{
-			Settings.smethod_37(this.cmbChMode, VfoForm.SZ_CH_MODE);
-			this.txtName.MaxByteLength = 15;
-			this.txtName.KeyPress += Settings.smethod_54;
-			this.txtRxFreq.MaxLength = 9;
-			this.txtRxFreq.KeyPress += Settings.smethod_55;
-			this.txtTxFreq.MaxLength = 9;
-			this.txtTxFreq.KeyPress += Settings.smethod_55;
-			Settings.smethod_37(this.cmbTxRefFreq, VfoForm.SZ_REF_FREQ);
-			Settings.smethod_37(this.cmbRxRefFreq, VfoForm.SZ_REF_FREQ);
-			Settings.smethod_37(this.cmbPower, VfoForm.SZ_POWER);
-			Settings.smethod_36(this.nudTot, new Class13(0, 33, 1, 15m, 3));
-			this.nudTot.method_4(0m);
-			this.nudTot.method_6("∞");
-			Settings.smethod_36(this.nudTotRekey, new Class13(0, 255, 1, 1m, 3));
-			Settings.smethod_36(this.nudRssiThreshold, new Class13(80, 124, 1, -1m, 4));
-			Settings.smethod_37(this.cmbChBandwidth, VfoForm.SZ_BANDWIDTH);
-			Settings.smethod_37(this.cmbSquelch, VfoForm.SZ_SQUELCH);
-			Settings.smethod_37(this.cmbSql, VfoForm.SZ_SQUELCH_LEVEL);
-			Settings.smethod_37(this.cmbVoiceEmphasis, VfoForm.SZ_VOICE_EMPHASIS);
-			Settings.smethod_37(this.cmbSte, VfoForm.SZ_STE);
-			Settings.smethod_37(this.cmbNonSte, VfoForm.SZ_NON_STE);
-			Settings.smethod_37(this.cmbTxSignaling, VfoForm.SZ_SIGNALING_SYSTEM);
-			Settings.smethod_37(this.cmbUnmuteRule, VfoForm.SZ_UNMUTE_RULE);
-			Settings.smethod_37(this.cmbRxSignaling, VfoForm.SZ_SIGNALING_SYSTEM);
-			Settings.smethod_37(this.cmbPttidType, VfoForm.SZ_PTTID_TYPE);
-			Settings.smethod_39(this.cmbArts, VfoForm.SZ_ARTS);
-			Settings.smethod_36(this.nudArtsInterval, new Class13(22, 55, 1, 1m, 2));
-			Settings.smethod_37(this.cmbTimingPreference, VfoForm.SZ_TIMING_PREFERENCE);
-			Settings.smethod_37(this.cmbRepeaterSlot, VfoForm.SZ_REPEATER_SOLT);
-			Settings.smethod_37(this.cmbArs, VfoForm.SZ_ARS);
-			Settings.smethod_37(this.cmbKeySwitch, VfoForm.SZ_KEY_SWITCH);
-			Settings.smethod_36(this.nudRxColor, new Class13(0, 15, 1, 1m, 2));
-			Settings.smethod_36(this.nudTxColor, new Class13(0, 15, 1, 1m, 2));
-			Settings.smethod_37(this.cmbOffsetDirection, VfoForm.SZ_OFFSET_DIRECTION);
-			Settings.smethod_37(this.cmbOffsetStep, VfoForm.SZ_OFFSET_STEP);
-			Settings.smethod_36(this.nudOffsetFreq, new Class13(1, 38400, 1, 0.01m, 6));
-		}
 
-		private void method_2()
-		{
-			Settings.smethod_44(this.cmbScanList, NormalScanForm.data);
-			Settings.smethod_44(this.cmbRxGroup, RxGroupListForm.data);
-			Settings.smethod_44(this.cmbKey, EncryptForm.data);
-			Settings.smethod_44(this.cmbEmgSystem, EmergencyForm.data);
-			Settings.smethod_44(this.cmbContact, ContactForm.data);
-			int index = Convert.ToInt32(base.Tag);
-			if (VfoForm.data[index].ChMode == 0)
-			{
-				Settings.smethod_37(this.cmbAdmitCriteria, VfoForm.SZ_ADMIT_CRITERICA);
-			}
-			else
-			{
-				Settings.smethod_37(this.cmbAdmitCriteria, VfoForm.SZ_ADMIT_CRITERICA_D);
-			}
-		}
+            this.method_2();
+            this.cmbChMode.SelectedIndex = channelOne.ChMode;
+            this.txtName.Text = channelOne.Name;
+            this.txtRxFreq.Text = channelOne.RxFreq;
+            this.cmbLibreDMR_Power.SelectedIndex = channelOne.LibreDMR_Power;
+            this.txtTxFreq.Text = channelOne.TxFreq;
+            this.cmbTxRefFreq.SelectedIndex = channelOne.TxRefFreq;
+            this.cmbPower.SelectedIndex = channelOne.Power;
+            this.nudTot.Value = channelOne.Tot;
+            this.nudTotRekey.Value = channelOne.TotRekey;
+            this.chkVox.Checked = channelOne.Vox;
+            this.cmbAdmitCriteria.SelectedIndex = channelOne.AdmitCriteria;
+            this.nudRssiThreshold.Value = channelOne.RssiThreshold;
+            this.cmbScanList.method_2(channelOne.ScanList);
+            this.chkOpenGD77ScanZoneSkip.Checked = channelOne.AutoScan;
+            this.chkOpenGD77ScanAllSkip.Checked = channelOne.LoneWoker;
+            this.chkAllowTalkaround.Checked = channelOne.AllowTalkaround;
+            this.chkRxOnly.Checked = channelOne.OnlyRx;
+            this.method_13();
+            this.method_14(channelOne.RxTone);
+            this.cmbChBandwidth.SelectedIndex = channelOne.Bandwidth;
+            this.cmbSquelch.SelectedIndex = channelOne.Squelch;
+            this.cmbSql.SelectedIndex = channelOne.Sql;
+            this.cmbVoiceEmphasis.SelectedIndex = channelOne.VoiceEmphasis;
+            this.cmbSte.SelectedIndex = channelOne.Ste;
+            this.cmbNonSte.SelectedIndex = channelOne.NonSte;
+            this.cmbRxTone.Text = channelOne.RxTone;
+            this.cmbTxSignaling.SelectedIndex = channelOne.TxSignaling;
+            this.cmbUnmuteRule.SelectedIndex = channelOne.UnmuteRule;
+            this.chkDataPl.Checked = channelOne.DataPl;
+            this.cmbTxTone.Text = channelOne.TxTone;
+            this.cmbRxSignaling.SelectedIndex = channelOne.RxSignaling;
+            this.cmbPttidType.SelectedIndex = channelOne.PttidType;
+            this.cmbArts.method_2(channelOne.Arts);
+            this.nudArtsInterval.Value = channelOne.ArtsInterval;
+            this.chkDualCapacity.Checked = channelOne.DualCapacity;
+            this.cmbTimingPreference.SelectedIndex = channelOne.TimingPreference;
+            this.cmbRepeaterSlot.SelectedIndex = channelOne.RepateSlot;
+            this.cmbArs.SelectedIndex = channelOne.Ars;
+            this.cmbKeySwitch.SelectedIndex = channelOne.KeySwitch;
+            this.cmbKey.method_2(channelOne.Key);
+            this.chkUdpDataHead.Checked = channelOne.UdpDataHead;
+            this.nudRxColor.Value = channelOne.RxColor;
+            this.cmbRxGroup.method_2(channelOne.RxGroupList);
+            this.nudTxColor.Value = channelOne.TxColor;
+            this.cmbEmgSystem.method_2(channelOne.EmgSystem);
+            this.cmbContact.method_2(channelOne.Contact);
+            this.chkAllowTxInterupt.Checked = channelOne.AllowTxInterupt;
+            this.chkTxInteruptFreq.Checked = channelOne.TxInteruptFreq;
+            this.chkPrivateCall.Checked = channelOne.PrivateCall;
+            this.chkDataCall.Checked = channelOne.DataCall;
+            this.chkEmgConfirmed.Checked = channelOne.EmgConfirmed;
+            this.chkEnhancedChAccess.Checked = channelOne.EnchancedChAccess;
+            this.cmbOffsetStep.SelectedIndex = channelOne.OffsetStep;
+            this.cmbOffsetDirection.SelectedIndex = channelOne.OffsetDirection;
+            this.nudOffsetFreq.Value = channelOne.OffsetFreq;
+            this.method_8();
+            this.method_11();
+            this.method_10();
+            this.method_12();
+            this.method_15();
+            this.method_16();
+            this.method_17();
 
-		public static void RefreshCommonLang()
-		{
-			string name = typeof(VfoForm).Name;
-			Settings.smethod_78("ChMode", VfoForm.SZ_CH_MODE, name);
-			Settings.smethod_78("RefFreq", VfoForm.SZ_REF_FREQ, name);
-			Settings.smethod_78("Power", VfoForm.SZ_POWER, name);
-			Settings.smethod_78("AdmitCriterica", VfoForm.SZ_ADMIT_CRITERICA, name);
-			Settings.smethod_78("AdmitCritericaD", VfoForm.SZ_ADMIT_CRITERICA_D, name);
-			Settings.smethod_78("Squelch", VfoForm.SZ_SQUELCH, name);
-			Settings.smethod_78("SquelchLevel", VfoForm.SZ_SQUELCH_LEVEL, name);
-			Settings.smethod_78("VoiceEmphasis", VfoForm.SZ_VOICE_EMPHASIS, name);
-			Settings.smethod_78("Ste", VfoForm.SZ_STE, name);
-			Settings.smethod_78("NonSte", VfoForm.SZ_NON_STE, name);
-			Settings.smethod_78("SignalingSystem", VfoForm.SZ_SIGNALING_SYSTEM, name);
-			Settings.smethod_78("UnmuteRule", VfoForm.SZ_UNMUTE_RULE, name);
-			Settings.smethod_78("PttidType", VfoForm.SZ_PTTID_TYPE, name);
-			Settings.smethod_78("Arts", VfoForm.SZ_ARTS, name);
-			Settings.smethod_78("TimingPreference", VfoForm.SZ_TIMING_PREFERENCE, name);
-			Settings.smethod_78("Ars", VfoForm.SZ_ARS, name);
-			Settings.smethod_78("KeySwitch", VfoForm.SZ_KEY_SWITCH, name);
-			Settings.smethod_78("OffsetDirection", VfoForm.SZ_OFFSET_DIRECTION, name);
-		}
 
-		private void VfoForm_Load(object sender, EventArgs e)
-		{
-			try
-			{
-				Settings.smethod_59(base.Controls);
-				Settings.smethod_68(this);
-				VfoForm.data.ChModeChangeEvent += this.method_3;
-				this.method_9();
-				this.method_1();
-				this.DispData();
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message);
-			}
-		}
 
-		private void VfoForm_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			this.SaveData();
-		}
+        }
 
-		private void txtName_Leave(object sender, EventArgs e)
-		{
-		}
+        public void RefreshName()
+        {
+            int index = Convert.ToInt32(base.Tag);
+            this.txtName.Text = VfoForm.data[index].Name;
+        }
 
-		private void modeChangedHandler(object sender, EventArgs e)
-		{
-			int num = 0;
-			int selectedIndex = this.cmbChMode.SelectedIndex;
-			int selectedIndex2 = this.cmbAdmitCriteria.SelectedIndex;
-			switch (selectedIndex)
-			{
-			case 0:
-				num = 2;
-				this.grpAnalog.Enabled = true;
-				this.grpDigit.Enabled = false;
-                this.chkDualCapacity.Checked = false;// Roger Clark. Fix for bug in firmware, where Dual Direct Capacity must not be enabled in Analog mode
-				Settings.smethod_37(this.cmbAdmitCriteria, VfoForm.SZ_ADMIT_CRITERICA);
-				break;
-			case 1:
-				num = 6;
-				this.grpAnalog.Enabled = false;
-				this.grpDigit.Enabled = true;
-				Settings.smethod_37(this.cmbAdmitCriteria, VfoForm.SZ_ADMIT_CRITERICA_D);
-				break;
-			case 2:
-				num = 54;
-				this.grpAnalog.Enabled = true;
-				this.grpDigit.Enabled = true;
-				Settings.smethod_37(this.cmbAdmitCriteria, VfoForm.SZ_ADMIT_CRITERICA_D);
-				break;
-			case 3:
-				num = 54;
-				this.grpAnalog.Enabled = true;
-				this.grpDigit.Enabled = true;
-				Settings.smethod_37(this.cmbAdmitCriteria, VfoForm.SZ_ADMIT_CRITERICA);
-				break;
-			}
-			this.method_15();
-			if (selectedIndex2 < this.cmbAdmitCriteria.Items.Count)
-			{
-				this.cmbAdmitCriteria.SelectedIndex = selectedIndex2;
-			}
-			else
-			{
-				this.cmbAdmitCriteria.SelectedIndex = 0;
-			}
-			this.method_5();
-			this.Node.SelectedImageIndex = num;
-			this.Node.ImageIndex = num;
-		}
+        public VfoForm()
+        {
+            this.InitializeComponent();
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);// Roger Clark. Added correct icon on main form!
+            VfoForm.CurCntCh = 1024;
+        }
 
-		private void method_3(object sender, ChModeChangeEventArgs e)
-		{
-			MainForm mainForm = base.MdiParent as MainForm;
-			if (mainForm != null)
-			{
-				TreeNode treeNodeByTypeAndIndex = mainForm.GetTreeNodeByTypeAndIndex(typeof(ChannelForm), e.ChIndex, this.Node.Parent.Nodes);
-				if (e.ChMode == 0)
-				{
-					treeNodeByTypeAndIndex.ImageIndex = 2;
-					treeNodeByTypeAndIndex.SelectedImageIndex = 2;
-				}
-				else if (e.ChMode == 1)
-				{
-					treeNodeByTypeAndIndex.ImageIndex = 6;
-					treeNodeByTypeAndIndex.SelectedImageIndex = 6;
-				}
-			}
-		}
+        private void method_1()
+        {
+            Settings.smethod_37(this.cmbChMode, VfoForm.SZ_CH_MODE);
+            this.txtName.MaxByteLength = 15;
+            this.txtName.KeyPress += Settings.smethod_54;
+            this.txtRxFreq.MaxLength = 9;
+            this.txtRxFreq.KeyPress += Settings.smethod_55;
+            this.txtTxFreq.MaxLength = 9;
+            this.txtTxFreq.KeyPress += Settings.smethod_55;
+            Settings.smethod_37(this.cmbTxRefFreq, VfoForm.SZ_REF_FREQ);
+            Settings.smethod_37(this.cmbLibreDMR_Power, VfoForm.SZ_LIBREDMR_POWER);
+            Settings.smethod_37(this.cmbPower, VfoForm.SZ_POWER);
+            Settings.smethod_36(this.nudTot, new Class13(0, 33, 1, 15m, 3));
+            this.nudTot.method_4(0m);
+            this.nudTot.method_6("∞");
+            Settings.smethod_36(this.nudTotRekey, new Class13(0, 255, 1, 1m, 3));
+            Settings.smethod_36(this.nudRssiThreshold, new Class13(80, 124, 1, -1m, 4));
+            Settings.smethod_37(this.cmbChBandwidth, VfoForm.SZ_BANDWIDTH);
+            Settings.smethod_37(this.cmbSquelch, VfoForm.SZ_SQUELCH);
+            Settings.smethod_37(this.cmbSql, VfoForm.SZ_SQUELCH_LEVEL);
+            Settings.smethod_37(this.cmbVoiceEmphasis, VfoForm.SZ_VOICE_EMPHASIS);
+            Settings.smethod_37(this.cmbSte, VfoForm.SZ_STE);
+            Settings.smethod_37(this.cmbNonSte, VfoForm.SZ_NON_STE);
+            Settings.smethod_37(this.cmbTxSignaling, VfoForm.SZ_SIGNALING_SYSTEM);
+            Settings.smethod_37(this.cmbUnmuteRule, VfoForm.SZ_UNMUTE_RULE);
+            Settings.smethod_37(this.cmbRxSignaling, VfoForm.SZ_SIGNALING_SYSTEM);
+            Settings.smethod_37(this.cmbPttidType, VfoForm.SZ_PTTID_TYPE);
+            Settings.smethod_39(this.cmbArts, VfoForm.SZ_ARTS);
+            Settings.smethod_36(this.nudArtsInterval, new Class13(22, 55, 1, 1m, 2));
+            Settings.smethod_37(this.cmbTimingPreference, VfoForm.SZ_TIMING_PREFERENCE);
+            Settings.smethod_37(this.cmbRepeaterSlot, VfoForm.SZ_REPEATER_SOLT);
+            Settings.smethod_37(this.cmbArs, VfoForm.SZ_ARS);
+            Settings.smethod_37(this.cmbKeySwitch, VfoForm.SZ_KEY_SWITCH);
+            Settings.smethod_36(this.nudRxColor, new Class13(0, 15, 1, 1m, 2));
+            Settings.smethod_36(this.nudTxColor, new Class13(0, 15, 1, 1m, 2));
+            Settings.smethod_37(this.cmbOffsetDirection, VfoForm.SZ_OFFSET_DIRECTION);
+            Settings.smethod_37(this.cmbOffsetStep, VfoForm.SZ_OFFSET_STEP);
+            Settings.smethod_36(this.nudOffsetFreq, new Class13(1, 38400, 1, 0.01m, 6));
+        }
 
-		private void txtRxFreq_Validating(object sender, CancelEventArgs e)
-		{
-			int num = 0;
-			double num2 = 0.0;
-			string text = this.txtRxFreq.Text;
-			double num3 = 0.0;
-			string text2 = this.txtTxFreq.Text;
-			try
-			{
-				uint num4 = 0u;
-				num2 = double.Parse(text);
-				if (Settings.smethod_19(num2, ref num4) >= 0)
-				{
-					num = (int)(num2 * 100000.0);
-					Settings.smethod_29(ref num, 250, 625);
-					num2 = (double)num / 100000.0;
-					this.txtRxFreq.Text = num2.ToString("0.00000");
-				}
-				else
-				{
-					this.txtRxFreq.Text = string.Format("{0:f5}", num4);
-				}
-				num2 = double.Parse(this.txtRxFreq.Text);
-				num3 = double.Parse(this.txtTxFreq.Text);
-				if (Settings.smethod_20(num2, num3) < 0)
-				{
-					this.txtTxFreq.Text = this.txtRxFreq.Text;
-				}
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex.Message);
-				this.txtRxFreq.Text = string.Format("{0:f5}", Settings.MIN_FREQ[0]);
-			}
-		}
+        private void method_2()
+        {
+            Settings.smethod_44(this.cmbScanList, NormalScanForm.data);
+            Settings.smethod_44(this.cmbRxGroup, RxGroupListForm.data);
+            Settings.smethod_44(this.cmbKey, EncryptForm.data);
+            Settings.smethod_44(this.cmbEmgSystem, EmergencyForm.data);
+            Settings.smethod_44(this.cmbContact, ContactForm.data, Settings.SZ_NA);
+            int index = Convert.ToInt32(base.Tag);
+            if (VfoForm.data[index].ChMode == 0)
+            {
+                Settings.smethod_37(this.cmbAdmitCriteria, VfoForm.SZ_ADMIT_CRITERICA);
+            }
+            else
+            {
+                Settings.smethod_37(this.cmbAdmitCriteria, VfoForm.SZ_ADMIT_CRITERICA_D);
+            }
+        }
 
-		private void txtTxFreq_Validating(object sender, CancelEventArgs e)
-		{
-			int num = 0;
-			double num2 = 0.0;
-			string text = this.txtTxFreq.Text;
-			double num3 = 0.0;
-			string text2 = this.txtRxFreq.Text;
-			try
-			{
-				uint num4 = 0u;
-				num2 = double.Parse(text);
-				if (Settings.smethod_19(num2, ref num4) >= 0)
-				{
-					num = (int)(num2 * 100000.0);
-					Settings.smethod_29(ref num, 250, 625);
-					num2 = (double)num / 100000.0;
-					this.txtTxFreq.Text = num2.ToString("0.00000");
-				}
-				else
-				{
-					this.txtTxFreq.Text = string.Format("{0:f5}", num4);
-				}
-				num3 = double.Parse(this.txtRxFreq.Text);
-				num2 = double.Parse(this.txtTxFreq.Text);
-				if (Settings.smethod_20(num3, num2) < 0)
-				{
-					this.txtRxFreq.Text = this.txtTxFreq.Text;
-				}
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex.Message);
-				this.txtTxFreq.Text = string.Format("{0:f5}", Settings.MIN_FREQ[0]);
-			}
-		}
+        public static void RefreshCommonLang()
+        {
+            string name = typeof(VfoForm).Name;
+            Settings.smethod_78("ChMode", VfoForm.SZ_CH_MODE, name);
+            Settings.smethod_78("RefFreq", VfoForm.SZ_REF_FREQ, name);
+            Settings.smethod_78("RefFreq", VfoForm.SZ_REF_FREQ, name);
+            Settings.smethod_78("LibreDMR_Power", VfoForm.SZ_LIBREDMR_POWER, name);
+            Settings.smethod_78("Power", VfoForm.SZ_POWER, name);
+            Settings.smethod_78("AdmitCriterica", VfoForm.SZ_ADMIT_CRITERICA, name);
+            Settings.smethod_78("AdmitCritericaD", VfoForm.SZ_ADMIT_CRITERICA_D, name);
+            Settings.smethod_78("Squelch", VfoForm.SZ_SQUELCH, name);
+            Settings.smethod_78("SquelchLevel", VfoForm.SZ_SQUELCH_LEVEL, name);
+            Settings.smethod_78("VoiceEmphasis", VfoForm.SZ_VOICE_EMPHASIS, name);
+            Settings.smethod_78("Ste", VfoForm.SZ_STE, name);
+            Settings.smethod_78("NonSte", VfoForm.SZ_NON_STE, name);
+            Settings.smethod_78("SignalingSystem", VfoForm.SZ_SIGNALING_SYSTEM, name);
+            Settings.smethod_78("UnmuteRule", VfoForm.SZ_UNMUTE_RULE, name);
+            Settings.smethod_78("PttidType", VfoForm.SZ_PTTID_TYPE, name);
+            Settings.smethod_78("Arts", VfoForm.SZ_ARTS, name);
+            Settings.smethod_78("TimingPreference", VfoForm.SZ_TIMING_PREFERENCE, name);
+            Settings.smethod_78("Ars", VfoForm.SZ_ARS, name);
+            Settings.smethod_78("KeySwitch", VfoForm.SZ_KEY_SWITCH, name);
+            Settings.smethod_78("OffsetDirection", VfoForm.SZ_OFFSET_DIRECTION, name);
+        }
 
-		private void chkRxOnly_CheckedChanged(object sender, EventArgs e)
-		{
-			this.method_13();
-			this.method_4();
-		}
+        private void VfoForm_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                Settings.smethod_59(base.Controls);
+                Settings.smethod_68(this);
+                VfoForm.data.ChModeChangeEvent += this.method_3;
+                this.method_9();
+                this.method_1();
+                this.DispData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-		private void method_4()
-		{
-			bool flag = !this.chkRxOnly.Checked;
-			this.txtTxFreq.Enabled = flag;
-			this.cmbTxRefFreq.Enabled = flag;
-			this.cmbPower.Enabled = flag;
-			this.nudTot.Enabled = flag;
-			this.nudTotRekey.Enabled = (flag && this.nudTot.Value != 0m);
-			this.chkVox.Enabled = flag;
-			this.cmbAdmitCriteria.Enabled = flag;
-		}
+        private void VfoForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.SaveData();
+        }
 
-		private void nudTot_ValueChanged(object sender, EventArgs e)
-		{
-			this.nudTotRekey.Enabled = (this.nudTot.Enabled && this.nudTot.Value != 0m);
-		}
+        private void txtName_Leave(object sender, EventArgs e)
+        {
+            this.txtName.Text = this.txtName.Text.Trim();
+            if (this.Node.Text != this.txtName.Text)
+            {
+                if (Settings.smethod_50(this.Node, this.txtName.Text))
+                {
+                    MessageBox.Show(Settings.dicCommon[Settings.SZ_NAME_EXIST_NAME]);
+                    this.txtName.Text = this.Node.Text;
+                }
+                else
+                {
+                    this.Node.Text = this.txtName.Text;
+                }
+            }
+        }
 
-		private void method_5()
-		{
-			/*
+        private void modeChangedHandler(object sender, EventArgs e)
+        {
+            int num = 0;
+            int selectedIndex = this.cmbChMode.SelectedIndex;
+            int selectedIndex2 = this.cmbAdmitCriteria.SelectedIndex;
+            switch (selectedIndex)
+            {
+                case 0:
+                    num = 2;
+                    this.grpAnalog.Enabled = true;
+                    this.grpDigit.Enabled = false;
+                    this.chkDualCapacity.Checked = false;// Roger Clark. Fix for bug in firmware, where Dual Direct Capacity must not be enabled in Analog mode
+                    Settings.smethod_37(this.cmbAdmitCriteria, VfoForm.SZ_ADMIT_CRITERICA);
+                    break;
+                case 1:
+                    num = 6;
+                    this.grpAnalog.Enabled = false;
+                    this.grpDigit.Enabled = true;
+                    Settings.smethod_37(this.cmbAdmitCriteria, VfoForm.SZ_ADMIT_CRITERICA_D);
+                    break;
+                case 2:
+                    num = 54;
+                    this.grpAnalog.Enabled = true;
+                    this.grpDigit.Enabled = true;
+                    Settings.smethod_37(this.cmbAdmitCriteria, VfoForm.SZ_ADMIT_CRITERICA_D);
+                    break;
+                case 3:
+                    num = 54;
+                    this.grpAnalog.Enabled = true;
+                    this.grpDigit.Enabled = true;
+                    Settings.smethod_37(this.cmbAdmitCriteria, VfoForm.SZ_ADMIT_CRITERICA);
+                    break;
+            }
+            this.method_15();
+            if (selectedIndex2 < this.cmbAdmitCriteria.Items.Count)
+            {
+                this.cmbAdmitCriteria.SelectedIndex = selectedIndex2;
+            }
+            else
+            {
+                this.cmbAdmitCriteria.SelectedIndex = 0;
+            }
+            this.method_5();
+            this.Node.SelectedImageIndex = num;
+            this.Node.ImageIndex = num;
+        }
+
+        private void method_3(object sender, ChModeChangeEventArgs e)
+        {
+            MainForm mainForm = base.MdiParent as MainForm;
+            if (mainForm != null)
+            {
+                TreeNode treeNodeByTypeAndIndex = mainForm.GetTreeNodeByTypeAndIndex(typeof(ChannelForm), e.ChIndex, this.Node.Parent.Nodes);
+                if (e.ChMode == 0)
+                {
+                    treeNodeByTypeAndIndex.ImageIndex = 2;
+                    treeNodeByTypeAndIndex.SelectedImageIndex = 2;
+                }
+                else if (e.ChMode == 1)
+                {
+                    treeNodeByTypeAndIndex.ImageIndex = 6;
+                    treeNodeByTypeAndIndex.SelectedImageIndex = 6;
+                }
+            }
+        }
+
+        private void txtRxFreq_Validating(object sender, CancelEventArgs e)
+        {
+            int num = 0;
+            double num2 = 0.0;
+            string text = this.txtRxFreq.Text;
+            double num3 = 0.0;
+            string text2 = this.txtTxFreq.Text;
+            try
+            {
+                uint num4 = 0u;
+                num2 = double.Parse(text);
+                if (Settings.smethod_19(num2, ref num4) >= 0)
+                {
+                    num = (int)(num2 * 100000.0);
+                    Settings.smethod_29(ref num, 250, 625);
+                    num2 = (double)num / 100000.0;
+                    this.txtRxFreq.Text = num2.ToString("0.00000");
+                }
+                else
+                {
+                    this.txtRxFreq.Text = string.Format("{0:f5}", num4);
+                }
+                num2 = double.Parse(this.txtRxFreq.Text);
+                num3 = double.Parse(this.txtTxFreq.Text);
+                if (Settings.smethod_20(num2, num3) < 0)
+                {
+                    this.txtTxFreq.Text = this.txtRxFreq.Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                this.txtRxFreq.Text = string.Format("{0:f5}", Settings.MIN_FREQ[0]);
+            }
+        }
+
+        private void txtTxFreq_Validating(object sender, CancelEventArgs e)
+        {
+            int num = 0;
+            double num2 = 0.0;
+            string text = this.txtTxFreq.Text;
+            double num3 = 0.0;
+            string text2 = this.txtRxFreq.Text;
+            try
+            {
+                uint num4 = 0u;
+                num2 = double.Parse(text);
+                if (Settings.smethod_19(num2, ref num4) >= 0)
+                {
+                    num = (int)(num2 * 100000.0);
+                    Settings.smethod_29(ref num, 250, 625);
+                    num2 = (double)num / 100000.0;
+                    this.txtTxFreq.Text = num2.ToString("0.00000");
+                }
+                else
+                {
+                    this.txtTxFreq.Text = string.Format("{0:f5}", num4);
+                }
+                num3 = double.Parse(this.txtRxFreq.Text);
+                num2 = double.Parse(this.txtTxFreq.Text);
+                if (Settings.smethod_20(num3, num2) < 0)
+                {
+                    this.txtRxFreq.Text = this.txtTxFreq.Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                this.txtTxFreq.Text = string.Format("{0:f5}", Settings.MIN_FREQ[0]);
+            }
+        }
+
+        private void chkRxOnly_CheckedChanged(object sender, EventArgs e)
+        {
+            this.method_13();
+            this.method_4();
+        }
+
+        private void method_4()
+        {
+            bool flag = !this.chkRxOnly.Checked;
+            this.txtTxFreq.Enabled = flag;
+            this.cmbTxRefFreq.Enabled = flag;
+            this.cmbPower.Enabled = flag;
+            this.nudTot.Enabled = flag;
+            this.nudTotRekey.Enabled = (flag && this.nudTot.Value != 0m);
+            this.chkVox.Enabled = flag;
+            this.cmbAdmitCriteria.Enabled = flag;
+        }
+
+        private void nudTot_ValueChanged(object sender, EventArgs e)
+        {
+            this.nudTotRekey.Enabled = (this.nudTot.Enabled && this.nudTot.Value != 0m);
+        }
+
+        private void method_5()
+        {
+            /*
 			this.chkOpenGD77ScanAllSkip.Enabled = (this.cmbEmgSystem.SelectedIndex != 0 && this.cmbChMode.SelectedIndex == 1);
 			if (!this.chkOpenGD77ScanAllSkip.Enabled)
 			{
 				this.chkOpenGD77ScanAllSkip.Checked = false;
 			}*/
-		}
+        }
 
-		private void method_6()
-		{
-			MainForm mainForm = base.MdiParent as MainForm;
-			if (mainForm != null)
-			{
-				mainForm.RefreshRelatedForm(typeof(ChannelForm));
-			}
-		}
+        private void method_6()
+        {
+            MainForm mainForm = base.MdiParent as MainForm;
+            if (mainForm != null)
+            {
+                mainForm.RefreshRelatedForm(typeof(ChannelForm));
+            }
+        }
 
-		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-		{
-			if (keyData == Keys.Return)
-			{
-				SendKeys.Send("{TAB}");
-				return true;
-			}
-			return base.ProcessCmdKey(ref msg, keyData);
-		}
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Return)
+            {
+                SendKeys.Send("{TAB}");
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
 
-		private void chkDualCapacity_CheckedChanged(object sender, EventArgs e)
-		{
+        private void chkDualCapacity_CheckedChanged(object sender, EventArgs e)
+        {
             Console.Write("chkDualCapacity_CheckedChanged");
-		}
+        }
 
-		private void method_7()
-		{
-			if (this.chkDualCapacity.Checked)
-			{
-				this.nudRxColor.Maximum = 14m;
-				this.nudTxColor.Maximum = 14m;
-			}
-			else
-			{
-				this.nudTxColor.Maximum = 15m;
-				this.nudRxColor.Maximum = 15m;
-			}
-			this.cmbTimingPreference.Enabled = this.chkDualCapacity.Checked;
-		}
+        private void method_7()
+        {
+            if (this.chkDualCapacity.Checked)
+            {
+                this.nudRxColor.Maximum = 14m;
+                this.nudTxColor.Maximum = 14m;
+            }
+            else
+            {
+                this.nudTxColor.Maximum = 15m;
+                this.nudRxColor.Maximum = 15m;
+            }
+            this.cmbTimingPreference.Enabled = this.chkDualCapacity.Checked;
+        }
 
-		private void cmbKeySwitch_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			this.method_8();
-		}
+        private void cmbRxGrp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.cmbRxGroup.SelectedIndex != 0)
+            {
+                this.cmbContact.SelectedIndex = 0;
+            }
+        }
 
-		private void method_8()
-		{
-			this.cmbKey.Enabled = (this.cmbKey.Parent.Enabled && this.cmbKeySwitch.SelectedIndex > 0);
-		}
+        private void cmbContact_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.cmbContact.SelectedIndex != 0)
+            {
+                this.cmbRxGroup.SelectedIndex = 0;
+            }
+        }
 
-		private void cmbEmgSystem_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			this.method_5();
-		}
+        private void cmbKeySwitch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.method_8();
+        }
 
-		private void cmbScanList_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			//this.chkOpenGD77ScanZoneSkip.Enabled = (this.cmbScanList.SelectedIndex > 0);
-		}
+        private void method_8()
+        {
+            this.cmbKey.Enabled = (this.cmbKey.Parent.Enabled && this.cmbKeySwitch.SelectedIndex > 0);
+        }
 
-		private void method_9()
-		{
-			string text = "";
-			this.cmbRxTone.Items.Clear();
-			this.cmbTxTone.Items.Clear();
-			StreamReader streamReader = new StreamReader(Application.StartupPath + "\\Tone.txt", Encoding.Default);
-			while ((text = streamReader.ReadLine()) != null)
-			{
-				this.cmbRxTone.Items.Add(text);
-				this.cmbTxTone.Items.Add(text);
-			}
-			streamReader.Close();
-		}
+        private void cmbEmgSystem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.method_5();
+        }
 
-		private void cmbRxTone_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			this.method_11();
-			this.method_12();
-			this.method_17();
-			this.method_16();
-		}
+        private void cmbScanList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //this.chkOpenGD77ScanZoneSkip.Enabled = (this.cmbScanList.SelectedIndex > 0);
+        }
 
-		private void cmbRxTone_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Return)
-			{
-				SendKeys.Send("{tab}");
-			}
-		}
+        private void method_9()
+        {
+            string text = "";
+            this.cmbRxTone.Items.Clear();
+            this.cmbTxTone.Items.Clear();
+            StreamReader streamReader = new StreamReader(Application.StartupPath + "\\Tone.txt", Encoding.Default);
+            while ((text = streamReader.ReadLine()) != null)
+            {
+                this.cmbRxTone.Items.Add(text);
+                this.cmbTxTone.Items.Add(text);
+            }
+            streamReader.Close();
+        }
 
-		private void cmbRxTone_Validating(object sender, CancelEventArgs e)
-		{
-			ushort num = 16;
-			string empty = string.Empty;
-			string text = this.cmbRxTone.Text;
-			try
-			{
-				string pattern;
-				Regex regex;
-				if (!(text == Settings.SZ_NONE) && !string.IsNullOrEmpty(text))
-				{
-					pattern = "D[0-7]{3}N$";
-					regex = new Regex(pattern);
-					if (regex.IsMatch(text))
-					{
-						empty = text.Substring(1, 3);
-						num = Convert.ToUInt16(empty, 8);
-						if (num >= 777)
-						{
-							this.cmbRxTone.Text = Settings.SZ_NONE;
-							goto IL_0076;
-						}
-						goto end_IL_0015;
-					}
-					goto IL_0076;
-				}
-				e.Cancel = false;
-				goto end_IL_0015;
-				IL_00bc:
-				double num2 = double.Parse(text);
-				if (num2 >= 60.0 && num2 < 260.0)
-				{
-					this.cmbRxTone.Text = num2.ToString("0.0");
-				}
-				else
-				{
-					this.cmbRxTone.Text = Settings.SZ_NONE;
-				}
-				goto end_IL_0015;
-				IL_0076:
-				pattern = "D[0-7]{3}I$";
-				regex = new Regex(pattern);
-				if (regex.IsMatch(text))
-				{
-					empty = text.Substring(1, 3);
-					num = Convert.ToUInt16(empty, 8);
-					if (num >= 777)
-					{
-						this.cmbRxTone.Text = Settings.SZ_NONE;
-						goto IL_00bc;
-					}
-					goto end_IL_0015;
-				}
-				goto IL_00bc;
-				end_IL_0015:;
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex.Message);
-				this.cmbRxTone.Text = Settings.SZ_NONE;
-			}
-			finally
-			{
-				this.method_11();
-				this.method_12();
-				this.method_17();
-				this.method_16();
-			}
-		}
+        private void cmbRxTone_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.method_11();
+            this.method_12();
+            this.method_17();
+            this.method_16();
+        }
 
-		private void SwsqRwFuko(object sender, EventArgs e)
-		{
-			this.method_12();
-		}
+        private void cmbRxTone_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                SendKeys.Send("{tab}");
+            }
+        }
 
-		private void cmbTxTone_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Return)
-			{
-				SendKeys.Send("{tab}");
-			}
-		}
+        private void cmbRxTone_Validating(object sender, CancelEventArgs e)
+        {
+            ushort num = 16;
+            string empty = string.Empty;
+            string text = this.cmbRxTone.Text;
+            try
+            {
+                string pattern;
+                Regex regex;
+                if (!(text == Settings.SZ_NONE) && !string.IsNullOrEmpty(text))
+                {
+                    pattern = "D[0-7]{3}N$";
+                    regex = new Regex(pattern);
+                    if (regex.IsMatch(text))
+                    {
+                        empty = text.Substring(1, 3);
+                        num = Convert.ToUInt16(empty, 8);
+                        if (num >= 777)
+                        {
+                            this.cmbRxTone.Text = Settings.SZ_NONE;
+                            goto IL_0076;
+                        }
+                        goto end_IL_0015;
+                    }
+                    goto IL_0076;
+                }
+                e.Cancel = false;
+                goto end_IL_0015;
+            IL_00bc:
+                double num2 = double.Parse(text);
+                if (num2 >= 60.0 && num2 < 260.0)
+                {
+                    this.cmbRxTone.Text = num2.ToString("0.0");
+                }
+                else
+                {
+                    this.cmbRxTone.Text = Settings.SZ_NONE;
+                }
+                goto end_IL_0015;
+            IL_0076:
+                pattern = "D[0-7]{3}I$";
+                regex = new Regex(pattern);
+                if (regex.IsMatch(text))
+                {
+                    empty = text.Substring(1, 3);
+                    num = Convert.ToUInt16(empty, 8);
+                    if (num >= 777)
+                    {
+                        this.cmbRxTone.Text = Settings.SZ_NONE;
+                        goto IL_00bc;
+                    }
+                    goto end_IL_0015;
+                }
+                goto IL_00bc;
+            end_IL_0015:;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                this.cmbRxTone.Text = Settings.SZ_NONE;
+            }
+            finally
+            {
+                this.method_11();
+                this.method_12();
+                this.method_17();
+                this.method_16();
+            }
+        }
 
-		private void cmbTxTone_Validating(object sender, CancelEventArgs e)
-		{
-			ushort num = 16;
-			string empty = string.Empty;
-			string text = this.cmbTxTone.Text;
-			try
-			{
-				string pattern;
-				Regex regex;
-				if (!(text == Settings.SZ_NONE))
-				{
-					pattern = "D[0-7]{3}N$";
-					regex = new Regex(pattern);
-					if (regex.IsMatch(text))
-					{
-						empty = text.Substring(1, 3);
-						num = Convert.ToUInt16(empty, 8);
-						if (num >= 777)
-						{
-							this.cmbTxTone.Text = Settings.SZ_NONE;
-							goto IL_006b;
-						}
-						goto end_IL_0015;
-					}
-					goto IL_006b;
-				}
-				goto end_IL_0015;
-				IL_00b1:
-				double num2 = double.Parse(text);
-				if (num2 > 60.0 && num2 < 260.0)
-				{
-					this.cmbTxTone.Text = num2.ToString("0.0");
-				}
-				else
-				{
-					this.cmbTxTone.Text = Settings.SZ_NONE;
-				}
-				goto end_IL_0015;
-				IL_006b:
-				pattern = "D[0-7]{3}I$";
-				regex = new Regex(pattern);
-				if (regex.IsMatch(text))
-				{
-					empty = text.Substring(1, 3);
-					num = Convert.ToUInt16(empty, 8);
-					if (num >= 777)
-					{
-						this.cmbTxTone.Text = Settings.SZ_NONE;
-						goto IL_00b1;
-					}
-					goto end_IL_0015;
-				}
-				goto IL_00b1;
-				end_IL_0015:;
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex.Message);
-				this.cmbTxTone.Text = Settings.SZ_NONE;
-			}
-			finally
-			{
-				this.method_12();
-				this.method_15();
-			}
-		}
+        private void SwsqRwFuko(object sender, EventArgs e)
+        {
+            this.method_12();
+        }
 
-		private void cmbTxSignaling_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			this.method_10();
-		}
+        private void cmbTxTone_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                SendKeys.Send("{tab}");
+            }
+        }
 
-		private void method_10()
-		{
-			this.cmbPttidType.Enabled = (this.cmbTxSignaling.Parent.Enabled && this.cmbTxSignaling.SelectedIndex > 0);
-		}
+        private void cmbTxTone_Validating(object sender, CancelEventArgs e)
+        {
+            ushort num = 16;
+            string empty = string.Empty;
+            string text = this.cmbTxTone.Text;
+            try
+            {
+                string pattern;
+                Regex regex;
+                if (!(text == Settings.SZ_NONE))
+                {
+                    pattern = "D[0-7]{3}N$";
+                    regex = new Regex(pattern);
+                    if (regex.IsMatch(text))
+                    {
+                        empty = text.Substring(1, 3);
+                        num = Convert.ToUInt16(empty, 8);
+                        if (num >= 777)
+                        {
+                            this.cmbTxTone.Text = Settings.SZ_NONE;
+                            goto IL_006b;
+                        }
+                        goto end_IL_0015;
+                    }
+                    goto IL_006b;
+                }
+                goto end_IL_0015;
+            IL_00b1:
+                double num2 = double.Parse(text);
+                if (num2 > 60.0 && num2 < 260.0)
+                {
+                    this.cmbTxTone.Text = num2.ToString("0.0");
+                }
+                else
+                {
+                    this.cmbTxTone.Text = Settings.SZ_NONE;
+                }
+                goto end_IL_0015;
+            IL_006b:
+                pattern = "D[0-7]{3}I$";
+                regex = new Regex(pattern);
+                if (regex.IsMatch(text))
+                {
+                    empty = text.Substring(1, 3);
+                    num = Convert.ToUInt16(empty, 8);
+                    if (num >= 777)
+                    {
+                        this.cmbTxTone.Text = Settings.SZ_NONE;
+                        goto IL_00b1;
+                    }
+                    goto end_IL_0015;
+                }
+                goto IL_00b1;
+            end_IL_0015:;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                this.cmbTxTone.Text = Settings.SZ_NONE;
+            }
+            finally
+            {
+                this.method_12();
+                this.method_15();
+            }
+        }
 
-		private void cmbRxSignaling_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			this.method_11();
-		}
+        private void cmbTxSignaling_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.method_10();
+        }
 
-		private void method_11()
-		{
-			this.chkDataPl.Enabled = (this.cmbRxSignaling.SelectedIndex > 0 && this.chkDataPl.Parent.Enabled && this.cmbRxTone.Text != Settings.SZ_NONE);
-			if (this.cmbRxSignaling.SelectedIndex != 0 && !(this.cmbRxTone.Text == Settings.SZ_NONE))
-			{
-				return;
-			}
-			this.chkDataPl.Checked = false;
-		}
+        private void method_10()
+        {
+            this.cmbPttidType.Enabled = (this.cmbTxSignaling.Parent.Enabled && this.cmbTxSignaling.SelectedIndex > 0);
+        }
 
-		private void method_12()
-		{
-			this.cmbArts.Enabled = (this.cmbRxTone.Text != Settings.SZ_NONE && this.cmbTxTone.Text != Settings.SZ_NONE && this.cmbArts.Parent.Enabled);
-		}
+        private void cmbRxSignaling_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.method_11();
+        }
 
-		private void method_13()
-		{
-			string text = this.cmbArts.Text;
-			if (this.chkRxOnly.Checked)
-			{
-				Settings.smethod_40(this.cmbArts, VfoForm.SZ_ARTS, new int[2]
-				{
-					0,
-					2
-				});
-			}
-			else
-			{
-				Settings.smethod_39(this.cmbArts, VfoForm.SZ_ARTS);
-			}
-			int num = this.cmbArts.FindStringExact(text);
-			if (num < 0)
-			{
-				this.cmbArts.SelectedIndex = 0;
-			}
-			else
-			{
-				this.cmbArts.SelectedIndex = num;
-			}
-		}
+        private void method_11()
+        {
+            this.chkDataPl.Enabled = (this.cmbRxSignaling.SelectedIndex > 0 && this.chkDataPl.Parent.Enabled && this.cmbRxTone.Text != Settings.SZ_NONE);
+            if (this.cmbRxSignaling.SelectedIndex != 0 && !(this.cmbRxTone.Text == Settings.SZ_NONE))
+            {
+                return;
+            }
+            this.chkDataPl.Checked = false;
+        }
 
-		private void method_14(string string_0)
-		{
-			string pattern = "D[0-7]{3}[N|I]$";
-			Regex regex = new Regex(pattern);
-			if (regex.IsMatch(string_0))
-			{
-				Settings.smethod_37(this.cmbSte, new string[1]
-				{
-					VfoForm.SZ_STE[0]
-				});
-			}
-			else
-			{
-				Settings.smethod_37(this.cmbSte, VfoForm.SZ_STE);
-			}
-		}
+        private void method_12()
+        {
+            this.cmbArts.Enabled = (this.cmbRxTone.Text != Settings.SZ_NONE && this.cmbTxTone.Text != Settings.SZ_NONE && this.cmbArts.Parent.Enabled);
+        }
 
-		private void method_15()
-		{
-			if (this.cmbChMode.SelectedIndex == 0)
-			{
-				if (this.cmbTxTone.Text == Settings.SZ_NONE)
-				{
-					if (this.cmbAdmitCriteria.Text == VfoForm.SZ_ADMIT_CRITERICA[2])
-					{
-						this.cmbAdmitCriteria.SelectedIndex = 0;
-					}
-					this.cmbAdmitCriteria.Items.Remove(VfoForm.SZ_ADMIT_CRITERICA[2]);
-				}
-				else if (this.cmbAdmitCriteria.FindStringExact(VfoForm.SZ_ADMIT_CRITERICA[2]) < 0)
-				{
-					this.cmbAdmitCriteria.Items.Add(VfoForm.SZ_ADMIT_CRITERICA[2]);
-				}
-			}
-		}
+        private void method_13()
+        {
+            string text = this.cmbArts.Text;
+            if (this.chkRxOnly.Checked)
+            {
+                Settings.smethod_40(this.cmbArts, VfoForm.SZ_ARTS, new int[2]
+                {
+                    0,
+                    2
+                });
+            }
+            else
+            {
+                Settings.smethod_39(this.cmbArts, VfoForm.SZ_ARTS);
+            }
+            int num = this.cmbArts.FindStringExact(text);
+            if (num < 0)
+            {
+                this.cmbArts.SelectedIndex = 0;
+            }
+            else
+            {
+                this.cmbArts.SelectedIndex = num;
+            }
+        }
 
-		private void method_16()
-		{
-			this.cmbUnmuteRule.Enabled = (this.cmbRxTone.Text != Settings.SZ_NONE && this.cmbUnmuteRule.Parent.Enabled);
-		}
+        private void method_14(string string_0)
+        {
+            string pattern = "D[0-7]{3}[N|I]$";
+            Regex regex = new Regex(pattern);
+            if (regex.IsMatch(string_0))
+            {
+                Settings.smethod_37(this.cmbSte, new string[1]
+                {
+                    VfoForm.SZ_STE[0]
+                });
+            }
+            else
+            {
+                Settings.smethod_37(this.cmbSte, VfoForm.SZ_STE);
+            }
+        }
 
-		private void method_17()
-		{
-			double num = 0.0;
-			string text = this.cmbRxTone.Text;
-			string pattern = "D[0-7]{3}[N|I]$";
-			Regex regex = new Regex(pattern);
-			if (text == Settings.SZ_NONE)
-			{
-				this.cmbSte.Enabled = false;
-				this.cmbNonSte.Enabled = true;
-			}
-			else
-			{
-				this.cmbSte.Enabled = true;
-				this.cmbNonSte.Enabled = false;
-				if (regex.IsMatch(text))
-				{
-					Settings.smethod_37(this.cmbSte, new string[1]
-					{
-						VfoForm.SZ_STE[0]
-					});
-					this.cmbSte.SelectedIndex = 0;
-				}
-				else if (double.TryParse(text, out num))
-				{
-					string text2 = this.cmbSte.Text;
-					Settings.smethod_37(this.cmbSte, VfoForm.SZ_STE);
-					if (this.cmbSte.FindString(text2) < 0)
-					{
-						this.cmbSte.SelectedIndex = 0;
-					}
-					else
-					{
-						this.cmbSte.SelectedItem = text2;
-					}
-				}
-			}
-		}
+        private void method_15()
+        {
+            if (this.cmbChMode.SelectedIndex == 0)
+            {
+                if (this.cmbTxTone.Text == Settings.SZ_NONE)
+                {
+                    if (this.cmbAdmitCriteria.Text == VfoForm.SZ_ADMIT_CRITERICA[2])
+                    {
+                        this.cmbAdmitCriteria.SelectedIndex = 0;
+                    }
+                    this.cmbAdmitCriteria.Items.Remove(VfoForm.SZ_ADMIT_CRITERICA[2]);
+                }
+                else if (this.cmbAdmitCriteria.FindStringExact(VfoForm.SZ_ADMIT_CRITERICA[2]) < 0)
+                {
+                    this.cmbAdmitCriteria.Items.Add(VfoForm.SZ_ADMIT_CRITERICA[2]);
+                }
+            }
+        }
 
-		private void btnCopy_Click(object sender, EventArgs e)
-		{
-			this.txtTxFreq.Text = this.txtRxFreq.Text;
-		}
+        private void method_16()
+        {
+            this.cmbUnmuteRule.Enabled = (this.cmbRxTone.Text != Settings.SZ_NONE && this.cmbUnmuteRule.Parent.Enabled);
+        }
 
-		static VfoForm()
-		{
-			
-			VfoForm.SPACE_CH = Marshal.SizeOf(typeof(ChannelOne));
-			VfoForm.SZ_CH_MODE = new string[2]
-			{
-				"Analog",
-				"Digital"
-			};
-			VfoForm.SZ_REF_FREQ = new string[3]
-			{
-				"Low",
-				"Middle",
-				"High"
-			};
-			VfoForm.SZ_POWER = new string[2]
-			{
-				"Low",
-				"High"
-			};
-			VfoForm.SZ_BAND_TYPE = new string[2]
-			{
-				"V",
-				"U"
-			};
-			VfoForm.SZ_ADMIT_CRITERICA = new string[3]
-			{
-				"Always",
-				"Channel Free",
-				"CTCSS/DCS"
-			};
-			VfoForm.SZ_ADMIT_CRITERICA_D = new string[3]
-			{
-				"Always",
-				"Channel Free",
-				"Color Code"
-			};
-			VfoForm.SZ_BANDWIDTH = new string[2]
-			{
-				"12.5",
-				"25"
-			};
-			VfoForm.SZ_SQUELCH = new string[2]
-			{
-				"Tight",
-				"Normal"
-			};
-			VfoForm.SZ_SQUELCH_LEVEL = new string[]
-			{
-				"Disabled",
-				"Open",
-				"5%",
-				"10%",
-				"15%",
-				"20%",
-				"25%",
-				"30%",
-				"35%",
-				"40%",
-				"45%",
-				"50%",
-				"55%",
-				"60%",
-				"65%",
-				"70%",
-				"75%",
-				"80%",
-				"85%",
-				"90%",
-				"95%",
-				"Closed"
-			};
-			VfoForm.SZ_VOICE_EMPHASIS = new string[4]
-			{
-				"None",
-				"De & Pre",
-				"De Only",
-				"Pre Only"
-			};
-			VfoForm.SZ_STE = new string[4]
-			{
-				"Frequency",
-				"120°",
-				"180°",
-				"240°"
-			};
-			VfoForm.SZ_NON_STE = new string[2]
-			{
-				"Off",
-				"Frequency"
-			};
-			VfoForm.SZ_SIGNALING_SYSTEM = new string[2]
-			{
-				"Off",
-				"DTMF"
-			};
-			VfoForm.SZ_UNMUTE_RULE = new string[3]
-			{
-				"Std Unmute, Mute",
-				"And Unmute, Mute",
-				"And Unmute, Or Mute"
-			};
-			VfoForm.SZ_PTTID_TYPE = new string[4]
-			{
-				"None",
-				"Only Front",
-				"Only Post",
-				"Front & Post"
-			};
-			VfoForm.SZ_ARTS = new string[4]
-			{
-				"Disable",
-				"Tx",
-				"Rx",
-				"Tx & Rx"
-			};
-			VfoForm.SZ_TIMING_PREFERENCE = new string[3]
-			{
-				"Preferred",
-				"Eligibel",
-				"Ineligibel"
-			};
-			VfoForm.SZ_REPEATER_SOLT = new string[2]
-			{
-				"1",
-				"2"
-			};
-			VfoForm.SZ_ARS = new string[2]
-			{
-				"Disable",
-				"On System Change"
-			};
-			VfoForm.SZ_KEY_SWITCH = new string[2]
-			{
-				"Off",
-				"On"
-			};
-			VfoForm.SZ_OFFSET_DIRECTION = new string[3]
-			{
-				"None",
-				"+",
-				"-"
-			};
-			VfoForm.SZ_OFFSET_STEP = new string[8]
-			{
-				"2.5",
-				"5",
-				"6.25",
-				"10",
-				"12.5",
-				"25",
-				"30",
-				"50"
-			};
-			VfoForm.SCL_OFFSET_FREQ = 0.01m;
-			VfoForm.data = new Vfo();
-		}
-	}
+        private void method_17()
+        {
+            double num = 0.0;
+            string text = this.cmbRxTone.Text;
+            string pattern = "D[0-7]{3}[N|I]$";
+            Regex regex = new Regex(pattern);
+            if (text == Settings.SZ_NONE)
+            {
+                this.cmbSte.Enabled = false;
+                this.cmbNonSte.Enabled = true;
+            }
+            else
+            {
+                this.cmbSte.Enabled = true;
+                this.cmbNonSte.Enabled = false;
+                if (regex.IsMatch(text))
+                {
+                    Settings.smethod_37(this.cmbSte, new string[1]
+                    {
+                        VfoForm.SZ_STE[0]
+                    });
+                    this.cmbSte.SelectedIndex = 0;
+                }
+                else if (double.TryParse(text, out num))
+                {
+                    string text2 = this.cmbSte.Text;
+                    Settings.smethod_37(this.cmbSte, VfoForm.SZ_STE);
+                    if (this.cmbSte.FindString(text2) < 0)
+                    {
+                        this.cmbSte.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        this.cmbSte.SelectedItem = text2;
+                    }
+                }
+            }
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            this.txtTxFreq.Text = this.txtRxFreq.Text;
+        }
+
+        static VfoForm()
+        {
+
+            VfoForm.SPACE_CH = Marshal.SizeOf(typeof(ChannelOne));
+            VfoForm.SZ_CH_MODE = new string[2]
+            {
+                "Analog",
+                "Digital"
+            };
+
+            VfoForm.SZ_LIBREDMR_POWER = new string[11]
+            {
+                "N/A",
+                "50mW",
+                "250mW",
+                "500mW",
+                "750mW",
+                "1W",
+                "2W",
+                "3W",
+                "4W",
+                "5W",
+                "5W++"
+            };
+
+            VfoForm.SZ_REF_FREQ = new string[3]
+            {
+                "Low",
+                "Middle",
+                "High"
+            };
+            VfoForm.SZ_POWER = new string[2]
+            {
+                "Low",
+                "High"
+            };
+            VfoForm.SZ_BAND_TYPE = new string[2]
+            {
+                "V",
+                "U"
+            };
+            VfoForm.SZ_ADMIT_CRITERICA = new string[3]
+            {
+                "Always",
+                "Channel Free",
+                "CTCSS/DCS"
+            };
+            VfoForm.SZ_ADMIT_CRITERICA_D = new string[3]
+            {
+                "Always",
+                "Channel Free",
+                "Color Code"
+            };
+            VfoForm.SZ_BANDWIDTH = new string[2]
+            {
+                "12.5",
+                "25"
+            };
+            VfoForm.SZ_SQUELCH = new string[2]
+            {
+                "Tight",
+                "Normal"
+            };
+            VfoForm.SZ_SQUELCH_LEVEL = new string[]
+            {
+                "Disabled",
+                "Open",
+                "5%",
+                "10%",
+                "15%",
+                "20%",
+                "25%",
+                "30%",
+                "35%",
+                "40%",
+                "45%",
+                "50%",
+                "55%",
+                "60%",
+                "65%",
+                "70%",
+                "75%",
+                "80%",
+                "85%",
+                "90%",
+                "95%",
+                "Closed"
+            };
+            VfoForm.SZ_VOICE_EMPHASIS = new string[4]
+            {
+                "None",
+                "De & Pre",
+                "De Only",
+                "Pre Only"
+            };
+            VfoForm.SZ_STE = new string[4]
+            {
+                "Frequency",
+                "120°",
+                "180°",
+                "240°"
+            };
+            VfoForm.SZ_NON_STE = new string[2]
+            {
+                "Off",
+                "Frequency"
+            };
+            VfoForm.SZ_SIGNALING_SYSTEM = new string[2]
+            {
+                "Off",
+                "DTMF"
+            };
+            VfoForm.SZ_UNMUTE_RULE = new string[3]
+            {
+                "Std Unmute, Mute",
+                "And Unmute, Mute",
+                "And Unmute, Or Mute"
+            };
+            VfoForm.SZ_PTTID_TYPE = new string[4]
+            {
+                "None",
+                "Only Front",
+                "Only Post",
+                "Front & Post"
+            };
+            VfoForm.SZ_ARTS = new string[4]
+            {
+                "Disable",
+                "Tx",
+                "Rx",
+                "Tx & Rx"
+            };
+            VfoForm.SZ_TIMING_PREFERENCE = new string[3]
+            {
+                "Preferred",
+                "Eligibel",
+                "Ineligibel"
+            };
+            VfoForm.SZ_REPEATER_SOLT = new string[2]
+            {
+                "1",
+                "2"
+            };
+            VfoForm.SZ_ARS = new string[2]
+            {
+                "Disable",
+                "On System Change"
+            };
+            VfoForm.SZ_KEY_SWITCH = new string[2]
+            {
+                "Off",
+                "On"
+            };
+            VfoForm.SZ_OFFSET_DIRECTION = new string[3]
+            {
+                "None",
+                "+",
+                "-"
+            };
+            VfoForm.SZ_OFFSET_STEP = new string[8]
+            {
+                "2.5",
+                "5",
+                "6.25",
+                "10",
+                "12.5",
+                "25",
+                "30",
+                "50"
+            };
+            VfoForm.SCL_OFFSET_FREQ = 0.01m;
+            VfoForm.data = new Vfo();
+        }
+    }
 }

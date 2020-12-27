@@ -261,7 +261,7 @@ namespace DMR
 
 		private void btnWrite_Click(object sender, EventArgs e)
 		{
-			bool retVal;
+			//bool retVal;
 
 		/*	if (DialogResult.Yes != MessageBox.Show("Writing the calibration data to Radioddity GD-77 or any other compatible radio, could potentially damage your radio. By clicking 'Yes' you acknowledge that you use this feature entirely at your own risk", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button2))
 			{
@@ -508,15 +508,28 @@ namespace DMR
 			Marshal.Copy(byte_0, 0, intPtr, num);
 			object result = Marshal.PtrToStructure(intPtr, typeof(CalibrationData));
 			Marshal.FreeHGlobal(intPtr);
-			return (CalibrationData)result;
+			CalibrationData calData = (CalibrationData)result;
+
+			// DAC Osc value is 10 bit signed
+			if (calData.DACOscRefTune > 511)
+			{
+				calData.DACOscRefTune = (short)(calData.DACOscRefTune - 1024);
+			}
+
+			return calData;
 		}
 
-		public static byte[] DataToByte(CalibrationData object_0)
+		public static byte[] DataToByte(CalibrationData calData)
 		{
+			// DAC Osc value is 10 bit signed
+			if (calData.DACOscRefTune < 0)
+			{
+				calData.DACOscRefTune = (short)(1024 + calData.DACOscRefTune);
+			}
 			int num = Marshal.SizeOf(typeof(CalibrationData));
 			byte[] array = new byte[num];
 			IntPtr intPtr = Marshal.AllocHGlobal(num);
-			Marshal.StructureToPtr(object_0, intPtr, false);
+			Marshal.StructureToPtr(calData, intPtr, false);
 			Marshal.Copy(intPtr, array, 0, num);
 			Marshal.FreeHGlobal(intPtr);
 			return array;
@@ -585,7 +598,7 @@ namespace DMR
 
 		private void btnSaveCalibration_Click(object sender, EventArgs e)
 		{
-			Byte[] buf = null;
+			//Byte[] buf = null;
 			SaveFileDialog sfd = new SaveFileDialog();
 
 			lblMessage.Text = "";

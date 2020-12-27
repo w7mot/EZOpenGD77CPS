@@ -163,9 +163,9 @@
 			</Control>
 		</Controls>
 		<Commons>
-      <Item Id="DisplayHeaderText" Text="Number,Name,Ch Mode,Rx Freq,Tx Freq,Color Code,Repeater Slot,Contact,TG List,Scan List,Rx Tone,Tx Tone"/>
-      <Item Id="ExportHeaderText" Text="Data type,Name,Channel Type,Rx Frequency,Tx Frequency,Color Code,Timeslot,Contact,Contact Type, Contact Id,Rx Group,Scanlist,Zone,RX CTCSS,TX CTCSS,Power,Bandwidth,Rx Only,Squelch,Tx Admit,TOT,TOT Rekey,Tx Signaling,Rx Signaling,Privacy Group,Emergency System,Flags1,Flags2,Flags3,Flags4,RssiThreshold,VoiceEmphasis,TxSignaling,UnmuteRule,RxSignaling,ArtsInterval" />
-    </Commons>
+     <Item Id="DisplayHeaderText" Text="Number,Name,Ch Mode,Rx Freq,Tx Freq,Color Code,Repeater Slot,Contact,TG List,Power,Rx Tone,Tx Tone"/>
+     <Item Id="ExportHeaderText" Text="Data type,Name,Channel Type,Rx Frequency,Tx Frequency,Color Code,Timeslot,Contact,Contact Type, Contact Id,Rx Group,Scanlist,Zone,RX CTCSS,TX CTCSS,Power,Bandwidth,Rx Only,Squelch,Tx Admit,TOT,TOT Rekey,Tx Signaling,Rx Signaling,Privacy Group,Emergency System,Flags1,Flags2,Flags3,Flags4,RssiThreshold,VoiceEmphasis,TxSignaling,UnmuteRule,RxSignaling,ArtsInterval" />
+</Commons>
 	</ChannelsForm>
 	<CommPrgForm Text="">
 		<Controls>
@@ -214,17 +214,17 @@
 			<Item Id="HeaderText" Text="Number,Name,Call ID,Type,Ring Style,Call Receive Tone,Repeater Slot override," />
 		</Commons>
 	</ContactsForm>
-	<DeviceInfoForm Text="Basic Information">
+	<DeviceInfoForm Text="Band limits">
 		<Controls>
 			<Control Id="lblTo1" Text="-" />
 			<Control Id="lblTo2" Text="-" />
-			<Control Id="lblSection1" Text="Frequency Range 1 [MHz]" />
+			<Control Id="lblSection1" Text="UHF band limits [MHz]" />
 			<Control Id="lblDspFwVer" Text="DSP Version" />
 			<Control Id="lblFirmwareVer" Text="Firmware Version" />
 			<Control Id="lblHardwareVer" Text="Hardware Version" />
 			<Control Id="lblCpsSwVer" Text="CPS Version" />
 			<Control Id="lblSn" Text="Serial Number" />
-			<Control Id="lblSection2" Text="Frequency Range 2 [MHz]" />
+			<Control Id="lblSection2" Text="VHF band limits [MHz]" />
 			<Control Id="lblLastPrgTime" Text="Last Programed Date" />
 			<Control Id="lblModel" Text="Model Name" />
 		</Controls>
@@ -310,7 +310,7 @@
 			<Item Id="EncryptType" Text="None,Basic" />
 		</Commons>
 	</EncryptForm>
-	<GeneralSetForm Text="General Settings">
+	<GeneralSetForm Text="DMR ID and callsign">
 		<Controls>
 			<Control Id="chkTxExitTone" Text="Tx Exit Tone" />
 			<Control Id="grpBeep" Text="Alert Tone" />
@@ -365,14 +365,14 @@
 	<HelpForm Text="HelpView">
 		<Controls />
 	</HelpForm>
-	<MainForm Text="Radioddity GD-77 CPS 3.0.6 Community Edition">
+	<MainForm Text="OpenGD77 CPS">
 		<TreeView>
 			<TreeNode Id="Model" Text="GD-77" />
-			<TreeNode Id="BasicInfo" Text="Basic Information" />
+			<TreeNode Id="BasicInfo" Text="Band limits" />
 			<TreeNode Id="BootItem" Text="Boot screen" />
 			<TreeNode Id="Menu" Text="Menu" />
 			<TreeNode Id="NumKeyAssign" Text="Number Key Assign" />
-			<TreeNode Id="GeneralSetting" Text="General Settings" />
+			<TreeNode Id="GeneralSetting" Text="DMR ID and callsign" />
 			<TreeNode Id="Buttons" Text="Buttons" />
 			<TreeNode Id="TextMsg" Text="Text Message" />
 			<TreeNode Id="Pivacy" Text="Privacy" />
@@ -397,11 +397,11 @@
 			<MenuItem Id="tsmiOpen" Text="Open" />
 			<MenuItem Id="tsmiExit" Text="Exit" />
 			<MenuItem Id="tsmiSetting" Text="Setting" />
-			<MenuItem Id="tsmiDeviceInfo" Text="Basic Information" />
+			<MenuItem Id="tsmiDeviceInfo" Text="Band limits" />
 			<MenuItem Id="tsmiBootItem" Text="Boot screen" />
 			<MenuItem Id="tsmiMenu" Text="Menu" />
 			<MenuItem Id="tsmiNumKeyContact" Text="Number Key Assign" />
-			<MenuItem Id="tsmiGerneralSet" Text="General Settings" />
+			<MenuItem Id="tsmiGerneralSet" Text="DMR ID and callsign" />
 			<MenuItem Id="tsmiButton" Text="Buttons" />
 			<MenuItem Id="tsmiTextMsg" Text="Text Message" />
 			<MenuItem Id="tsmiEncrypt" Text="Privacy" />

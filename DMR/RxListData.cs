@@ -13,13 +13,9 @@ namespace DMR
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	public class RxListData : IData
 	{
-#if OpenGD77
 		public const int CNT_RX_LIST = 76;// works if you set this to 128
 		public const int CNT_RX_LIST_INDEX = 128; //List index remains at 128 even though only 76 are used. 
-#elif CP_VER_3_1_X
-		public const int CNT_RX_LIST = 76;// works if you set this to 128
-		public const int CNT_RX_LIST_INDEX = 128; //List index remains at 128 even though only 76 are used. 
-#endif
+
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = CNT_RX_LIST_INDEX)]
 		private byte[] rxListIndex;
 

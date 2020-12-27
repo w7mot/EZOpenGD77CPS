@@ -28,7 +28,7 @@ namespace DMR
 
 		private SerialPort _port = null;
 
-		private BackgroundWorker worker;
+		//private BackgroundWorker worker;
 
 		public enum CommsDataMode { DataModeNone = 0, DataModeReadFlash = 1, DataModeReadEEPROM = 2, DataModeWriteFlash = 3, DataModeWriteEEPROM = 4 };
 		public enum CommsAction { NONE, BACKUP_EEPROM, BACKUP_FLASH, RESTORE_EEPROM, RESTORE_FLASH, READ_CODEPLUG, WRITE_CODEPLUG }
@@ -109,6 +109,8 @@ namespace DMR
 			chkEnhancedFirmware.Checked = true;
 			chkEnhancedFirmware.Visible = false;
 #endif
+			FormBorderStyle = FormBorderStyle.FixedSingle;
+
 		}
 
 		private void dataGridRowDeleted(object sender, DataGridViewRowEventArgs e)
@@ -203,7 +205,7 @@ namespace DMR
 				rebindData();
 				Cursor.Current = Cursors.Default;
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				MessageBox.Show(Settings.dicCommon["ErrorParsingData"]);
 			}
@@ -265,7 +267,7 @@ namespace DMR
 				Cursor.Current = Cursors.Default;
 	
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				MessageBox.Show(Settings.dicCommon["ErrorParsingData"]);
 			}

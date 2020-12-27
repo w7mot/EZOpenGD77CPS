@@ -96,6 +96,7 @@ internal class Settings
 	public static readonly byte[] CUR_MODEL;
 
 	public static string SZ_NONE;
+	public static string SZ_NA;
 
 	public static string SZ_SELECTED;
 
@@ -200,9 +201,9 @@ internal class Settings
 
 	public static int CUR_MODE;
 
-	public static uint[] MIN_FREQ;
+	public static readonly uint[] MIN_FREQ;
 
-	public static uint[] MAX_FREQ;
+	public static readonly uint[] MAX_FREQ;
 
 	public static readonly uint[] VALID_MIN_FREQ;
 
@@ -448,6 +449,7 @@ internal class Settings
 		Settings.smethod_76("CommError", ref Settings.SZ_COMM_ERROR);
 		Settings.smethod_76("Model does not match", ref Settings.SZ_MODEL_NOT_MATCH);
 		Settings.smethod_76("DataFormatError", ref Settings.SZ_DATA_FORMAT_ERROR);
+		Settings.smethod_76("N/A", ref Settings.SZ_NA);
 	}
 
 	public static void smethod_11(ref byte byte_0, byte byte_1, byte byte_2, byte byte_3)
@@ -947,12 +949,19 @@ internal class Settings
 		}
 	}
 
-	public static void smethod_44(CustomCombo class4_0, IData idata_0)
+	public static void smethod_44(CustomCombo class4_0, IData idata_0, string noneText=null)
 	{
 		int num = 0;
 		string text = "";
 		class4_0.method_0();
-		class4_0.method_1(Settings.SZ_NONE, 0);
+		if (noneText == null)
+		{
+			class4_0.method_1(Settings.SZ_NONE, 0);
+		}
+		else
+		{
+			class4_0.method_1(noneText, 0);
+		}
 		for (num = 0; num < idata_0.Count; num++)
 		{
 			if (idata_0.DataIsValid(num))
@@ -1575,28 +1584,37 @@ internal class Settings
 		Settings.SZ_PROMPT = "Prompt";
 		Settings.SZ_ERROR = "Error";
 		Settings.SZ_WARNING = "Warning";
+		Settings.SZ_NA = "N/A";
 
 
 		Settings.CUR_MODE = 2;// Roger Clark. Changed from 0 to 2 as this seems to be the Expert settings mode.
+
+		// These values are also set in MainForm.cs (belt and braces approach, probably not really needed in MainForm).
+
+		// Probably no reason to have 2 sets of settings.
+		// This set is used by the Channel and VFO screens
 		Settings.MIN_FREQ = new uint[2]
 		{
-			400u,
-			130u
+			380u,
+			127u
 		};
 		Settings.MAX_FREQ = new uint[2]
 		{
-			480u,
-			174u
+			564u,
+			282u
 		};
+
+		// Probably no reason to have 2 sets of settings.
+		// This set is used by the band limits
 		Settings.VALID_MIN_FREQ = new uint[2]
 		{
-			130u,
-			130u
+			380u,
+			127u
 		};
 		Settings.VALID_MAX_FREQ = new uint[2]
 		{
-			520u,
-			470u
+			564u,
+			178u
 		};
 		Settings.CUR_CH_GROUP = 0;
 		Settings.CUR_ZONE_GROUP = 0;

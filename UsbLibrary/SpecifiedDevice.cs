@@ -71,7 +71,7 @@ namespace UsbLibrary
 			return true;
 		}
 
-		int offset = 0;
+		//int offset = 0;
 
 		public bool SendData(byte[] data, int index, int length)
 		{

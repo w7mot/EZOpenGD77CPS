@@ -24,13 +24,10 @@ namespace DMR
 
 		const int ZONE_NAME_LENGTH = 16;
 		const int ZONES_IN_USE_DATA_LENGTH = 32;
-#if OpenGD77
+
 		const int NUM_CHANNELS_PER_ZONE	= 80;
 		const int NUM_ZONES = 68;
-#elif CP_VER_3_1_X
-		const int NUM_CHANNELS_PER_ZONE	= 16;
-		const int NUM_ZONES				= 250;
-#endif
+
 		const int UNKNOWN_VAR_OF_32 = NUM_CHANNELS_PER_ZONE + ZONE_NAME_LENGTH;
 
 		public int MainZoneLastSelectedIndex
@@ -271,8 +268,8 @@ namespace DMR
 			this.cmbSubZone.Name = "cmbSubZone";
 			this.cmbSubZone.Size = new Size(120, 24);
 			this.cmbSubZone.TabIndex = 1;
-			this.cmbSubZone.SelectedIndexChanged += this.cmbSubZone_SelectedIndexChanged;
-			this.cmbSubZone.DropDown += this.cmbSubZone_DropDown;
+			this.cmbSubZone.SelectedIndexChanged += new EventHandler( this.cmbSubZone_SelectedIndexChanged);
+			this.cmbSubZone.DropDown += new EventHandler( this.cmbSubZone_DropDown);
 			this.lblSubZone.Location = new Point(19, 37);
 			this.lblSubZone.Name = "lblSubZone";
 			this.lblSubZone.Size = new Size(70, 24);
@@ -307,8 +304,8 @@ namespace DMR
 			this.cmbMainZone.Name = "cmbMainZone";
 			this.cmbMainZone.Size = new Size(120, 24);
 			this.cmbMainZone.TabIndex = 1;
-			this.cmbMainZone.SelectedIndexChanged += this.cmbMainZone_SelectedIndexChanged;
-			this.cmbMainZone.DropDown += this.cmbMainZone_DropDown;
+			this.cmbMainZone.SelectedIndexChanged += new EventHandler( this.cmbMainZone_SelectedIndexChanged);
+			this.cmbMainZone.DropDown += new EventHandler( this.cmbMainZone_DropDown);
 			this.lblCurZone.Location = new Point(19, 37);
 			this.lblCurZone.Name = "lblCurZone";
 			this.lblCurZone.Size = new Size(70, 24);
@@ -322,8 +319,8 @@ namespace DMR
 			this.Font = new Font("Arial", 10f, FontStyle.Regular);
 			base.Name = "ZoneBasicForm";
 			this.Text = "Zone";
-			base.Load += this.ZoneBasicForm_Load;
-			base.FormClosing += this.ZoneBasicForm_FormClosing;
+			base.Load += new EventHandler( this.ZoneBasicForm_Load);
+			base.FormClosing += new FormClosingEventHandler( this.ZoneBasicForm_FormClosing);
 			this.pnlZoneBasic.ResumeLayout(false);
 			this.grpSub.ResumeLayout(false);
 			this.grpMain.ResumeLayout(false);

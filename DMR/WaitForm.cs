@@ -111,14 +111,14 @@ namespace DMR
 			this.btnClose.TabIndex = 0;
 			this.btnClose.Text = "OK";
 			this.btnClose.UseVisualStyleBackColor = true;
-			this.btnClose.Click += this.btnClose_Click;
+			this.btnClose.Click += new EventHandler( this.btnClose_Click);
 			this.lblInfo.AutoSize = true;
 			this.lblInfo.Location = new Point(38, 50);
 			this.lblInfo.Name = "lblInfo";
 			this.lblInfo.Size = new Size(41, 12);
 			this.lblInfo.TabIndex = 1;
 			this.lblInfo.Text = "Prompt";
-			this.tmrClose.Tick += this.tmrClose_Tick;
+			this.tmrClose.Tick += new EventHandler( this.tmrClose_Tick);
 			base.AutoScaleDimensions = new SizeF(6f, 12f);
 //			base.AutoScaleMode = AutoScaleMode.Font;
 			base.ClientSize = new Size(373, 192);
@@ -127,7 +127,7 @@ namespace DMR
 			this.Font = new Font("Arial", 10f, FontStyle.Regular);
 			base.Name = "WaitForm";
 			this.Text = "WaitForm";
-			base.Load += this.WaitForm_Load;
+			base.Load += new EventHandler( this.WaitForm_Load);
 			base.ResumeLayout(false);
 			base.PerformLayout();
 		}

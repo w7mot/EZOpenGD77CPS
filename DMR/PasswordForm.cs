@@ -42,7 +42,7 @@ namespace DMR
 			this.btnOk.TabIndex = 2;
 			this.btnOk.Text = "OK";
 			this.btnOk.UseVisualStyleBackColor = true;
-			this.btnOk.Click += this.btnOk_Click;
+			this.btnOk.Click += new EventHandler(this.btnOk_Click);
 //			this.btnCancel.DialogResult = DialogResult.Cancel;
 			this.btnCancel.Location = new Point(159, 102);
 			this.btnCancel.Name = "btnCancel";
@@ -70,7 +70,7 @@ namespace DMR
 			base.Name = "PasswordForm";
 			base.StartPosition = FormStartPosition.CenterScreen;
 			this.Text = "Password";
-			base.Load += this.PasswordForm_Load;
+			base.Load += new EventHandler(this.PasswordForm_Load);
 			base.ResumeLayout(false);
 			base.PerformLayout();
 		}

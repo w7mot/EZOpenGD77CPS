@@ -62,7 +62,7 @@ namespace DMR
 		{
 			get 
 			{
-				_calibrationData.DACOscRefTune				= (ushort)this.nudVhfOscRef.Value;
+				_calibrationData.DACOscRefTune				= (short)this.nudVhfOscRef.Value;
 				_calibrationData.MuteNormalWidebandOpen1	= (byte)this.nudSquelchWideNormOpen.Value;
 				_calibrationData.MuteNormalWidebandClose1	= (byte)this.nudSquelchWideNormClose.Value;
 				_calibrationData.MuteStrictWidebandOpen1	= (byte)this.nudSquelchWideTightOpen.Value;

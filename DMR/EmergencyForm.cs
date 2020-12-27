@@ -764,7 +764,7 @@ namespace DMR
 			this.cmbAlarmMode.Name = "cmbAlarmMode";
 			this.cmbAlarmMode.Size = new Size(120, 24);
 			this.cmbAlarmMode.TabIndex = 5;
-			this.cmbAlarmMode.SelectedIndexChanged += this.cmbAlarmMode_SelectedIndexChanged;
+			this.cmbAlarmMode.SelectedIndexChanged += new EventHandler(this.cmbAlarmMode_SelectedIndexChanged);
 			this.pnlEmergency.AutoScroll = true;
 			this.pnlEmergency.AutoSize = true;
 			this.pnlEmergency.Controls.Add(this.cmbRevertCh);
@@ -888,7 +888,7 @@ namespace DMR
 				0,
 				0
 			});
-			this.nudRxCycle.ValueChanged += this.nudRxCycle_ValueChanged;
+			this.nudRxCycle.ValueChanged += new EventHandler(this.nudRxCycle_ValueChanged);
 			this.nudTxCycle.Increment = new decimal(new int[4]
 			{
 				10,
@@ -926,7 +926,7 @@ namespace DMR
 				0,
 				0
 			});
-			this.nudTxCycle.ValueChanged += this.nudTxCycle_ValueChanged;
+			this.nudTxCycle.ValueChanged += new EventHandler(this.nudTxCycle_ValueChanged);
 			this.nudCycles.method_2(null);
 			this.nudCycles.Location = new Point(167, 238);
 			this.nudCycles.Maximum = new decimal(new int[4]
@@ -970,7 +970,7 @@ namespace DMR
 			this.cmbAlarmType.Name = "cmbAlarmType";
 			this.cmbAlarmType.Size = new Size(120, 24);
 			this.cmbAlarmType.TabIndex = 3;
-			this.cmbAlarmType.SelectedIndexChanged += this.cmbAlarmType_SelectedIndexChanged;
+			this.cmbAlarmType.SelectedIndexChanged += new EventHandler(this.cmbAlarmType_SelectedIndexChanged);
 			this.txtName.InputString = null;
 			this.txtName.Location = new Point(167, 58);
 			this.txtName.MaxByteLength = 0;
@@ -978,7 +978,7 @@ namespace DMR
 			this.txtName.Name = "txtName";
 			this.txtName.Size = new Size(120, 23);
 			this.txtName.TabIndex = 1;
-			this.txtName.Leave += this.txtName_Leave;
+			this.txtName.Leave += new EventHandler(this.txtName_Leave);
 			base.AutoScaleDimensions = new SizeF(7f, 16f);
 			base.AutoScaleMode = AutoScaleMode.Font;
 			base.ClientSize = new Size(327, 376);
@@ -986,8 +986,8 @@ namespace DMR
 			this.Font = new Font("Arial", 10f, FontStyle.Regular, GraphicsUnit.Point, 0);
 			base.Name = "EmergencyForm";
 			this.Text = "Emergency System";
-			base.Load += this.EmergencyForm_Load;
-			base.FormClosing += this.EmergencyForm_FormClosing;
+			base.Load += new EventHandler(this.EmergencyForm_Load);
+			base.FormClosing += new FormClosingEventHandler(this.EmergencyForm_FormClosing);
 			this.pnlEmergency.ResumeLayout(false);
 			this.pnlEmergency.PerformLayout();
 			((ISupportInitialize)this.nudPoliteRetries).EndInit();

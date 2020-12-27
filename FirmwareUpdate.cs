@@ -145,14 +145,14 @@ internal class FirmwareUpdate : Win32Usb, IFirmwareUpdate
 
 	private Guid GUID_DFU;
 	private Guid GUID_APP;
-	private Thread thread;
+	//private Thread thread;
 	private string DFU_FilePath;
 	private ushort VID;
 	private ushort PID;
 	private ushort Version;
 	private string ImageName;
 	private string DFU_DevicePath;
-	private SafeFileHandle _ParentHandle;// Roger Clark. As this is uniniialised, it will potentially cause a crash if method_9() is ever called
+	private SafeFileHandle _ParentHandle = null;// Roger Clark. As this is uniniialised, it will potentially cause a crash if method_9() is ever called
 	private List<Class18> Sectors;
 	private ushort MaxWriteBlockSize;
 	private uint[] CrcTable;
@@ -187,19 +187,19 @@ internal class FirmwareUpdate : Win32Usb, IFirmwareUpdate
 
 	public bool getIsThreadAlive()
 	{
-		if (this.thread != null)
-		{
-			return this.thread.IsAlive;
-		}
+		//if (this.thread != null)
+		//{
+		//	return this.thread.IsAlive;
+		//}
 		return false;
 	}
 
 	public void method_5()
 	{
-		if (this.getIsThreadAlive())
-		{
-			this.thread.Join();
-		}
+		//if (this.getIsThreadAlive())
+		//{
+		//	this.thread.Join();
+		//}
 	}
 
 	public void UpdateFirmware()

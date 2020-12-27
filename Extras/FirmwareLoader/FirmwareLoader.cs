@@ -82,6 +82,23 @@ namespace DMR
 			return "Unknown";
 		}
 
+		public static String getModelSaveFileString(OutputType type)
+		{
+			switch (type)
+			{
+				case OutputType.OutputType_GD77:
+					return "OpenGD77";
+				case OutputType.OutputType_GD77S:
+					return "OpenGD77S";
+				case OutputType.OutputType_DM1801:
+					return "OpenDM1801";
+				case OutputType.OutputType_RD5R:
+					return "OpenRD5R";
+			}
+
+			return "Unknown";
+		}
+
 		public static String getModelName()
 		{
 			return getModelString(outputType);

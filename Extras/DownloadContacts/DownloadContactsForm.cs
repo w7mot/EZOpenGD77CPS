@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Web.Script.Serialization;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace DMR
 {
@@ -130,7 +131,7 @@ namespace DMR
 				}
 				lblMessage.Text = string.Format(Settings.dicCommon["DownloadContactsMessageAdded"], this.dgvDownloadeContacts.RowCount);
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				MessageBox.Show(Settings.dicCommon["UnableDownloadFromInternet"]);
 			}
@@ -252,7 +253,6 @@ namespace DMR
 				found = false;
 				lineArr = linesArr[i].Split(';');
 
-
 				if (ownRadioId == int.Parse(lineArr[2]) || Int32.Parse(lineArr[4]) > maxAge)
 				{
 					found=true;
@@ -282,7 +282,7 @@ namespace DMR
 					{
 						name = lineArr[3];
 					}
-					this.dgvDownloadeContacts.Rows.Insert(0, lineArr[2], lineArr[1], name, lineArr[4]);
+					this.dgvDownloadeContacts.Rows.Insert(0, lineArr[2], lineArr[1], name, Regex.Replace(lineArr[4], @"\n|\r", ""));
 				}
 			}
 			updateTotalNumberMessage();

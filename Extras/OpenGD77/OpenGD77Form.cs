@@ -1113,7 +1113,7 @@ namespace DMR
 						sendCommand(6, 2);// Save settuings VFO's to codeplug
 
 						dataObj.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeReadEEPROM;
-						dataObj.localDataBufferStartPosition = 0x00E0;
+						dataObj.localDataBufferStartPosition = 0x0080;// Changed from 0x00E0 to 0x0080 to upload the Device Info
 						dataObj.startDataAddressInTheRadio = dataObj.localDataBufferStartPosition;
 						dataObj.transferLength =  0x6000 - dataObj.localDataBufferStartPosition;
 						displayMessage(String.Format("Reading EEPROM 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, (dataObj.localDataBufferStartPosition + dataObj.transferLength)));
@@ -1202,7 +1202,7 @@ namespace DMR
 
 						dataObj.dataBuff = MainForm.DataToByte();
 						dataObj.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeWriteEEPROM;
-						dataObj.localDataBufferStartPosition = 0x00E0;
+						dataObj.localDataBufferStartPosition = 0x0080;// Changed from 0x00E0 to 0x0080 to upload the Device Info
 						dataObj.startDataAddressInTheRadio = dataObj.localDataBufferStartPosition;
 						dataObj.transferLength =  0x6000 - dataObj.localDataBufferStartPosition;
 						displayMessage(String.Format("Writing EEPROM 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, dataObj.localDataBufferStartPosition + dataObj.transferLength));
@@ -1575,6 +1575,7 @@ namespace DMR
 			}
 			if (DialogResult.Yes == MessageBox.Show("Are you sure you want to restore the Flash memory from a previously saved file?", "Warning", MessageBoxButtons.YesNo))
 			{
+				_openFileDialog.Filter = "Flash backup files (*.bin)|*.bin";
 				if (DialogResult.OK == _openFileDialog.ShowDialog())
 				{
 					OpenGD77CommsTransferData dataObj = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.RESTORE_FLASH);
@@ -1963,5 +1964,11 @@ namespace DMR
 				perFormCommsTask(dataObj);
 			}
 		}
-	}
+
+        private void OpenGD77Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+			melodyToBytes(false);
+
+		}
+    }
 }
