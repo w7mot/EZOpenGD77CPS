@@ -73,6 +73,8 @@ Source: "..\Language\Chinese.xml"; DestDir: "{app}\Language"; Flags: ignoreversi
 Source: "..\Language\Chinese.chm"; DestDir: "{app}\Language"; Flags: ignoreversion
 Source: "..\Language\Japanese.xml"; DestDir: "{app}\Language"; Flags: ignoreversion
 Source: "..\Language\Japanese.chm"; DestDir: "{app}\Language"; Flags: ignoreversion
+Source: "..\Language\Czech.xml"; DestDir: "{app}\Language"; Flags: ignoreversion
+Source: "..\Language\Czech.chm"; DestDir: "{app}\Language"; Flags: ignoreversion
 
 Source: "..\OpenGD77CommDriver\wdi-simple.exe"; DestDir: "{%TEMP}\OpenGD77CommDriver"; Flags: ignoreversion
 
