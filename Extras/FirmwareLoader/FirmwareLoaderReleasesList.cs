@@ -18,22 +18,29 @@ namespace DMR
 
 			List<GithubRelease> releases = JsonConvert.DeserializeObject<List<GithubRelease>>(downloadedJsonString);
 
-			string patternFormat = "OpenGD77.sgl";
+			string patternFormat = "OpenGD77";
 			switch (FirmwareLoader.outputType)
 			{
 				case FirmwareLoader.OutputType.OutputType_GD77:
-					patternFormat = @"OpenGD77.sgl";
+					patternFormat = @"OpenGD77";
 					break;
 				case FirmwareLoader.OutputType.OutputType_GD77S:
-					patternFormat = @"OpenGD77S.sgl";
+					patternFormat = @"OpenGD77S";
 					break;
 				case FirmwareLoader.OutputType.OutputType_DM1801:
-					patternFormat = @"OpenDM1801.sgl";
+					patternFormat = @"OpenDM1801";
 					break;
 				case FirmwareLoader.OutputType.OutputType_RD5R:
-					patternFormat = @"OpenRD5R.sgl";
+					patternFormat = @"OpenRD5R";
 					break;
 			}
+
+			if (Settings.LanguageFile == "Japanese.xml")
+            {
+				patternFormat += "_JA";
+			}
+
+			patternFormat += ".sgl";
 
 			foreach (GithubRelease release in releases)
 			{

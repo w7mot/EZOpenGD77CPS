@@ -353,6 +353,7 @@ internal class Settings
    // static string _003CLangXml_003Ek__BackingField;
 	private static XmlDocument _languageXML=null;
 
+	public static string LanguageFile="";
 
 	public static XmlDocument languageXML
 	{
@@ -361,6 +362,7 @@ internal class Settings
 
 	public static void setLanguageXMLFile(string xmlFile)
 	{
+		Settings.LanguageFile = Path.GetFileName(xmlFile);
 		_languageXML = new XmlDocument();
 		_languageXML.Load(xmlFile);
 	}
