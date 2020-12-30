@@ -1323,7 +1323,7 @@ namespace DMR
         private void ZoneForm_Load(object sender, EventArgs e)
         {
             Settings.smethod_59(base.Controls);
-            Settings.smethod_68(this);
+            Settings.UpdateComponentTextsFromLanguageXmlData(this);
             Settings.smethod_71(this.tsrZone.smethod_10(), base.Name);
             this.method_1();
             this.DispData();

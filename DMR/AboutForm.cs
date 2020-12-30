@@ -19,7 +19,7 @@ namespace DMR
 
         private void AboutForm_Load(object sender, EventArgs e)
         {
-            Settings.smethod_68(this);
+            Settings.UpdateComponentTextsFromLanguageXmlData(this);
             this.lblVersion.Text = "OpenGD77 CPS";
         }
 

@@ -342,7 +342,7 @@ namespace DMR
 		private void TextMsgForm_Load(object sender, EventArgs e)
 		{
 			Settings.smethod_59(base.Controls);
-			Settings.smethod_68(this);
+			Settings.UpdateComponentTextsFromLanguageXmlData(this);
 			this.txtContent.MaxByteLength = 10;
 			this.txtContent.Visible = false;
 			this.dgvMsg.Controls.Add(this.txtContent);

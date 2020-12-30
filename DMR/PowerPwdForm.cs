@@ -20,7 +20,7 @@ namespace DMR
 
 		private void PowerPwdForm_Load(object sender, EventArgs e)
 		{
-			Settings.smethod_68(this);
+			Settings.UpdateComponentTextsFromLanguageXmlData(this);
 			this.txtPwd.MaxByteLength = 16;
 			this.txtPwd.InputString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\b";
 		}

@@ -450,7 +450,7 @@ namespace DMR
 		private void DMRIDForm_Load(object sender, EventArgs e)
 		{
 			Settings.smethod_59(base.Controls);
-			Settings.smethod_68(this);// Update texts etc from language xml file
+			Settings.UpdateComponentTextsFromLanguageXmlData(this);// Update texts etc from language xml file
 		}
 
 		private void chkEnhancedFirmware_CheckedChanged(object sender, EventArgs e)

@@ -388,7 +388,7 @@ namespace DMR
 
         private void ContactsForm_Load(object sender, EventArgs e)
         {
-            Settings.smethod_68(this);
+            Settings.UpdateComponentTextsFromLanguageXmlData(this);
             this.method_2();
             this.DispData();
             this.cmbAddType.SelectedIndex = 0;

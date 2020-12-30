@@ -3610,7 +3610,7 @@ namespace DMR
             try
             {
                 Settings.smethod_59(base.Controls);
-                Settings.smethod_68(this);
+                Settings.UpdateComponentTextsFromLanguageXmlData(this);
                 VfoForm.data.ChModeChangeEvent += this.method_3;
                 this.method_9();
                 this.method_1();

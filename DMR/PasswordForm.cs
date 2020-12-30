@@ -84,7 +84,7 @@ namespace DMR
 
 		private void PasswordForm_Load(object sender, EventArgs e)
 		{
-			Settings.smethod_68(this);
+			Settings.UpdateComponentTextsFromLanguageXmlData(this);
 			this.txtPwd.MaxByteLength = 8;
 			this.txtPwd.InputString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\b";
 			this.txtPwd.Text = Settings.CUR_PWD;

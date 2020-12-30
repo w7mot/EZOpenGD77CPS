@@ -3317,9 +3317,9 @@ namespace DMR
             Settings.setLanguageXMLFile(text);
             Settings.smethod_3(Path.ChangeExtension(text, "chm"));
             Settings.smethod_76("Read", ref Settings.SZ_READ);
-            Settings.smethod_68(this);
-            Settings.smethod_68(this.frmHelp);
-            Settings.smethod_68(this.frmTree);
+            Settings.UpdateComponentTextsFromLanguageXmlData(this);
+            Settings.UpdateComponentTextsFromLanguageXmlData(this.frmHelp);
+            Settings.UpdateComponentTextsFromLanguageXmlData(this.frmTree);
             Settings.smethod_70(this.cmsGroup.smethod_9(), base.Name);
             Settings.smethod_70(this.cmsGroupContact.smethod_9(), base.Name);
             Settings.smethod_70(this.cmsTree.smethod_9(), base.Name);

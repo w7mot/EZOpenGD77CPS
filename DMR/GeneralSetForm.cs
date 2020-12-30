@@ -2203,7 +2203,7 @@ namespace DMR
         private void GeneralSetForm_Load(object sender, EventArgs e)
         {
             Settings.smethod_59(base.Controls);
-            Settings.smethod_68(this);
+            Settings.UpdateComponentTextsFromLanguageXmlData(this);
             this.DispData();
         }
 

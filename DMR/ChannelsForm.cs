@@ -94,7 +94,7 @@ namespace DMR
 
         private void ChannelsForm_Load(object sender, EventArgs e)
         {
-            Settings.smethod_68(this);
+            Settings.UpdateComponentTextsFromLanguageXmlData(this);
             this.method_1();
             this.DispData();
             this.cmbAddChMode.SelectedIndex = 0;

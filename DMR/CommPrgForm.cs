@@ -93,7 +93,7 @@ namespace DMR
 
 		private void CommPrgForm_Load(object sender, EventArgs e)
 		{
-			Settings.smethod_68(this);
+			Settings.UpdateComponentTextsFromLanguageXmlData(this);
 			this.prgComm.Minimum = 0;
 			this.prgComm.Maximum = 100;
 

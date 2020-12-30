@@ -46,7 +46,7 @@ namespace DMR
 			try
 			{
 				Settings.smethod_59(base.Controls);
-				Settings.smethod_68(this);
+				Settings.UpdateComponentTextsFromLanguageXmlData(this);
 				this.chkChMark.Checked = Convert.ToBoolean(this.data[37] & 0x10);
 				this.chkTalkback.Checked = Convert.ToBoolean(this.data[37] & 0x80);
 				this.chkEarlyUnmute.Checked = Convert.ToBoolean(this.data[37] & 8);

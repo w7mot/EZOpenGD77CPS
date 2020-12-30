@@ -415,7 +415,7 @@ namespace DMR
 			try
 			{
 				Settings.smethod_59(base.Controls);
-				Settings.smethod_68(this);
+				Settings.UpdateComponentTextsFromLanguageXmlData(this);
 				this.method_2();
 				this.DispData();
 			}

@@ -2893,7 +2893,7 @@ namespace DMR
             try
             {
                 Settings.smethod_59(base.Controls);
-                Settings.smethod_68(this);
+                Settings.UpdateComponentTextsFromLanguageXmlData(this);
                 Settings.smethod_71(this.tsrCh.smethod_10(), base.Name);
                 ChannelForm.data.ChModeChangeEvent += this.method_2;
                 this.BbRiogasSx();

@@ -341,7 +341,7 @@ namespace DMR
 		private void DownloadContacts_Load(object sender, EventArgs e)
 		{
 			Settings.smethod_59(base.Controls);
-			Settings.smethod_68(this);// Update texts etc from language xml file
+			Settings.UpdateComponentTextsFromLanguageXmlData(this);// Update texts etc from language xml file
 
 		}
 
