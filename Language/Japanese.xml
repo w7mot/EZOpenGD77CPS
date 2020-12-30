@@ -4,7 +4,7 @@
 		<Item Id="MaxZoneCount" Text="32" />
 	</Settings>
 	<Language Id="Jpn" Text="日本語" />
-	<AboutForm Text="About">
+	<AboutForm Text="バージョン情報">
 		<Controls>
 			<Control Id="lblVersion" Text="" />
 			<Control Id="lblCompany" Text="Radioddity and GD-77 Community" />
@@ -28,77 +28,77 @@
 	</BootItemForm>
 	<ButtonForm Text="ボタン">
 		<Controls>
-			<Control Id="dgvOneTouch" Text="モード,Call Type,Call,メッセージ内容">
+			<Control Id="dgvOneTouch" Text="モード,コール種別,コール,メッセージ内容">
 				<ControlItem Id="cmbMode" Text="モード" />
-				<ControlItem Id="cmbCallType" Text="Call Type" />
-				<ControlItem Id="cmbCallList" Text="Call" />
+				<ControlItem Id="cmbCallType" Text="コール種別" />
+				<ControlItem Id="cmbCallList" Text="コール" />
 				<ControlItem Id="cmbMsg" Text="メッセージ内容" />
 			</Control>
-			<Control Id="lblEmgShortDur" Text="Emergency Short Press Duration [ms]" />
-			<Control Id="lblLongDur" Text="Long Press Duration [ms]" />
+			<Control Id="lblEmgShortDur" Text="緊急時短押し時間[ms]" />
+			<Control Id="lblLongDur" Text="長押し時間[ms]" />
 			<Control Id="lblSK1" Text="SK1" />
 			<Control Id="lblSK2" Text="SK2" />
-			<Control Id="lblLongPress" Text="Long Press" />
+			<Control Id="lblLongPress" Text="長押し" />
 			<Control Id="lblTK" Text="TK" />
-			<Control Id="lblShortPress" Text="Short Press" />
+			<Control Id="lblShortPress" Text="短押し" />
 		</Controls>
 		<Commons>
-			<Item Id="ButtonItem" Text="None,All Alert Tone On/Off,Emergency On,Emergency Off,High/Low Power,Monitor,Nuisance Delete,One Touch Access 1,One Touch Access 2,One Touch Access 3,One Touch Access 4,One Touch Access 5,One Touch Access 6,Repeater/Talkaround,Scan On/Off,Tight/Normal Squelch,Privacy On/Off,Vox On/Off,Zone Select,Battery Indicator,Lone Work On/Off,Permanent Monitor,Phone Exit,Channel Up,Channel Down,Channel Infomation," />
-			<Item Id="Mode" Text="None,Digital,Analog" />
-			<Item Id="CallTypeD" Text="Call,Message" />
-			<Item Id="CallTypeA" Text="DTMF Call" />
+			<Item Id="ButtonItem" Text="無,全ての警告音 On/Off,緊急 On,緊急 Off,高/低出力,モニター,妨害削除,ワンタッチアクセス 1,ワンタッチアクセス 2,ワンタッチアクセス 3,ワンタッチアクセス 4,ワンタッチアクセス 5,ワンタッチアクセス 6,レピーター/トークアラウンドスキャン On/Off,深/通常スケルチ,プライバシーOn/Off,VOX On/Off,ゾーン選択,バッテリーインジケーター,デッドマンOn/Off,Permanent Monitor,Phone Exit,チャンネルアップ,チャンネルダウン,チャンネル情報," />
+			<Item Id="Mode" Text="無,デジタル,アナログ" />
+			<Item Id="CallTypeD" Text="コール,メッセージ" />
+			<Item Id="CallTypeA" Text="DTMFコール" />
 		</Commons>
 	</ButtonForm>
 	<ChannelForm Text="チャンネル">
 		<Controls>
 			<Control Id="btnCopy" Text=">>" />
-			<Control Id="lblSquelch" Text="Squelch" />
-			<Control Id="lblSql" Text="OpenGD77 Squelch Level" />
-			<Control Id="grpDigit" Text="Digital" />
-			<Control Id="lblTimingPreference" Text="Timing Leader Prefernce" />
+			<Control Id="lblSquelch" Text="スケルチ" />
+			<Control Id="lblSql" Text="OpenGD77 スケルチレベル" />
+			<Control Id="grpDigit" Text="デジタル" />
+			<Control Id="lblTimingPreference" Text="タイミング設定" />
 			<Control Id="lblRepeaterSlot" Text="レピータスロット" />
 			<Control Id="lblArs" Text="ARS" />
-			<Control Id="lblKeySwitch" Text="Privacy" />
-			<Control Id="lblKey" Text="Privacy Group" />
+			<Control Id="lblKeySwitch" Text="プライバシー" />
+			<Control Id="lblKey" Text="プライバシーグループ" />
 			<Control Id="lblTxColor" Text="カラーコード" />
-			<Control Id="lblEmgSystem" Text="Emergency System" />
+			<Control Id="lblEmgSystem" Text="緊急システム" />
 			<Control Id="lblContact" Text="コンタクト" />
 			<Control Id="chkDualCapacity" Text="Dual Capacity Direct Mode" />
-			<Control Id="chkUdpDataHead" Text="Compressed UDP Data Header" />
-			<Control Id="chkAllowTxInterupt" Text="Allow Interruption" />
-			<Control Id="chkTxInteruptFreq" Text="Tx Interruptible Frequencies" />
-			<Control Id="chkPrivateCall" Text="Private Call Confirmed" />
-			<Control Id="chkDataCall" Text="Data Call Confirmed" />
-			<Control Id="chkEmgConfirmed" Text="Emergency Alarm Ack" />
-			<Control Id="chkEnhancedChAccess" Text="Enhanced Channel Access" />
+			<Control Id="chkUdpDataHead" Text="UDPヘッダ圧縮" />
+			<Control Id="chkAllowTxInterupt" Text="割込通話許可" />
+			<Control Id="chkTxInteruptFreq" Text="送信割込周波数" />
+			<Control Id="chkPrivateCall" Text="プライバシーコール許可" />
+			<Control Id="chkDataCall" Text="データーコール許可" />
+			<Control Id="chkEmgConfirmed" Text="緊急応答許可" />
+			<Control Id="chkEnhancedChAccess" Text="拡張チャンネルアクセス" />
 			<Control Id="lblRxColor" Text="受信カラーコード" />
 			<Control Id="lblRxGroup" Text="トークグループリスト" />
 			<Control Id="chkRxOnly" Text="受信のみ" />
-			<Control Id="chkAllowTalkaround" Text="Allow Talkaround" />
+			<Control Id="chkAllowTalkaround" Text="トークアラウンド許可" />
 			<Control Id="grpAnalog" Text="アナログ" />
 			<Control Id="lblChBandwidth" Text="帯域[KHz]" />
 			<Control Id="lblVoiceEmphasis" Text="エンファシス" />
 			<Control Id="lblSte" Text="STE" />
 			<Control Id="lblNonSte" Text="Non STE" />
 			<Control Id="lblRxTone" Text="受信トーン[Hz]" />
-			<Control Id="lblRxSignaling" Text="Rx Signaling System" />
+			<Control Id="lblRxSignaling" Text="受信トーン/DTMF" />
 			<Control Id="lblUnmuteRule" Text="Unmute Rule" />
-			<Control Id="lblArtsInterval" Text="ARTS Interval [s]" />
+			<Control Id="lblArtsInterval" Text="ARTS間隔[s]" />
 			<Control Id="lblArts" Text="ARTS" />
-			<Control Id="lblPttidType" Text="PTTID Type" />
-			<Control Id="lblTxSignaling" Text="Tx Signaling System" />
+			<Control Id="lblPttidType" Text="送信ビープ" />
+			<Control Id="lblTxSignaling" Text="送信トーン/DTMF" />
 			<Control Id="lblTxTone" Text="送信トーン[Hz]" />
 			<Control Id="chkDataPl" Text="PL for Data" />
-			<Control Id="chkLoneWoker" Text="Lone Work" />
+			<Control Id="chkLoneWoker" Text="デッドマン" />
       <Control Id="chkOpenGD77ScanAllSkip" Text="Scan: 全てスキップ" />
 			<Control Id="chkVox" Text="VOX" />
 			<Control Id="chkAutoScan" Text="オートスキャン" />
       <Control Id="chkOpenGD77ScanZoneSkip" Text="Scan: ゾーンスキップ" />
        <Control Id="lblChName" Text="名前" />
-			<Control Id="lblChMode" Text="Mode" />
+			<Control Id="lblChMode" Text="モード" />
 			<Control Id="lblTot" Text="TOT [s]" />
-			<Control Id="lblTotRekey" Text="TOT Rekey Delay [s]" />
-			<Control Id="lblRssiThreshold" Text="RSSI Threshold [dBm]" />
+			<Control Id="lblTotRekey" Text="TOT間隔[s]" />
+			<Control Id="lblRssiThreshold" Text="RSSI閾値[dBm]" />
 			<Control Id="lblRxRefFreq" Text="受信基準周波数" />
 			<Control Id="lblTxRefFreq" Text="送信基準周波数" />
 			<Control Id="lblRxFreq" Text="受信周波数[MHz]" />
@@ -106,7 +106,7 @@
 			<Control Id="lblAdmitCriteria" Text="Admit Criteria" />
 			<Control Id="lblTxFreq" Text="送信周波数[MHz]" />
 			<Control Id="lblScanList" Text="スキャンリスト" />
-      <Control Id="lblxband" Text="Warning: Rx and Tx bands are different. Radio performance may be affected" />
+      <Control Id="lblxband" Text="警告:送受周波数のバンドが異なります" />
 			<Control Id="tsrCh" Text="toolStrip1">
 				<ToolStripItem Id="tslblInfo" Text="" />
 				<ToolStripItem Id="tsbtnFirst" Text="先頭" />
@@ -121,12 +121,12 @@
 		<Commons>
 			<Item Id="ChMode" Text="アナログ,デジタル" />
 			<Item Id="RefFreq" Text="低,中,高" />
-			<Item Id="LibreDMR_Power" Text="Master,50mW,250mW,500mW,750mW,1W,2W,3W,4W,5W,5W++" />
+			<Item Id="LibreDMR_Power" Text="マスター,50mW,250mW,500mW,750mW,1W,2W,3W,4W,5W,5W++" />
 			<Item Id="Power" Text="低,高" />
 			<Item Id="AdmitCriterica" Text="常時,チャンネルフリー,CTCSS/DCS" />
 			<Item Id="AdmitCritericaD" Text="常時,チャンネルフリー,カラーコード" />
 			<Item Id="Squelch" Text="深,普通" />
-			<Item Id="VoiceEmphasis" Text="無,De and Pre,De,Pre" />
+			<Item Id="VoiceEmphasis" Text="無,両方,デ,プリ" />
 			<Item Id="Ste" Text="周波数,120°,180°,240°" />
 			<Item Id="NonSte" Text="無,周波数" />
 			<Item Id="SignalingSystem" Text="切,DTMF" />
@@ -134,20 +134,20 @@
 			<Item Id="PttidType" Text="無,前,後,前後" />
 			<Item Id="Arts" Text="切,送信,受信,送受信" />
 			<Item Id="TimingPreference" Text="Preferred,Eligibel,Ineligibel" />
-			<Item Id="ARS" Text="切,System Change" />
+			<Item Id="ARS" Text="切,システム切替" />
 			<Item Id="KeySwitch" Text="切,入" />
 		</Commons>
 	</ChannelForm>
 	<ChannelsForm Text="チャンネル">
 			<Controls>
-			<Control Id="btnImport" Text="Import Update/Append" />
-      <Control Id="btnImportClearAll" Text="Import Clear All!"/>
-      <Control Id="btnExport" Text="Export selected rows" />
+			<Control Id="btnImport" Text="インポート更新/追加" />
+      <Control Id="btnImportClearAll" Text="インポート全消去"/>
+      <Control Id="btnExport" Text="選択行をエクスポート" />
 			<Control Id="btnDeleteSelect" Text="選択行削除" />
 			<Control Id="btnClear" Text="全消去" />
 			<Control Id="btnDelete" Text="削除" />
 			<Control Id="btnAdd" Text="追加" />
-			<Control Id="dgvChannels" Text="番号,名前,受信周波数,送信周波数,Ch Mode,出力,受信トーン,送信トーン,カラーコード,トークグループリスト,コンタクト,レピータスロット">
+			<Control Id="dgvChannels" Text="番号,名前,受信周波数,送信周波数,Ch モード,出力,受信トーン,送信トーン,カラーコード,トークグループリスト,コンタクト,レピータスロット">
 				<ControlItem Id="" Text="番号" />
 				<ControlItem Id="" Text="名前" />
 				<ControlItem Id="" Text="受信周波数" />
@@ -163,38 +163,38 @@
 			</Control>
 		</Controls>
 		<Commons>
-     <Item Id="DisplayHeaderText" Text="番号,名前,チャンネルモード,受信周波数,送信周波数,カラーコード,レピータスロット,コンタクト,トークグループリスト,出力,受信トーン,送信トーン"/>
-     <Item Id="ExportHeaderText" Text="Data type,名前,チャンネルタイプ,受信周波数,送信周波数,カラーコード,タイムスロット,コンタクト,コンタクトタイプ,コンタクトID,受信グループ,スキャンリスト,ゾーン,受信トーン,送信トーン,出力,帯域,受信のみ,スケルチ,Tx Admit,TOT,TOT Rekey,Tx Signaling,Rx Signaling,Privacy Group,Emergency System,Flags1,Flags2,Flags3,Flags4,RssiThreshold,VoiceEmphasis,TxSignaling,UnmuteRule,RxSignaling,ArtsInterval" />
+     <Item Id="DisplayHeaderText" Text="番号,名前,モード,受信周波数,送信周波数,カラーコード,スロット,コンタクト,TGリスト,出力,受信トーン,送信トーン"/>
+     <Item Id="ExportHeaderText" Text="データータイプ,名前,チャンネルタイプ,受信周波数,送信周波数,カラーコード,タイムスロット,コンタクト,コンタクト種別,コンタクトId,受信グループ,スキャンリスト,ゾーン,受信トーン,送信トーン,出力,バンド幅,送信禁止,スケルチ,送信許可,TOT,TOT間隔,Tx Signaling,Rx Signaling,プライバシーグループ,緊急システム,フラグ1,フラグ2,フラグ3,フラグ4,RSSI閾値,エンファシス,送信トーン/DTMF,UnmuteRule,RxSignaling,Arts間隔" />
 </Commons>
 	</ChannelsForm>
 	<CommPrgForm Text="">
 		<Controls>
-			<Control Id="btnCancel" Text="Cancel" />
+			<Control Id="btnCancel" Text="キャンセル" />
 		</Controls>
 		<Commons>
-			<Item Id="ButtonItem" Text="None,All Alert Tone On/Off,Emergency On,Emergency Off,High/Low Power,Monitor,Nuisance Delete,One Touch Access 1,One Touch Access 2,One Touch Access 3,One Touch Access 4,One Touch Access 5,One Touch Access 6,Repeater/Talkaround,Scan On/Off,Tight/Normal Squelch,Privacy On/Off,Vox On/Off,Zone Select,Battery Indicator,Lone Work On/Off,Permanent Monitor,Phone Exit,Channel Up,Channel Down,Channel Infomation" />
-			<Item Id="Mode" Text="None,Digital,Analog" />
-			<Item Id="CallTypeD" Text="Call,Message" />
-			<Item Id="CallTypeA" Text="DTMF Call" />
+			<Item Id="ButtonItem" Text="無,全ての警告音 On/Off,緊急 On,緊急 Off,高/低出力,モニター,妨害削除,ワンタッチアクセス 1,ワンタッチアクセス 2,ワンタッチアクセス 3,ワンタッチアクセス 4,ワンタッチアクセス 5,ワンタッチアクセス 6,レピーター/トークアラウンドスキャン On/Off,深/通常スケルチ,プライバシーOn/Off,VOX On/Off,ゾーン選択,バッテリーインジケーター,デッドマンOn/Off,Permanent Monitor,Phone Exit,チャンネルアップ,チャンネルダウン,チャンネル情報," />
+			<Item Id="Mode" Text="無,デジタル,アナログ" />
+			<Item Id="CallTypeD" Text="コール,メッセージ" />
+			<Item Id="CallTypeA" Text="DTMFコール" />
 		</Commons>
 	</CommPrgForm>
 	<ContactForm Text="デジタルコンタクト">
 		<Controls>
-			<Control Id="chkCallRxTone" Text="Call Receive Tone" />
-			<Control Id="lblRingStyle" Text="Ring Style" />
-			<Control Id="lblCallType" Text="Call Type" />
+			<Control Id="chkCallRxTone" Text="コール受信トーン" />
+			<Control Id="lblRingStyle" Text="呼出音スタイル" />
+			<Control Id="lblCallType" Text="コール種別" />
 			<Control Id="lblName" Text="名前" />
 			<Control Id="lblCallId" Text="Call ID" />
 		</Controls>
 		<Commons>
-			<Item Id="CallType" Text="グループコール,プライベートコール,オールコール" />
+			<Item Id="CallType" Text="グループ,プライベート,オール" />
 			<Item Id="CallRxTone" Text="切,入" />
 		</Commons>
 	</ContactForm>
 	<ContactsForm Text="コンタクト">
 		<Controls>
-			<Control Id="btnImport" Text="インポート" />
-			<Control Id="btnExport" Text="エクスポート" />
+			<Control Id="btnImport" Text="ｲﾝﾎﾟｰﾄ" />
+			<Control Id="btnExport" Text="ｴｸｽﾎﾟｰﾄ" />
 			<Control Id="btnDeleteSelect" Text="選択削除" />
 			<Control Id="btnClear" Text="全消去" />
 			<Control Id="btnDelete" Text="削除" />
@@ -229,14 +229,14 @@
 			<Control Id="lblModel" Text="モデル名" />
 		</Controls>
 	</DeviceInfoForm>
-	<DigitalKeyContactForm Text="Number Key Assign">
+	<DigitalKeyContactForm Text="数字キー設定">
 		<Controls>
-			<Control Id="dgvContact" Text="Menu">
-				<ControlItem Id="cmbContact" Text="Menu" />
+			<Control Id="dgvContact" Text="メニュー">
+				<ControlItem Id="cmbContact" Text="メニュー" />
 			</Control>
 		</Controls>
 		<Commons>
-			<Item Id="DigitKey" Text="Number Key " />
+			<Item Id="DigitKey" Text="数字キー " />
 		</Commons>
 	</DigitalKeyContactForm>
 	<DtmfContactForm Text="DTMFメモリ">
@@ -281,7 +281,7 @@
 	<EmergencyForm Text="Emergency System">
 		<Controls>
 			<Control Id="lblAlias" Text="名前" />
-			<Control Id="lblAlarmType" Text="Alarm Type" />
+			<Control Id="lblAlarmType" Text="アラーム種別" />
 			<Control Id="lblAlarmMode" Text="モード" />
 			<Control Id="lblRevertCh" Text="Revert Channel" />
 			<Control Id="lblImpoliteRetries" Text="Impolite Retries" />
@@ -293,7 +293,7 @@
 		<Commons>
 			<Item Id="AlarmType" Text="Disable,Regular,Silent,Silent w/ Voice" />
 			<Item Id="AlarmMode" Text="Emergency Alarm,Emergency Alarm w/ call,Emergency Alarm w/ Voice" />
-			<Item Id="RevertCh" Text="None,Selected" />
+			<Item Id="RevertCh" Text="無,選択" />
 		</Commons>
 	</EmergencyForm>
 	<EncryptForm Text="Privacy">
@@ -307,7 +307,7 @@
 			<Control Id="btnAdd" Text="Add" />
 		</Controls>
 		<Commons>
-			<Item Id="EncryptType" Text="None,Basic" />
+			<Item Id="EncryptType" Text="無,基本" />
 		</Commons>
 	</EncryptForm>
 	<GeneralSetForm Text="DMR IDとコールサイン">
@@ -326,13 +326,13 @@
 			<Control Id="grpVoice" Text="Language" />
 			<Control Id="chkChVoice" Text="Channel Voice" />
 			<Control Id="lblVoiceLang" Text="Voice Language" />
-			<Control Id="grpSaveMode" Text="Battery Saver" />
+			<Control Id="grpSaveMode" Text="バッテリーセーバー" />
 			<Control Id="chkBatteryRx" Text="Receive" />
 			<Control Id="chkBatteryPreamble" Text="Preamble" />
 			<Control Id="grpLoneWork" Text="Lone Worker" />
 			<Control Id="lblReminderTmr" Text="Reminder Timer [s]" />
-			<Control Id="lblRespTmr" Text="Response Timer [min]" />
-			<Control Id="grpTalkAround" Text="Talkaround" />
+			<Control Id="lblRespTmr" Text="応答タイマー[min]" />
+			<Control Id="grpTalkAround" Text="トークアラウンド" />
 			<Control Id="lblPrivateHang" Text="Private Call Hang Time [ms]" />
 			<Control Id="lblGrpHold" Text="Group Call Hang Time [ms]" />
 			<Control Id="chkDisableAllLeds" Text="LED消灯" />
@@ -342,13 +342,13 @@
 			<Control Id="lblProgramPwd" Text="Program Password" />
 			<Control Id="lblRxLowBatt" Text="間欠受信間隔[s]" />
 			<Control Id="chkKillState" Text="Kill State" />
-			<Control Id="chkTestMode" Text="Test Mode" />
+			<Control Id="chkTestMode" Text="試験モード" />
 			<Control Id="lblArsInitDly" Text="ARS Initialization Delay [min]" />
 			<Control Id="chkDataEnCtrlStation" Text="Data Enabled COntrol Station" />
 			<Control Id="lblMonitorType" Text="モニター種別" />
 			<Control Id="lblVoxSense" Text="VOX感度" />
-			<Control Id="chkPrivateCall" Text="Private Call" />
-			<Control Id="chkTxInhibit" Text="Tx Inhibit Quick Key Override" />
+			<Control Id="chkPrivateCall" Text="プライベートコール" />
+			<Control Id="chkTxInhibit" Text="送信禁止Quick Key上書き" />
 			<Control Id="lblUpChMode" Text="チャンネルアップモード" />
 			<Control Id="lblDownChMode" Text="チャンネルダウンモード" />
 			<Control Id="grpScan" Text="スキャン" />
@@ -356,10 +356,10 @@
 		</Controls>
 		<Commons>
 			<Item Id="MonitorType" Text="スケルチ開放,ミュート" />
-			<Item Id="TalkPermitTone" Text="None,Digital,Analog,Both" />
+			<Item Id="TalkPermitTone" Text="無,デジタル,アナログ,両方" />
 			<Item Id="ArtsToneName" Text="切,一度,常時" />
 			<Item Id="ChannelMode" Text="チャンネル,VFO" />
-			<Item Id="ScanMode" Text="Time,Carrier,Search" />
+			<Item Id="ScanMode" Text="タイム,キャリア,スケルチ" />
 		</Commons>
 	</GeneralSetForm>
 	<HelpForm Text="HelpView">
@@ -371,13 +371,13 @@
 			<TreeNode Id="BasicInfo" Text="バンド制限" />
 			<TreeNode Id="BootItem" Text="起動画面" />
 			<TreeNode Id="Menu" Text="Menu" />
-			<TreeNode Id="NumKeyAssign" Text="Number Key Assign" />
+			<TreeNode Id="NumKeyAssign" Text="数字キー定義" />
 			<TreeNode Id="GeneralSetting" Text="DMR IDとコールサイン" />
 			<TreeNode Id="Buttons" Text="ボタン" />
-			<TreeNode Id="TextMsg" Text="Text Message" />
-			<TreeNode Id="Pivacy" Text="Privacy" />
-			<TreeNode Id="SignalingSys" Text="Signaling System" />
-			<TreeNode Id="EmergencySys" Text="Emergency System" />
+			<TreeNode Id="TextMsg" Text="テキストメッセージ" />
+			<TreeNode Id="Pivacy" Text="プライバシー" />
+			<TreeNode Id="SignalingSys" Text="信号設定" />
+			<TreeNode Id="EmergencySys" Text="緊急システム" />
 			<TreeNode Id="Contact" Text="コンタクト" />
 			<TreeNode Id="DtmfContact" Text="DTMFメモリ" />
 			<TreeNode Id="DigitalContact" Text="デジタルコンタクト" />
@@ -400,17 +400,17 @@
 			<MenuItem Id="tsmiDeviceInfo" Text="バンド制限" />
 			<MenuItem Id="tsmiBootItem" Text="起動画面" />
 			<MenuItem Id="tsmiMenu" Text="メニュー" />
-			<MenuItem Id="tsmiNumKeyContact" Text="Number Key Assign" />
+			<MenuItem Id="tsmiNumKeyContact" Text="数字キー定義" />
 			<MenuItem Id="tsmiGerneralSet" Text="DMR IDとコールサイン" />
 			<MenuItem Id="tsmiButton" Text="ボタン" />
-			<MenuItem Id="tsmiTextMsg" Text="Text Message" />
-			<MenuItem Id="tsmiEncrypt" Text="Privacy" />
+			<MenuItem Id="tsmiTextMsg" Text="テキストメッセージ" />
+			<MenuItem Id="tsmiEncrypt" Text="プライバシー" />
 			<MenuItem Id="tsmiSignaling" Text="Signaling" />
       			<MenuItem Id="tsmiSignalingSystem" Text="信号設定" />
 			<MenuItem Id="tsmiDtmf" Text="DTMF設定" />
-			<MenuItem Id="tsmiEmgSystem" Text="Emergency System" />
+			<MenuItem Id="tsmiEmgSystem" Text="緊急システム" />
 			<MenuItem Id="tsmiContact" Text="コンタクト" />
-			<MenuItem Id="tsmiDtmfContact" Text="DTMF" />
+			<MenuItem Id="tsmiDtmfContact" Text="DTMFメモリ" />
 			<MenuItem Id="tsmiDmrContact" Text="デジタルコンタクト" />
 			<MenuItem Id="tsmiContacts" Text="コンタクト" />
 			<MenuItem Id="tsmiGrpRxList" Text="トークグループリスト" />
@@ -418,12 +418,12 @@
 			<MenuItem Id="tsmiZoneList" Text="ゾーンリスト" />
 			<MenuItem Id="tsmiChannels" Text="チャンネル" />
 			<MenuItem Id="tsmiScan" Text="Scan" />
-      			<MenuItem Id="tsmiScanBasic" Text="Scan Basic" />      
+      			<MenuItem Id="tsmiScanBasic" Text="スキャン基本設定" />      
 			<MenuItem Id="tsmiScanList" Text="スキャンリスト" />
 			<MenuItem Id="tsmiProgram" Text="プログラム(P)" />
 			<MenuItem Id="tsmiRead" Text="読込" />
 			<MenuItem Id="tsmiWrite" Text="書き出し" />
-			<MenuItem Id="tsmiBasic" Text="Basic" />
+			<MenuItem Id="tsmiBasic" Text="基本設定" />
 			<MenuItem Id="tsmiView" Text="表示(V)" />
 			<MenuItem Id="tsmiTree" Text="ツリー" />
 			<MenuItem Id="tsmiHelp" Text="ヘルプ表示" />
@@ -464,9 +464,9 @@
 		</ContextMenuStrip>
 		<ContextMenuStrip>
 			<MenuItem Id="tsmiAddContact" Text="追加" />
-			<MenuItem Id="tsmiGroupCall" Text="グループコール" />
-			<MenuItem Id="tsmiPrivateCall" Text="プライベートコール" />
-			<MenuItem Id="tsmiAllCall" Text="オールコール" />
+			<MenuItem Id="tsmiGroupCall" Text="グループ" />
+			<MenuItem Id="tsmiPrivateCall" Text="プライベート" />
+			<MenuItem Id="tsmiAllCall" Text="オール" />
 		</ContextMenuStrip>
 		<ToolStrip>
 			<ToolItem Id="tsbtnNew" Text="新規" />
@@ -474,19 +474,19 @@
 			<ToolItem Id="tsbtnSave" Text="保存" />
 			<ToolItem Id="tsbtnRead" Text="読み出し" />
 			<ToolItem Id="tsbtnWrite" Text="書き込み" />
-			<ToolItem Id="tsbtnAbout" Text="CPSについて" />
+			<ToolItem Id="tsbtnAbout" Text="バージョン情報" />
 		</ToolStrip>
 	</MainForm>
-	<MenuForm Text="Menu">
+	<MenuForm Text="メニュー">
 		<Controls>
 			<Control Id="grpCall" Text="受信ログ" />
 			<Control Id="chkReceivedCall" Text="Answered" />
 			<Control Id="chkDialedCall" Text="Outgoing Radio" />
 			<Control Id="chkMissedCall" Text="Missed" />
-			<Control Id="grpSetting" Text="Basic" />
-			<Control Id="chkDoubleWait" Text="Double Standby" />
-			<Control Id="lblDwSwitch" Text="Double Standby" />
-			<Control Id="lblKeyTone" Text="Key Tone" />
+			<Control Id="grpSetting" Text="基本" />
+			<Control Id="chkDoubleWait" Text="ダブルスタンバイ" />
+			<Control Id="lblDwSwitch" Text="ダブルスタンバイ" />
+			<Control Id="lblKeyTone" Text="キートーン" />
 			<Control Id="lblBacklightTime" Text="バックライト[s]" />
 			<Control Id="chkSql" Text="スケルチ" />
 			<Control Id="chkBacklight" Text="バックライト" />
@@ -497,12 +497,12 @@
 			<Control Id="lblChDispMode" Text="チャンネル表示" />
 			<Control Id="chkPwdLock" Text="Password And Lock" />
 			<Control Id="lblMenuLang" Text="メニュー言語" />
-			<Control Id="lblWorkMode" Text="Work Mode" />
-			<Control Id="chkPower" Text="Power" />
+			<Control Id="lblWorkMode" Text="動作モード" />
+			<Control Id="chkPower" Text="出力" />
 			<Control Id="chkBootScreen" Text="起動画面" />
-			<Control Id="chkEncrypt" Text="Privacy" />
+			<Control Id="chkEncrypt" Text="プライベート" />
 			<Control Id="lblKeyLockTime" Text="キーロック時間[s]" />
-			<Control Id="chkTalkAround" Text="Talkaround" />
+			<Control Id="chkTalkAround" Text="トークアラウンド" />
 			<Control Id="chkChDisp" Text="チャンネル表示" />
 			<Control Id="grpContact" Text="コンタクト" />
 			<Control Id="chkOneKeyDial" Text="One Key Dial" />
@@ -514,9 +514,9 @@
 			<Control Id="chkRemoteMonitor" Text="リモートモニター" />
 			<Control Id="chkCallPrompt" Text="コールアラート" />
 			<Control Id="grpScan" Text="スキャン" />
-			<Control Id="chkScanEditList" Text="Edit List" />
+			<Control Id="chkScanEditList" Text="エディットリスト" />
 			<Control Id="chkScan" Text="スキャン" />
-			<Control Id="grpBasic" Text="Basic" />
+			<Control Id="grpBasic" Text="基本設定" />
 			<Control Id="lblMenuHangTime" Text="メニュー表示時間[s]" />
 			<Control Id="chkInfo" Text="情報" />
 			<Control Id="chkFm" Text="FM" />
@@ -553,7 +553,7 @@
 			<Control Id="btnAdd" Text="追加" />
 		</Controls>
 		<Commons>
-			<Item Id="PriorityCh" Text="None,Selected" />
+			<Item Id="PriorityCh" Text="無,選択" />
 			<Item Id="TxDesignatedCh" Text="Last Active Channel,Selected" />
 			<Item Id="PlType" Text="Non-Priority Channel,Disable,Priority Channel,Priority and Non-Priority Channel" />
 		</Commons>
@@ -583,7 +583,7 @@
 			<Control Id="lblName" Text="名前" />
 		</Controls>
 	</RxGroupListForm>
-	<SignalingBasicForm Text="Signaling Basic">
+	<SignalingBasicForm Text="信号基本設定">
 		<Controls>
 			<Control Id="chkCallAlert" Text="Call Alert Encode" />
 			<Control Id="chkRadioDisable" Text="Radio Disable Decode" />
@@ -598,7 +598,7 @@
 			<Control Id="lblAutoResetTimer" Text="Auto Reset Timer [s]" />
 		</Controls>
 	</SignalingBasicForm>
-	<ScanBasicForm Text="Scan Basic">
+	<ScanBasicForm Text="スキャン基本設定">
 		<Controls>
       <Control Id="lblScanTime" Text="スキャン時間[s]" />
 			<Control Id="lblDigitHang" Text="デジタル受信時間[ms]" />
@@ -609,7 +609,7 @@
 			<Control Id="chkPriorityAlert" Text="優先 Alert" />
 		</Controls>
 	</ScanBasicForm>
-	<TextMsgForm Text="Text Message">
+	<TextMsgForm Text="テキストメッセージ">
 		<Controls>
 			<Control Id="dgvMsg" Text="Content">
 				<ControlItem Id="txtMessage" Text="Text Message" />
@@ -633,10 +633,10 @@
 			<Control Id="lblKeySwitch" Text="Privacy" />
 			<Control Id="lblKey" Text="Privacy Group" />
 			<Control Id="lblTxColor" Text="カラーコード" />
-			<Control Id="lblEmgSystem" Text="Emergency System" />
+			<Control Id="lblEmgSystem" Text="緊急システム" />
 			<Control Id="lblContact" Text="コンタクト" />
 			<Control Id="chkDualCapacity" Text="Dual Capacity Direct Mode" />
-			<Control Id="chkUdpDataHead" Text="Compressed UDP Data Header" />
+			<Control Id="chkUdpDataHead" Text="UDPヘッダ圧縮" />
 			<Control Id="chkAllowTxInterupt" Text="Allow Interruption" />
 			<Control Id="chkTxInteruptFreq" Text="Tx Interruptible Frequencies" />
 			<Control Id="chkPrivateCall" Text="Private Call Confirmed" />
@@ -646,31 +646,31 @@
 			<Control Id="lblRxColor" Text="受信カラーコード" />
 			<Control Id="lblRxGroup" Text="トークグループリスト" />
 			<Control Id="chkRxOnly" Text="受信のみ" />
-			<Control Id="chkAllowTalkaround" Text="Allow Talkaround" />
+			<Control Id="chkAllowTalkaround" Text="トークアラウンド許可" />
 			<Control Id="grpAnalog" Text="Analog" />
 			<Control Id="lblChBandwidth" Text="帯域[KHz]" />
-			<Control Id="lblVoiceEmphasis" Text="Voice Emphasis" />
+			<Control Id="lblVoiceEmphasis" Text="エンファシス" />
 			<Control Id="lblSte" Text="STE" />
 			<Control Id="lblNonSte" Text="Non STE" />
 			<Control Id="lblRxTone" Text="受信トーン[Hz]" />
 			<Control Id="lblRxSignaling" Text="Rx Signaling System" />
 			<Control Id="lblUnmuteRule" Text="Unmute Rule" />
-			<Control Id="lblArtsInterval" Text="ARTS Interval [s]" />
+			<Control Id="lblArtsInterval" Text="ARTS間隔[s]" />
 			<Control Id="lblArts" Text="ARTS" />
-			<Control Id="lblPttidType" Text="PTTID Type" />
-			<Control Id="lblTxSignaling" Text="Tx Signaling System" />
+			<Control Id="lblPttidType" Text="送信ピープ" />
+			<Control Id="lblTxSignaling" Text="送信トーン/DTMF" />
 			<Control Id="lblTxTone" Text="送信トーン[Hz]" />
 			<Control Id="chkDataPl" Text="PL for Data" />
-			<Control Id="chkLoneWoker" Text="Lone Work" />
-      <Control Id="chkOpenGD77ScanAllSkip" Text="Scan: All skip" />
+			<Control Id="chkLoneWoker" Text="デッドマン" />
+      <Control Id="chkOpenGD77ScanAllSkip" Text="Scan: 全スキップ" />
 			<Control Id="chkVox" Text="VOX" />
 			<Control Id="chkAutoScan" Text="オートスキャン" />
       <Control Id="chkOpenGD77ScanZoneSkip" Text="Scan: ゾーンスキップ" />
 			<Control Id="lblChName" Text="名前" />
 			<Control Id="lblChMode" Text="モード" />
 			<Control Id="lblTot" Text="TOT [s]" />
-			<Control Id="lblTotRekey" Text="TOT Rekey Delay [s]" />
-			<Control Id="lblRssiThreshold" Text="RSSI Threshold [dBm]" />
+			<Control Id="lblTotRekey" Text="TOT間隔[s]" />
+			<Control Id="lblRssiThreshold" Text="RSSI閾値[dBm]" />
 			<Control Id="lblRxRefFreq" Text="受信基準周波数" />
 			<Control Id="lblTxRefFreq" Text="送信基準周波数" />
 			<Control Id="lblRxFreq" Text="受信周波数[MHz]" />
@@ -689,20 +689,20 @@
 			<Item Id="AdmitCriterica" Text="常時,チャンネルフリー,CTCSS/DCS" />
 			<Item Id="AdmitCritericaD" Text="常時,チャンネルフリー,カラーコード" />
 			<Item Id="Squelch" Text="深,普通" />
-			<Item Id="VoiceEmphasis" Text="None,De and Pre,De,Pre" />
+			<Item Id="VoiceEmphasis" Text="無,両方,デ,プリ" />
 			<Item Id="Ste" Text="周波数,120°,180°,240°" />
-			<Item Id="NonSte" Text="None,周波数" />
+			<Item Id="NonSte" Text="無,周波数" />
 			<Item Id="SignalingSystem" Text="切,DTMF" />
 			<Item Id="UnmuteRule" Text="Std Unmute Mute,And Unmute Mute,And Unmute Or Mute" />
 			<Item Id="PttidType" Text="無,前,後,前後" />
 			<Item Id="Arts" Text="切,送信,受信,送受信" />
 			<Item Id="TimingPreference" Text="Preferred,Eligible,Ineligible" />
-			<Item Id="Ars" Text="切,System Change" />
+			<Item Id="Ars" Text="切,システム切替" />
 			<Item Id="KeySwitch" Text="切,入" />
 			<Item Id="" Text="無,+,-" />
 		</Commons>
 	</VfoForm>
-	<ZoneBasicForm Text="Zone Basic">
+	<ZoneBasicForm Text="ゾーン基本設定">
 		<Controls>
 			<Control Id="grpSub" Text="下" />
 			<Control Id="lblSubCh" Text="チャンネル" />
@@ -843,7 +843,7 @@
     </Controls>
   </DMRIDForm>
 	<Commons>
-		<Item Id="None" Text="無し" />
+		<Item Id="None" Text="None" />
 		<Item Id="Selected" Text="選択" />
 		<Item Id="RadioIdNotEmpty" Text="Radio IDが未入力" />
 		<Item Id="RadioIdOutOfRange" Text="Radio IDが範囲外" />
@@ -887,19 +887,19 @@
     <Item Id="CodeplugUpgradeWarningToManyRxGroups" Text="Version 3.1.x can only have 76 Rx Groups. Additional Rx Groups have been ignored" />
     <Item Id="CodeplugRead" Text="無線機からCodePlugを読込中" />
     <Item Id="CodeplugWrite" Text="無線機へCodePlugを書出中" />
-    <Item Id="DMRIDRead" Text="無線機からDMR IDデータベースを読込中" />
-    <Item Id="DMRIDWrite" Text="無線機へDMR IDデータベースを書出中" />
-    <Item Id="CalibrationRead" Text="無線機からキャリブレーションデータを読込中" />
-    <Item Id="CalibrationWrite" Text="無線機へキャリブレーションデータを書出中" />
+    <Item Id="DMRIDRead" Text="無線機からDMR IDデーターベースを読込中" />
+    <Item Id="DMRIDWrite" Text="無線機へDMR IDデーターベースを書出中" />
+    <Item Id="CalibrationRead" Text="無線機からキャリブレーションデーターを読込中" />
+    <Item Id="CalibrationWrite" Text="無線機へキャリブレーションデーターを書出中" />
     <Item Id="IdAlreadyExists" Text="ID / タイムスロットが既にあります" />
     <Item Id="IdOutOfRange" Text="IDが範囲外です" />
     <Item Id="IdNotEmpty" Text="ID can not be empty!" />
     <Item Id="ContactNameDuplicate" Text="警告　コンタクト名が重複" />
     <Item Id="EnableMemoryAccessMode" Text ="The GD-77 does not seem to be in Memory Access mode.Hold keys SK2 (Blue side key), Green Menu and * when turning on the transceiver, and try again" />
-    <Item Id="dataRead" Text="無線機からデータを読込中"/>
-    <Item Id="dataWrite" Text="無線機へデータを書出し中"/>
+    <Item Id="dataRead" Text="無線機からデーターを読込中"/>
+    <Item Id="dataWrite" Text="無線機へデーターを書出し中"/>
     <Item Id="DMRIdContcatsTotal" Text="Total number of IDs = {0}. Max of {1} can be uploaded" />
-    <Item Id="ErrorParsingData" Text="データにエラーがあります" />
+    <Item Id="ErrorParsingData" Text="データーにエラーがあります" />
     <Item Id="N/A" Text="N/A"/>
   </Commons>
 </Resource>
