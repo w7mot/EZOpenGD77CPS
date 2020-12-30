@@ -759,6 +759,26 @@
       <Control Id="btnClear" Text="Natejar" />
     </Controls>
   </DMRIDForm>  
+    <OpenGD77Form Text="OpenGD77 Support">
+    <Controls>
+      <Control Id="btnBackupEEPROM" Text="Backup EEPROM" />
+      <Control Id="btnBackupFlash" Text="Backup Flash" />
+      <Control Id="btnRestoreEEPROM" Text="Restore EEPROM" />
+      <Control Id="btnRestoreFlash" Text="Restore Flash" />
+      <Control Id="btnReadCodeplug" Text="Read codeplug" />
+      <Control Id="btnWriteCodeplug" Text="Write codeplug" />
+      <Control Id="btnBackupCalibration" Text="Backup Calibration" />
+      <Control Id="btnRestoreCalibration" Text="Restore Calibration" />
+      <Control Id="btnBackupMCUROM" Text="Backup MCU ROM" />
+      <Control Id="btnDownloadScreenGrab" Text="Download screengrab" />
+      <Control Id="btnOpenFile" Text="Select boot image" />
+      <Control Id="txtBootTune" Text="38,6,0,2,38,2,0,2,38,6,0,2,38,2,0,2,38,6" />
+      <Control Id="grpFunThings" Text="Fun things" />
+      <Control Id="btnPlayTune" Text="Play tune" />
+      <Control Id="lblBootTune" Text="Boot melody" />
+      <Control Id="btnWriteVoicePrompts" Text="Write voice prompts" />
+    </Controls>
+  </OpenGD77Form>
 	<Commons>
 		<Item Id="None" Text="Cap" />
 		<Item Id="Selected" Text="Sel·leccionat" />

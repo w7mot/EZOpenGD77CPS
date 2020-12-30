@@ -1615,6 +1615,7 @@ namespace DMR
 
 		private void OpenGD77Form_Load(object sender, EventArgs e)
 		{
+			Settings.UpdateComponentTextsFromLanguageXmlData(this);
 			switch (_initialAction)
 			{
 				case CommsAction.READ_CODEPLUG:
