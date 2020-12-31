@@ -971,7 +971,7 @@
       <Item Id="Error._The_firmware_doesnt_match the_transceiver_model." Text="エラー:このファームウェアは接続されている機種用ではありません" />
       <Item Id="Firmware_file_is_unencrypted_binary" Text="ファームウェアは暗号化されていません" />
       <Item Id="Error._Firmware_file_too_large" Text="エラー: ファームウェアのサイズが大きすぎます" />
-      <Item Id="Firmware_update_complete._Please_reboot_the" Text="ファームウェアのアップデートが成功しました。無線機の電源を入れなおして下さい。" />
+      <Item Id="Firmware_update_complete" Text="ファームウェアのアップデートが成功しました。無線機の電源を入れなおして下さい。" />
       <Item Id="While_sending_data_file" Text="データファイルの送信中" />
       <Item Id="Error_while_sending_initial_commands._Is_the_{0}_in_firmware_update_mode?" Text="エラー:初期化コマンドの送信に失敗しました。{0} 無線機はファームウェアアップデートモードですか?" />
       <Item Id="Error_read_returned" Text="エラー: read returned " />

@@ -968,7 +968,7 @@
       <Item Id="Error._The_firmware_doesnt_match the_transceiver_model." Text="Error. The firmware doesn't match the transceiver model." />
       <Item Id="Firmware_file_is_unencrypted_binary" Text="Firmware file is unencrypted binary" />
       <Item Id="Error._Firmware_file_too_large" Text="Error. Firmware file too large." />
-      <Item Id="Firmware_update_complete._Please_reboot_the" Text="Firmware update complete. Please reboot the" />
+      <Item Id="Firmware_update_complete" Text="Firmware update complete. Please reboot the radio" />
       <Item Id="While_sending_data_file" Text="While sending data file" />
       <Item Id="Error_while_sending_initial_commands._Is_the_{0}_in_firmware_update_mode?" Text="Error while sending initial commands. Is the {0} in firmware update mode?" />
       <Item Id="Error_read_returned" Text="Error read returned " />

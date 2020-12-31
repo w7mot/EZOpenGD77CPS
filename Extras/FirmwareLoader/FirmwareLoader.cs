@@ -191,7 +191,7 @@ namespace DMR
 				if (respCode == 0)
 				{
 					_progessForm.SetLabel(FirmwareLoaderUI.StringsDict["Success"]);
-					MessageBox.Show(String.Format(FirmwareLoaderUI.StringsDict["Firmware_update_complete._Please reboot_the"] + " {0}", getModelName()), FirmwareLoaderUI.StringsDict["Success"], MessageBoxButtons.OK, MessageBoxIcon.Information);
+					MessageBox.Show(String.Format(FirmwareLoaderUI.StringsDict["Firmware_update_complete"] + " {0}", getModelName()), FirmwareLoaderUI.StringsDict["Success"], MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
 				else
 				{
