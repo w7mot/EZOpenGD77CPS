@@ -187,7 +187,7 @@
 			<Control Id="lblCallId" Text="Call ID" />
 		</Controls>
 		<Commons>
-			<Item Id="CallType" Text="グループ,プライベート,オール" />
+			<Item Id="CallType" Text="グループ,プライベート,全て" />
 			<Item Id="CallRxTone" Text="切,入" />
 		</Commons>
 	</ContactForm>
@@ -239,7 +239,7 @@
 			<Item Id="DigitKey" Text="数字キー " />
 		</Commons>
 	</DigitalKeyContactForm>
-	<DtmfContactForm Text="DTMFメモリ">
+	<DtmfContactForm Text="DTMFコンタクト">
 		<Controls>
 			<Control Id="dgvContact" Text="名前,番号">
 				<ControlItem Id="txtName" Text="名前" />
@@ -379,7 +379,7 @@
 			<TreeNode Id="SignalingSys" Text="信号設定" />
 			<TreeNode Id="EmergencySys" Text="緊急システム" />
 			<TreeNode Id="Contact" Text="コンタクト" />
-			<TreeNode Id="DtmfContact" Text="DTMFメモリ" />
+			<TreeNode Id="DtmfContact" Text="DTMFコンタクト" />
 			<TreeNode Id="DigitalContact" Text="デジタルコンタクト" />
 			<TreeNode Id="RxGroupList" Text="トークグループリスト" />
 			<TreeNode Id="Zone" Text="ゾーン" />
@@ -391,12 +391,12 @@
 			<TreeNode Id="VFOB" Text="VFO B" />
 		</TreeView>
 		<MenuStrip>
-			<MenuItem Id="tsmiFile" Text="&amp;ファイル(F)" />
+			<MenuItem Id="tsmiFile" Text="ファイル(&amp;F)" />
 			<MenuItem Id="tsmiNew" Text="新規" />
 			<MenuItem Id="tsmiSave" Text="保存" />
 			<MenuItem Id="tsmiOpen" Text="開く" />
 			<MenuItem Id="tsmiExit" Text="終了" />
-			<MenuItem Id="tsmiSetting" Text="設定(S)" />
+			<MenuItem Id="tsmiSetting" Text="設定(&amp;S)" />
 			<MenuItem Id="tsmiDeviceInfo" Text="バンド制限" />
 			<MenuItem Id="tsmiBootItem" Text="起動画面" />
 			<MenuItem Id="tsmiMenu" Text="メニュー" />
@@ -410,7 +410,7 @@
 			<MenuItem Id="tsmiDtmf" Text="DTMF設定" />
 			<MenuItem Id="tsmiEmgSystem" Text="緊急システム" />
 			<MenuItem Id="tsmiContact" Text="コンタクト" />
-			<MenuItem Id="tsmiDtmfContact" Text="DTMFメモリ" />
+			<MenuItem Id="tsmiDtmfContact" Text="DTMFコンタクト" />
 			<MenuItem Id="tsmiDmrContact" Text="デジタルコンタクト" />
 			<MenuItem Id="tsmiContacts" Text="コンタクト" />
 			<MenuItem Id="tsmiGrpRxList" Text="トークグループリスト" />
@@ -420,31 +420,31 @@
 			<MenuItem Id="tsmiScan" Text="Scan" />
       			<MenuItem Id="tsmiScanBasic" Text="スキャン基本設定" />      
 			<MenuItem Id="tsmiScanList" Text="スキャンリスト" />
-			<MenuItem Id="tsmiProgram" Text="プログラム(P)" />
-			<MenuItem Id="tsmiRead" Text="読込" />
-			<MenuItem Id="tsmiWrite" Text="書き出し" />
+			<MenuItem Id="tsmiProgram" Text="プログラム(&amp;P)" />
+			<MenuItem Id="tsmiRead" Text="読み出し" />
+			<MenuItem Id="tsmiWrite" Text="書き込み" />
 			<MenuItem Id="tsmiBasic" Text="基本設定" />
-			<MenuItem Id="tsmiView" Text="表示(V)" />
+			<MenuItem Id="tsmiView" Text="表示(&amp;V)" />
 			<MenuItem Id="tsmiTree" Text="ツリー" />
 			<MenuItem Id="tsmiHelp" Text="ヘルプ表示" />
 			<MenuItem Id="tsmiToolBar" Text="ツールバー" />
 			<MenuItem Id="tsmiStatusBar" Text="状態" />
-			<MenuItem Id="tsmiWindow" Text="ウィンドウ(W)" />
-			<MenuItem Id="tsmiCascade" Text="重なり" />
-			<MenuItem Id="tsmiTileHor" Text="縦並び" />
-			<MenuItem Id="tsmiTileVer" Text="横並び" />
+			<MenuItem Id="tsmiWindow" Text="ウィンドウ(&amp;W)" />
+			<MenuItem Id="tsmiCascade" Text="重ねて表示" />
+			<MenuItem Id="tsmiTileHor" Text="上下に並べて表示" />
+			<MenuItem Id="tsmiTileVer" Text="左右に並べて表示" />
 			<MenuItem Id="tsmiCloseAll" Text="全て閉じる" />
-			<MenuItem Id="tsmiAbout" Text="バージョン情報(A)" />
-			<MenuItem Id="tsmiLanguage" Text="言語(L)" />
+			<MenuItem Id="tsmiAbout" Text="バージョン情報(&amp;A)" />
+			<MenuItem Id="tsmiLanguage" Text="言語(&amp;L)" />
 			<MenuItem Id="tsmiEnglish" Text="英語" />
 			<MenuItem Id="tsmiChinese" Text="中国語" />
-      <MenuItem Id="tsmiExtras" Text="便利な機能(E)" />
+      <MenuItem Id="tsmiExtras" Text="&amp;Extras" />
       <MenuItem Id="tsmiContactsDownload" Text="コンタクトダウンロード" />
       <MenuItem Id="tsmiDMRID" Text="コールサイン情報ダウンロード" />
       <MenuItem Id="tsmiCalibration" Text="キャリブレーション" />     
       
       <MenuItem Id="tsmiOpenGD77" Text="OpenGD77 support" />
-      <MenuItem Id="tsmiFirmwareLoader" Text="ファームウエアローダー" />    
+      <MenuItem Id="tsmiFirmwareLoader" Text="ファームウェアローダー" />    
     </MenuStrip>
 		<ContextMenuStrip>
 			<MenuItem Id="tsmiAdd" Text="追加" />
@@ -466,7 +466,7 @@
 			<MenuItem Id="tsmiAddContact" Text="追加" />
 			<MenuItem Id="tsmiGroupCall" Text="グループ" />
 			<MenuItem Id="tsmiPrivateCall" Text="プライベート" />
-			<MenuItem Id="tsmiAllCall" Text="オール" />
+			<MenuItem Id="tsmiAllCall" Text="全て" />
 		</ContextMenuStrip>
 		<ToolStrip>
 			<ToolItem Id="tsbtnNew" Text="新規" />
@@ -837,58 +837,58 @@
       <Control Id="btnDownload" Text="HamDigitalから取得" />
       <Control Id="btnDownloadFromRadioId" Text="RadioID.netから取得" />
       <Control Id="btnImportCSV" Text="CSVからインポート" />
-      <Control Id="btnRead" Text="無線機から読込" />
-      <Control Id="btnWrite" Text="無線機へ書出" />
+      <Control Id="btnRead" Text="無線機から読み出し" />
+      <Control Id="btnWrite" Text="無線機へ書き込み" />
       <Control Id="btnClear" Text="消去" />      
     </Controls>
   </DMRIDForm>
 <OpenGD77Form Text="OpenGD77 Support">
     <Controls>
-      <Control Id="btnBackupEEPROM" Text="EEPROMﾊﾞｯｸｱｯﾌﾟ" />
-      <Control Id="btnBackupFlash" Text="Flashﾊﾞｯｸｱｯﾌﾟ" />
-      <Control Id="btnRestoreEEPROM" Text="EEPROM書込" />
-      <Control Id="btnRestoreFlash" Text="Flash書込" />
-      <Control Id="btnReadCodeplug" Text="codeplugﾊﾞｯｸｱｯﾌﾟ" />
-      <Control Id="btnWriteCodeplug" Text="codeplug書込" />
-      <Control Id="btnBackupCalibration" Text="Calibrationﾊﾞｯｸｱｯﾌﾟ" />
-      <Control Id="btnRestoreCalibration" Text="Calibration書込" />
-      <Control Id="btnBackupMCUROM" Text="MCU ROMﾊﾞｯｸｱｯﾌﾟ" />
-      <Control Id="btnDownloadScreenGrab" Text="ｽｸﾘｰﾝｼｮｯﾄ取得" />
-      <Control Id="btnOpenFile" Text="起動画面書込" />
+      <Control Id="btnBackupEEPROM" Text="EEPROMバックアップ" />
+      <Control Id="btnBackupFlash" Text="Flashバックアップ" />
+      <Control Id="btnRestoreEEPROM" Text="EEPROM書き込み" />
+      <Control Id="btnRestoreFlash" Text="Flash書き込み" />
+      <Control Id="btnReadCodeplug" Text="codeplugバックアップ" />
+      <Control Id="btnWriteCodeplug" Text="codeplug書き込み" />
+      <Control Id="btnBackupCalibration" Text="Calibrationバックアップ" />
+      <Control Id="btnRestoreCalibration" Text="Calibration書き込み" />
+      <Control Id="btnBackupMCUROM" Text="MCU ROMバックアップ" />
+      <Control Id="btnDownloadScreenGrab" Text="スクリーンショット取得" />
+      <Control Id="btnOpenFile" Text="起動画面を開く" />
       <Control Id="txtBootTune" Text="38,6,0,2,38,2,0,2,38,6,0,2,38,2,0,2,38,6" />
       <Control Id="grpFunThings" Text="起動時" />
       <Control Id="btnPlayTune" Text="起動音再生" />
-      <Control Id="lblBootTune" Text="起動音楽譜" />
-      <Control Id="btnWriteVoicePrompts" Text="音声ガイド書込" />
+      <Control Id="lblBootTune" Text="起動音 楽譜" />
+      <Control Id="btnWriteVoicePrompts" Text="音声ガイド書き込み" />
     </Controls>
       <Commons>
-        <Item Id="Error_connecting_to_the_radio" Text="Error connecting to the radio" />
-        <Item Id="Comm_port_not_available" Text="Comm port not available" />
-        <Item Id="Writing_EEPROM" Text="Writing EEPROM" />
-        <Item Id="Error_while_writing" Text="Error while writing" />
-        <Item Id="Writing_Flash" Text="Writing Flash" />
-        <Item Id="Codeplug_write_complete" Text="Codeplug write complete" />
-        <Item Id="Reading_MCU_ROM" Text="Reading MCU ROM" />
-        <Item Id="Error_while_reading_MCU_ROM" Text="Error while reading MCU ROM" />
-        <Item Id="Downloading_Screengrab" Text="Downloading Screengrab" />
-        <Item Id="Writing_Voice_prompts" Text="Writing voice prompts" />
-        <Item Id="Upload_complete" Text="Upload complete" />
-        <Item Id="No_com_port" Text="No com port. Close and reopen the OpenGD77 window to select a com port Are you sure you want to restore the EEPROM from a previously saved file?" />
-        <Item Id="Warning" Text="Warning" />
-        <Item Id="The_file_is_not_the_correct_size." Text="The file is not the correct size." />
-        <Item Id="Are_you_sure_you_want_to_restore_the_Calibartion_from_a_previously_saved_file" Text="Are you sure you want to restore the Calibartion from a previously saved file?" />
-        <Item Id="Calibration_files" Text="Calibration files" />
-        <Item Id="Invalid_Calibration_data" Text="Invalid Calibration data" />
-        <Item Id="Are_you_sure_you_want_to_restore_the_Flash_memory_from_a_previously_saved_file" Text="Are you sure you want to restore the Flash memory from a previously saved file?" />
-        <Item Id="Flash_backup_files" Text="Flash backup files" />
-        <Item Id="This_file_is_not_a_full_backup" Text="This file is not a full backup \n Do you want restore the contents of this file?" />
-        <Item Id="Please_connect_the_radio,_and_try_again." Text="Please connect the radio, and try again" />
-        <Item Id="Failed_to_open_comm_port" Text="Failed to open comm port" />
-        <Item Id="Voice_prompt_files" Text="Voice prompt files" />
-        <Item Id="read_stopped" Text="Error. Read stopped (error at {0:X8})" />
-        <Item Id="write_stopped" Text="Error. Write stopped (error at {0:X8})" />
-        <Item Id="AMB_files" Text="AMB files" />
-        <Item Id="Oops" Text="Oops" />
+        <Item Id="Error_connecting_to_the_radio" Text="無線機との接続が出来ません" />
+        <Item Id="Comm_port_not_available" Text="通信ポートが見つからりません" />
+        <Item Id="Writing_EEPROM" Text="無線機のEEPROMへ書き込み中" />
+        <Item Id="Error_while_writing" Text="無線機へ書き込み中にエラー発生" />
+        <Item Id="Writing_Flash" Text="無線機のFlashに書き込み中" />
+        <Item Id="Codeplug_write_complete" Text="無線機へCodeplug書き込み成功" />
+        <Item Id="Reading_MCU_ROM" Text="無線機からMCU ROM読み出し中" />
+        <Item Id="Error_while_reading_MCU_ROM" Text="無線機からMCU ROM読み出しエラー" />
+        <Item Id="Downloading_Screengrab" Text="無線機のスクリーンショットダウンロード中" />
+        <Item Id="Writing_Voice_prompts" Text="無線機に音声ガイドを書き込み中" />
+        <Item Id="Upload_complete" Text="アップロード成功" />
+        <Item Id="No_com_port" Text="通信ポートが見つからないのでこのウインドウを開き直して通信ポートを再指定して下さい" />
+        <Item Id="Warning" Text="※警告" />
+        <Item Id="The_file_is_not_the_correct_size." Text="ファイルサイズが正しくありません" />
+        <Item Id="Are_you_sure_you_want_to_restore_the_Calibartion_from_a_previously_saved_file" Text="本当に前に保存したCalibartionファイルを無線機へ書き込みますか?" />
+        <Item Id="Calibration_files" Text="Calibrationファイル" />
+        <Item Id="Invalid_Calibration_data" Text="Calibrationファイルが正しくありません" />
+        <Item Id="Are_you_sure_you_want_to_restore_the_Flash_memory_from_a_previously_saved_file" Text="本当に前に保存したFlashファイルを無線機へ書き込みますか?" />
+        <Item Id="Flash_backup_files" Text="Flashファイル" />
+        <Item Id="This_file_is_not_a_full_backup" Text="フルバックアップではありませんが本当に無線機へ書き込みますか?" />
+        <Item Id="Please_connect_the_radio,_and_try_again." Text="無線機を接続して再度実行して下さい" />
+        <Item Id="Failed_to_open_comm_port" Text="通信ポートがオープン出来ません" />
+        <Item Id="Voice_prompt_files" Text="音声ガイドファイル" />
+        <Item Id="read_stopped" Text="エラー:読み出し停止(error at {0:X8})" />
+        <Item Id="write_stopped" Text="エラー:書き込み失敗(error at {0:X8})" />
+        <Item Id="AMB_files" Text="AMBファイル" />
+        <Item Id="Oops" Text="おっと!" />
         <Item Id="RADIO_DISPLAY_CPS" Text="CPS" />
         <Item Id="RADIO_DISPLAY_Backup" Text="Backup" />
         <Item Id="RADIO_DISPLAY_Calibration" Text="Calibration" />
@@ -896,87 +896,87 @@
         <Item Id="RADIO_DISPLAY_Flash" Text="Flash" />
         <Item Id="RADIO_DISPLAY_Codeplug" Text="Codeplug" />
         <Item Id="RADIO_DISPLAY_MCU_ROM" Text="MCU ROM" />
-        <Item Id="RADIO_DISPLAY_Voice_prompts" Text="Voice prompts" />
+        <Item Id="RADIO_DISPLAY_Voice_prompts" Text="音声ガイドファイル" />
         <Item Id="RADIO_DISPLAY_Restoring" Text="Restoring" />
-        <Item Id="RADIO_DISPLAY_Reading" Text="Reading" />
-        <Item Id="RADIO_DISPLAY_Writing" Text="Writing" />
-        <Item Id="Reading_EEPROM" Text="Reading EEPROM" />
-        <Item Id="Reading_Flash" Text="Reading Flash" />
-        <Item Id="Writing_EEPROM" Text="Writing EEPROM" />
-        <Item Id="Writing_Flash" Text="Writing Flash" />
-        <Item Id="Error" Text="Error" />
-        <Item Id="Warning" Text="Warning" />
-		<Item Id="Calibration_data_could_not_be_found._Please_update_your_firmware" Text="Calibration data could not be found. Please update your firmware" />
-		<Item Id="There_has_been_an_error._Refer_to_the_last_status_message_that_was_displayed" Text="There has been an error. Refer to the last status message that was displayed" />
-        <Item Id="EEPROM_files" Text="EEPROM files" />
-        <Item Id="Flash_files" Text="Flash files" />
-        <Item Id="Restore_complete" Text="Restore complete" />
-        <Item Id="Read_Codeplug_complete" Text="Read Codeplug complete" />
-        <Item Id="Screengrab_files" Text="Screengrab files" />
-        <Item Id="Error_while_reading_flash" Text="Error while reading Flash" />
-        <Item Id="Reading_Calibration" Text="Reading Calibration" />
-        <Item Id="Error_while_reading_calibration" Text="Error while reading calibration" />
-        <Item Id="Error_while_reading_EEPROM" Text="Error while reading EEPROM" />
-        <Item Id="Restoring_Flash" Text="Restoring Flash" />
-        <Item Id="Error_while_restoring" Text="Error while restoring" />
-        <Item Id="Restoring_Calibration" Text="Restoring Calibration" />
-        <Item Id="Error_while_restoring_Calibration" Text="Error while restoring Calibration" />
-        <Item Id="Restoring_EEPROM" Text="Restoring EEPROM" />
-        <Item Id="Error_while_reading" Text="Error while reading" />
-        <Item Id="Codeplug_read_complete" Text="Codeplug read complete" />
+        <Item Id="RADIO_DISPLAY_Reading" Text="読み出し中" />
+        <Item Id="RADIO_DISPLAY_Writing" Text="書き込み中" />
+        <Item Id="Reading_EEPROM" Text="EEPROM 読み出し中" />
+        <Item Id="Reading_Flash" Text="Flash 読み出し中" />
+        <Item Id="Writing_EEPROM" Text="EEPROM 書き込み中" />
+        <Item Id="Writing_Flash" Text="Flash 書き込み中" />
+        <Item Id="Error" Text="エラー" />
+        <Item Id="Warning" Text="※警告" />
+		<Item Id="Calibration_data_could_not_be_found._Please_update_your_firmware" Text="Calibrationファイルが見つかりません。先にファームウェアを更新して下さい" />
+		<Item Id="There_has_been_an_error._Refer_to_the_last_status_message_that_was_displayed" Text="エラー発生。最後に表示されたステータスメッセージを参照して下さい" />
+        <Item Id="EEPROM_files" Text="EEPROMファイル" />
+        <Item Id="Flash_files" Text="Flashファイル" />
+        <Item Id="Restore_complete" Text="リストア成功" />
+        <Item Id="Read_Codeplug_complete" Text="Codeplug読み出し成功" />
+        <Item Id="Screengrab_files" Text="無線機スクリーンショット" />
+        <Item Id="Error_while_reading_flash" Text="Flashの読み出しエラー" />
+        <Item Id="Reading_Calibration" Text="Calibration読み出し中" />
+        <Item Id="Error_while_reading_calibration" Text="calibration読み出しエラー" />
+        <Item Id="Error_while_reading_EEPROM" Text="EEPROM読み出しエラー" />
+        <Item Id="Restoring_Flash" Text="Flashリストア中" />
+        <Item Id="Error_while_restoring" Text="リストア中にエラー" />
+        <Item Id="Restoring_Calibration" Text="Calibrationリストア中" />
+        <Item Id="Error_while_restoring_Calibration" Text="Calibrationリストア中にエラー" />
+        <Item Id="Restoring_EEPROM" Text="EEPROMリストア中" />
+        <Item Id="Error_while_reading" Text="読み出しエラー" />
+        <Item Id="Codeplug_read_complete" Text="Codeplug読み出し成功" />
         <Item Id="Reading_MCU_ROM" Text="Reading MCU ROM" />
-        <Item Id="Error_while_Reading_MCU_ROM" Text="Error while Reading MCU ROM" />
-        <Item Id="Error_while_downloading_Screengrab" Text="Error while downloading Screengrab" />
-        <Item Id="Are_you_sure_you_want_to_restore_the_EEPROM_from_a_previously_saved_file" Text="Are you sure you want to restore the EEPROM from a previously saved file?" />
-        <Item Id="PNG_image_files" Text="PNG image files" />
-        <Item Id="MCU_ROM_files" Text="MCU ROM files" />
+        <Item Id="Error_while_Reading_MCU_ROM" Text="MCU ROM読み出しエラー" />
+        <Item Id="Error_while_downloading_Screengrab" Text="スクリーンショットダウンロードエラー" />
+        <Item Id="Are_you_sure_you_want_to_restore_the_EEPROM_from_a_previously_saved_file" Text="本当に前に保存したEEPROMファイルを無線機へ書き込みますか?" />
+        <Item Id="PNG_image_files" Text="128x64px2値PNGファイル" />
+        <Item Id="MCU_ROM_files" Text="MCU ROMファイル" />
       </Commons>  
 	  
 </OpenGD77Form>
-  <FirmwareLoaderUI Text="Firmware Loader">
+  <FirmwareLoaderUI Text="ファームウェアローダー">
     <Controls>
-		<Control Id="btnDetectModel" Text="Detect Radio Type" />
-		<Control Id="grpboxProgress" Text="  Progress " />
-		<Control Id="btnClose"		Text="&amp;Close" />
-		<Control Id="btnDownloadFirmware" Text="&amp;Download &amp;&amp; Update" />
-		<Control Id="btnUploadFirmware" Text="Select a &amp;File &amp;&amp; Update" />
-		<Control Id="grpboxModel" Text="Select your radio type " />
+		<Control Id="btnDetectModel" Text="機種名検知" />
+		<Control Id="grpboxProgress" Text="  実行中 " />
+		<Control Id="btnClose"		Text="閉じる" />
+		<Control Id="btnDownloadFirmware" Text="ダウンロードとアップデート" />
+		<Control Id="btnUploadFirmware" Text="ファイル選択とアップデード" />
+		<Control Id="grpboxModel" Text="機種名選択" />
       </Controls>
     <Commons>
-      <Item Id="CantInterrupt" Text="You can't interrupt the upload process" />
-      <Item Id="DownloadCancelled" Text="Download has been canceled." />
-      <Item Id="Timeout" Text="Timeout" />
-      <Item Id="Error" Text="Error" />
-      <Item Id="No_file_location_specified" Text="No file location specified" />
-      <Item Id="Error:_Unable_to_detect_your_radio." Text="Error: Unable to detect your radio." />
-      <Item Id="Uploading_firmware_to" Text="Uploading firmware to " />
-      <Item Id="Error_sending_data" Text="Error sending data" />
-      <Item Id="Error_sending_checksum" Text="Error sending checksum" />
-      <Item Id="Sending_Download_command" Text="Sending Download command" />
-      <Item Id="Sending_ACK" Text="Sending ACK" />
-      <Item Id="Sending_encryption_key" Text="Sending encryption key" />
-      <Item Id="Sending_F-PROG_command" Text="Sending F-PROG command" />
-      <Item Id="Sending_radio_modem_number" Text="Sending radio modem number" />
-      <Item Id="Sending_radio_modem_number_2" Text="Sending radio modem number 2" />
-      <Item Id="Sending_version" Text="Sending version" />
-      <Item Id="Sending_erase_command" Text="Sending erase command" />
-      <Item Id="Send_post_erase_command" Text="Send post erase command" />
-      <Item Id="Sending_Program_command" Text="Sending Program command" />
-      <Item Id="Error_sending_command" Text="Error sending command "/>
-      <Item Id="ERROR:_SGL!_header_missing." Text="ERROR: SGL! header missing." />
-      <Item Id="Stable" Text="Stable" />
-	  <Item Id="Beta" Text="Beta" />
-      <Item Id="Error._Cant_connect_to_the" Text="Error. Can't connect to the" />
-      <Item Id="Error._Missing_SGL!_in_.sgl_file_header" Text="Error. Missing SGL! in .sgl file header" />
-      <Item Id="Error._The_firmware_doesnt_match the_transceiver_model." Text="Error. The firmware doesn't match the transceiver model." />
-      <Item Id="Firmware_file_is_unencrypted_binary" Text="Firmware file is unencrypted binary" />
-      <Item Id="Error._Firmware_file_too_large" Text="Error. Firmware file too large." />
-      <Item Id="Firmware_update_complete._Please_reboot_the" Text="Firmware update complete. Please reboot the" />
-      <Item Id="While_sending_data_file" Text="While sending data file" />
-      <Item Id="Error_while_sending_initial_commands._Is_the_{0}_in_firmware_update_mode?" Text="Error while sending initial commands. Is the {0} in firmware update mode?" />
-      <Item Id="Error_read_returned" Text="Error read returned " />
-      <Item Id="Firmware_file_confirmed_as_SGL" Text="Firmware file confirmed as SGL" />
-      <Item Id="Success" Text="Success" />
+      <Item Id="CantInterrupt" Text="アップデートは中止できません" />
+      <Item Id="DownloadCancelled" Text="ダウンロードはキャンセルされました" />
+      <Item Id="Timeout" Text="タイムアウト" />
+      <Item Id="Error" Text="エラー" />
+      <Item Id="No_file_location_specified" Text="ファイルの場所が指定されていません" />
+      <Item Id="Error:_Unable_to_detect_your_radio." Text="エラー:無線機の検知が出来ませんでした" />
+      <Item Id="Uploading_firmware_to" Text="ファームウェアのアップロード中 " />
+      <Item Id="Error_sending_data" Text="データ送信エラー" />
+      <Item Id="Error_sending_checksum" Text="チェックサムエラー" />
+      <Item Id="Sending_Download_command" Text="ダウンロードコマンド送信中" />
+      <Item Id="Sending_ACK" Text="ACK送信" />
+      <Item Id="Sending_encryption_key" Text="暗号キー送信中" />
+      <Item Id="Sending_F-PROG_command" Text="F-PROGコマンド送信中" />
+      <Item Id="Sending_radio_modem_number" Text="モデム番号送信中" />
+      <Item Id="Sending_radio_modem_number_2" Text="モデム番号2送信中" />
+      <Item Id="Sending_version" Text="バージョン送信中" />
+      <Item Id="Sending_erase_command" Text="消去コマンド送信中" />
+      <Item Id="Send_post_erase_command" Text="消去後処理コマンド送信中" />
+      <Item Id="Sending_Program_command" Text="プログラムコマンド送信中" />
+      <Item Id="Error_sending_command" Text="コマンド送信エラー"/>
+      <Item Id="ERROR:_SGL!_header_missing." Text="エラー: SGL!ヘッダーが見つかりません" />
+      <Item Id="Stable" Text="安定" />
+	  <Item Id="Beta" Text="ベータ" />
+      <Item Id="Error._Cant_connect_to_the" Text="エラー:接続できません" />
+      <Item Id="Error._Missing_SGL!_in_.sgl_file_header" Text="エラー:sglファイルヘッダーに SGL! が見つかりません" />
+      <Item Id="Error._The_firmware_doesnt_match the_transceiver_model." Text="エラー:このファームウェアは接続されている機種用ではありません" />
+      <Item Id="Firmware_file_is_unencrypted_binary" Text="ファームウェアは暗号化されていません" />
+      <Item Id="Error._Firmware_file_too_large" Text="エラー: ファームウェアのサイズが大きすぎます" />
+      <Item Id="Firmware_update_complete._Please_reboot_the" Text="ファームウェアのアップデートが成功しました。無線機の電源を入れなおして下さい。" />
+      <Item Id="While_sending_data_file" Text="データファイルの送信中" />
+      <Item Id="Error_while_sending_initial_commands._Is_the_{0}_in_firmware_update_mode?" Text="エラー:初期化コマンドの送信に失敗しました。{0} 無線機はファームウェアアップデートモードですか?" />
+      <Item Id="Error_read_returned" Text="エラー: read returned " />
+      <Item Id="Firmware_file_confirmed_as_SGL" Text="ファームウェアはSGLで確認" />
+      <Item Id="Success" Text="成功" />
     </Commons>
     </FirmwareLoaderUI>
 	<Commons>
@@ -984,10 +984,10 @@
 		<Item Id="Selected" Text="選択" />
 		<Item Id="RadioIdNotEmpty" Text="Radio IDが未入力" />
 		<Item Id="RadioIdOutOfRange" Text="Radio IDが範囲外" />
-		<Item Id="Read" Text="読込" />
-		<Item Id="Write" Text="書出" />
-		<Item Id="ReadComplete" Text="読込終了" />
-		<Item Id="WriteComplete" Text="書出終了" />
+		<Item Id="Read" Text="読み出し" />
+		<Item Id="Write" Text="書き込み" />
+		<Item Id="ReadComplete" Text="読み出し終了" />
+		<Item Id="WriteComplete" Text="書き込み終了" />
 		<Item Id="NameExist" Text="名前が重複" />
 		<Item Id="FirstChNotDelete" Text="一行目は削除できません" />
 		<Item Id="FileFormatError" Text="File format error" />
@@ -1019,23 +1019,23 @@
     <Item Id="DownloadContactsTooMany" Text="コンタクト数の上限に達したのでインポートできません" />
     <Item Id="Warning" Text="警告" />
     <Item Id="UnableDownloadFromInternet" Text="ダウンロードに失敗しました。インターネット回線は大丈夫ですか?" />
-    <Item Id="DownloadContactsImportComplete" Text="インポート完了" />
+    <Item Id="DownloadContactsImportComplete" Text="インポート成功" />
     <Item Id="CodeplugUpgradeNotice" Text="This appears to be a V3.0.6 Codeplug. It will be converted to V3.1.x" />
     <Item Id="CodeplugUpgradeWarningToManyRxGroups" Text="Version 3.1.x can only have 76 Rx Groups. Additional Rx Groups have been ignored" />
-    <Item Id="CodeplugRead" Text="無線機からCodePlugを読込中" />
-    <Item Id="CodeplugWrite" Text="無線機へCodePlugを書出中" />
-    <Item Id="DMRIDRead" Text="無線機からDMR IDデーターベースを読込中" />
-    <Item Id="DMRIDWrite" Text="無線機へDMR IDデーターベースを書出中" />
-    <Item Id="CalibrationRead" Text="無線機からキャリブレーションデーターを読込中" />
-    <Item Id="CalibrationWrite" Text="無線機へキャリブレーションデーターを書出中" />
+    <Item Id="CodeplugRead" Text="無線機からCodePlugを読み出し中" />
+    <Item Id="CodeplugWrite" Text="無線機へCodePlugを書き込み中" />
+    <Item Id="DMRIDRead" Text="無線機からDMR IDデーターベースを読み出し中" />
+    <Item Id="DMRIDWrite" Text="無線機へDMR IDデーターベースを書き込み中" />
+    <Item Id="CalibrationRead" Text="無線機からキャリブレーションデーターを読み出し中" />
+    <Item Id="CalibrationWrite" Text="無線機へキャリブレーションデーターを書き込み中" />
     <Item Id="IdAlreadyExists" Text="ID / タイムスロットが既にあります" />
     <Item Id="IdOutOfRange" Text="IDが範囲外です" />
     <Item Id="IdNotEmpty" Text="ID can not be empty!" />
     <Item Id="ContactNameDuplicate" Text="警告　コンタクト名が重複" />
     <Item Id="EnableMemoryAccessMode" Text ="The GD-77 does not seem to be in Memory Access mode.Hold keys SK2 (Blue side key), Green Menu and * when turning on the transceiver, and try again" />
-    <Item Id="dataRead" Text="無線機からデーターを読込中"/>
-    <Item Id="dataWrite" Text="無線機へデーターを書出し中"/>
-    <Item Id="DMRIdContcatsTotal" Text="Total number of IDs = {0}. Max of {1} can be uploaded" />
+    <Item Id="dataRead" Text="無線機からデーターを読み出し中"/>
+    <Item Id="dataWrite" Text="無線機へデーターを書き込み中"/>
+    <Item Id="DMRIdContcatsTotal" Text="ID全件数 = {0}. 最大 {1} 件迄アップロード出来ます" />
     <Item Id="ErrorParsingData" Text="データーにエラーがあります" />
     <Item Id="N/A" Text="N/A"/>
   </Commons>
