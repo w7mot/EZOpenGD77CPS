@@ -712,7 +712,7 @@ namespace DMR
 							}
 							break;
 						case OpenGD77CommsTransferData.CommsAction.BACKUP_MCU_ROM:
-							_saveFileDialog.Filter = StringsDict["MCU_ROM"] + "(*.bin)|*.bin";
+							_saveFileDialog.Filter = StringsDict["MCU_ROM_files"] + " (*.bin)|*.bin";
 							_saveFileDialog.FilterIndex = 1;
 							if (_saveFileDialog.ShowDialog() == DialogResult.OK)
 							{
@@ -822,9 +822,9 @@ namespace DMR
 							break;
 						}
 						sendCommand(1);// Clear screen
-						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);// Write a line of text to CPS screen at position x=0,y=3 with font size 3, alignment centre
-						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Backup"]);// Write a line of text to CPS screen
-						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["Flash"]);// Write a line of text to CPS screen
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["RADIO_DISPLAY_CPS"]);// Write a line of text to CPS screen at position x=0,y=3 with font size 3, alignment centre
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["RADIO_DISPLAY_Backup"]);// Write a line of text to CPS screen
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["RADIO_DISPLAY_Flash"]);// Write a line of text to CPS screen
 						sendCommand(3);// render CPS
 						sendCommand(6,3);// flash green LED
 
@@ -868,9 +868,9 @@ namespace DMR
 							break;
 						}
 						sendCommand(1);
-						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);// Write a line of text to CPS screen at position x=0,y=3 with font size 3, alignment centre
-						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Backup"]);
-						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["Calibration"]);
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["RADIO_DISPLAY_CPS"]);// Write a line of text to CPS screen at position x=0,y=3 with font size 3, alignment centre
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["RADIO_DISPLAY_Backup"]);
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["RADIO_DISPLAY_Calibration"]);
 						sendCommand(3);
 						sendCommand(6, 3);// flash green LED
 
@@ -913,9 +913,9 @@ namespace DMR
 							break;
 						}
 						sendCommand(1);
-						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);
-						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Backup"]);
-						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["EEPROM"]);
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["RADIO_DISPLAY_CPS"]);
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["RADIO_DISPLAY_Backup"]);
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["RADIO_DISPLAY_EEPROM"]);
 						sendCommand(3);
 						sendCommand(6,3);// flash green LED
 
@@ -961,9 +961,9 @@ namespace DMR
 							break;
 						}
 						sendCommand(1);
-						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);
-						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Restoring"]);
-						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["Flash"]);
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["RADIO_DISPLAY_CPS"]);
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["RADIO_DISPLAY_Restoring"]);
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["RADIO_DISPLAY_Flash"]);
 						sendCommand(3);
 						sendCommand(6,4);// flash red LED
 
@@ -1009,9 +1009,9 @@ namespace DMR
 							break;
 						}
 						sendCommand(1);
-						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);
-						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Restoring"]);
-						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["Calibration"]);
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["RADIO_DISPLAY_CPS"]);
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["RADIO_DISPLAY_Restoring"]);
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["RADIO_DISPLAY_Calibration"]);
 						sendCommand(3);
 						sendCommand(6, 4);// flash red LED
 
@@ -1058,9 +1058,9 @@ namespace DMR
 							break;
 						}
 						sendCommand(1);
-						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);
-						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Restoring"]);
-						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["EEPROM"]);
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["RADIO_DISPLAY_CPS"]);
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["RADIO_DISPLAY_Restoring"]);
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["RADIO_DISPLAY_EEPROM"]);
 						sendCommand(3);
 						sendCommand(6,4);// flash red LED
 
@@ -1106,9 +1106,9 @@ namespace DMR
 						}
 
 						sendCommand(1);
-						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);
-						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Reading"]);
-						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["Codeplug"]);
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["RADIO_DISPLAY_CPS"]);
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["RADIO_DISPLAY_Reading"]);
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["RADIO_DISPLAY_Codeplug"]);
 						sendCommand(3);
 						sendCommand(6,3);// flash green LED
 						sendCommand(6, 2);// Save settuings VFO's to codeplug
@@ -1194,9 +1194,9 @@ namespace DMR
 							break;
 						}
 						sendCommand(1);
-						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);
-						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Writing"]);
-						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["Codeplug"]);
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["RADIO_DISPLAY_CPS"]);
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["RADIO_DISPLAY_Writing"]);
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["RADIO_DISPLAY_Codeplug"]);
 						sendCommand(3);
 						sendCommand(6,4);// flash red LED
 						sendCommand(6, 2);// Save settings and VFOs
@@ -1286,9 +1286,9 @@ namespace DMR
 							break;
 						}
 						sendCommand(1);// Clear screen
-						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);// Write a line of text to CPS screen at position x=0,y=3 with font size 3, alignment centre
-						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Backup"]);// Write a line of text to CPS screen
-						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["MCU_ROM"]);// Write a line of text to CPS screen
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["RADIO_DISPLAY_CPS"]);// Write a line of text to CPS screen at position x=0,y=3 with font size 3, alignment centre
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["RADIO_DISPLAY_Backup"]);// Write a line of text to CPS screen
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["RADIO_DISPLAY_MCU_ROM"]);// Write a line of text to CPS screen
 						sendCommand(3);// render CPS
 						sendCommand(6, 3);// flash green LED
 
@@ -1389,9 +1389,9 @@ namespace DMR
 							break;
 						}
 						sendCommand(1);
-						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);
-						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Writing"]);
-						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["Voice_prompts"]);
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["RADIO_DISPLAY_CPS"]);
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["RADIO_DISPLAY_Writing"]);
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["RADIO_DISPLAY_Voice_prompts"]);
 						sendCommand(3);
 						sendCommand(6, 4);// flash red LED
 
