@@ -759,7 +759,7 @@
       <Control Id="btnClear" Text="Natejar" />
     </Controls>
   </DMRIDForm>  
-    <OpenGD77Form Text="OpenGD77 Support">
+  <OpenGD77Form Text="OpenGD77 Support">
     <Controls>
       <Control Id="btnBackupEEPROM" Text="Backup EEPROM" />
       <Control Id="btnBackupFlash" Text="Backup Flash" />
@@ -779,6 +779,52 @@
       <Control Id="btnWriteVoicePrompts" Text="Write voice prompts" />
     </Controls>
   </OpenGD77Form>
+  <FirmwareLoaderUI Text="Firmware Loader">
+    <Controls>
+		<Control Id="btnDetectModel" Text="Detect Radio Type" />
+		<Control Id="grpboxProgress" Text="  Progress " />
+		<Control Id="btnClose"		Text="&amp;Close" />
+		<Control Id="btnDownloadFirmware" Text="&amp;Download &amp;&amp; Update" />
+		<Control Id="btnUploadFirmware" Text="Select a &amp;File &amp;&amp; Update" />
+		<Control Id="grpboxModel" Text="Select your radio type " />
+      </Controls>
+    <Commons>
+      <Item Id="CantInterrupt" Text="You can't interrupt the upload process" />
+      <Item Id="DownloadCancelled" Text="Download has been canceled." />
+      <Item Id="Timeout" Text="Timeout" />
+      <Item Id="Error" Text="Error" />
+      <Item Id="No_file_location_specified" Text="No file location specified" />
+      <Item Id="Error:_Unable_to_detect_your_radio." Text="Error: Unable to detect your radio." />
+      <Item Id="Uploading_firmware_to" Text="Uploading firmware to " />
+      <Item Id="Error_sending_data" Text="Error sending data" />
+      <Item Id="Error_sending_checksum" Text="Error sending checksum" />
+      <Item Id="Sending_Download_command" Text="Sending Download command" />
+      <Item Id="Sending_ACK" Text="Sending ACK" />
+      <Item Id="Sending_encryption_key" Text="Sending encryption key" />
+      <Item Id="Sending_F-PROG_command" Text="Sending F-PROG command" />
+      <Item Id="Sending_radio_modem_number" Text="Sending radio modem number" />
+      <Item Id="Sending_radio_modem_number_2" Text="Sending radio modem number 2" />
+      <Item Id="Sending_version" Text="Sending version" />
+      <Item Id="Sending_erase_command" Text="Sending erase command" />
+      <Item Id="Send_post_erase_command" Text="Send post erase command" />
+      <Item Id="Sending_Program_command" Text="Sending Program command" />
+      <Item Id="Error_sending_command" Text="Error sending command "/>
+      <Item Id="ERROR:_SGL!_header_missing." Text="ERROR: SGL! header missing." />
+      <Item Id="Stable" Text="Stable" />
+	  <Item Id="Beta" Text="Beta" />
+      <Item Id="Error._Cant_connect_to_the" Text="Error. Can't connect to the" />
+      <Item Id="Error._Missing_SGL!_in_.sgl_file_header" Text="Error. Missing SGL! in .sgl file header" />
+      <Item Id="Error._The_firmware_doesnt_match the_transceiver_model." Text="Error. The firmware doesn't match the transceiver model." />
+      <Item Id="Firmware_file_is_unencrypted_binary" Text="Firmware file is unencrypted binary" />
+      <Item Id="Error._Firmware_file_too_large" Text="Error. Firmware file too large." />
+      <Item Id="Firmware_update_complete._Please_reboot_the" Text="Firmware update complete. Please reboot the" />
+      <Item Id="While_sending_data_file" Text="While sending data file" />
+      <Item Id="Error_while_sending_initial_commands._Is_the_{0}_in_firmware_update_mode?" Text="Error while sending initial commands. Is the {0} in firmware update mode?" />
+      <Item Id="Error_read_returned" Text="Error read returned " />
+      <Item Id="Firmware_file_confirmed_as_SGL" Text="Firmware file confirmed as SGL" />
+      <Item Id="Success" Text="Success" />
+    </Commons>
+    </FirmwareLoaderUI>
 	<Commons>
 		<Item Id="None" Text="Cap" />
 		<Item Id="Selected" Text="Sel·leccionat" />

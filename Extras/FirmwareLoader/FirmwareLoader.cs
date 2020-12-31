@@ -31,7 +31,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using UsbLibrary;
 using System.IO;
 using System.Windows.Forms;
@@ -50,7 +49,7 @@ namespace DMR
 
 		public enum OutputType
 		{
-			OutputType_GD77,
+			OutputType_GD77 = 0,
 			OutputType_GD77S,
 			OutputType_DM1801,
 			OutputType_RD5R,
@@ -134,7 +133,7 @@ namespace DMR
 			_specifiedDevice = SpecifiedDevice.FindSpecifiedDevice(VENDOR_ID, PRODUCT_ID);
 			if (_specifiedDevice == null)
 			{
-				_progessForm.SetLabel(String.Format("Error. Can't connect to the {0}", getModelName()));
+				_progessForm.SetLabel(String.Format(FirmwareLoaderUI.StringsDict["Error._Cant_connect_to_the"] + " {0}", getModelName()));
 				//Console.WriteLine("Error. Can't connect to the GD-77");
 				return -1;
 			}
@@ -154,18 +153,18 @@ namespace DMR
 				fileBuf = checkForSGLAndReturnEncryptedData(fileBuf, encodeKey, ref headerModel);
 				if (fileBuf == null)
 				{
-					_progessForm.SetLabel("Error. Missing SGL! in .sgl file header");
+					_progessForm.SetLabel(FirmwareLoaderUI.StringsDict["Error._Missing_SGL!_in_.sgl_file_header"]);
 					//Console.WriteLine("Error. Missing SGL! in .sgl file header.");
 					_specifiedDevice.Dispose();
 					_specifiedDevice = null;
 					return -5;
 				}
 
-				_progessForm.SetLabel("Firmware file confirmed as SGL");
+				_progessForm.SetLabel(FirmwareLoaderUI.StringsDict["Firmware_file_confirmed_as_SGL"]);
 
 				if (firmwareModelTag[FirmwareLoader.outputType] != headerModel)
 				{
-					MessageBox.Show("Error. The firmware doesn't match the transceiver model.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show(FirmwareLoaderUI.StringsDict["Error._The_firmware_doesnt_match_the_transceiver_model."], FirmwareLoaderUI.StringsDict["Error"], MessageBoxButtons.OK, MessageBoxIcon.Error);
 					_specifiedDevice.Dispose();
 					_specifiedDevice = null;
 					return -10;
@@ -173,14 +172,14 @@ namespace DMR
 			}
 			else
 			{
-				_progessForm.SetLabel("Firmware file is unencrypted binary");
+				_progessForm.SetLabel(FirmwareLoaderUI.StringsDict["Firmware_file_is_unencrypted_binary"]);
 				fileBuf = encrypt(fileBuf);
 			}
 
 
 			if (fileBuf.Length > 0x7b000)
 			{
-				_progessForm.SetLabel("Error. Firmware file too large.");
+				_progessForm.SetLabel(FirmwareLoaderUI.StringsDict["Error._Firmware_file_too_large"]);
 				_specifiedDevice.Dispose();
 				_specifiedDevice = null;
 				return -2;
@@ -191,21 +190,21 @@ namespace DMR
 				int respCode = sendFileData(fileBuf);
 				if (respCode == 0)
 				{
-					_progessForm.SetLabel("Success");
-					MessageBox.Show(String.Format("Firmware update complete. Please reboot the {0}", getModelName()), "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					_progessForm.SetLabel(FirmwareLoaderUI.StringsDict["Success"]);
+					MessageBox.Show(String.Format(FirmwareLoaderUI.StringsDict["Firmware_update_complete._Please reboot_the"] + " {0}", getModelName()), FirmwareLoaderUI.StringsDict["Success"], MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
 				else
 				{
 					switch (respCode)
 					{
 						case -1:
-							_progessForm.SetLabel("Error. Firmware file too large.");
+							_progessForm.SetLabel(FirmwareLoaderUI.StringsDict["Error._Firmware_file_too_large"]);
 							break;
 						case -2:
 						case -3:
 						case -4:
 						case -5:
-							_progessForm.SetLabel("Error " + respCode + " While sending data file");
+							_progessForm.SetLabel(FirmwareLoaderUI.StringsDict["Error"] + " " + respCode + " " + FirmwareLoaderUI.StringsDict["While_sending_data_file"]);
 							break;
 					}
 					_specifiedDevice.Dispose();
@@ -215,7 +214,7 @@ namespace DMR
 			}
 			else
 			{
-				_progessForm.SetLabel(String.Format("Error while sending initial commands. Is the {0} in firmware update mode?", getModelName()));
+				_progessForm.SetLabel(String.Format(FirmwareLoaderUI.StringsDict["Error_while_sending_initial_commands._Is_the_{0}_in_firmware_update_mode?"], getModelName()));
 				_specifiedDevice.Dispose();
 				_specifiedDevice = null;
 				return -4;
@@ -258,7 +257,7 @@ namespace DMR
 			}
 			else
 			{
-				_progessForm.SetLabel("Error read returned ");
+				_progessForm.SetLabel(FirmwareLoaderUI.StringsDict["Error_read_returned"]);
 				return false;
 			}
 		}
@@ -304,7 +303,7 @@ namespace DMR
 
 			if (_progessForm != null)
 			{
-				_progessForm.SetLabel(String.Format("Uploading firmware to {0}", getModelName()));
+				_progessForm.SetLabel(String.Format(FirmwareLoaderUI.StringsDict["Uploading_firmware_to"] + "{0}", getModelName()));
 			}
 
 
@@ -330,7 +329,7 @@ namespace DMR
 
 					if (sendAndCheckResponse(dataHeader, responseOK) == false)
 					{
-						_progessForm.SetLabel("Error sending data");
+						_progessForm.SetLabel(FirmwareLoaderUI.StringsDict["Error_sending_data"]);
 						return -2;
 					}
 
@@ -348,7 +347,7 @@ namespace DMR
 #endif
 						if (sendAndCheckResponse(createChecksumData(fileBuf, checksumStartAddress, address), responseOK) == false)
 						{
-							_progessForm.SetLabel("Error sending checksum");
+							_progessForm.SetLabel(FirmwareLoaderUI.StringsDict["Error_sending_checksum"]);
 							return -3;
 						}
 					}
@@ -367,7 +366,7 @@ namespace DMR
 
 					if (sendAndCheckResponse(dataHeader, responseOK) == false)
 					{
-						_progessForm.SetLabel("Error sending data");
+						_progessForm.SetLabel(FirmwareLoaderUI.StringsDict["Error_sending_data"]);
 						return -4;
 					}
 
@@ -375,7 +374,7 @@ namespace DMR
 
 					if (sendAndCheckResponse(createChecksumData(fileBuf, checksumStartAddress, address), responseOK) == false)
 					{
-						_progessForm.SetLabel("Error sending checksum");
+						_progessForm.SetLabel(FirmwareLoaderUI.StringsDict["Error_sending_checksum"]);
 						return -5;
 					}
 				}
@@ -483,8 +482,16 @@ namespace DMR
 			byte[][] commandPostErase = new byte[][] { commandLetterA, responseOK };
 			byte[][] commandProgram = { new byte[] { 0x50, 0x52, 0x4f, 0x47, 0x52, 0x41, 0x4d, 0xf }, responseOK };//PROGRAM
 			byte[][][] commands = { command0, command1, command2, command3, command4, command5, command6, commandErase, commandPostErase, commandProgram };
-			string[] commandNames = {"Sending Download command","Sending ACK","Sending encryption key","Sending F-PROG command","Sending radio modem number" ,
-											"Sending radio modem number 2","Sending version","Sending erase command","Send post erase command","Sending Program command"};
+			string[] commandNames = {FirmwareLoaderUI.StringsDict["Sending_Download_command"],
+									FirmwareLoaderUI.StringsDict["Sending_ACK"],
+									FirmwareLoaderUI.StringsDict["Sending_encryption_key"],
+									FirmwareLoaderUI.StringsDict["Sending_F-PROG_command"],
+									FirmwareLoaderUI.StringsDict["Sending_radio_modem_number"],
+									FirmwareLoaderUI.StringsDict["Sending_radio_modem_number_2"],
+									FirmwareLoaderUI.StringsDict["Sending_version"],
+									FirmwareLoaderUI.StringsDict["Sending_erase_command"],
+									FirmwareLoaderUI.StringsDict["Send_post_erase_command"],
+									FirmwareLoaderUI.StringsDict["Sending_Program_command"]};
 			int commandNumber = 0;
 
 			Buffer.BlockCopy(encodeKey, 0, command2[0], 4, 4);
@@ -504,7 +511,7 @@ namespace DMR
 
 				if (sendAndCheckResponse(commands[commandNumber][0], commands[commandNumber][1]) == false)
 				{
-					_progessForm.SetLabel("Error sending command ");
+					_progessForm.SetLabel(FirmwareLoaderUI.StringsDict["Error_sending_command"]);
 					return false;
 				}
 				commandNumber = commandNumber + 1;
@@ -662,7 +669,7 @@ namespace DMR
 			}
 			else
 			{
-				_progessForm.SetLabel("ERROR: SGL! header missing.");
+				_progessForm.SetLabel(FirmwareLoaderUI.StringsDict["ERROR:_SGL!_header_missing."]);
 				return null;
 			}
 		}

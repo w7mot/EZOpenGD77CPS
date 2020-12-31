@@ -50,7 +50,7 @@ namespace DMR
 					{
 						int newRow = releasesGridView.Rows.Add(release.published_at.Replace("T", " "),
 																release.tag_name,
-																release.prerelease == false ? "Stable" : "Beta",
+																release.prerelease == false ? FirmwareLoaderUI.StringsDict["Stable"] : FirmwareLoaderUI.StringsDict["Beta"],
 																release.name, asset.download_count);
 						releasesGridView.Rows[newRow].Tag = new ReleaseAndAsset(release, asset);
 					}
@@ -84,8 +84,13 @@ namespace DMR
 			this.DialogResult = DialogResult.Cancel;
 			this.Close();
 		}
-	}
-	public class GithubReleaseAuthor
+
+        private void FirmwareLoaderReleasesList_Load(object sender, EventArgs e)
+        {
+			Settings.UpdateComponentTextsFromLanguageXmlData(this);
+		}
+    }
+    public class GithubReleaseAuthor
 	{
 		public string login { get; set; }
 		public int id { get; set; }

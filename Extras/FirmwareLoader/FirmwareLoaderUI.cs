@@ -58,6 +58,7 @@ namespace DMR
         private static String tempFile = "";
         private WebClientAsync wc = null;
         private static bool _saveDownloadedFile = false;
+        public static Dictionary<string, string> StringsDict = new Dictionary<string, string>();
 
         public FirmwareLoaderUI()
         {
@@ -124,9 +125,11 @@ namespace DMR
             }
         }
 
+
         private void FirmwareLoaderUI_Load(object sender, EventArgs e)
         {
-
+            Settings.UpdateComponentTextsFromLanguageXmlData(this);
+            Settings.ReadCommonsForSectionIntoDictionary(StringsDict, this.Name);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -137,7 +140,7 @@ namespace DMR
             }
             else
             {
-                MessageBox.Show("You can't interrupt the upload process");
+                MessageBox.Show(StringsDict["CantInterrupt"]);
             }
         }
 
@@ -268,7 +271,7 @@ namespace DMR
         {
             if (ev.Cancelled)
             {
-                MessageBox.Show("Download has been canceled.", "Timeout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(StringsDict["DownloadCancelled"], StringsDict["Timeout"], MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 SetLoadingState(false);
                 this.progressBarDwnl.Visible = false;
@@ -276,7 +279,7 @@ namespace DMR
             }
             else if (ev.Error != null)
             {
-                MessageBox.Show(ev.Error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ev.Error.Message, StringsDict["Error"], MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 SetLoadingState(false);
                 this.progressBarDwnl.Visible = false;
@@ -303,7 +306,8 @@ namespace DMR
                     }
                     else
                     {
-                        MessageBox.Show("No file location specified");
+                        
+                        MessageBox.Show(StringsDict["No_file_location_specified"]);
                         SetLoadingState(false);
                         IsLoading = false;
                         return;
@@ -323,7 +327,7 @@ namespace DMR
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(StringsDict["Error"] + ": " + ex.Message, StringsDict["Error"], MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     if (File.Exists(tempFile))
                         File.Delete(tempFile);
@@ -349,7 +353,7 @@ namespace DMR
 
             if (ev.Cancelled)
             {
-                MessageBox.Show("Download has been canceled.", "Timeout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(StringsDict["DownloadCancelled"], StringsDict["Timeout"], MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 SetLoadingState(false);
                 IsLoading = false;
@@ -357,7 +361,7 @@ namespace DMR
             }
             else if (ev.Error != null)
             {
-                MessageBox.Show(ev.Error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ev.Error.Message, StringsDict["Error"], MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 SetLoadingState(false);
                 IsLoading = false;
@@ -394,7 +398,7 @@ namespace DMR
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(StringsDict["Error"] + ": " + ex.Message, StringsDict["Error"], MessageBoxButtons.OK, MessageBoxIcon.Error);
                 SetLoadingState(false);
                 IsLoading = false;
                 // Cleanup
@@ -413,10 +417,10 @@ namespace DMR
 
             if ((FirmwareLoader.outputType < FirmwareLoader.OutputType.OutputType_GD77) || (FirmwareLoader.outputType > FirmwareLoader.OutputType.OutputType_RD5R))
             {
-                MessageBox.Show("Error: Unable to detect your radio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(StringsDict["Error:_Unable_to_detect_your_radio."], StringsDict["Error"], MessageBoxButtons.OK, MessageBoxIcon.Error);
                 FirmwareLoader.outputType = FirmwareLoader.OutputType.OutputType_GD77;
             }
-
+            
             this.rbModels[(int)FirmwareLoader.outputType].Checked = true;
             this.btnDetectModel.Enabled = true;
         }
@@ -464,7 +468,7 @@ namespace DMR
             }
             catch (WebException ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(StringsDict["Error"] + ": " + ex.Message, StringsDict["Error"], MessageBoxButtons.OK, MessageBoxIcon.Error);
                 SetLoadingState(false);
                 this.progressBarDwnl.Visible = false;
                 return;
@@ -514,7 +518,7 @@ namespace DMR
         {
             if (IsLoading)
             {
-                MessageBox.Show("You can't interrupt the upload process");
+                MessageBox.Show(StringsDict["CantInterrupt"]);
             }
             e.Cancel = IsLoading;
         }

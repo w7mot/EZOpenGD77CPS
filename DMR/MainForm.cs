@@ -3324,7 +3324,7 @@ namespace DMR
             Settings.smethod_70(this.cmsGroupContact.smethod_9(), base.Name);
             Settings.smethod_70(this.cmsTree.smethod_9(), base.Name);
             Settings.smethod_70(this.cmsSub.smethod_9(), base.Name);
-            Settings.smethod_72(Settings.dicCommon);
+            Settings.ReadCommonsTextIntoDictionary(Settings.dicCommon);
             this.method_13();
             List<string> list = new List<string>();
             list.Add(Settings.SZ_READ);

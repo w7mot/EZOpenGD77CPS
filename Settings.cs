@@ -206,7 +206,7 @@ internal class Settings
 	public static readonly int SPACE_EX_CH;
 	public static readonly int ADDR_EX_CH;
 	public static readonly int ADDR_UNUSED_START = 0x1EE60;
-	public static Dictionary<string, string> dicCommon;
+	public static Dictionary<string, string> dicCommon = new Dictionary<string, string>();
 	private static XmlDocument _languageXML=null;
 	public static string LanguageFile="";
 	public static XmlDocument languageXML
@@ -1172,32 +1172,30 @@ internal class Settings
 			}
 		});
 	}
-	public static void smethod_72(Dictionary<string, string> I2YgnU9gqyioPitkyF)
+	public static void ReadCommonsTextIntoDictionary(Dictionary<string, string> dictionary)
 	{
 		string xpath = string.Format("/Resource/Commons/Item");
 		XmlNodeList xmlNodeList = _languageXML.SelectNodes(xpath);
+		//dictionary.Clear();
 		foreach (XmlNode item in xmlNodeList)
 		{
 			string value = item.Attributes["Id"].Value;
 			string value2 = item.Attributes["Text"].Value;
-	        if (I2YgnU9gqyioPitkyF.ContainsKey(value))
+	        if (dictionary.ContainsKey(value))
 			{
-				I2YgnU9gqyioPitkyF[value] = value2;
+				dictionary[value] = value2;
 			}
 		}
 	}
-	public static void smethod_73(Dictionary<string, string> uxSTPFh3sq4yXxEkYo, string string_0)
+	public static void ReadCommonsForSectionIntoDictionary(Dictionary<string, string> dictionary, string sectionName)
 	{
-		string xpath = string.Format("/Resource/{0}/Commons/Item", string_0);
+		string xpath = string.Format("/Resource/{0}/Commons/Item", sectionName);
 		XmlNodeList xmlNodeList = _languageXML.SelectNodes(xpath);
 		foreach (XmlNode item in xmlNodeList)
 		{
 			string value = item.Attributes["Id"].Value;
 			string value2 = item.Attributes["Text"].Value;
-			if (uxSTPFh3sq4yXxEkYo.ContainsKey(value))
-			{
-				uxSTPFh3sq4yXxEkYo[value] = value2;
-			}
+			dictionary[value] = value2;
 		}
 	}
 	public static void smethod_74(List<string[]> n2SR3VmEodXx385mq9, List<string> AMMonO7JcQ5lQDAuEr, string string_0)
@@ -1422,6 +1420,5 @@ internal class Settings
 		Settings.ADDR_EX_EMERGENCY = 45424;
 		Settings.SPACE_EX_CH = ChannelForm.SPACE_CH_GROUP * 7;
 		Settings.ADDR_EX_CH = 45488;
-		Settings.dicCommon = new Dictionary<string, string>();
 	}
 }

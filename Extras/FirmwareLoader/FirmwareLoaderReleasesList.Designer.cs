@@ -146,6 +146,7 @@
             this.Name = "FirmwareLoaderReleasesList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Select release version";
+            this.Load += new System.EventHandler(this.FirmwareLoaderReleasesList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.releasesGridView)).EndInit();
             this.ResumeLayout(false);
 
