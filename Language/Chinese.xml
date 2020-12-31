@@ -766,6 +766,75 @@
       <Control Id="lblBootTune" Text="Boot melody" />
       <Control Id="btnWriteVoicePrompts" Text="Write voice prompts" />
     </Controls>
+    <Commons>
+      <Item Id="Error_connecting_to_the_radio" Text="Error connecting to the radio" />
+      <Item Id="Comm_port_not_available" Text="Comm port not available" />
+      <Item Id="Writing_EEPROM" Text="Writing EEPROM" />
+      <Item Id="Error_while_writing" Text="Error while writing" />
+      <Item Id="Writing_Flash" Text="Writing Flash" />
+      <Item Id="Codeplug_write_complete" Text="Codeplug write complete" />
+      <Item Id="Reading_MCU_ROM" Text="Reading MCU ROM" />
+      <Item Id="Error_while_reading_MCU_ROM" Text="Error while reading MCU ROM" />
+      <Item Id="Downloading_Screengrab" Text="Downloading Screengrab" />
+      <Item Id="Writing_Voice_prompts" Text="Writing voice prompts" />
+      <Item Id="Upload_complete" Text="Upload complete" />
+      <Item Id="No_com_port" Text="No com port. Close and reopen the OpenGD77 window to select a com port Are you sure you want to restore the EEPROM from a previously saved file?" />
+      <Item Id="Warning" Text="Warning" />
+      <Item Id="The_file_is_not_the_correct_size." Text="The file is not the correct size." />
+      <Item Id="Are_you_sure_you_want_to_restore_the_Calibartion_from_a_previously_saved_file" Text="Are you sure you want to restore the Calibartion from a previously saved file?" />
+      <Item Id="Calibration_files" Text="Calibration files" />
+      <Item Id="Invalid_Calibration_data" Text="Invalid Calibration data" />
+      <Item Id="Are_you_sure_you_want_to_restore_the_Flash_memory_from_a_previously_saved_file" Text="Are you sure you want to restore the Flash memory from a previously saved file?" />
+      <Item Id="Flash_backup_files" Text="Flash backup files" />
+      <Item Id="This_file_is_not_a_full_backup" Text="This file is not a full backup \n Do you want restore the contents of this file?" />
+      <Item Id="Please_connect_the_radio,_and_try_again." Text="Please connect the radio, and try again" />
+      <Item Id="Failed_to_open_comm_port" Text="Failed to open comm port" />
+      <Item Id="Voice_prompt_files" Text="Voice prompt files" />
+      <Item Id="read_stopped" Text="Error. Read stopped (error at {0:X8})" />
+      <Item Id="write_stopped" Text="Error. Write stopped (error at {0:X8})" />
+      <Item Id="AMB_files" Text="AMB files" />
+      <Item Id="Oops" Text="Oops" />
+      <Item Id="Backup" Text="Backup" />
+      <Item Id="CPS" Text="CPS" />
+      <Item Id="Calibration" Text="Calibration" />
+      <Item Id="EEPROM" Text="EEPROM" />
+      <Item Id="Flash" Text="Flash" />
+      <Item Id="Codeplug" Text="Codeplug" />
+      <Item Id="Reading_EEPROM" Text="Reading EEPROM" />
+      <Item Id="Reading_Flash" Text="Reading Flash" />
+      <Item Id="Writing_EEPROM" Text="Writing EEPROM" />
+      <Item Id="Writing_Flash" Text="Writing Flash" />
+      <Item Id="MCU_ROM" Text="MCU ROM" />
+      <Item Id="Voice_prompts" Text="Voice prompts" />
+      <Item Id="Error" Text="Error" />
+      <Item Id="Warning" Text="Warning" />
+      <Item Id="Calibration_data_could_not_be_found._Please_update_your_firmware" Text="Calibration data could not be found. Please update your firmware" />
+      <Item Id="There_has_been_an_error._Refer_to_the_last_status_message_that_was_displayed" Text="There has been an error. Refer to the last status message that was displayed" />
+      <Item Id="EEPROM_files" Text="EEPROM files" />
+      <Item Id="Flash_files" Text="Flash files" />
+      <Item Id="Restore_complete" Text="Restore complete" />
+      <Item Id="Read_Codeplug_complete" Text="Read Codeplug complete" />
+      <Item Id="Screengrab_files" Text="Screengrab files" />
+      <Item Id="Error_while_reading_flash" Text="Error while reading Flash" />
+      <Item Id="Reading_Calibration" Text="Reading Calibration" />
+      <Item Id="Error_while_reading_calibration" Text="Error while reading calibration" />
+      <Item Id="Error_while_reading_EEPROM" Text="Error while reading EEPROM" />
+      <Item Id="Restoring" Text="Restoring" />
+      <Item Id="Restoring_Flash" Text="Restoring Flash" />
+      <Item Id="Error_while_restoring" Text="Error while restoring" />
+      <Item Id="Restoring_Calibration" Text="Restoring Calibration" />
+      <Item Id="Error_while_restoring_Calibration" Text="Error while restoring Calibration" />
+      <Item Id="Restoring_EEPROM" Text="Restoring EEPROM" />
+      <Item Id="Reading" Text="Reading" />
+      <Item Id="Writing" Text="Writing" />
+      <Item Id="Error_while_reading" Text="Error while reading" />
+      <Item Id="Codeplug_read_complete" Text="Codeplug read complete" />
+      <Item Id="Reading_MCU_ROM" Text="Reading MCU ROM" />
+      <Item Id="Error_while_Reading_MCU_ROM" Text="Error while Reading MCU ROM" />
+      <Item Id="Error_while_downloading_Screengrab" Text="Error while downloading Screengrab" />
+      <Item Id="Are_you_sure_you_want_to_restore_the_EEPROM_from_a_previously_saved_file" Text="Are you sure you want to restore the EEPROM from a previously saved file?" />
+      <Item Id="PNG_image_files" Text="PNG image files" />
+    </Commons>
   </OpenGD77Form>
   <FirmwareLoaderUI Text="Firmware Loader">
     <Controls>

@@ -25,7 +25,7 @@ namespace DMR
         public static byte[] CommsBuffer = null;// = new byte[0x10000];
 
         private static string PRODUCT_NAME = ((AssemblyProductAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyProductAttribute), false)).Product;
-        private static string PRODUCT_VERSION = " R2020.12.31.01";
+        private static string PRODUCT_VERSION = " D2020.12.31.01";
         private const int WM_SETFONT = 48;
 
         private const int TVM_GETEDITCONTROL = 4367;

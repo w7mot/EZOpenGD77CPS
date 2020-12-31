@@ -33,6 +33,7 @@ namespace DMR
 		private const int MAX_TRANSFER_SIZE = 32;
 
 		private OpenGD77Form.CommsAction _initialAction;
+		public static Dictionary<string, string> StringsDict = new Dictionary<string, string>();
 
 		public OpenGD77Form(OpenGD77Form.CommsAction initAction)
 		{
@@ -299,7 +300,7 @@ namespace DMR
 				}
 				else
 				{
-					Console.WriteLine(String.Format("read stopped (error at {0:X8})", currentDataAddressInTheRadio));
+					Console.WriteLine(String.Format(StringsDict["read_stopped"], currentDataAddressInTheRadio));
 //					close_data_mode();
 					return false;
 
@@ -388,7 +389,7 @@ namespace DMR
 			{
 				if (!flashWriteSector(ref sendbuffer, ref readbuffer,dataObj))
 				{
-					Console.WriteLine(String.Format("Error. Write stopped (write sector error at {0:X8})", currentDataAddressInTheRadio));
+					Console.WriteLine(String.Format(StringsDict["write_stopped"], currentDataAddressInTheRadio));
 					return false;
 				};
 			}
@@ -461,7 +462,7 @@ namespace DMR
 				}
 				else
 				{
-					Console.WriteLine(String.Format("Error. Write stopped (write sector error at {0:X8})", currentDataAddressInTheRadio));
+					Console.WriteLine(String.Format(StringsDict["write_stopped"], currentDataAddressInTheRadio));
 					//close_data_mode();
 					return false;
 				}
@@ -536,7 +537,7 @@ namespace DMR
 				}
 				else
 				{
-					Console.WriteLine(String.Format("Error. Write stopped (write sector error at {0:X8})", currentDataAddressInTheRadio));
+					Console.WriteLine(String.Format(StringsDict["write_stopped"], currentDataAddressInTheRadio));
 					//close_data_mode();
 					return false;
 				}
@@ -627,7 +628,7 @@ namespace DMR
 					switch (dataObj.action)
 					{
 						case OpenGD77CommsTransferData.CommsAction.BACKUP_EEPROM:
-							_saveFileDialog.Filter = "EEPROM files (*.bin)|*.bin";
+							_saveFileDialog.Filter = StringsDict["EEPROM_files"]+" (*.bin)|*.bin";
 							_saveFileDialog.FilterIndex = 1;
 							if (_saveFileDialog.ShowDialog() == DialogResult.OK)
 							{
@@ -637,7 +638,7 @@ namespace DMR
 							dataObj.action = OpenGD77CommsTransferData.CommsAction.NONE;
 							break;
 						case OpenGD77CommsTransferData.CommsAction.BACKUP_FLASH:
-							_saveFileDialog.Filter = "Flash files (*.bin)|*.bin";
+							_saveFileDialog.Filter = "Flash files"+" (*.bin)|*.bin";
 							_saveFileDialog.FilterIndex = 1;
 							if (_saveFileDialog.ShowDialog() == DialogResult.OK)
 							{
@@ -653,11 +654,11 @@ namespace DMR
 								if (dataObj.dataBuff[p] != CalibrationForm.CALIBRATION_HEADER[p])
 								{
 									System.Media.SystemSounds.Hand.Play();
-									MessageBox.Show("Calibration data could not be found. Please update your firmware");
+									MessageBox.Show(StringsDict["Calibration_data_could_not_be_found._Please_update_your_firmware"]);
 									return;
 								}
 							}
-							_saveFileDialog.Filter = "Flash files (*.bin)|*.bin";
+							_saveFileDialog.Filter = StringsDict["Flash_files"]+" (*.bin)|*.bin";
 							_saveFileDialog.FilterIndex = 1;
 							if (_saveFileDialog.ShowDialog() == DialogResult.OK)
 							{
@@ -670,13 +671,13 @@ namespace DMR
 						case OpenGD77CommsTransferData.CommsAction.RESTORE_FLASH:
 						case OpenGD77CommsTransferData.CommsAction.RESTORE_CALIBRATION:
 							System.Media.SystemSounds.Asterisk.Play();
-							MessageBox.Show("Restore complete");
+							MessageBox.Show(StringsDict["Restore_complete"]);
 							enableDisableAllButtons(true);
 							dataObj.action = OpenGD77CommsTransferData.CommsAction.NONE;
 							break;
 						case OpenGD77CommsTransferData.CommsAction.READ_CODEPLUG:
 							System.Media.SystemSounds.Asterisk.Play();
-							MessageBox.Show("Read Codeplug complete");
+							MessageBox.Show(StringsDict["Read_Codeplug_complete"]);
 
 #if OpenGD77
 							if (!MainForm.checkZonesFor80Channels(dataObj.dataBuff))
@@ -711,7 +712,7 @@ namespace DMR
 							}
 							break;
 						case OpenGD77CommsTransferData.CommsAction.BACKUP_MCU_ROM:
-							_saveFileDialog.Filter = "MCU ROM (*.bin)|*.bin";
+							_saveFileDialog.Filter = StringsDict["MCU_ROM"] + "(*.bin)|*.bin";
 							_saveFileDialog.FilterIndex = 1;
 							if (_saveFileDialog.ShowDialog() == DialogResult.OK)
 							{
@@ -744,7 +745,7 @@ namespace DMR
 							Bitmap obm = ResizeImage(bm_x1, bm_x1.Width * 2, bm_x1.Height * 2);
 							Clipboard.SetImage(obm);
 
-							_saveFileDialog.Filter = "Screengrab files (*.png)|*.png";
+							_saveFileDialog.Filter = StringsDict["Screengrab_files"]+" (*.png)|*.png";
 							_saveFileDialog.FilterIndex = 1;
 							if (_saveFileDialog.ShowDialog() == DialogResult.OK)
 							{
@@ -756,7 +757,7 @@ namespace DMR
 
 						case OpenGD77CommsTransferData.CommsAction.COMPRESS_AUDIO:
 		
-							_saveFileDialog.Filter = "AMB files (*.amb)|*.amb";
+							_saveFileDialog.Filter = StringsDict["AMB_files"]+" (*.amb)|*.amb";
 							_saveFileDialog.FilterIndex = 1;
 							if (_saveFileDialog.ShowDialog() == DialogResult.OK)
 							{
@@ -768,7 +769,7 @@ namespace DMR
 							break;
 						case OpenGD77CommsTransferData.CommsAction.WRITE_VOICE_PROMPTS:
 							System.Media.SystemSounds.Asterisk.Play();
-							MessageBox.Show("Upload complete");
+							MessageBox.Show("Upload_complete");
 							enableDisableAllButtons(true);
 							dataObj.action = OpenGD77CommsTransferData.CommsAction.NONE;
 							break;
@@ -778,7 +779,7 @@ namespace DMR
 				else
 				{
 					System.Media.SystemSounds.Hand.Play();
-					MessageBox.Show("There has been an error. Refer to the last status message that was displayed", "Oops");
+					MessageBox.Show(StringsDict["There_has_been_an_error._Refer_to_the_last_status_message_that_was_displayed"], StringsDict["Oops"]);
 				}
 			}
 			progressBar1.Value = 0;
@@ -810,20 +811,20 @@ namespace DMR
 						catch (Exception)
 						{
 							System.Media.SystemSounds.Hand.Play();
-							MessageBox.Show("Comm port not available");
+							MessageBox.Show(StringsDict["Comm_port_not_available"]);
 							return;
 						}
 						// show CPS screen
 						if (!sendCommand(0))
 						{
-							displayMessage("Error connecting to the OpenGD77");
+							displayMessage(StringsDict["Error_connecting_to_the_radio"]);
 							dataObj.responseCode = 1;
 							break;
 						}
 						sendCommand(1);// Clear screen
-						sendCommand(2, 0, 0, 3, 1, 0, "CPS");// Write a line of text to CPS screen at position x=0,y=3 with font size 3, alignment centre
-						sendCommand(2, 0, 16, 3, 1, 0, "Backup");// Write a line of text to CPS screen
-						sendCommand(2, 0, 32, 3, 1, 0, "Flash");// Write a line of text to CPS screen
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);// Write a line of text to CPS screen at position x=0,y=3 with font size 3, alignment centre
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Backup"]);// Write a line of text to CPS screen
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["Flash"]);// Write a line of text to CPS screen
 						sendCommand(3);// render CPS
 						sendCommand(6,3);// flash green LED
 
@@ -832,10 +833,10 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = 0;
 						dataObj.startDataAddressInTheRadio = 0;
 						dataObj.transferLength = 1024 * 1024;
-						displayMessage("Reading Flash");
+						displayMessage(StringsDict["Reading_Flash"]);
 						if (!ReadFlashOrEEPROMOrROMOrScreengrab(dataObj))
 						{
-							displayMessage("Error while reading flash");
+							displayMessage(StringsDict["Error_while_reading_flash"]);
 							dataObj.responseCode = 1;
 						}
 						else
@@ -857,19 +858,19 @@ namespace DMR
 						catch (Exception)
 						{
 							System.Media.SystemSounds.Hand.Play();
-							MessageBox.Show("Comm port not available");
+							MessageBox.Show(StringsDict["Comm_port_not_available"]);
 							return;
 						}
 						if (!sendCommand(0))
 						{
-							displayMessage("Error connecting to the OpenGD77");
+							displayMessage(StringsDict["Error_connecting_to_the_radio"]);
 							dataObj.responseCode = 1;
 							break;
 						}
 						sendCommand(1);
-						sendCommand(2, 0, 0, 3, 1, 0, "CPS");// Write a line of text to CPS screen at position x=0,y=3 with font size 3, alignment centre
-						sendCommand(2, 0, 16, 3, 1, 0, "Backup");
-						sendCommand(2, 0, 32, 3, 1, 0, "Calibration");
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);// Write a line of text to CPS screen at position x=0,y=3 with font size 3, alignment centre
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Backup"]);
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["Calibration"]);
 						sendCommand(3);
 						sendCommand(6, 3);// flash green LED
 
@@ -878,10 +879,10 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = 0;
 						dataObj.startDataAddressInTheRadio = CalibrationForm.MEMORY_LOCATION;
 						dataObj.transferLength = CalibrationForm.CALIBRATION_DATA_SIZE;
-						displayMessage("Reading Calibration");
+						displayMessage(StringsDict["Reading_Calibration"]);
 						if (!ReadFlashOrEEPROMOrROMOrScreengrab(dataObj))
 						{
-							displayMessage("Error while reading calibration");
+							displayMessage(StringsDict["Error_while_reading_calibration"]);
 							dataObj.responseCode = 1;
 						}
 						else
@@ -902,19 +903,19 @@ namespace DMR
 						}
 						catch (Exception)
 						{
-							MessageBox.Show("Comm port not available");
+							MessageBox.Show(StringsDict["Comm_port_not_available"]);
 							return;
 						}
 						if (!sendCommand(0))
 						{
-							displayMessage("Error connecting to the OpenGD77");
+							displayMessage(StringsDict["Error_connecting_to_the_radio"]);
 							dataObj.responseCode = 1;
 							break;
 						}
 						sendCommand(1);
-						sendCommand(2, 0, 0, 3, 1, 0, "CPS");
-						sendCommand(2, 0, 16, 3, 1, 0, "Backup");
-						sendCommand(2, 0, 32, 3, 1, 0, "EEPROM");
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Backup"]);
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["EEPROM"]);
 						sendCommand(3);
 						sendCommand(6,3);// flash green LED
 
@@ -924,10 +925,10 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = 0;
 						dataObj.startDataAddressInTheRadio = 0;
 						dataObj.transferLength = 64*1024;
-						displayMessage("Reading EEPROM");
+						displayMessage(StringsDict["Reading_EEPROM"]);
 						if (!ReadFlashOrEEPROMOrROMOrScreengrab(dataObj))
 						{
-							displayMessage("Error while reading EEPROM");
+							displayMessage(StringsDict["Error_while_reading_EEPROM"]);
 							dataObj.responseCode = 1;
 						}
 						else
@@ -950,19 +951,19 @@ namespace DMR
 						catch (Exception)
 						{
 							System.Media.SystemSounds.Hand.Play();
-							MessageBox.Show("Comm port not available");
+							MessageBox.Show(StringsDict["Comm_port_not_available"]);
 							return;
 						}
 						if (!sendCommand(0))
 						{
-							displayMessage("Error connecting to the OpenGD77");
+							displayMessage(StringsDict["Error_connecting_to_the_radio"]);
 							dataObj.responseCode = 1;
 							break;
 						}
 						sendCommand(1);
-						sendCommand(2, 0, 0, 3, 1, 0, "CPS");
-						sendCommand(2, 0, 16, 3, 1, 0, "Restoring");
-						sendCommand(2, 0, 32, 3, 1, 0, "Flash");
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Restoring"]);
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["Flash"]);
 						sendCommand(3);
 						sendCommand(6,4);// flash red LED
 
@@ -970,16 +971,16 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = 0;
 						dataObj.startDataAddressInTheRadio = 0;
 						dataObj.transferLength = dataObj.dataBuff.Length;
-						displayMessage("Restoring Flash");
+						displayMessage(StringsDict["Restoring_Flash"]);
 						if (WriteFlash(dataObj))
 						{
-							displayMessage("Restore complete");
+							displayMessage(StringsDict["Restore_complete"]);
 						}
 						else
 						{
 							System.Media.SystemSounds.Hand.Play();
-							MessageBox.Show("Error while restoring");
-							displayMessage("Error while restoring");
+							MessageBox.Show(StringsDict["Error_while_restoring"]);
+							displayMessage(StringsDict["Error_while_restoring"]);
 							dataObj.responseCode = 1;
 						}
 						sendCommand(6, 2);// Save settings and VFO
@@ -998,19 +999,19 @@ namespace DMR
 						catch (Exception)
 						{
 							System.Media.SystemSounds.Hand.Play();
-							MessageBox.Show("Comm port not available");
+							MessageBox.Show(StringsDict["Comm_port_not_available"]);
 							return;
 						}
 						if (!sendCommand(0))
 						{
-							displayMessage("Error connecting to the OpenGD77");
+							displayMessage(StringsDict["Error_connecting_to_the_radio"]);
 							dataObj.responseCode = 1;
 							break;
 						}
 						sendCommand(1);
-						sendCommand(2, 0, 0, 3, 1, 0, "CPS");
-						sendCommand(2, 0, 16, 3, 1, 0, "Restoring");
-						sendCommand(2, 0, 32, 3, 1, 0, "Calibration");
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Restoring"]);
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["Calibration"]);
 						sendCommand(3);
 						sendCommand(6, 4);// flash red LED
 
@@ -1019,16 +1020,16 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = 0;
 						dataObj.startDataAddressInTheRadio = CalibrationForm.MEMORY_LOCATION;
 						dataObj.transferLength = CalibrationForm.CALIBRATION_DATA_SIZE;
-						displayMessage("Restoring Calibration");
+						displayMessage(StringsDict["Restoring_Calibration"]);
 						if (WriteFlash(dataObj))
 						{
-							displayMessage("Restore complete");
+							displayMessage(StringsDict["Restore_complete"]);
 						}
 						else
 						{
 							System.Media.SystemSounds.Hand.Play();
-							MessageBox.Show("Error while restoring Calibration");
-							displayMessage("Error while restoring Calibration");
+							MessageBox.Show(StringsDict["Error_while_restoring_Calibration"]);
+							displayMessage(StringsDict["Error_while_restoring_Calibration"]);
 							dataObj.responseCode = 1;
 						}
 						sendCommand(6, 2);// Save settings and VFO's to codeplug
@@ -1047,19 +1048,19 @@ namespace DMR
 						catch (Exception)
 						{
 							System.Media.SystemSounds.Hand.Play();
-							MessageBox.Show("Comm port not available");
+							MessageBox.Show(StringsDict["Comm_port_not_available"]);
 							return;
 						}
 						if (!sendCommand(0))
 						{
-							displayMessage("Error connecting to the OpenGD77");
+							displayMessage(StringsDict["Error_connecting_to_the_radio"]);
 							dataObj.responseCode = 1;
 							break;
 						}
 						sendCommand(1);
-						sendCommand(2, 0, 0, 3, 1, 0, "CPS");
-						sendCommand(2, 0, 16, 3, 1, 0, "Restoring");
-						sendCommand(2, 0, 32, 3, 1, 0, "EEPROM");
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Restoring"]);
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["EEPROM"]);
 						sendCommand(3);
 						sendCommand(6,4);// flash red LED
 
@@ -1067,16 +1068,16 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = 0;
 						dataObj.startDataAddressInTheRadio = 0;
 						dataObj.transferLength = 64 * 1024;
-						displayMessage("Restoring EEPROM");
+						displayMessage(StringsDict["Restoring_EEPROM"]);
 						if (WriteEEPROM(dataObj))
 						{
-							displayMessage("Restore complete");
+							displayMessage(StringsDict["Restore_complete"]);
 						}
 						else
 						{
 							System.Media.SystemSounds.Hand.Play();
-							MessageBox.Show("Error while restoring");
-							displayMessage("Error while restoring");
+							MessageBox.Show(StringsDict["Error_while_restoring"]);
+							displayMessage(StringsDict["Error_while_restoring"]);
 							dataObj.responseCode = 1;
 						}
 						sendCommand(6, 0);// save settings (Not VFOs ) and reboot
@@ -1094,20 +1095,20 @@ namespace DMR
 						catch (Exception)
 						{
 							System.Media.SystemSounds.Hand.Play();
-							MessageBox.Show("Comm port not available");
+							MessageBox.Show(StringsDict["Comm_port_not_available"]);
 							return;
 						}
 						if (!sendCommand(0))
 						{
-							displayMessage("Error connecting to the OpenGD77");
+							displayMessage(StringsDict["Error_connecting_to_the_radio"]);
 							dataObj.responseCode = 1;
 							break;
 						}
 
 						sendCommand(1);
-						sendCommand(2, 0, 0, 3, 1, 0, "CPS");
-						sendCommand(2, 0, 16, 3, 1, 0, "Reading");
-						sendCommand(2, 0, 32, 3, 1, 0, "Codeplug");
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Reading"]);
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["Codeplug"]);
 						sendCommand(3);
 						sendCommand(6,3);// flash green LED
 						sendCommand(6, 2);// Save settuings VFO's to codeplug
@@ -1116,11 +1117,11 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = 0x0080;// Changed from 0x00E0 to 0x0080 to upload the Device Info
 						dataObj.startDataAddressInTheRadio = dataObj.localDataBufferStartPosition;
 						dataObj.transferLength =  0x6000 - dataObj.localDataBufferStartPosition;
-						displayMessage(String.Format("Reading EEPROM 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, (dataObj.localDataBufferStartPosition + dataObj.transferLength)));
+						displayMessage(String.Format(StringsDict["Reading_EEPROM"] + " 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, (dataObj.localDataBufferStartPosition + dataObj.transferLength)));
 
 						if (!ReadFlashOrEEPROMOrROMOrScreengrab(dataObj))
 						{
-							displayMessage("Error while reading");
+							displayMessage(StringsDict["Error_while_reading"]);
 							dataObj.responseCode = 1;
 							break;
 						}
@@ -1129,10 +1130,10 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = 0x7500;
 						dataObj.startDataAddressInTheRadio = dataObj.localDataBufferStartPosition;
 						dataObj.transferLength = 0xB000 - dataObj.localDataBufferStartPosition;
-						displayMessage(String.Format("Reading EEPROM 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, (dataObj.localDataBufferStartPosition + dataObj.transferLength)));
+						displayMessage(String.Format(StringsDict["Reading_EEPROM"] +" 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, (dataObj.localDataBufferStartPosition + dataObj.transferLength)));
 						if (!ReadFlashOrEEPROMOrROMOrScreengrab(dataObj))
 						{
-							displayMessage("Error while reading");
+							displayMessage(StringsDict["Error_while_reading"]);
 							dataObj.responseCode = 1;
 							break;
 						}
@@ -1141,11 +1142,11 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = CODEPLUG_FLASH_PART_START;
 						dataObj.startDataAddressInTheRadio = 0x7b000;
 						dataObj.transferLength = CODEPLUG_FLASH_PART_END - dataObj.localDataBufferStartPosition;
-						displayMessage(String.Format("Reading Flash 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, dataObj.localDataBufferStartPosition + dataObj.transferLength));
+						displayMessage(String.Format(StringsDict["Reading_Flash"]+" 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, dataObj.localDataBufferStartPosition + dataObj.transferLength));
 
 						if (!ReadFlashOrEEPROMOrROMOrScreengrab(dataObj))
 						{
-							displayMessage("Error while reading");
+							displayMessage(StringsDict["Error_while_reading"]);
 							dataObj.responseCode = 1;
 							break;
 						}
@@ -1155,17 +1156,17 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = 0x1EE60;// OpenGD77 custom data in Flash
 						dataObj.startDataAddressInTheRadio = 0;
 						dataObj.transferLength = 0x20000 - 0x1EE60;
-						displayMessage(String.Format("Reading Flash 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, dataObj.localDataBufferStartPosition + dataObj.transferLength));
+						displayMessage(String.Format(StringsDict["Reading_Flash"]+" 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, dataObj.localDataBufferStartPosition + dataObj.transferLength));
 
 						if (!ReadFlashOrEEPROMOrROMOrScreengrab(dataObj))
 						{
-							displayMessage("Error while reading");
+							displayMessage(StringsDict["Error_while_reading"]);
 							dataObj.responseCode = 1;
 							break;
 						}
 						else
 						{
-							displayMessage("Codeplug read complete");
+							displayMessage(StringsDict["Codeplug_read_complete"]);
 						}
 						sendCommand(5);// close CPS screen on radio
 						commPort.Close();
@@ -1182,20 +1183,20 @@ namespace DMR
 						catch (Exception)
 						{
 							System.Media.SystemSounds.Hand.Play();
-							MessageBox.Show("Comm port not available");
+							MessageBox.Show(StringsDict["Comm_port_not_available"]);
 							return;
 						}
 					
 						if (!sendCommand(0))
 						{
-							displayMessage("Error connecting to the radio");
+							displayMessage(StringsDict["Error_connecting_to_the_radio"]);
 							dataObj.responseCode = 1;
 							break;
 						}
 						sendCommand(1);
-						sendCommand(2, 0, 0, 3, 1, 0, "CPS");
-						sendCommand(2, 0, 16, 3, 1, 0, "Writing");
-						sendCommand(2, 0, 32, 3, 1, 0, "Codeplug");
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Writing"]);
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["Codeplug"]);
 						sendCommand(3);
 						sendCommand(6,4);// flash red LED
 						sendCommand(6, 2);// Save settings and VFOs
@@ -1205,11 +1206,11 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = 0x0080;// Changed from 0x00E0 to 0x0080 to upload the Device Info
 						dataObj.startDataAddressInTheRadio = dataObj.localDataBufferStartPosition;
 						dataObj.transferLength =  0x6000 - dataObj.localDataBufferStartPosition;
-						displayMessage(String.Format("Writing EEPROM 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, dataObj.localDataBufferStartPosition + dataObj.transferLength));
+						displayMessage(String.Format(StringsDict["Writing_EEPROM"]+" 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, dataObj.localDataBufferStartPosition + dataObj.transferLength));
 
 						if (!WriteEEPROM(dataObj))
 						{
-							displayMessage("Error while writing");
+							displayMessage(StringsDict["Error_while_writing"]);
 							dataObj.responseCode = 1;
 							break;
 						}
@@ -1218,10 +1219,10 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = 0x7500;
 						dataObj.startDataAddressInTheRadio = dataObj.localDataBufferStartPosition;
 						dataObj.transferLength = 0xB000 - dataObj.localDataBufferStartPosition;
-						displayMessage(String.Format("Writing EEPROM 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, dataObj.localDataBufferStartPosition + dataObj.transferLength));
+						displayMessage(String.Format(StringsDict["Writing_EEPROM"]+" 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, dataObj.localDataBufferStartPosition + dataObj.transferLength));
 						if (!WriteEEPROM(dataObj))
 						{
-							displayMessage("Error while writing");
+							displayMessage(StringsDict["Error_while_writing"]);
 							dataObj.responseCode = 1;
 							break;
 						}
@@ -1230,12 +1231,12 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = CODEPLUG_FLASH_PART_START;
 						dataObj.startDataAddressInTheRadio = 0x7b000;
 						dataObj.transferLength = CODEPLUG_FLASH_PART_END - dataObj.localDataBufferStartPosition;
-						displayMessage(String.Format("Writing Flash 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, dataObj.localDataBufferStartPosition + dataObj.transferLength));
+						displayMessage(String.Format(StringsDict["Writing_Flash"]+" 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, dataObj.localDataBufferStartPosition + dataObj.transferLength));
 
 
 						if (!WriteFlash(dataObj))
 						{
-							displayMessage("Error while writing");
+							displayMessage(StringsDict["Error_while_writing"]);
 							dataObj.responseCode = 1;
 							break;
 						}
@@ -1244,17 +1245,17 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = 0x1EE60;
 						dataObj.startDataAddressInTheRadio = 0x00000;
 						dataObj.transferLength = 0x20000 - dataObj.localDataBufferStartPosition;
-						displayMessage(String.Format("Writing Flash 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, dataObj.localDataBufferStartPosition + dataObj.transferLength));
+						displayMessage(String.Format(StringsDict["Writing_Flash"]+" 0x{0:X6} - 0x{1:X6}", dataObj.localDataBufferStartPosition, dataObj.localDataBufferStartPosition + dataObj.transferLength));
 
 						if (!WriteFlash(dataObj))
 						{
-							displayMessage("Error while writing");
+							displayMessage(StringsDict["Error_while_writing"]);
 							dataObj.responseCode = 1;
 							break;
 						}
 						else
 						{
-							displayMessage("Codeplug write complete");
+							displayMessage(StringsDict["Codeplug_write_complete"]);
 						}
 
 
@@ -1274,20 +1275,20 @@ namespace DMR
 						catch (Exception)
 						{
 							System.Media.SystemSounds.Hand.Play();
-							MessageBox.Show("Comm port not available");
+							MessageBox.Show(StringsDict["Comm_port_not_available"]);
 							return;
 						}
 						// show CPS screen
 						if (!sendCommand(0))
 						{
-							displayMessage("Error connecting to the radio");
+							displayMessage(StringsDict["Error_connecting_to_the_radio"]);
 							dataObj.responseCode = 1;
 							break;
 						}
 						sendCommand(1);// Clear screen
-						sendCommand(2, 0, 0, 3, 1, 0, "CPS");// Write a line of text to CPS screen at position x=0,y=3 with font size 3, alignment centre
-						sendCommand(2, 0, 16, 3, 1, 0, "Backup");// Write a line of text to CPS screen
-						sendCommand(2, 0, 32, 3, 1, 0, "MCU ROM");// Write a line of text to CPS screen
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);// Write a line of text to CPS screen at position x=0,y=3 with font size 3, alignment centre
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Backup"]);// Write a line of text to CPS screen
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["MCU_ROM"]);// Write a line of text to CPS screen
 						sendCommand(3);// render CPS
 						sendCommand(6, 3);// flash green LED
 
@@ -1296,10 +1297,10 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = 0;
 						dataObj.startDataAddressInTheRadio = 0;
 						dataObj.transferLength = 512 * 1024;
-						displayMessage("Reading MCU ROM");
+						displayMessage(StringsDict["Reading_MCU_ROM"]);
 						if (!ReadFlashOrEEPROMOrROMOrScreengrab(dataObj))
 						{
-							displayMessage("Error while reading MCU ROM");
+							displayMessage(StringsDict["Error_while_Reading_MCU_ROM"]);
 							dataObj.responseCode = 1;
 						}
 						else
@@ -1322,7 +1323,7 @@ namespace DMR
 						catch (Exception)
 						{
 							System.Media.SystemSounds.Hand.Play();
-							MessageBox.Show("Comm port not available");
+							MessageBox.Show(StringsDict["Comm_port_not_available"]);
 							return;
 						}
 
@@ -1331,10 +1332,10 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = 0;
 						dataObj.startDataAddressInTheRadio = 0;
 						dataObj.transferLength = 1 * 1024;
-						displayMessage("Downloading Screengrab");
+						displayMessage(StringsDict["Downloading_Screengrab"]);
 						if (!ReadFlashOrEEPROMOrROMOrScreengrab(dataObj))
 						{
-							displayMessage("Error while downloading Screengrab");
+							displayMessage(StringsDict["Error_while_downloading_Screengrab"]);
 							dataObj.responseCode = 1;
 						}
 						else
@@ -1357,7 +1358,7 @@ namespace DMR
 						catch (Exception)
 						{
 							System.Media.SystemSounds.Hand.Play();
-							MessageBox.Show("Comm port not available");
+							MessageBox.Show(StringsDict["Comm_port_not_available"]);
 							return;
 						}
 
@@ -1378,19 +1379,19 @@ namespace DMR
 						catch (Exception)
 						{
 							System.Media.SystemSounds.Hand.Play();
-							MessageBox.Show("Comm port not available");
+							MessageBox.Show(StringsDict["Comm_port_not_available"]);
 							return;
 						}
 						if (!sendCommand(0))
 						{
-							displayMessage("Error connecting to the radio");
+							displayMessage(StringsDict["Error_connecting_to_the_radio"]);
 							dataObj.responseCode = 1;
 							break;
 						}
 						sendCommand(1);
-						sendCommand(2, 0, 0, 3, 1, 0, "CPS");
-						sendCommand(2, 0, 16, 3, 1, 0, "Writing");
-						sendCommand(2, 0, 32, 3, 1, 0, "Voice prompts");
+						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["CPS"]);
+						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["Writing"]);
+						sendCommand(2, 0, 32, 3, 1, 0, StringsDict["Voice_prompts"]);
 						sendCommand(3);
 						sendCommand(6, 4);// flash red LED
 
@@ -1399,16 +1400,16 @@ namespace DMR
 						dataObj.localDataBufferStartPosition = 0;
 						dataObj.startDataAddressInTheRadio = 0xE0000;
 						dataObj.transferLength = dataObj.dataBuff.Length;
-						displayMessage("Writing voice prompts");
+						displayMessage(StringsDict["Writing_Voice_prompts"]);
 						if (WriteFlash(dataObj))
 						{
-							displayMessage("Upload complete");
+							displayMessage(StringsDict["Upload_complete"]);
 						}
 						else
 						{
 							System.Media.SystemSounds.Hand.Play();
-							MessageBox.Show("Error while restoring Calibration");
-							displayMessage("Error while restoring Calibration");
+							MessageBox.Show(StringsDict["Error_while_restoring_Calibration"]);
+							displayMessage(StringsDict["Error_while_restoring_Calibration"]);
 							dataObj.responseCode = 1;
 						}
 						sendCommand(6, 2);// Save settings and VFO's to codeplug
@@ -1448,7 +1449,7 @@ namespace DMR
 			if (commPort==null)
 			{
 				System.Media.SystemSounds.Hand.Play();
-				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
+				MessageBox.Show(StringsDict["No_com_port"]);
 				return;
 			}
 			OpenGD77CommsTransferData dataObj = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.BACKUP_EEPROM);
@@ -1461,7 +1462,7 @@ namespace DMR
 			if (commPort==null)
 			{
 				System.Media.SystemSounds.Hand.Play();
-				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
+				MessageBox.Show(StringsDict["No_com_port"]);
 				return;
 			}
 
@@ -1475,7 +1476,7 @@ namespace DMR
 			if (commPort == null)
 			{
 				System.Media.SystemSounds.Hand.Play();
-				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
+				MessageBox.Show(StringsDict["No_com_port"]);
 				return;
 			}
 
@@ -1503,10 +1504,10 @@ namespace DMR
 			if (commPort == null)
 			{
 				System.Media.SystemSounds.Hand.Play();
-				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
+				MessageBox.Show(StringsDict["No_com_port"]);
 				return;
 			}
-			if (DialogResult.Yes == MessageBox.Show("Are you sure you want to restore the EEPROM from a previously saved file?", "Warning", MessageBoxButtons.YesNo))
+			if (DialogResult.Yes == MessageBox.Show(StringsDict["Are_you_sure_you_want_to_restore_the_EEPROM_from_a_previously_saved_file"], StringsDict["Warning"], MessageBoxButtons.YesNo))
 			{
 				if (DialogResult.OK == _openFileDialog.ShowDialog())
 				{
@@ -1520,7 +1521,7 @@ namespace DMR
 					else
 					{
 						System.Media.SystemSounds.Hand.Play();
-						MessageBox.Show("The file is not the correct size.", "Error");
+						MessageBox.Show(StringsDict["The_file_is_not_the_correct_size."], StringsDict["Error"]);
 					}
 				}
 			}
@@ -1531,12 +1532,12 @@ namespace DMR
 			if (commPort == null)
 			{
 				System.Media.SystemSounds.Hand.Play();
-				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
+				MessageBox.Show(StringsDict["No_com_port"]);
 				return;
 			}
-			if (DialogResult.Yes == MessageBox.Show("Are you sure you want to restore the Calibartion from a previously saved file?", "Warning", MessageBoxButtons.YesNo))
+			if (DialogResult.Yes == MessageBox.Show(StringsDict["Are_you_sure_you_want_to_restore_the_Calibartion_from_a_previously_saved_file"], StringsDict["Warning"], MessageBoxButtons.YesNo))
 			{
-				_openFileDialog.Filter = "Calibration files (*.bin)|*.bin";
+				_openFileDialog.Filter = StringsDict["Calibration_files"]+" (*.bin)|*.bin";
 				if (DialogResult.OK == _openFileDialog.ShowDialog())
 				{
 					OpenGD77CommsTransferData dataObj = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.RESTORE_CALIBRATION);
@@ -1549,7 +1550,7 @@ namespace DMR
 							if (dataObj.dataBuff[p] != CalibrationForm.CALIBRATION_HEADER[p])
 							{
 								System.Media.SystemSounds.Hand.Play();
-								MessageBox.Show("Invalid Calibration data");
+								MessageBox.Show(StringsDict["Invalid_Calibration_data"]);
 								return;
 							}
 						}
@@ -1559,7 +1560,7 @@ namespace DMR
 					else
 					{
 						System.Media.SystemSounds.Hand.Play();
-						MessageBox.Show("The file is not the correct size.", "Error");
+						MessageBox.Show(StringsDict["The_file_is_not_the_correct_size."], StringsDict["Error"]);
 					}
 				}
 			}
@@ -1570,12 +1571,12 @@ namespace DMR
 			if (commPort == null)
 			{
 				System.Media.SystemSounds.Hand.Play();
-				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
+				MessageBox.Show(StringsDict["No_com_port"]);
 				return;
 			}
-			if (DialogResult.Yes == MessageBox.Show("Are you sure you want to restore the Flash memory from a previously saved file?", "Warning", MessageBoxButtons.YesNo))
+			if (DialogResult.Yes == MessageBox.Show(StringsDict["Are_you_sure_you_want_to_restore_the_Flash_memory_from_a_previously_saved_file"], StringsDict["Warning"], MessageBoxButtons.YesNo))
 			{
-				_openFileDialog.Filter = "Flash backup files (*.bin)|*.bin";
+				_openFileDialog.Filter = StringsDict["Flash_backup_files"]+" (*.bin)|*.bin";
 				if (DialogResult.OK == _openFileDialog.ShowDialog())
 				{
 					OpenGD77CommsTransferData dataObj = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.RESTORE_FLASH);
@@ -1583,7 +1584,7 @@ namespace DMR
 
 					if (dataObj.dataBuff.Length != (1024 * 1024))
 					{
-						if (DialogResult.No == MessageBox.Show("This file is not a full backup\nDo you want restore the contents of this file?", "Warning", MessageBoxButtons.YesNo))
+						if (DialogResult.No == MessageBox.Show(StringsDict["This_file_is_not_a_full_backup"], StringsDict["Warning"], MessageBoxButtons.YesNo))
 						{
 							return;
 						}
@@ -1616,6 +1617,8 @@ namespace DMR
 		private void OpenGD77Form_Load(object sender, EventArgs e)
 		{
 			Settings.UpdateComponentTextsFromLanguageXmlData(this);
+			Settings.ReadCommonsForSectionIntoDictionary(StringsDict, "OpenGD77Form");
+			
 			switch (_initialAction)
 			{
 				case CommsAction.READ_CODEPLUG:
@@ -1657,7 +1660,7 @@ namespace DMR
 
 						if (gd77CommPort == null)
 						{
-							MessageBox.Show("Please connect the radio running OpenGD77 firmware, and try again.", "OpenGD77 radio not detected.");
+							MessageBox.Show(StringsDict["Please_connect_the_radio,_and_try_again."], StringsDict["Radio_not_detected."]);
 						}
 						else
 						{
@@ -1670,7 +1673,7 @@ namespace DMR
 					{
 						_port = null;
 						System.Media.SystemSounds.Hand.Play();
-						MessageBox.Show("Failed to open comm port", "Error");
+						MessageBox.Show(StringsDict["Failed_to_open_comm_port"], StringsDict["Error"]);
 						IniFileUtils.WriteProfileString("Setup", "LastCommPort", "");// clear any port they may have saved
 						return null;
 					}
@@ -1711,7 +1714,7 @@ namespace DMR
 			if (commPort == null)
 			{
 				System.Media.SystemSounds.Hand.Play();
-				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
+				MessageBox.Show(StringsDict["No_com_port"]);
 				return;
 			}
 
@@ -1731,7 +1734,7 @@ namespace DMR
 			if (commPort == null)
 			{
 				System.Media.SystemSounds.Hand.Play();
-				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
+				MessageBox.Show(StringsDict["No_com_port"]);
 				return;
 			}
 
@@ -1752,7 +1755,7 @@ namespace DMR
 			if (commPort == null)
 			{
 				System.Media.SystemSounds.Hand.Play();
-				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
+				MessageBox.Show(StringsDict["No_com_port"]);
 				return;
 			}
 			OpenGD77CommsTransferData dataObj = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.BACKUP_MCU_ROM);
@@ -1765,7 +1768,7 @@ namespace DMR
 			if (commPort == null)
 			{
 				System.Media.SystemSounds.Hand.Play();
-				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
+				MessageBox.Show(StringsDict["No_com_port"]);
 				return;
 			}
 			OpenGD77CommsTransferData dataObj = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.DOWLOAD_SCREENGRAB);
@@ -1798,7 +1801,7 @@ namespace DMR
 			byte[] bytes = new byte[1024];
 
 			OpenFileDialog ofd = new OpenFileDialog();
-			ofd.Filter = "Files (*.png)|*.png";
+			ofd.Filter = StringsDict["PNG_image_files"]+" (*.png)|*.png";
 			if (DialogResult.OK == ofd.ShowDialog())
 			{
 				BootItemForm.data.BootScreenType = 0;// Image Type
@@ -1933,7 +1936,7 @@ namespace DMR
 			if (commPort == null)
 			{
 				System.Media.SystemSounds.Hand.Play();
-				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
+				MessageBox.Show(StringsDict["No_com_port"]);
 				return;
 			}
 			if (DialogResult.OK == _openFileDialog.ShowDialog())
@@ -1952,11 +1955,11 @@ namespace DMR
 			if (commPort == null)
 			{
 				System.Media.SystemSounds.Hand.Play();
-				MessageBox.Show("No com port. Close and reopen the OpenGD77 window to select a com port");
+				MessageBox.Show(StringsDict["No_com_port"]);
 				return;
 			}
 
-			_openFileDialog.Filter = "Voice prompt files (*.vpr)|*.vpr";
+			_openFileDialog.Filter = StringsDict["Voice_prompt_files"]+" (*.vpr)|*.vpr";
 			if (DialogResult.OK == _openFileDialog.ShowDialog())
 			{
 				OpenGD77CommsTransferData dataObj = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.WRITE_VOICE_PROMPTS);
