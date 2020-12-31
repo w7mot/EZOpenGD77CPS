@@ -1188,7 +1188,7 @@ namespace DMR
 					
 						if (!sendCommand(0))
 						{
-							displayMessage("Error connecting to the OpenGD77");
+							displayMessage("Error connecting to the radio");
 							dataObj.responseCode = 1;
 							break;
 						}
@@ -1280,7 +1280,7 @@ namespace DMR
 						// show CPS screen
 						if (!sendCommand(0))
 						{
-							displayMessage("Error connecting to the OpenGD77");
+							displayMessage("Error connecting to the radio");
 							dataObj.responseCode = 1;
 							break;
 						}
@@ -1383,7 +1383,7 @@ namespace DMR
 						}
 						if (!sendCommand(0))
 						{
-							displayMessage("Error connecting to the OpenGD77");
+							displayMessage("Error connecting to the radio");
 							dataObj.responseCode = 1;
 							break;
 						}
@@ -1549,7 +1549,7 @@ namespace DMR
 							if (dataObj.dataBuff[p] != CalibrationForm.CALIBRATION_HEADER[p])
 							{
 								System.Media.SystemSounds.Hand.Play();
-								MessageBox.Show("Invalid Calibration data.");
+								MessageBox.Show("Invalid Calibration data");
 								return;
 							}
 						}
@@ -1657,7 +1657,7 @@ namespace DMR
 
 						if (gd77CommPort == null)
 						{
-							MessageBox.Show("Please connect the GD-77 running OpenGD77 firmware, and try again.", "OpenGD77 radio not detected.");
+							MessageBox.Show("Please connect the radio running OpenGD77 firmware, and try again.", "OpenGD77 radio not detected.");
 						}
 						else
 						{
