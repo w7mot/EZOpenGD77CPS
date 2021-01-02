@@ -25,7 +25,7 @@ namespace DMR
         public static byte[] CommsBuffer = null;// = new byte[0x10000];
 
         private static string PRODUCT_NAME = ((AssemblyProductAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyProductAttribute), false)).Product;
-        private static string PRODUCT_VERSION = " D2021.01.01.01";
+        private static string PRODUCT_VERSION = " D2021.01.03.01";
         private const int WM_SETFONT = 48;
 
         private const int TVM_GETEDITCONTROL = 4367;
@@ -248,6 +248,8 @@ namespace DMR
 			get;
 			set;
 		}*/
+
+		private string _lastFileName = String.Empty;
 
         public static string CurFileName
         {
@@ -1225,19 +1227,19 @@ namespace DMR
 
             ChannelForm.CurCntCh = 1024;
             this.method_15();
-            string lastFileName = String.Empty;
+
 
             if (MainForm.StartupArgs.Length > 0)
             {
                 if (File.Exists(StartupArgs[0]))
                 {
                     openCodeplugFile(StartupArgs[0]);
-                    lastFileName = StartupArgs[0];
+                    _lastFileName = StartupArgs[0];
                 }
                 else
                 {
                     this.loadDefaultOrInitialFile();
-                    lastFileName = "";
+                    _lastFileName = "";
                     IniFileUtils.WriteProfileString("Setup", "LastFilePath", "");
                 }
             }
@@ -1250,15 +1252,15 @@ namespace DMR
                 }
                 else
                 {
-                    lastFileName = IniFileUtils.getProfileStringWithDefault("Setup", "LastFilePath", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
-                    if (lastFileName != null && lastFileName != "" && File.Exists(lastFileName))
+                    _lastFileName = IniFileUtils.getProfileStringWithDefault("Setup", "LastFilePath", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+                    if (_lastFileName != null && _lastFileName != "" && File.Exists(_lastFileName))
                     {
-                        openCodeplugFile(lastFileName);
+                        openCodeplugFile(_lastFileName);
                     }
                     else
                     {
                         this.loadDefaultOrInitialFile();
-                        lastFileName = "";
+                        _lastFileName = "";
                         IniFileUtils.WriteProfileString("Setup", "LastFilePath", "");
                     }
                 }
@@ -1305,7 +1307,7 @@ namespace DMR
             }
 
 
-            this.Text = getMainTitleStub() + " " + lastFileName;
+            this.Text = getMainTitleStub() + " " + _lastFileName;
 
             if (IniFileUtils.getProfileStringWithDefault("Setup", "agreedToTerms", "no") == "no")
             {
@@ -3320,10 +3322,10 @@ namespace DMR
             Settings.UpdateComponentTextsFromLanguageXmlData(this);
             Settings.UpdateComponentTextsFromLanguageXmlData(this.frmHelp);
             Settings.UpdateComponentTextsFromLanguageXmlData(this.frmTree);
-            Settings.smethod_70(this.cmsGroup.smethod_9(), base.Name);
-            Settings.smethod_70(this.cmsGroupContact.smethod_9(), base.Name);
-            Settings.smethod_70(this.cmsTree.smethod_9(), base.Name);
-            Settings.smethod_70(this.cmsSub.smethod_9(), base.Name);
+            Settings.UpdateContextMenuStripFromLanguageXmlData(this.cmsGroup.smethod_9(), base.Name);
+            Settings.UpdateContextMenuStripFromLanguageXmlData(this.cmsGroupContact.smethod_9(), base.Name);
+            Settings.UpdateContextMenuStripFromLanguageXmlData(this.cmsTree.smethod_9(), base.Name);
+            Settings.UpdateContextMenuStripFromLanguageXmlData(this.cmsSub.smethod_9(), base.Name);
             Settings.ReadCommonsTextIntoDictionary(Settings.dicCommon);
             this.method_13();
             List<string> list = new List<string>();
@@ -3381,6 +3383,7 @@ namespace DMR
                     string text4 = x.Text = (x.ToolTipText = dicToolItem[x.Name]);
                 }
             });
+			this.Text = getMainTitleStub() + " " + _lastFileName;
         }
 
         //  This function converts the internal data structures into the binary data of the codeplug file

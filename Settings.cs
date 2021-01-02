@@ -1134,7 +1134,7 @@ internal class Settings
 			}
 		});
 	}
-	public static void smethod_70(List<ToolStripMenuItem> gku9yQXy4fa3WZdpnA, string string_0)
+	public static void UpdateContextMenuStripFromLanguageXmlData(List<ToolStripMenuItem> gku9yQXy4fa3WZdpnA, string string_0)
 	{
 		Dictionary<string, string> dic = new Dictionary<string, string>();
 		string xpath = string.Format("/Resource/{0}/ContextMenuStrip/MenuItem", string_0);
@@ -1153,7 +1153,7 @@ internal class Settings
 			}
 		});
 	}
-	public static void smethod_71(List<ToolStripItem> LE9oY1wrram2m8Ao56, string string_0)
+	public static void UpdateToolStripFromLanguageXmlData(List<ToolStripItem> LE9oY1wrram2m8Ao56, string string_0)
 	{
 		Dictionary<string, string> dic = new Dictionary<string, string>();
 		string xpath = string.Format("/Resource/{0}/Controls/Control/ToolStripItem", string_0);

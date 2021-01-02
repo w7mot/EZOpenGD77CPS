@@ -1324,7 +1324,7 @@ namespace DMR
         {
             Settings.smethod_59(base.Controls);
             Settings.UpdateComponentTextsFromLanguageXmlData(this);
-            Settings.smethod_71(this.tsrZone.smethod_10(), base.Name);
+            Settings.UpdateToolStripFromLanguageXmlData(this.tsrZone.smethod_10(), base.Name);
             this.method_1();
             this.DispData();
         }
