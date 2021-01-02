@@ -155,7 +155,7 @@
   <Control id="ZoneForm_lstUnselected" html="::/Zone/Available.html" />
   <Control id="ChannelForm_nudRxColor" html="::/Channel/RxColorCode.html" />
   <Control id="ChannelForm_cmbTimingPreference" html="::/Channel/TimingLeaderPrefernce.html" />
-  <Control id="ChannelForm_cmbRepeaterSlot" html="v" />
+  <Control id="ChannelForm_cmbRepeaterSlot" html="::/Channel/RepeaterTimeSlot.html" />
   <Control id="ChannelForm_cmbArs" html="::/Channel/Ars.html" />
   <Control id="ChannelForm_cmbKeySwitch" html="::/Channel/Privacy.html" />
   <Control id="ChannelForm_cmbKey" html="::/Channel/PrivacyGroup.html" />
