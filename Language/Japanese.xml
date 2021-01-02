@@ -56,7 +56,7 @@
 			<Control Id="lblSql" Text="OpenGD77 スケルチレベル" />
 			<Control Id="grpDigit" Text="デジタル" />
 			<Control Id="lblTimingPreference" Text="タイミング設定" />
-			<Control Id="lblRepeaterSlot" Text="レピータスロット" />
+			<Control Id="lblRepeaterSlot" Text="レピータースロット" />
 			<Control Id="lblArs" Text="ARS" />
 			<Control Id="lblKeySwitch" Text="プライバシー" />
 			<Control Id="lblKey" Text="プライバシーグループ" />
@@ -72,7 +72,7 @@
 			<Control Id="chkEmgConfirmed" Text="緊急応答許可" />
 			<Control Id="chkEnhancedChAccess" Text="拡張チャンネルアクセス" />
 			<Control Id="lblRxColor" Text="受信カラーコード" />
-			<Control Id="lblRxGroup" Text="トークグループリスト" />
+			<Control Id="lblRxGroup" Text="受信グループリスト" />
 			<Control Id="chkRxOnly" Text="受信のみ" />
 			<Control Id="chkAllowTalkaround" Text="トークアラウンド許可" />
 			<Control Id="grpAnalog" Text="アナログ" />
@@ -147,7 +147,7 @@
 			<Control Id="btnClear" Text="全消去" />
 			<Control Id="btnDelete" Text="削除" />
 			<Control Id="btnAdd" Text="追加" />
-			<Control Id="dgvChannels" Text="番号,名前,受信周波数,送信周波数,Ch モード,出力,受信トーン,送信トーン,カラーコード,トークグループリスト,コンタクト,レピータスロット">
+			<Control Id="dgvChannels" Text="番号,名前,受信周波数,送信周波数,Ch モード,出力,受信トーン,送信トーン,カラーコード,受信グループリスト,コンタクト,レピータースロット">
 				<ControlItem Id="" Text="番号" />
 				<ControlItem Id="" Text="名前" />
 				<ControlItem Id="" Text="受信周波数" />
@@ -157,9 +157,9 @@
 				<ControlItem Id="" Text="受信トーン" />
 				<ControlItem Id="" Text="送信トーン" />
 				<ControlItem Id="" Text="カラーコード" />
-				<ControlItem Id="" Text="トークグループリスト" />
+				<ControlItem Id="" Text="受信グループリスト" />
 				<ControlItem Id="" Text="コンタクト" />
-				<ControlItem Id="" Text="レピータスロット" />
+				<ControlItem Id="" Text="レピータースロット" />
 			</Control>
 		</Controls>
 		<Commons>
@@ -200,18 +200,18 @@
 			<Control Id="btnDelete" Text="削除" />
 			<Control Id="btnAdd" Text="追加" />
       <Control Id="btnInternetDownload" Text="インターネットから取得" />      
-      <Control Id="dgvContacts" Text="番号,名前,Call ID,Type,Ring Style,Call Receive Tone,レピータスロット上書き,">
+      <Control Id="dgvContacts" Text="番号,名前,Call ID,Type,Ring Style,Call Receive Tone,レピータースロット上書き,">
 				<ControlItem Id="" Text="番号" />
 				<ControlItem Id="" Text="名前" />
 				<ControlItem Id="" Text="Call ID" />
 				<ControlItem Id="" Text="種類" />
 				<ControlItem Id="" Text="Ring Style" />
 				<ControlItem Id="" Text="Call Receive Tone" />
-        <ControlItem Id="" Text="レピータスロット上書き" />
+        <ControlItem Id="" Text="レピータースロット上書き" />
 			</Control>
 		</Controls>
 		<Commons>
-			<Item Id="HeaderText" Text="番号,名前,Call ID,Type,Ring Style,Call Receive Tone,レピータスロット上書き," />
+			<Item Id="HeaderText" Text="番号,名前,Call ID,Type,Ring Style,Call Receive Tone,レピータースロット上書き," />
 		</Commons>
 	</ContactsForm>
 	<DeviceInfoForm Text="バンド制限">
@@ -310,7 +310,7 @@
 			<Item Id="EncryptType" Text="無,基本" />
 		</Commons>
 	</EncryptForm>
-	<GeneralSetForm Text="DMR IDとコールサイン">
+	<GeneralSetForm Text="無線機名とRadio ID">
 		<Controls>
 			<Control Id="chkTxExitTone" Text="Tx Exit Tone" />
 			<Control Id="grpBeep" Text="Alert Tone" />
@@ -336,8 +336,8 @@
 			<Control Id="lblPrivateHang" Text="Private Call Hang Time [ms]" />
 			<Control Id="lblGrpHold" Text="Group Call Hang Time [ms]" />
 			<Control Id="chkDisableAllLeds" Text="LED消灯" />
-			<Control Id="lblRadioName" Text="コールサイン" />
-			<Control Id="lblRadioID" Text="DMR ID" />
+			<Control Id="lblRadioName" Text="無線機名" />
+			<Control Id="lblRadioID" Text="Radio ID" />
 			<Control Id="lblTxPreambleDur" Text="ヘッダ送信時間[ms]" />
 			<Control Id="lblProgramPwd" Text="Program Password" />
 			<Control Id="lblRxLowBatt" Text="間欠受信間隔[s]" />
@@ -372,7 +372,7 @@
 			<TreeNode Id="BootItem" Text="起動画面" />
 			<TreeNode Id="Menu" Text="Menu" />
 			<TreeNode Id="NumKeyAssign" Text="数字キー定義" />
-			<TreeNode Id="GeneralSetting" Text="DMR IDとコールサイン" />
+			<TreeNode Id="GeneralSetting" Text="無線機名とRadio ID" />
 			<TreeNode Id="Buttons" Text="ボタン" />
 			<TreeNode Id="TextMsg" Text="テキストメッセージ" />
 			<TreeNode Id="Pivacy" Text="プライバシー" />
@@ -381,7 +381,7 @@
 			<TreeNode Id="Contact" Text="コンタクト" />
 			<TreeNode Id="DtmfContact" Text="DTMFコンタクト" />
 			<TreeNode Id="DigitalContact" Text="デジタルコンタクト" />
-			<TreeNode Id="RxGroupList" Text="トークグループリスト" />
+			<TreeNode Id="RxGroupList" Text="受信グループリスト" />
 			<TreeNode Id="Zone" Text="ゾーン" />
 			<TreeNode Id="Channel" Text="チャンネル" />
 			<TreeNode Id="Scan" Text="Scan" />
@@ -401,7 +401,7 @@
 			<MenuItem Id="tsmiBootItem" Text="起動画面" />
 			<MenuItem Id="tsmiMenu" Text="メニュー" />
 			<MenuItem Id="tsmiNumKeyContact" Text="数字キー定義" />
-			<MenuItem Id="tsmiGerneralSet" Text="DMR IDとコールサイン" />
+			<MenuItem Id="tsmiGerneralSet" Text="無線機名とRadio ID" />
 			<MenuItem Id="tsmiButton" Text="ボタン" />
 			<MenuItem Id="tsmiTextMsg" Text="テキストメッセージ" />
 			<MenuItem Id="tsmiEncrypt" Text="プライバシー" />
@@ -413,7 +413,7 @@
 			<MenuItem Id="tsmiDtmfContact" Text="DTMFコンタクト" />
 			<MenuItem Id="tsmiDmrContact" Text="デジタルコンタクト" />
 			<MenuItem Id="tsmiContacts" Text="コンタクト" />
-			<MenuItem Id="tsmiGrpRxList" Text="トークグループリスト" />
+			<MenuItem Id="tsmiGrpRxList" Text="受信グループリスト" />
 			<MenuItem Id="tsmiZone" Text="ゾーン" />
 			<MenuItem Id="tsmiZoneList" Text="ゾーンリスト" />
 			<MenuItem Id="tsmiChannels" Text="チャンネル" />
@@ -572,7 +572,7 @@
 			<Control Id="lblPwd" Text="パスワード" />
 		</Controls>
 	</PowerPwdForm>
-	<RxGroupListForm Text="トークグループリスト">
+	<RxGroupListForm Text="受信グループリスト">
 		<Controls>
 			<Control Id="btnDown" Text="下" />
 			<Control Id="btnUp" Text="上" />
@@ -628,7 +628,7 @@
 			<Control Id="lblSql" Text="スケルチレベル" />
 			<Control Id="grpDigit" Text="デジタル" />
 			<Control Id="lblTimingPreference" Text="Timing Leader Prefernce" />
-			<Control Id="lblRepeaterSlot" Text="レピータスロット" />
+			<Control Id="lblRepeaterSlot" Text="レピータースロット" />
 			<Control Id="lblArs" Text="ARS" />
 			<Control Id="lblKeySwitch" Text="Privacy" />
 			<Control Id="lblKey" Text="Privacy Group" />
@@ -644,10 +644,10 @@
 			<Control Id="chkEmgConfirmed" Text="Emergency Alarm Ack" />
 			<Control Id="chkEnhancedChAccess" Text="Enhanced Channel Access" />
 			<Control Id="lblRxColor" Text="受信カラーコード" />
-			<Control Id="lblRxGroup" Text="トークグループリスト" />
+			<Control Id="lblRxGroup" Text="受信グループリスト" />
 			<Control Id="chkRxOnly" Text="受信のみ" />
 			<Control Id="chkAllowTalkaround" Text="トークアラウンド許可" />
-			<Control Id="grpAnalog" Text="Analog" />
+			<Control Id="grpAnalog" Text="アナログ" />
 			<Control Id="lblChBandwidth" Text="帯域[KHz]" />
 			<Control Id="lblVoiceEmphasis" Text="エンファシス" />
 			<Control Id="lblSte" Text="STE" />
@@ -979,6 +979,15 @@
       <Item Id="Success" Text="成功" />
     </Commons>
     </FirmwareLoaderUI>
+	  
+  <FirmwareLoaderReleasesList Text="Select release version">
+    <Controls>
+      <Control Id="btnDetectModel" Text="Detect Radio Type" />
+      <Control Id="releasesGridView" Text="Date &amp; Time,Version,Type,Release Name,Downloads"/>
+      <Control Id="btnDown" Text=" Select &amp;&amp; continue"/>
+      <Control Id="btnCancel" Text=" Cancel"/>
+    </Controls>
+  </FirmwareLoaderReleasesList>
 	<Commons>
 		<Item Id="None" Text="None" />
 		<Item Id="Selected" Text="選択" />

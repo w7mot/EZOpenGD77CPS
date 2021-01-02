@@ -895,6 +895,14 @@
       <Item Id="Success" Text="Success" />
     </Commons>
     </FirmwareLoaderUI>
+	  <FirmwareLoaderReleasesList Text="Select release version">
+    <Controls>
+      <Control Id="btnDetectModel" Text="Detect Radio Type" />
+      <Control Id="releasesGridView" Text="Date &amp; Time,Version,Type,Release Name,Downloads"/>
+      <Control Id="btnDown" Text=" Select &amp;&amp; continue"/>
+      <Control Id="btnCancel" Text=" Cancel"/>
+    </Controls>
+  </FirmwareLoaderReleasesList>
   <Commons>
 		<Item Id="None" Text="None" />
 		<Item Id="Selected" Text="Selected" />
