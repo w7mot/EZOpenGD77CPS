@@ -980,12 +980,12 @@
     </Commons>
     </FirmwareLoaderUI>
 	  
-  <FirmwareLoaderReleasesList Text="Select release version">
+  <FirmwareLoaderReleasesList Text="リリースファームウエアの選択">
     <Controls>
-      <Control Id="btnDetectModel" Text="Detect Radio Type" />
-      <Control Id="releasesGridView" Text="Date &amp; Time,Version,Type,Release Name,Downloads"/>
-      <Control Id="btnDown" Text=" Select &amp;&amp; continue"/>
-      <Control Id="btnCancel" Text=" Cancel"/>
+      <Control Id="btnDetectModel" Text="検知した機種名" />
+      <Control Id="releasesGridView" Text="公開日時,バージョン,Type,リリース名,DL数"/>
+      <Control Id="btnDown" Text=" 選択して実行"/>
+      <Control Id="btnCancel" Text=" キャンセル"/>
     </Controls>
   </FirmwareLoaderReleasesList>
 	<Commons>
