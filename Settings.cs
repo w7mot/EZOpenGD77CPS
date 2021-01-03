@@ -221,17 +221,17 @@ internal class Settings
 	}
 
 
-    static string _003CLangChm_003Ek__BackingField;
+    static string HelpFilename;
 	[CompilerGenerated]
-	public static string smethod_2()
+	public static string GetHelpFilename()
 	{
-		return Settings._003CLangChm_003Ek__BackingField;
+		return Settings.HelpFilename;
 	}
 
 	[CompilerGenerated]
-	public static void smethod_3(string string_0)
+	public static void SetHelpFilename(string string_0)
 	{
-		Settings._003CLangChm_003Ek__BackingField = string_0;
+		Settings.HelpFilename = string_0;// "";
 	}
 	public static UserMode getUserExpertSettings()
 	{

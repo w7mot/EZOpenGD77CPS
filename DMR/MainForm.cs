@@ -3317,7 +3317,13 @@ namespace DMR
             IniFileUtils.WriteProfileString("Setup", "Language", Path.GetFileName(text));
             //Settings.smethod_1(text);
             Settings.setLanguageXMLFile(text);
-            Settings.smethod_3(Path.ChangeExtension(text, "chm"));
+            Settings.SetHelpFilename(Path.ChangeExtension(text, "chm"));
+			string helpFileName = Settings.GetHelpFilename();
+			if (!File.Exists(helpFileName))
+			{
+				// If the help has not been translated, use the english version
+				Settings.SetHelpFilename(Path.GetDirectoryName(helpFileName)+"\\English.chm");
+			}
             Settings.smethod_76("Read", ref Settings.SZ_READ);
             Settings.UpdateComponentTextsFromLanguageXmlData(this);
             Settings.UpdateComponentTextsFromLanguageXmlData(this.frmHelp);
@@ -3726,7 +3732,7 @@ namespace DMR
 
         public void ShowHelp(string helpId)
         {
-            string str = Settings.smethod_2();
+            string str = Settings.GetHelpFilename();
             if (MainForm.dicHelp.ContainsKey(helpId) && !string.IsNullOrEmpty(MainForm.dicHelp[helpId].Trim()))
             {
                 string text = "mk:@MSITStore:" + str + MainForm.dicHelp[helpId];
