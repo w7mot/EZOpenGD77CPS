@@ -900,7 +900,7 @@
     <Controls>
       <Control Id="btnDetectModel" Text="Erkenne Gerätetyp" />
       <Control Id="releasesGridView" Text="Datum &amp; Zeit,Version,Typ,Release Name,Downloads"/>
-      <Control Id="btnDown" Text="Auswählen &amp; fortfahren"/>
+      <Control Id="btnDown" Text="Auswählen &amp;&amp; fortfahren"/>
       <Control Id="btnCancel" Text="Abbrechen"/>
     </Controls>
   </FirmwareLoaderReleasesList>
