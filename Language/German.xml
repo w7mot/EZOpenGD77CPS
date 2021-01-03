@@ -896,12 +896,12 @@
       <Item Id="Success" Text="Erfolgreich" />
     </Commons>
     </FirmwareLoaderUI>
-	  <FirmwareLoaderReleasesList Text="Select release version">
+	  <FirmwareLoaderReleasesList Text="Release Version auswählen">
     <Controls>
-      <Control Id="btnDetectModel" Text="Detect Radio Type" />
-      <Control Id="releasesGridView" Text="Date &amp; Time,Version,Type,Release Name,Downloads"/>
-      <Control Id="btnDown" Text=" Select &amp;&amp; continue"/>
-      <Control Id="btnCancel" Text=" Cancel"/>
+      <Control Id="btnDetectModel" Text="Erkenne Gerätetyp" />
+      <Control Id="releasesGridView" Text="Datum &amp; Zeit,Version,Typ,Release Name,Downloads"/>
+      <Control Id="btnDown" Text="Auswählen &amp; fortfahren"/>
+      <Control Id="btnCancel" Text="Abbrechen"/>
     </Controls>
   </FirmwareLoaderReleasesList>
 	<Commons>
