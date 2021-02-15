@@ -526,6 +526,9 @@ namespace DMR
 			{
 				calData.DACOscRefTune = (short)(1024 + calData.DACOscRefTune);
 			}
+
+			calData.Q_MOD2_OFFSET = (sbyte)calData.DACOscRefTune;
+
 			int num = Marshal.SizeOf(typeof(CalibrationData));
 			byte[] array = new byte[num];
 			IntPtr intPtr = Marshal.AllocHGlobal(num);

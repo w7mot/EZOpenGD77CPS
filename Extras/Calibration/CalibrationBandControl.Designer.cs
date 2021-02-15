@@ -294,12 +294,12 @@
             // 
             this.nudVhfOscRef.Location = new System.Drawing.Point(712, 322);
             this.nudVhfOscRef.Maximum = new decimal(new int[] {
-            511,
+            127,
             0,
             0,
             0});
             this.nudVhfOscRef.Minimum = new decimal(new int[] {
-            512,
+            128,
             0,
             0,
             -2147483648});
