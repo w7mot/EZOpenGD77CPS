@@ -198,7 +198,7 @@ namespace DMR
 			commPort.Write(sendbuffer, 0, 5);
 			while (commPort.BytesToRead == 0)
 			{
-				Thread.Sleep(0);
+				Thread.Sleep(1);
 			}
 			commPort.Read(readbuffer, 0, 64);
 
@@ -218,7 +218,7 @@ namespace DMR
 			commPort.Write(sendbuffer, 0, len + 8);
 			while (commPort.BytesToRead == 0)
 			{
-				Thread.Sleep(0);
+				Thread.Sleep(1);
 			}
 			commPort.Read(readbuffer, 0, 64);
 
@@ -234,7 +234,7 @@ namespace DMR
 			commPort.Write(sendbuffer, 0, 2);
 			while (commPort.BytesToRead == 0)
 			{
-				Thread.Sleep(0);
+				Thread.Sleep(1);
 			}
 			commPort.Read(readbuffer, 0, 64);
 
@@ -277,7 +277,7 @@ namespace DMR
 				commPort.Write(sendbuffer, 0, 8);
 				while (commPort.BytesToRead == 0)
 				{
-					Thread.Sleep(0);
+					Thread.Sleep(1);
 				}
 				commPort.Read(readbuffer, 0, 64);
 
@@ -445,7 +445,7 @@ namespace DMR
 				commPort.Write(sendbuffer, 0, len + 8);
 				while (commPort.BytesToRead == 0)
 				{
-					Thread.Sleep(0);
+					Thread.Sleep(1);
 				}
 				commPort.Read(readbuffer, 0, 64);
 
@@ -520,7 +520,7 @@ namespace DMR
 				commPort.Write(sendbuffer, 0, len + 8);
 				while (commPort.BytesToRead == 0)
 				{
-					Thread.Sleep(0);
+					Thread.Sleep(1);
 				}
 				commPort.Read(readbuffer, 0, 64);
 
