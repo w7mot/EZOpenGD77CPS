@@ -480,13 +480,11 @@ namespace DMR
 
         private void txtLine1_Leave(object sender, EventArgs e)
         {
-            this.txtLine1.Text = this.txtLine1.Text.Trim();
             BootItemForm.dataContent.BootLine1 = this.txtLine1.Text;
         }
 
         private void txtLine2_Leave(object sender, EventArgs e)
         {
-            this.txtLine2.Text = this.txtLine2.Text.Trim();
             BootItemForm.dataContent.BootLine2 = this.txtLine2.Text;
         }
 
