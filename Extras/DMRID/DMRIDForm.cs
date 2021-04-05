@@ -126,35 +126,95 @@ namespace DMR
 
 			updateTotalNumberMessage();
 		}
+		/*
+				private void btnDownload_Click(object sender, EventArgs e)
+				{
+					if (DataList == null || _isDownloading)
+					{
+						return;
+					}
 
-		private void btnDownload_Click(object sender, EventArgs e)
-		{
-			if (DataList == null || _isDownloading)
-			{
-				return;
-			}
+					_wc = new WebClient();
+					try
+					{
+						lblMessage.Text = Settings.dicCommon["DownloadContactsDownloading"];
+						Cursor.Current = Cursors.WaitCursor;
+						this.Refresh();
+						Application.DoEvents();
+						_wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(downloadFromHamDigitalCompleteHandler);
+						_wc.DownloadStringAsync(new Uri("http://ham-digital.org/user_by_lh.php?id=" + txtRegionId.Text));
 
-			_wc = new WebClient();
-			try
-			{
-				lblMessage.Text = Settings.dicCommon["DownloadContactsDownloading"];
-				Cursor.Current = Cursors.WaitCursor;
-				this.Refresh();
-				Application.DoEvents();
-				_wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(downloadFromHamDigitalCompleteHandler);
-				_wc.DownloadStringAsync(new Uri("http://ham-digital.org/user_by_lh.php?id=" + txtRegionId.Text));
-	
-			}
-			catch (Exception )
-			{
-				Cursor.Current = Cursors.Default;
-				MessageBox.Show(Settings.dicCommon["UnableDownloadFromInternet"]);
-				return;
-			}
-			_isDownloading = true;
+					}
+					catch (Exception )
+					{
+						Cursor.Current = Cursors.Default;
+						MessageBox.Show(Settings.dicCommon["UnableDownloadFromInternet"]);
+						return;
+					}
+					_isDownloading = true;
 
-		}
+				}
 
+						private void downloadFromHamDigitalCompleteHandler(object sender, DownloadStringCompletedEventArgs e )
+				{
+					string ownRadioId = GeneralSetForm.data.RadioId;
+					string csv;// = e.Result;
+					int maxAge = Int32.MaxValue;
+
+
+					try
+					{
+						csv = e.Result;
+					}
+					catch(Exception)
+					{
+						MessageBox.Show(Settings.dicCommon["UnableDownloadFromInternet"]);
+						return;
+					}
+
+					try
+					{
+						maxAge = Int32.Parse(this.txtAgeMaxDays.Text);
+					}
+					catch(Exception)
+					{
+
+					}
+
+					try
+					{
+						bool first = true;
+						foreach (var csvLine in csv.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+						{
+							if (first)
+							{
+								first = false;
+								continue;
+							}
+							DMRDataItem item = (new DMRDataItem()).FromHamDigital(csvLine);
+							if (item.AgeAsInt <= maxAge)
+							{
+								DataList.Add(item);
+							}
+						}
+						DataList = DataList.Distinct().ToList();
+
+						rebindData();
+						Cursor.Current = Cursors.Default;
+
+					}
+					catch (Exception)
+					{
+						MessageBox.Show(Settings.dicCommon["ErrorParsingData"]);
+					}
+					finally
+					{
+						_wc = null;
+						_isDownloading = false;
+						Cursor.Current = Cursors.Default;
+					}
+				}
+		*/
 		private void downloadFromRadioIdCompleteHandler(object sender, DownloadStringCompletedEventArgs e)
 		{
 			string ownRadioId = GeneralSetForm.data.RadioId;
@@ -219,65 +279,7 @@ namespace DMR
 
 
 
-		private void downloadFromHamDigitalCompleteHandler(object sender, DownloadStringCompletedEventArgs e )
-		{
-			string ownRadioId = GeneralSetForm.data.RadioId;
-			string csv;// = e.Result;
-			int maxAge = Int32.MaxValue;
 
-
-			try
-			{
-				csv = e.Result;
-			}
-			catch(Exception)
-			{
-				MessageBox.Show(Settings.dicCommon["UnableDownloadFromInternet"]);
-				return;
-			}
-
-			try
-			{
-				maxAge = Int32.Parse(this.txtAgeMaxDays.Text);
-			}
-			catch(Exception)
-			{
-
-			}
-
-			try
-			{
-				bool first = true;
-				foreach (var csvLine in csv.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
-				{
-					if (first)
-					{
-						first = false;
-						continue;
-					}
-					DMRDataItem item = (new DMRDataItem()).FromHamDigital(csvLine);
-					if (item.AgeAsInt <= maxAge)
-					{
-						DataList.Add(item);
-					}
-				}
-				DataList = DataList.Distinct().ToList();
-
-				rebindData();
-				Cursor.Current = Cursors.Default;
-	
-			}
-			catch (Exception)
-			{
-				MessageBox.Show(Settings.dicCommon["ErrorParsingData"]);
-			}
-			finally
-			{
-				_wc = null;
-				_isDownloading = false;
-				Cursor.Current = Cursors.Default;
-			}
-		}
 
 		private void updateTotalNumberMessage()
 		{

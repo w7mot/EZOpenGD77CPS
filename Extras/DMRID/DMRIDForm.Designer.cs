@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DMRIDForm));
-            this.btnDownload = new System.Windows.Forms.Button();
             this.btnWriteToGD77 = new System.Windows.Forms.Button();
             this.txtRegionId = new System.Windows.Forms.TextBox();
             this.btnClear = new System.Windows.Forms.Button();
@@ -38,26 +37,16 @@
             this.txtAgeMaxDays = new System.Windows.Forms.TextBox();
             this.lblRegionId = new System.Windows.Forms.Label();
             this.lblInactivityFilter = new System.Windows.Forms.Label();
-            this.chkEnhancedFirmware = new System.Windows.Forms.CheckBox();
             this.cmbStringLen = new System.Windows.Forms.ComboBox();
             this.lblEnhancedLength = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnDownloadFromRadioId = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.chkEnhancedFirmware = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnDownload
-            // 
-            this.btnDownload.Location = new System.Drawing.Point(12, 68);
-            this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(203, 23);
-            this.btnDownload.TabIndex = 0;
-            this.btnDownload.Text = "Download from HamDigital";
-            this.btnDownload.UseVisualStyleBackColor = true;
-            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
             // btnWriteToGD77
             // 
@@ -132,17 +121,6 @@
             this.lblInactivityFilter.Text = "HamDigital - Inactivity filter (days)";
             this.lblInactivityFilter.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // chkEnhancedFirmware
-            // 
-            this.chkEnhancedFirmware.AutoSize = true;
-            this.chkEnhancedFirmware.Location = new System.Drawing.Point(15, 19);
-            this.chkEnhancedFirmware.Name = "chkEnhancedFirmware";
-            this.chkEnhancedFirmware.Size = new System.Drawing.Size(146, 17);
-            this.chkEnhancedFirmware.TabIndex = 9;
-            this.chkEnhancedFirmware.Text = "Enhanced firmware mode";
-            this.chkEnhancedFirmware.UseVisualStyleBackColor = true;
-            this.chkEnhancedFirmware.CheckedChanged += new System.EventHandler(this.chkEnhancedFirmware_CheckedChanged);
-            // 
             // cmbStringLen
             // 
             this.cmbStringLen.FormattingEnabled = true;
@@ -182,7 +160,7 @@
             // 
             // btnDownloadFromRadioId
             // 
-            this.btnDownloadFromRadioId.Location = new System.Drawing.Point(12, 100);
+            this.btnDownloadFromRadioId.Location = new System.Drawing.Point(15, 71);
             this.btnDownloadFromRadioId.Name = "btnDownloadFromRadioId";
             this.btnDownloadFromRadioId.Size = new System.Drawing.Size(203, 23);
             this.btnDownloadFromRadioId.TabIndex = 0;
@@ -204,13 +182,24 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(15, 132);
+            this.button1.Location = new System.Drawing.Point(15, 104);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 23);
+            this.button1.Size = new System.Drawing.Size(203, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Import CSV";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnImportCSV_Click);
+            // 
+            // chkEnhancedFirmware
+            // 
+            this.chkEnhancedFirmware.AutoSize = true;
+            this.chkEnhancedFirmware.Location = new System.Drawing.Point(15, 19);
+            this.chkEnhancedFirmware.Name = "chkEnhancedFirmware";
+            this.chkEnhancedFirmware.Size = new System.Drawing.Size(146, 17);
+            this.chkEnhancedFirmware.TabIndex = 9;
+            this.chkEnhancedFirmware.Text = "Enhanced firmware mode";
+            this.chkEnhancedFirmware.UseVisualStyleBackColor = true;
+            this.chkEnhancedFirmware.CheckedChanged += new System.EventHandler(this.chkEnhancedFirmware_CheckedChanged);
             // 
             // DMRIDForm
             // 
@@ -221,7 +210,6 @@
             this.Controls.Add(this.txtAgeMaxDays);
             this.Controls.Add(this.txtRegionId);
             this.Controls.Add(this.lblInactivityFilter);
-            this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.dataGridView1);
@@ -245,8 +233,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnDownload;
         private System.Windows.Forms.Button btnWriteToGD77;
         private System.Windows.Forms.TextBox txtRegionId;
         private System.Windows.Forms.Button btnClear;
@@ -255,12 +241,12 @@
         private System.Windows.Forms.TextBox txtAgeMaxDays;
         private System.Windows.Forms.Label lblRegionId;
         private System.Windows.Forms.Label lblInactivityFilter;
-        private System.Windows.Forms.CheckBox chkEnhancedFirmware;
         private System.Windows.Forms.ComboBox cmbStringLen;
         private System.Windows.Forms.Label lblEnhancedLength;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button btnDownloadFromRadioId;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox chkEnhancedFirmware;
     }
 }
