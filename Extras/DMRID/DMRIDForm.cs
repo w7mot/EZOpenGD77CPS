@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Net;
-using System.Web.Script.Serialization;
 using System.IO;
 using System.IO.Ports;
 using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace DMR
 {
@@ -36,6 +36,7 @@ namespace DMR
 		private SaveFileDialog _saveFileDialog = new SaveFileDialog();
 		private OpenFileDialog _openFileDialog = new OpenFileDialog();
 
+		private string _radioIdCSV = null;
 
 		public static void ClearStaticData()
 		{
@@ -217,14 +218,11 @@ namespace DMR
 		*/
 		private void downloadFromRadioIdCompleteHandler(object sender, DownloadStringCompletedEventArgs e)
 		{
-			string ownRadioId = GeneralSetForm.data.RadioId;
-			string csv;// = e.Result;
-			int maxAge = Int32.MaxValue;
-
+			//string ownRadioId = GeneralSetForm.data.RadioId;
 
 			try
 			{
-				csv = e.Result;
+				_radioIdCSV = e.Result;
 			}
 			catch (Exception)
 			{
@@ -232,19 +230,23 @@ namespace DMR
 				return;
 			}
 
-			try
-			{
-				maxAge = Int32.Parse(this.txtAgeMaxDays.Text);
-			}
-			catch (Exception)
-			{
+			importFromRadioIdCSV();
 
-			}
+			_wc = null;
+			_isDownloading = false;
+			Cursor.Current = Cursors.Default;
+		}
 
+		private void importFromRadioIdCSV()
+        {
+			if (_radioIdCSV == null)
+            {
+				return;
+            }
 			try
 			{
 				bool first = true;
-				foreach (var csvLine in csv.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries))
+				foreach (var csvLine in _radioIdCSV.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries))
 				{
 					if (first)
 					{
@@ -269,15 +271,7 @@ namespace DMR
 			{
 				MessageBox.Show(Settings.dicCommon["ErrorParsingData"]);
 			}
-			finally
-			{
-				_wc = null;
-				_isDownloading = false;
-				Cursor.Current = Cursors.Default;
-			}
 		}
-
-
 
 
 
@@ -376,10 +370,28 @@ namespace DMR
 			}
 		}
 
-		private byte[] GenerateUploadData()
+		private byte[] GenerateUploadData(UInt32 flashMemoryId)
 		{
+			int dmrIdMemorySize;
 
-			int numRecords = Math.Min(DataList.Count, MAX_RECORDS);
+			switch(flashMemoryId)
+            {
+				case 0x4014:// 4014 25Q80 8M bits 2M bytes, used in the GD-77
+					dmrIdMemorySize = 0x40000;//256k
+					break;
+				case 0x4015:// 4015 25Q16 16M bits 2M bytes, used in the Baofeng DM-1801 ?
+					dmrIdMemorySize = 0x100000;// 1M
+					break;
+				case 0x4017:    // 4017 25Q64 64M bits. Used in Roger's special GD-77 radios modified on the TYT production line
+					dmrIdMemorySize = 0x700000;//7M
+					break;
+				default:
+					dmrIdMemorySize = 0x40000;//256k
+					break;
+
+			}
+			int maxRecords =  (dmrIdMemorySize - HEADER_LENGTH) / (_stringLength + 4);
+			int numRecords = Math.Min(DataList.Count, maxRecords);
 			int dataSize = numRecords * (4 + _stringLength) + HEADER_LENGTH;
 			dataSize = ((dataSize / 32)+1) * 32;
 			byte[] buffer = new byte[dataSize];
@@ -551,6 +563,52 @@ namespace DMR
 		private void close_data_mode()
 		{
 			//data_mode = OpenGD77CommsTransferData.CommsDataMode.DataModeNone;
+		}
+
+
+		private bool ReadRadioInfo(OpenGD77CommsTransferData dataObj)
+		{
+
+			byte[] sendbuffer = new byte[512];
+			byte[] readbuffer = new byte[512];
+			int currentDataAddressInLocalBuffer = 0;
+
+
+			sendbuffer[0] = (byte)'R';
+			sendbuffer[1] = (byte)dataObj.mode;
+			sendbuffer[2] = (byte)(0);
+			sendbuffer[3] = (byte)(0);
+			sendbuffer[4] = (byte)(0);
+			sendbuffer[5] = (byte)(0);
+			sendbuffer[6] = (byte)(0);
+			sendbuffer[7] = (byte)(0);
+
+
+			_port.Write(sendbuffer, 0, 8);
+			while (_port.BytesToRead == 0)
+			{
+				Thread.Sleep(0);
+			}
+			_port.Read(readbuffer, 0, 64);
+
+			if (readbuffer[0] == 'R')
+			{
+				int len = (readbuffer[1] << 8) + (readbuffer[2] << 0);
+				for (int i = 0; i < len; i++)
+				{
+					dataObj.dataBuff[currentDataAddressInLocalBuffer++] = readbuffer[i + 3];
+				}
+			}
+			else
+			{
+				Console.WriteLine(String.Format("read stopped (error at {0:X8})", 0));
+				close_data_mode();
+				return false;
+
+			}
+
+			close_data_mode();
+			return true;
 		}
 
 		private void ReadFlashOrEEPROM(OpenGD77CommsTransferData dataObj)
@@ -744,11 +802,68 @@ namespace DMR
 			return ((buffer[1] == commandNumber));
 		}
 
+		private RadioInfo readOpenGD77RadioInfo()
+        {
+
+			/*
+			String gd77CommPort = SetupDiWrap.ComPortNameFromFriendlyNamePrefix("OpenGD77");
+			try
+			{
+				_port = new SerialPort(gd77CommPort, 115200, Parity.None, 8, StopBits.One);
+				_port.ReadTimeout = 1000;
+				_port.Open();
+			}
+			catch (Exception)
+			{
+				_port = null;
+				MessageBox.Show("Failed to open comm port", "Error");
+				return;
+			}*/
+
+
+			sendCommand(0);
+			sendCommand(1);
+			sendCommand(2, 0, 0, 3, 1, 0, "CPS");
+			sendCommand(2, 0, 16, 3, 1, 0, "Read");
+			sendCommand(2, 0, 32, 3, 1, 0, "Radio");
+			sendCommand(2, 0, 48, 3, 1, 0, "Info");
+			sendCommand(3);
+			sendCommand(6, 4);// flash red LED
+
+			OpenGD77CommsTransferData dataObjRead = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.NONE);
+			dataObjRead.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeReadRadioInfo;
+			dataObjRead.localDataBufferStartPosition = 0;
+			dataObjRead.transferLength = 0;
+			dataObjRead.dataBuff = new byte[128];
+
+			RadioInfo radioInfo = new RadioInfo();
+			if (ReadRadioInfo(dataObjRead))
+			{ 
+				radioInfo = ByteArrayToRadioInfo(dataObjRead.dataBuff);
+			}
+
+
+			sendCommand(5);
+			/*
+			if (_port != null)
+			{
+				try
+				{
+					_port.Close();
+				}
+				catch (Exception)
+				{
+					MessageBox.Show("Failed to close OpenGD77 comm port", "Warning");
+				}
+			}
+			*/
+			return radioInfo;
+		}
 
 		private void writeToOpenGD77()
 		{
 			String gd77CommPort = SetupDiWrap.ComPortNameFromFriendlyNamePrefix("OpenGD77");
-
+			int radioMemoryAddress = 0x30000;
 			try
 			{
 				_port = new SerialPort(gd77CommPort, 115200, Parity.None, 8, StopBits.One);
@@ -762,6 +877,15 @@ namespace DMR
 				return;
 			}
 
+
+			RadioInfo radioInfo = readOpenGD77RadioInfo();
+			
+			// GD77 etc has a 1Mb chip with ID
+			if (radioInfo.flashId == 0x4015 || radioInfo.flashId == 0x4017)
+            {
+				radioMemoryAddress = 0x100000;
+			}
+
 			// Commands to control the screen etc in the firmware
 			sendCommand(0);
 			sendCommand(1);
@@ -772,15 +896,14 @@ namespace DMR
 			sendCommand(3);
 			sendCommand(6, 4);// flash red LED
 
-
 			OpenGD77CommsTransferData dataObj = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.NONE);
 			dataObj.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeWriteFlash;
 
 			SIG_PATTERN_BYTES[3] = (byte)(0x4a + _stringLength + 4);
 
-			dataObj.dataBuff = GenerateUploadData();
+			dataObj.dataBuff = GenerateUploadData(radioInfo.flashId);
 			dataObj.localDataBufferStartPosition = 0;
-			dataObj.startDataAddressInTheRadio = 0x30000;
+			dataObj.startDataAddressInTheRadio = radioMemoryAddress;
 			dataObj.transferLength = (dataObj.dataBuff.Length / 32) * 32;
 			WriteFlash(dataObj);
 			progressBar1.Value = 0;
@@ -874,6 +997,12 @@ namespace DMR
 				return;
 			}
 
+			if (_radioIdCSV != null)
+            {
+				importFromRadioIdCSV();
+				return;
+			}
+
 			_wc = new WebClient();
 			try
 			{
@@ -898,6 +1027,48 @@ namespace DMR
 			}
 			_isDownloading = true;
 		}
+
+
+		RadioInfo ByteArrayToRadioInfo(byte[] bytes)
+		{
+			RadioInfo radioInfo;
+			GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
+			try
+			{
+				radioInfo = (RadioInfo)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(RadioInfo));
+			}
+			finally
+			{
+				handle.Free();
+			}
+			return radioInfo;
+		}
+
+		[StructLayout(LayoutKind.Explicit, Size = 38, Pack = 1)]
+		public struct RadioInfo
+		{
+			[MarshalAs(UnmanagedType.U4)]
+			[FieldOffset(0)]
+			public UInt32 structVersion;
+
+			[MarshalAs(UnmanagedType.U4)]
+			[FieldOffset(4)]
+			public UInt32 radioType;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
+			[FieldOffset(8)]
+			public string gitRevision;
+			
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
+			[FieldOffset(24)]
+			public string buildDateTime;
+
+			[MarshalAs(UnmanagedType.U4)]
+			[FieldOffset(40)]
+			public UInt32 flashId;
+		}
 	}
+
+
 }
 

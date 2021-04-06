@@ -34,16 +34,14 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.lblMessage = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txtAgeMaxDays = new System.Windows.Forms.TextBox();
             this.lblRegionId = new System.Windows.Forms.Label();
-            this.lblInactivityFilter = new System.Windows.Forms.Label();
             this.cmbStringLen = new System.Windows.Forms.ComboBox();
             this.lblEnhancedLength = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnDownloadFromRadioId = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.chkEnhancedFirmware = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +58,7 @@
             // 
             // txtRegionId
             // 
-            this.txtRegionId.Location = new System.Drawing.Point(476, 100);
+            this.txtRegionId.Location = new System.Drawing.Point(476, 74);
             this.txtRegionId.Name = "txtRegionId";
             this.txtRegionId.Size = new System.Drawing.Size(42, 20);
             this.txtRegionId.TabIndex = 3;
@@ -94,32 +92,14 @@
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dataGridView1_SortCompare);
             // 
-            // txtAgeMaxDays
-            // 
-            this.txtAgeMaxDays.Location = new System.Drawing.Point(476, 74);
-            this.txtAgeMaxDays.Name = "txtAgeMaxDays";
-            this.txtAgeMaxDays.Size = new System.Drawing.Size(42, 20);
-            this.txtAgeMaxDays.TabIndex = 3;
-            this.txtAgeMaxDays.Text = "365";
-            this.txtAgeMaxDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // lblRegionId
             // 
-            this.lblRegionId.Location = new System.Drawing.Point(321, 100);
+            this.lblRegionId.Location = new System.Drawing.Point(321, 74);
             this.lblRegionId.Name = "lblRegionId";
             this.lblRegionId.Size = new System.Drawing.Size(149, 16);
             this.lblRegionId.TabIndex = 7;
             this.lblRegionId.Text = "Region filter number";
             this.lblRegionId.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // lblInactivityFilter
-            // 
-            this.lblInactivityFilter.Location = new System.Drawing.Point(249, 74);
-            this.lblInactivityFilter.Name = "lblInactivityFilter";
-            this.lblInactivityFilter.Size = new System.Drawing.Size(223, 16);
-            this.lblInactivityFilter.TabIndex = 7;
-            this.lblInactivityFilter.Text = "HamDigital - Inactivity filter (days)";
-            this.lblInactivityFilter.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // cmbStringLen
             // 
@@ -135,7 +115,31 @@
             "13",
             "14",
             "15",
-            "16"});
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40"});
             this.cmbStringLen.Location = new System.Drawing.Point(15, 42);
             this.cmbStringLen.Name = "cmbStringLen";
             this.cmbStringLen.Size = new System.Drawing.Size(56, 21);
@@ -180,16 +184,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Data record length";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(15, 104);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(203, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Import CSV";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnImportCSV_Click);
-            // 
             // chkEnhancedFirmware
             // 
             this.chkEnhancedFirmware.AutoSize = true;
@@ -201,15 +195,23 @@
             this.chkEnhancedFirmware.UseVisualStyleBackColor = true;
             this.chkEnhancedFirmware.CheckedChanged += new System.EventHandler(this.chkEnhancedFirmware_CheckedChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(15, 104);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(203, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Import CSV";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnImportCSV_Click);
+            // 
             // DMRIDForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(526, 375);
             this.Controls.Add(this.lblRegionId);
-            this.Controls.Add(this.txtAgeMaxDays);
             this.Controls.Add(this.txtRegionId);
-            this.Controls.Add(this.lblInactivityFilter);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.dataGridView1);
@@ -238,9 +240,7 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox txtAgeMaxDays;
         private System.Windows.Forms.Label lblRegionId;
-        private System.Windows.Forms.Label lblInactivityFilter;
         private System.Windows.Forms.ComboBox cmbStringLen;
         private System.Windows.Forms.Label lblEnhancedLength;
         private System.Windows.Forms.ProgressBar progressBar1;

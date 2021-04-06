@@ -7,7 +7,7 @@ namespace DMR
 {
 	public class OpenGD77CommsTransferData
 	{
-		public enum CommsDataMode { DataModeNone = 0, DataModeReadFlash = 1, DataModeReadEEPROM = 2, DataModeWriteFlash = 3, DataModeWriteEEPROM = 4, DataModeReadMCUROM = 5, DataModeReadScreenGrab = 6, DataModeWriteWAV = 7,DataModeReadAMBE = 8 };
+		public enum CommsDataMode { DataModeNone = 0, DataModeReadFlash = 1, DataModeReadEEPROM = 2, DataModeWriteFlash = 3, DataModeWriteEEPROM = 4, DataModeReadMCUROM = 5, DataModeReadScreenGrab = 6, DataModeWriteWAV = 7,DataModeReadAMBE = 8, DataModeReadRadioInfo = 9 };
 		public enum CommsAction { NONE, BACKUP_EEPROM, RESTORE_EEPROM, BACKUP_FLASH, RESTORE_FLASH, BACKUP_CALIBRATION, RESTORE_CALIBRATION, READ_CODEPLUG, WRITE_CODEPLUG, BACKUP_MCU_ROM, DOWLOAD_SCREENGRAB, COMPRESS_AUDIO, WRITE_VOICE_PROMPTS}
 
 
