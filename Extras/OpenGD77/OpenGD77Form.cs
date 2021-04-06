@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -12,6 +11,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Threading;
 //using Toub.Sound.Midi;
+using System.Runtime.InteropServices;
 
 namespace DMR
 {
@@ -821,6 +821,10 @@ namespace DMR
 							dataObj.responseCode = 1;
 							break;
 						}
+
+						RadioInfo radioInfo = readOpenGD77RadioInfo();
+
+
 						sendCommand(1);// Clear screen
 						sendCommand(2, 0, 0, 3, 1, 0, StringsDict["RADIO_DISPLAY_CPS"]);// Write a line of text to CPS screen at position x=0,y=3 with font size 3, alignment centre
 						sendCommand(2, 0, 16, 3, 1, 0, StringsDict["RADIO_DISPLAY_Backup"]);// Write a line of text to CPS screen
@@ -829,10 +833,25 @@ namespace DMR
 						sendCommand(6,3);// flash green LED
 
 						dataObj.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeReadFlash;
-						dataObj.dataBuff = new Byte[1024 * 1024];
+						switch (radioInfo.flashId)
+						{
+							case 0x4014:// 4014 25Q80 8M bits 2M bytes, used in the GD-77
+								dataObj.dataBuff = new Byte[1024 * 1024 * 1];
+								break;
+							case 0x4015:// 4015 25Q16 16M bits 2M bytes, used in the Baofeng DM-1801 ?
+								dataObj.dataBuff = new Byte[1024 * 1024 * 2];
+								break;
+							case 0x4017:    // 4017 25Q64 64M bits. Used in Roger's special GD-77 radios modified on the TYT production line
+								dataObj.dataBuff = new Byte[1024 * 1024 * 8];
+								break;
+							default:
+								dataObj.dataBuff = new Byte[1024 * 1024 * 1];
+								break;
+						}
+
 						dataObj.localDataBufferStartPosition = 0;
 						dataObj.startDataAddressInTheRadio = 0;
-						dataObj.transferLength = 1024 * 1024;
+						dataObj.transferLength = dataObj.dataBuff.Length;
 						displayMessage(StringsDict["Reading_Flash"]);
 						if (!ReadFlashOrEEPROMOrROMOrScreengrab(dataObj))
 						{
@@ -1974,5 +1993,147 @@ namespace DMR
 			melodyToBytes(false);
 
 		}
-    }
+
+		private bool ReadRadioInfo(OpenGD77CommsTransferData dataObj)
+		{
+
+			byte[] sendbuffer = new byte[512];
+			byte[] readbuffer = new byte[512];
+			int currentDataAddressInLocalBuffer = 0;
+
+
+			sendbuffer[0] = (byte)'R';
+			sendbuffer[1] = (byte)dataObj.mode;
+			sendbuffer[2] = (byte)(0);
+			sendbuffer[3] = (byte)(0);
+			sendbuffer[4] = (byte)(0);
+			sendbuffer[5] = (byte)(0);
+			sendbuffer[6] = (byte)(0);
+			sendbuffer[7] = (byte)(0);
+
+
+			_port.Write(sendbuffer, 0, 8);
+			while (_port.BytesToRead == 0)
+			{
+				Thread.Sleep(0);
+			}
+			_port.Read(readbuffer, 0, 64);
+
+			if (readbuffer[0] == 'R')
+			{
+				int len = (readbuffer[1] << 8) + (readbuffer[2] << 0);
+				for (int i = 0; i < len; i++)
+				{
+					dataObj.dataBuff[currentDataAddressInLocalBuffer++] = readbuffer[i + 3];
+				}
+			}
+			else
+			{
+				Console.WriteLine(String.Format("read stopped (error at {0:X8})", 0));
+				close_data_mode();
+				return false;
+
+			}
+
+			close_data_mode();
+			return true;
+		}
+
+		private RadioInfo readOpenGD77RadioInfo()
+		{
+
+			/*
+			String gd77CommPort = SetupDiWrap.ComPortNameFromFriendlyNamePrefix("OpenGD77");
+			try
+			{
+				_port = new SerialPort(gd77CommPort, 115200, Parity.None, 8, StopBits.One);
+				_port.ReadTimeout = 1000;
+				_port.Open();
+			}
+			catch (Exception)
+			{
+				_port = null;
+				MessageBox.Show("Failed to open comm port", "Error");
+				return;
+			}*/
+
+
+			sendCommand(0);
+			sendCommand(1);
+			sendCommand(2, 0, 0, 3, 1, 0, "CPS");
+			sendCommand(2, 0, 16, 3, 1, 0, "Read");
+			sendCommand(2, 0, 32, 3, 1, 0, "Radio");
+			sendCommand(2, 0, 48, 3, 1, 0, "Info");
+			sendCommand(3);
+			sendCommand(6, 4);// flash red LED
+
+			OpenGD77CommsTransferData dataObjRead = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.NONE);
+			dataObjRead.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeReadRadioInfo;
+			dataObjRead.localDataBufferStartPosition = 0;
+			dataObjRead.transferLength = 0;
+			dataObjRead.dataBuff = new byte[128];
+
+			RadioInfo radioInfo = new RadioInfo();
+			if (ReadRadioInfo(dataObjRead))
+			{
+				radioInfo = ByteArrayToRadioInfo(dataObjRead.dataBuff);
+			}
+
+
+			sendCommand(5);
+			/*
+			if (_port != null)
+			{
+				try
+				{
+					_port.Close();
+				}
+				catch (Exception)
+				{
+					MessageBox.Show("Failed to close OpenGD77 comm port", "Warning");
+				}
+			}
+			*/
+			return radioInfo;
+		}
+
+		RadioInfo ByteArrayToRadioInfo(byte[] bytes)
+		{
+			RadioInfo radioInfo;
+			GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
+			try
+			{
+				radioInfo = (RadioInfo)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(RadioInfo));
+			}
+			finally
+			{
+				handle.Free();
+			}
+			return radioInfo;
+		}
+
+		[StructLayout(LayoutKind.Explicit, Size = 38, Pack = 1)]
+		public struct RadioInfo
+		{
+			[MarshalAs(UnmanagedType.U4)]
+			[FieldOffset(0)]
+			public UInt32 structVersion;
+
+			[MarshalAs(UnmanagedType.U4)]
+			[FieldOffset(4)]
+			public UInt32 radioType;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
+			[FieldOffset(8)]
+			public string gitRevision;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
+			[FieldOffset(24)]
+			public string buildDateTime;
+
+			[MarshalAs(UnmanagedType.U4)]
+			[FieldOffset(40)]
+			public UInt32 flashId;
+		}
+	}
 }
