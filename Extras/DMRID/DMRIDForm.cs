@@ -106,10 +106,12 @@ namespace DMR
 
 			rebindData();	
 
-#if OpenGD77
-			chkEnhancedFirmware.Checked = true;
-			chkEnhancedFirmware.Visible = false;
-#endif
+			cmbStringLen.SelectedIndex = 9;
+			cmbStringLen.Visible = true;
+			lblEnhancedLength.Visible = true;
+			cmbRadioType.SelectedIndex = 0;
+			updateTotalNumberMessage();
+
 			FormBorderStyle = FormBorderStyle.FixedSingle;
 
 		}
@@ -296,77 +298,13 @@ namespace DMR
 			}
 		}
 
-		private void btnReadFromGD77_Click(object sender, EventArgs e)
-		{
-
-			MainForm.CommsBuffer = new byte[0x100000];// 128k buffer
-			CodeplugComms.CommunicationMode = CodeplugComms.CommunicationType.dataRead;
-			CommPrgForm commPrgForm = new CommPrgForm(true);// true =  close download form as soon as download is complete
-			commPrgForm.StartPosition = FormStartPosition.CenterParent;
-			CodeplugComms.startAddress = 0x50100;
-			CodeplugComms.transferLength = 0x20;
-			DialogResult result = commPrgForm.ShowDialog();
-			Array.Copy(MainForm.CommsBuffer, 0x50100, DMRIDForm.DMRIDBuffer, 0, 0x20);
-			if (!isInMemoryAccessMode(DMRIDForm.DMRIDBuffer))
-			{
-				MessageBox.Show(Settings.dicCommon["EnableMemoryAccessMode"]);
-				return;
-			}
-
-			CodeplugComms.startAddress = 0x30000;
-			CodeplugComms.transferLength = 0x20;
-			result = commPrgForm.ShowDialog();
-			Array.Copy(MainForm.CommsBuffer, 0x30000, DMRIDForm.DMRIDBuffer, 0, 0x20);
-
-
-			int numRecords = BitConverter.ToInt32(DMRIDForm.DMRIDBuffer, 8);
-			int stringLen = (int)DMRIDForm.DMRIDBuffer[3]-0x4a - 4;
-			if (stringLen!=8)
-			{
-				chkEnhancedFirmware.Checked=true;
-			}
-			cmbStringLen.SelectedIndex = stringLen - 6;
-			
-			CodeplugComms.startAddress = 0x30000;
-			CodeplugComms.transferLength = Math.Min((this.chkEnhancedFirmware.Checked == true ? 0x40000 : 0x20000), HEADER_LENGTH + (numRecords + 2) * (4 + _stringLength));
-
-			CodeplugComms.CommunicationMode = CodeplugComms.CommunicationType.dataRead;
-			result = commPrgForm.ShowDialog();
-			Array.Copy(MainForm.CommsBuffer, 0x30000, DMRIDForm.DMRIDBuffer, 0, CodeplugComms.transferLength);
-			radioToData();
-			rebindData();
-			//DataToCodeplug();
-		}
-
-		private void radioToData()
-		{
-			byte[] buf = new byte[(4 + _stringLength)];
-			DataList = new List<DMRDataItem>();
-			int numRecords = BitConverter.ToInt32(DMRIDForm.DMRIDBuffer, 8);
-			for (int i = 0; i < numRecords; i++)
-			{
-				Array.Copy(DMRIDForm.DMRIDBuffer, HEADER_LENGTH + i * (4 + _stringLength), buf, 0, (4 + _stringLength));
-				DataList.Add((new DMRDataItem()).FromRadio(buf, _stringLength));
-			}
-		}
-
-		public void CodeplugToData()
-		{
-			byte[] buf = new byte[(4 + _stringLength)];
-			DataList = new List<DMRDataItem>();
-			int numRecords = BitConverter.ToInt32(DMRIDForm.DMRIDBuffer, 8);// Number of records is stored at offset 8
-			for (int i = 0; i < numRecords; i++)
-			{
-				Array.Copy(DMRIDForm.DMRIDBuffer, HEADER_LENGTH + i * (4 + _stringLength), buf, 0, (4 + _stringLength));
-				DataList.Add(new DMRDataItem(buf, _stringLength));
-			}
-		}
 
 		private int MAX_RECORDS
 		{
 			get
 			{
-				return ((this.chkEnhancedFirmware.Checked==true?0x40000:0x20000) - HEADER_LENGTH) / (_stringLength + 4);
+				int[] memorySizes =  { 0x88000, 0x88000 + 0x100000, 0x88000, 0x88000 + 0x700000 };
+				return (memorySizes[Math.Max(0,cmbRadioType.SelectedIndex)] - HEADER_LENGTH) / (_stringLength + 4);
 			}
 		}
 
@@ -376,20 +314,19 @@ namespace DMR
 
 			switch(flashMemoryId)
             {
-				case 0x4014:// 4014 25Q80 8M bits 2M bytes, used in the GD-77
-					dmrIdMemorySize = 0x40000;//256k
-					break;
 				case 0x4015:// 4015 25Q16 16M bits 2M bytes, used in the Baofeng DM-1801 ?
-					dmrIdMemorySize = 0x100000;// 1M
+					dmrIdMemorySize = 0x88000 + 0x100000;// 1M
 					break;
 				case 0x4017:    // 4017 25Q64 64M bits. Used in Roger's special GD-77 radios modified on the TYT production line
 					dmrIdMemorySize = 0x700000;//7M
 					break;
+				case 0x4014:// 4014 25Q80 8M bits 2M bytes, used in the GD-77
+				// fallthrough
 				default:
-					dmrIdMemorySize = 0x40000;//256k
+					dmrIdMemorySize = 0x88000;//544k
 					break;
-
 			}
+
 			int maxRecords =  (dmrIdMemorySize - HEADER_LENGTH) / (_stringLength + 4);
 			int numRecords = Math.Min(DataList.Count, maxRecords);
 			int dataSize = numRecords * (4 + _stringLength) + HEADER_LENGTH;
@@ -465,37 +402,6 @@ namespace DMR
 		{
 			Settings.smethod_59(base.Controls);
 			Settings.UpdateComponentTextsFromLanguageXmlData(this);// Update texts etc from language xml file
-		}
-
-		private void chkEnhancedFirmware_CheckedChanged(object sender, EventArgs e)
-		{
-			if (this.chkEnhancedFirmware.Checked == false)
-			{
-				cmbStringLen.Visible = false;
-				lblEnhancedLength.Visible = false;
-				cmbStringLen.SelectedIndex = 2;
-			}
-			else
-			{
-#if OpenGD77
-				cmbStringLen.SelectedIndex = 9;
-				cmbStringLen.Visible = true;
-				lblEnhancedLength.Visible = true;
-#else
-				if (DialogResult.OK == MessageBox.Show("This mode ONLY works with the OpenGD77 or other modified firmware installed in the GD-77.", "WARNING", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button2))
-				{
-					cmbStringLen.SelectedIndex = 9;
-					cmbStringLen.Visible = true;
-					lblEnhancedLength.Visible = true;
-				}
-				else
-				{
-					this.Close();
-				}
-#endif
-			}
-			
-			updateTotalNumberMessage();
 		}
 
 		private void cmbStringLen_SelectedIndexChanged(object sender, EventArgs e)
@@ -802,63 +708,7 @@ namespace DMR
 			return ((buffer[1] == commandNumber));
 		}
 
-		private RadioInfo readOpenGD77RadioInfo()
-        {
 
-			/*
-			String gd77CommPort = SetupDiWrap.ComPortNameFromFriendlyNamePrefix("OpenGD77");
-			try
-			{
-				_port = new SerialPort(gd77CommPort, 115200, Parity.None, 8, StopBits.One);
-				_port.ReadTimeout = 1000;
-				_port.Open();
-			}
-			catch (Exception)
-			{
-				_port = null;
-				MessageBox.Show("Failed to open comm port", "Error");
-				return;
-			}*/
-
-
-			sendCommand(0);
-			sendCommand(1);
-			sendCommand(2, 0, 0, 3, 1, 0, "CPS");
-			sendCommand(2, 0, 16, 3, 1, 0, "Read");
-			sendCommand(2, 0, 32, 3, 1, 0, "Radio");
-			sendCommand(2, 0, 48, 3, 1, 0, "Info");
-			sendCommand(3);
-			sendCommand(6, 4);// flash red LED
-
-			OpenGD77CommsTransferData dataObjRead = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.NONE);
-			dataObjRead.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeReadRadioInfo;
-			dataObjRead.localDataBufferStartPosition = 0;
-			dataObjRead.transferLength = 0;
-			dataObjRead.dataBuff = new byte[128];
-
-			RadioInfo radioInfo = new RadioInfo();
-			if (ReadRadioInfo(dataObjRead))
-			{ 
-				radioInfo = ByteArrayToRadioInfo(dataObjRead.dataBuff);
-			}
-
-
-			sendCommand(5);
-			/*
-			if (_port != null)
-			{
-				try
-				{
-					_port.Close();
-				}
-				catch (Exception)
-				{
-					MessageBox.Show("Failed to close OpenGD77 comm port", "Warning");
-				}
-			}
-			*/
-			return radioInfo;
-		}
 
 		private void writeToOpenGD77()
 		{
@@ -880,11 +730,7 @@ namespace DMR
 
 			RadioInfo radioInfo = readOpenGD77RadioInfo();
 			
-			// GD77 etc has a 1Mb chip with ID
-			if (radioInfo.flashId == 0x4015 || radioInfo.flashId == 0x4017)
-            {
-				radioMemoryAddress = 0x100000;
-			}
+
 
 			// Commands to control the screen etc in the firmware
 			sendCommand(0);
@@ -902,10 +748,40 @@ namespace DMR
 			SIG_PATTERN_BYTES[3] = (byte)(0x4a + _stringLength + 4);
 
 			dataObj.dataBuff = GenerateUploadData(radioInfo.flashId);
-			dataObj.localDataBufferStartPosition = 0;
+			//File.WriteAllBytes("d:\\dmrid_db.bin", dataObj.dataBuff);// Write for debugging purposes
+
+
+			int localBufferPosition = 0;
+
+			dataObj.localDataBufferStartPosition = localBufferPosition;
 			dataObj.startDataAddressInTheRadio = radioMemoryAddress;
-			dataObj.transferLength = (dataObj.dataBuff.Length / 32) * 32;
-			WriteFlash(dataObj);
+			
+			int totalTransferSize = (dataObj.dataBuff.Length / 32) * 32;
+			int recordLength = _stringLength + 4;
+
+			int splitPoint = HEADER_LENGTH + (recordLength * ((0x40000 - HEADER_LENGTH) / recordLength));
+
+			if (totalTransferSize > splitPoint)
+            {
+				dataObj.transferLength = splitPoint;
+			}
+            else
+            {
+				dataObj.transferLength = totalTransferSize;
+			}
+			WriteFlash(dataObj);// transfer the first data section
+
+			totalTransferSize -= dataObj.transferLength;
+			localBufferPosition += dataObj.transferLength;
+
+			if (totalTransferSize > 0)
+            {
+				dataObj.startDataAddressInTheRadio = 0xB8000;
+				dataObj.localDataBufferStartPosition = localBufferPosition;// continue on from last transfer length
+				dataObj.transferLength = totalTransferSize;
+				WriteFlash(dataObj);
+			}
+
 			progressBar1.Value = 0;
 			sendCommand(5);
 			if (_port != null)
@@ -1029,6 +905,63 @@ namespace DMR
 		}
 
 
+		private RadioInfo readOpenGD77RadioInfo()
+		{
+
+			/*
+			String gd77CommPort = SetupDiWrap.ComPortNameFromFriendlyNamePrefix("OpenGD77");
+			try
+			{
+				_port = new SerialPort(gd77CommPort, 115200, Parity.None, 8, StopBits.One);
+				_port.ReadTimeout = 1000;
+				_port.Open();
+			}
+			catch (Exception)
+			{
+				_port = null;
+				MessageBox.Show("Failed to open comm port", "Error");
+				return;
+			}*/
+
+
+			sendCommand(0);
+			sendCommand(1);
+			sendCommand(2, 0, 0, 3, 1, 0, "CPS");
+			sendCommand(2, 0, 16, 3, 1, 0, "Read");
+			sendCommand(2, 0, 32, 3, 1, 0, "Radio");
+			sendCommand(2, 0, 48, 3, 1, 0, "Info");
+			sendCommand(3);
+			sendCommand(6, 4);// flash red LED
+
+			OpenGD77CommsTransferData dataObjRead = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.NONE);
+			dataObjRead.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeReadRadioInfo;
+			dataObjRead.localDataBufferStartPosition = 0;
+			dataObjRead.transferLength = 0;
+			dataObjRead.dataBuff = new byte[128];
+
+			RadioInfo radioInfo = new RadioInfo();
+			if (ReadRadioInfo(dataObjRead))
+			{
+				radioInfo = ByteArrayToRadioInfo(dataObjRead.dataBuff);
+			}
+
+			sendCommand(5);
+			/*
+			if (_port != null)
+			{
+				try
+				{
+					_port.Close();
+				}
+				catch (Exception)
+				{
+					MessageBox.Show("Failed to close OpenGD77 comm port", "Warning");
+				}
+			}
+			*/
+			return radioInfo;
+		}
+
 		RadioInfo ByteArrayToRadioInfo(byte[] bytes)
 		{
 			RadioInfo radioInfo;
@@ -1067,7 +1000,12 @@ namespace DMR
 			[FieldOffset(40)]
 			public UInt32 flashId;
 		}
-	}
+
+        private void cmbRadioType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+			updateTotalNumberMessage();
+		}
+    }
 
 
 }

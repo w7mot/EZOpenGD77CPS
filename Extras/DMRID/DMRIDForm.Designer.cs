@@ -40,15 +40,16 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnDownloadFromRadioId = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkEnhancedFirmware = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.cmbRadioType = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnWriteToGD77
             // 
-            this.btnWriteToGD77.Location = new System.Drawing.Point(395, 335);
+            this.btnWriteToGD77.Location = new System.Drawing.Point(391, 387);
             this.btnWriteToGD77.Name = "btnWriteToGD77";
             this.btnWriteToGD77.Size = new System.Drawing.Size(123, 28);
             this.btnWriteToGD77.TabIndex = 2;
@@ -58,7 +59,7 @@
             // 
             // txtRegionId
             // 
-            this.txtRegionId.Location = new System.Drawing.Point(476, 74);
+            this.txtRegionId.Location = new System.Drawing.Point(410, 74);
             this.txtRegionId.Name = "txtRegionId";
             this.txtRegionId.Size = new System.Drawing.Size(42, 20);
             this.txtRegionId.TabIndex = 3;
@@ -66,9 +67,9 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(447, 287);
+            this.btnClear.Location = new System.Drawing.Point(12, 387);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(71, 23);
+            this.btnClear.Size = new System.Drawing.Size(71, 28);
             this.btnClear.TabIndex = 4;
             this.btnClear.Text = "Clear list";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -86,15 +87,15 @@
             // 
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 161);
+            this.dataGridView1.Location = new System.Drawing.Point(9, 207);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(505, 109);
+            this.dataGridView1.Size = new System.Drawing.Size(505, 174);
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dataGridView1_SortCompare);
             // 
             // lblRegionId
             // 
-            this.lblRegionId.Location = new System.Drawing.Point(321, 74);
+            this.lblRegionId.Location = new System.Drawing.Point(255, 74);
             this.lblRegionId.Name = "lblRegionId";
             this.lblRegionId.Size = new System.Drawing.Size(149, 16);
             this.lblRegionId.TabIndex = 7;
@@ -124,23 +125,8 @@
             "22",
             "23",
             "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-            "32",
-            "33",
-            "34",
-            "35",
-            "36",
-            "37",
-            "38",
-            "39",
-            "40"});
-            this.cmbStringLen.Location = new System.Drawing.Point(15, 42);
+            "25"});
+            this.cmbStringLen.Location = new System.Drawing.Point(15, 19);
             this.cmbStringLen.Name = "cmbStringLen";
             this.cmbStringLen.Size = new System.Drawing.Size(56, 21);
             this.cmbStringLen.TabIndex = 10;
@@ -149,7 +135,7 @@
             // lblEnhancedLength
             // 
             this.lblEnhancedLength.AutoSize = true;
-            this.lblEnhancedLength.Location = new System.Drawing.Point(77, 50);
+            this.lblEnhancedLength.Location = new System.Drawing.Point(85, 27);
             this.lblEnhancedLength.Name = "lblEnhancedLength";
             this.lblEnhancedLength.Size = new System.Drawing.Size(109, 13);
             this.lblEnhancedLength.TabIndex = 11;
@@ -164,7 +150,7 @@
             // 
             // btnDownloadFromRadioId
             // 
-            this.btnDownloadFromRadioId.Location = new System.Drawing.Point(15, 71);
+            this.btnDownloadFromRadioId.Location = new System.Drawing.Point(15, 67);
             this.btnDownloadFromRadioId.Name = "btnDownloadFromRadioId";
             this.btnDownloadFromRadioId.Size = new System.Drawing.Size(203, 23);
             this.btnDownloadFromRadioId.TabIndex = 0;
@@ -174,30 +160,18 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.chkEnhancedFirmware);
             this.groupBox1.Controls.Add(this.cmbStringLen);
             this.groupBox1.Controls.Add(this.lblEnhancedLength);
-            this.groupBox1.Location = new System.Drawing.Point(15, 287);
+            this.groupBox1.Location = new System.Drawing.Point(18, 145);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 78);
+            this.groupBox1.Size = new System.Drawing.Size(200, 56);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Data record length";
             // 
-            // chkEnhancedFirmware
-            // 
-            this.chkEnhancedFirmware.AutoSize = true;
-            this.chkEnhancedFirmware.Location = new System.Drawing.Point(15, 19);
-            this.chkEnhancedFirmware.Name = "chkEnhancedFirmware";
-            this.chkEnhancedFirmware.Size = new System.Drawing.Size(146, 17);
-            this.chkEnhancedFirmware.TabIndex = 9;
-            this.chkEnhancedFirmware.Text = "Enhanced firmware mode";
-            this.chkEnhancedFirmware.UseVisualStyleBackColor = true;
-            this.chkEnhancedFirmware.CheckedChanged += new System.EventHandler(this.chkEnhancedFirmware_CheckedChanged);
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(15, 104);
+            this.button1.Location = new System.Drawing.Point(15, 96);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(203, 23);
             this.button1.TabIndex = 0;
@@ -205,11 +179,36 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnImportCSV_Click);
             // 
+            // cmbRadioType
+            // 
+            this.cmbRadioType.FormattingEnabled = true;
+            this.cmbRadioType.Items.AddRange(new object[] {
+            "GD-77 / GD-77S / MD-760",
+            "DM-1801",
+            "RD-5R",
+            "Custom 8Mb"});
+            this.cmbRadioType.Location = new System.Drawing.Point(356, 172);
+            this.cmbRadioType.Name = "cmbRadioType";
+            this.cmbRadioType.Size = new System.Drawing.Size(158, 21);
+            this.cmbRadioType.TabIndex = 14;
+            this.cmbRadioType.SelectedIndexChanged += new System.EventHandler(this.cmbRadioType_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(259, 175);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 19);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Radio";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // DMRIDForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(526, 375);
+            this.ClientSize = new System.Drawing.Size(526, 422);
+            this.Controls.Add(this.cmbRadioType);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblRegionId);
             this.Controls.Add(this.txtRegionId);
             this.Controls.Add(this.groupBox1);
@@ -247,6 +246,7 @@
         private System.Windows.Forms.Button btnDownloadFromRadioId;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox chkEnhancedFirmware;
+        private System.Windows.Forms.ComboBox cmbRadioType;
+        private System.Windows.Forms.Label label1;
     }
 }

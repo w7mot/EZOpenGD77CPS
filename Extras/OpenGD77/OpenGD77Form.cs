@@ -1417,7 +1417,7 @@ namespace DMR
 
 						dataObj.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeWriteFlash;
 						dataObj.localDataBufferStartPosition = 0;
-						dataObj.startDataAddressInTheRadio = 0xE0000;
+						dataObj.startDataAddressInTheRadio = 0x8F400;
 						dataObj.transferLength = dataObj.dataBuff.Length;
 						displayMessage(StringsDict["Writing_Voice_prompts"]);
 						if (WriteFlash(dataObj))
