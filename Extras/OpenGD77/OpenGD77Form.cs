@@ -35,6 +35,8 @@ namespace DMR
 		private OpenGD77Form.CommsAction _initialAction;
 		public static Dictionary<string, string> StringsDict = new Dictionary<string, string>();
 
+		const int VOICE_PROMPTS_ADDRESS_IN_FLASH = 0x8F400;
+
 		public OpenGD77Form(OpenGD77Form.CommsAction initAction)
 		{
 			_initialAction = initAction;
@@ -1417,7 +1419,7 @@ namespace DMR
 
 						dataObj.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeWriteFlash;
 						dataObj.localDataBufferStartPosition = 0;
-						dataObj.startDataAddressInTheRadio = 0x8F400;
+						dataObj.startDataAddressInTheRadio = VOICE_PROMPTS_ADDRESS_IN_FLASH;
 						dataObj.transferLength = dataObj.dataBuff.Length;
 						displayMessage(StringsDict["Writing_Voice_prompts"]);
 						if (WriteFlash(dataObj))

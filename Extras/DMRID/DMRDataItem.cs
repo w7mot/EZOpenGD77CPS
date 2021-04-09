@@ -61,21 +61,7 @@ namespace DMR
 			DMRId = BitConverter.ToInt32(data, 0);
 		}
 
-		// Create from a semicolon separated string from Hamdigital
-		public DMRDataItem FromRadio(byte[] record, int stringLength)
-		{
-			byte[] dmrid = new byte[4];
-			Callsign = System.Text.Encoding.Default.GetString(record, 4, stringLength);
 
-			Array.Copy(record, dmrid, 4);
-			DMRId = 0;
-			for (int i = 0; i < 4; i++)
-			{
-				DMRId *= 100;
-				DMRId += BCDToByte(dmrid[3 - i]);
-			}
-			return this;
-		}
 
 		private byte Int8ToBCD(int val)
 		{
@@ -94,7 +80,8 @@ namespace DMR
 		// Convert to format to send to the radio (GD-77)
 		public byte[] getRadioData(int stringLength)
 		{
-			byte[] radioData = new byte[stringLength+4];
+			int DMR_ID_SIZE = 3;// 3 for native numbers 4 for BCD
+			byte[] radioData = new byte[stringLength + DMR_ID_SIZE];
 			if (DMRId != 0)
 			{
 				byte[] displayBuf;
@@ -107,15 +94,23 @@ namespace DMR
 					displayBuf = Encoding.UTF8.GetBytes(Callsign);
 				}
 
+				Array.Copy(displayBuf, 0, radioData, DMR_ID_SIZE, Math.Min(stringLength, displayBuf.Length));
 
-
-				Array.Copy(displayBuf, 0, radioData, 4, Math.Min(stringLength, displayBuf.Length));
-
-				int dmrid = DMRId;
-				for (int i = 0; i < 4; i++)
+				if (DMR_ID_SIZE == 4)
 				{
-					radioData[i] = Int8ToBCD(dmrid % 100);
-					dmrid /= 100;
+					int dmrid = DMRId;
+					for (int i = 0; i < 4; i++)
+					{
+						radioData[i] = Int8ToBCD(dmrid % 100);
+						dmrid /= 100;
+					}
+				}
+				else
+                {
+					byte[] idBytes = BitConverter.GetBytes(DMRId);
+					radioData[0] = idBytes[0];
+					radioData[1] = idBytes[1];
+					radioData[2] = idBytes[2];
 				}
 			}
 			return radioData; 
@@ -181,6 +176,22 @@ namespace DMR
 		public object GetValue()
 		{
 			return AgeAsInt;
+		}
+
+		// Create from a semicolon separated string from Hamdigital
+		public DMRDataItem FromRadio(byte[] record, int stringLength)
+		{
+			byte[] dmrid = new byte[4];
+			Callsign = System.Text.Encoding.Default.GetString(record, 4, stringLength);
+
+			Array.Copy(record, dmrid, 4);
+			DMRId = 0;
+			for (int i = 0; i < 4; i++)
+			{
+				DMRId *= 100;
+				DMRId += BCDToByte(dmrid[3 - i]);
+			}
+			return this;
 		}
 	}
 }

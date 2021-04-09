@@ -125,7 +125,14 @@
             "22",
             "23",
             "24",
-            "25"});
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32"});
             this.cmbStringLen.Location = new System.Drawing.Point(15, 19);
             this.cmbStringLen.Name = "cmbStringLen";
             this.cmbStringLen.Size = new System.Drawing.Size(56, 21);

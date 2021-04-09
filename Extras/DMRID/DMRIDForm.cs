@@ -25,6 +25,7 @@ namespace DMR
 		//private int MAX_RECORDS = 10920;
 		private int _stringLength = 8;
 		const int HEADER_LENGTH = 12;
+		int ID_NUMBER_SIZE = 3;
 
 		private SerialPort _port = null;
 
@@ -45,7 +46,7 @@ namespace DMR
 
 		public DMRIDForm()
 		{
-			SIG_PATTERN_BYTES = new byte[] { 0x49, 0x44, 0x2D, 0x56, 0x30, 0x30, 0x31, 0x00 };
+			SIG_PATTERN_BYTES = new byte[] { (byte)'I', (byte)'D', (byte)'-', 0x56, 0x30, 0x30, 0x31, 0x00 };
 			InitializeComponent();
 			this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);// Roger Clark. Added correct icon on main form!
 			cmbStringLen.Visible = false;
@@ -304,7 +305,7 @@ namespace DMR
 			get
 			{
 				int[] memorySizes =  { 0x88000, 0x88000 + 0x100000, 0x88000, 0x88000 + 0x700000 };
-				return (memorySizes[Math.Max(0,cmbRadioType.SelectedIndex)] - HEADER_LENGTH) / (_stringLength + 4);
+				return (memorySizes[Math.Max(0,cmbRadioType.SelectedIndex)] - HEADER_LENGTH) / (_stringLength + ID_NUMBER_SIZE);
 			}
 		}
 
@@ -327,13 +328,15 @@ namespace DMR
 					break;
 			}
 
-			int maxRecords =  (dmrIdMemorySize - HEADER_LENGTH) / (_stringLength + 4);
+			int maxRecords =  (dmrIdMemorySize - HEADER_LENGTH) / (_stringLength + ID_NUMBER_SIZE);
 			int numRecords = Math.Min(DataList.Count, maxRecords);
-			int dataSize = numRecords * (4 + _stringLength) + HEADER_LENGTH;
+			int dataSize = numRecords * (ID_NUMBER_SIZE + _stringLength) + HEADER_LENGTH;
 			dataSize = ((dataSize / 32)+1) * 32;
 			byte[] buffer = new byte[dataSize];
 
 			Array.Copy(SIG_PATTERN_BYTES, buffer, SIG_PATTERN_BYTES.Length);
+
+
 			Array.Copy(BitConverter.GetBytes(numRecords), 0, buffer, 8, 4);
 
 			if (DataList == null)
@@ -342,37 +345,14 @@ namespace DMR
 			}
 			List<DMRDataItem> uploadList = new List<DMRDataItem>(DataList);// Need to make a copy so we can sort it and not screw up the list in the dataGridView
 			uploadList.Sort();
+
 			for (int i = 0; i < numRecords; i++)
 			{
-				Array.Copy(uploadList[i].getRadioData(_stringLength), 0, buffer, HEADER_LENGTH + i * (4 + _stringLength), (4 + _stringLength));
+				Array.Copy(uploadList[i].getRadioData(_stringLength), 0, buffer, HEADER_LENGTH + i * (ID_NUMBER_SIZE + _stringLength), (ID_NUMBER_SIZE + _stringLength));
 			}
 			return buffer;
 		}
 
-		private bool isInMemoryAccessMode(byte []buffer)
-		{
-			for (int i = 0; i < 0x20; i++)
-			{
-				if (buffer[i] != 00)
-				{
-					return true;
-				}
-			}
-			return false;
-		}
-
-		private bool hasSig()
-		{
-			
-			for (int i = 0; i < SIG_PATTERN_BYTES.Length; i++)
-			{
-				if (DMRIDForm.DMRIDBuffer[i] != SIG_PATTERN_BYTES[i])
-				{
-				return false;
-				}
-			}
-			return true;
-		}
 
 		private void btnClear_Click(object sender, EventArgs e)
 		{
@@ -745,10 +725,15 @@ namespace DMR
 			OpenGD77CommsTransferData dataObj = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.NONE);
 			dataObj.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeWriteFlash;
 
-			SIG_PATTERN_BYTES[3] = (byte)(0x4a + _stringLength + 4);
+			if (ID_NUMBER_SIZE == 3)
+			{
+				SIG_PATTERN_BYTES[2] = (byte)'N';
+			}
+
+			SIG_PATTERN_BYTES[3] = (byte)(0x4a + _stringLength + ID_NUMBER_SIZE);
 
 			dataObj.dataBuff = GenerateUploadData(radioInfo.flashId);
-			//File.WriteAllBytes("d:\\dmrid_db.bin", dataObj.dataBuff);// Write for debugging purposes
+			//File.WriteAllBytes("d:\\dmrid_db_NEW.bin", dataObj.dataBuff);// Write for debugging purposes
 
 
 			int localBufferPosition = 0;
@@ -757,7 +742,7 @@ namespace DMR
 			dataObj.startDataAddressInTheRadio = radioMemoryAddress;
 			
 			int totalTransferSize = (dataObj.dataBuff.Length / 32) * 32;
-			int recordLength = _stringLength + 4;
+			int recordLength = _stringLength + ID_NUMBER_SIZE;
 
 			int splitPoint = HEADER_LENGTH + (recordLength * ((0x40000 - HEADER_LENGTH) / recordLength));
 
