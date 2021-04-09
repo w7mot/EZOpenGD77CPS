@@ -84,13 +84,14 @@ namespace DMR
 			colFileName = new DataGridViewTextBoxColumn()
 			{
 				CellTemplate = cell,
-				Name = "Name",// internal name
-				HeaderText = "Name",// Column header text
-				DataPropertyName = "Name"  // object property
+				Name = "Details",// internal name
+				HeaderText = "Details",// Column header text
+				DataPropertyName = "Details",  // object property
+				Width = 300,
 			};
 			dataGridView1.Columns.Add(colFileName);
 
-
+			/*
 			cell = new DataGridViewTextBoxCell();
 			colFileName = new DataGridViewTextBoxColumn()
 			{
@@ -103,6 +104,7 @@ namespace DMR
 				SortMode = DataGridViewColumnSortMode.Automatic
 			};
 			dataGridView1.Columns.Add(colFileName);
+			*/
 			dataGridView1.UserDeletedRow += new DataGridViewRowEventHandler(dataGridRowDeleted);
 
 			rebindData();	

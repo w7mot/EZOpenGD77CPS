@@ -10,18 +10,41 @@ namespace DMR
 		public int DMRId { get; set; }
 		public string DMRIdString { get; set; }
 		public string Callsign { get; set; }
-		public string Name { get; set; }
+		public string Details { get; set; }
 		public string AgeInDays { get; set; }
-		public int AgeAsInt { get; set; }
+		//public int AgeAsInt { get; set; }
 
 		// default construrctor creates an empty item
 		public DMRDataItem()
 		{
 			Callsign = "";
 			DMRId = 0;
-			AgeInDays = "n/a";
+			//AgeInDays = "n/a";
 		}
 
+
+
+		// Create from a semicolon separated string from Hamdigital
+		public DMRDataItem FromRadioidDotNet(string CSVLine)
+		{
+			string[] arr = CSVLine.Split(',');
+			Callsign = arr[1];
+			Details = arr[2] + " " + arr[4] + " " + arr[6];// 3 is the last name and 5 is the state or region + " " + arr[6];// +" " + arr[3];
+			DMRIdString = arr[0];
+			DMRId = Int32.Parse(arr[0]);
+			//AgeAsInt = 0;
+			//AgeInDays = "0";
+			return this;
+		}
+
+		// Create from Data stored in the Codeplug
+		public DMRDataItem(byte[] data, int stringLength)
+		{
+			Callsign = System.Text.Encoding.Default.GetString(data, 4, stringLength);
+			DMRId = BitConverter.ToInt32(data, 0);
+		}
+
+#if false
 		// Create from a semicolon separated string from Hamdigital
 		public DMRDataItem FromHamDigital(string CSVLine)
 		{
@@ -40,29 +63,7 @@ namespace DMR
 			}
 			return this;
 		}
-
-		// Create from a semicolon separated string from Hamdigital
-		public DMRDataItem FromRadioidDotNet(string CSVLine)
-		{
-			string[] arr = CSVLine.Split(',');
-			Callsign = arr[1];
-			Name = arr[2];// +" " + arr[3];
-			DMRIdString = arr[0];
-			DMRId = Int32.Parse(arr[0]);
-			AgeAsInt = 0;
-			AgeInDays = "0";
-			return this;
-		}
-
-		// Create from Data stored in the Codeplug
-		public DMRDataItem(byte[] data, int stringLength)
-		{
-			Callsign = System.Text.Encoding.Default.GetString(data, 4, stringLength);
-			DMRId = BitConverter.ToInt32(data, 0);
-		}
-
-
-
+#endif
 		private byte Int8ToBCD(int val)
 		{
 	        int hi = val / 10;
@@ -87,7 +88,7 @@ namespace DMR
 				byte[] displayBuf;
 				if (stringLength > 8)
 				{
-					displayBuf = Encoding.UTF8.GetBytes(Callsign + " " + Name); 
+					displayBuf = Encoding.UTF8.GetBytes(Callsign + " " + Details); 
 				}
 				else
 				{
@@ -173,11 +174,12 @@ namespace DMR
 			return DMRId;
 		}
 
+#if false
 		public object GetValue()
 		{
 			return AgeAsInt;
 		}
-
+#endif
 		// Create from a semicolon separated string from Hamdigital
 		public DMRDataItem FromRadio(byte[] record, int stringLength)
 		{

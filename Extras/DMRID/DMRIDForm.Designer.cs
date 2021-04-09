@@ -49,7 +49,7 @@
             // 
             // btnWriteToGD77
             // 
-            this.btnWriteToGD77.Location = new System.Drawing.Point(391, 387);
+            this.btnWriteToGD77.Location = new System.Drawing.Point(457, 387);
             this.btnWriteToGD77.Name = "btnWriteToGD77";
             this.btnWriteToGD77.Size = new System.Drawing.Size(123, 28);
             this.btnWriteToGD77.TabIndex = 2;
@@ -59,7 +59,7 @@
             // 
             // txtRegionId
             // 
-            this.txtRegionId.Location = new System.Drawing.Point(410, 74);
+            this.txtRegionId.Location = new System.Drawing.Point(538, 70);
             this.txtRegionId.Name = "txtRegionId";
             this.txtRegionId.Size = new System.Drawing.Size(42, 20);
             this.txtRegionId.TabIndex = 3;
@@ -89,13 +89,13 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(9, 207);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(505, 174);
+            this.dataGridView1.Size = new System.Drawing.Size(571, 174);
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dataGridView1_SortCompare);
             // 
             // lblRegionId
             // 
-            this.lblRegionId.Location = new System.Drawing.Point(255, 74);
+            this.lblRegionId.Location = new System.Drawing.Point(383, 70);
             this.lblRegionId.Name = "lblRegionId";
             this.lblRegionId.Size = new System.Drawing.Size(149, 16);
             this.lblRegionId.TabIndex = 7;
@@ -152,7 +152,7 @@
             // 
             this.progressBar1.Location = new System.Drawing.Point(15, 35);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(499, 17);
+            this.progressBar1.Size = new System.Drawing.Size(565, 17);
             this.progressBar1.TabIndex = 12;
             // 
             // btnDownloadFromRadioId
@@ -194,7 +194,7 @@
             "DM-1801",
             "RD-5R",
             "Custom 8Mb"});
-            this.cmbRadioType.Location = new System.Drawing.Point(356, 172);
+            this.cmbRadioType.Location = new System.Drawing.Point(422, 172);
             this.cmbRadioType.Name = "cmbRadioType";
             this.cmbRadioType.Size = new System.Drawing.Size(158, 21);
             this.cmbRadioType.TabIndex = 14;
@@ -202,7 +202,7 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(259, 175);
+            this.label1.Location = new System.Drawing.Point(325, 175);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 19);
             this.label1.TabIndex = 7;
@@ -213,7 +213,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(526, 422);
+            this.ClientSize = new System.Drawing.Size(606, 422);
             this.Controls.Add(this.cmbRadioType);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblRegionId);
