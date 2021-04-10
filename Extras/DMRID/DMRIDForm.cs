@@ -771,7 +771,7 @@ namespace DMR
 			
 			int totalTransferSize = (dataObj.dataBuff.Length / 32) * 32;
 
-			int splitPoint = HEADER_LENGTH + (recordLength * ((0x40000 + - HEADER_LENGTH) / recordLength));
+			int splitPoint = HEADER_LENGTH + (recordLength * ((0x40000 - HEADER_LENGTH) / recordLength));
 
 			if (totalTransferSize > splitPoint)
             {
