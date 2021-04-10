@@ -11,17 +11,18 @@ namespace DMR
 		public string DMRIdString { get; set; }
 		public string Callsign { get; set; }
 		public string Details { get; set; }
-		public string AgeInDays { get; set; }
-		//public int AgeAsInt { get; set; }
+
+		static char[] DECOMPRESS_LUT = new char[64] { ' ', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '.' };
+		static int[] COMPRESS_LUT = new int[256] { 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 0, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 63, 63, 63, 63, 63, 63, 63, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 63, 63, 63, 63, 63, 63, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63 };
+
+
 
 		// default construrctor creates an empty item
 		public DMRDataItem()
 		{
 			Callsign = "";
 			DMRId = 0;
-			//AgeInDays = "n/a";
 		}
-
 
 
 		// Create from a semicolon separated string from Hamdigital
@@ -32,38 +33,9 @@ namespace DMR
 			Details = arr[2] + " " + arr[4] + " " + arr[6];// 3 is the last name and 5 is the state or region + " " + arr[6];// +" " + arr[3];
 			DMRIdString = arr[0];
 			DMRId = Int32.Parse(arr[0]);
-			//AgeAsInt = 0;
-			//AgeInDays = "0";
 			return this;
 		}
 
-		// Create from Data stored in the Codeplug
-		public DMRDataItem(byte[] data, int stringLength)
-		{
-			Callsign = System.Text.Encoding.Default.GetString(data, 4, stringLength);
-			DMRId = BitConverter.ToInt32(data, 0);
-		}
-
-#if false
-		// Create from a semicolon separated string from Hamdigital
-		public DMRDataItem FromHamDigital(string CSVLine)
-		{
-			string[] arr = CSVLine.Split(';');
-			Callsign = arr[1];
-			Name = arr[3];
-			DMRId = Int32.Parse(arr[2]);
-			try
-			{
-				AgeAsInt = Int32.Parse(arr[4]);// see if its a number (exception will trigger if not)
-				AgeInDays = arr[4];// Only gets here is no exception triggered
-			}
-			catch (Exception)
-			{
-
-			}
-			return this;
-		}
-#endif
 		private byte Int8ToBCD(int val)
 		{
 			int hi = val / 10;
@@ -78,8 +50,6 @@ namespace DMR
 			return (byte)(hi * 10 + lo);
 		}
 
-		static char[] DECOMPRESS_LUT = new char[64] { ' ', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '.' };
-		static  int [] COMPRESS_LUT = new int[256] {63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,0,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,1,2,3,4,5,6,7,8,9,10,63,63,63,63,63,63,63,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,63,63,63,63,63,63,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63};
 		public static byte compressChar(char b)
         {
 			if (b == ' ')
@@ -157,6 +127,7 @@ namespace DMR
 			return compressedBuf;
 		}
 
+		// Debugging and testing only
 		public string decompress(byte []compressedBuf)
         {
 			string os = "";
@@ -187,26 +158,23 @@ namespace DMR
 		public byte[] getRadioData(int stringLength)
 		{
 			int DMR_ID_SIZE = 3;// 3 for native numbers 4 for BCD
-			int dataSize = compressSize(stringLength) + DMR_ID_SIZE;
-			dataSize = stringLength + DMR_ID_SIZE;
+			int dataSize = compressSize(stringLength) + DMR_ID_SIZE;// was stringLength + DMR_ID_SIZE;
 			byte[] radioData = new byte[dataSize];
 			if (DMRId != 0)
 			{
-				byte[] displayBuf;
-				/*
-				if (stringLength > 8)
-				{
-					displayBuf = Encoding.UTF8.GetBytes(Callsign + " " + Details); 
-				}
-				else
-				{
-					displayBuf = Encoding.UTF8.GetBytes(Callsign);
-				}*/
+
+/* 
+	* I can't see a need to make a distinction of what goes into the text depending on the selected length
+if (stringLength > 8)
+{
+	displayBuf = Encoding.UTF8.GetBytes(Callsign + " " + Details); 
+}
+else
+{
+	displayBuf = Encoding.UTF8.GetBytes(Callsign);
+}*/
 
 				string txtBuf = Callsign + " " + Details;
-
-
-				displayBuf = Encoding.UTF8.GetBytes(txtBuf);
 
 				byte[] compressedBuf;//= new byte[compressedLength];
 
@@ -214,11 +182,11 @@ namespace DMR
 
 				compressedBuf = compress(txtBuf.Substring(0, Math.Min(txtBuf.Length,stringLength)));
 
-
+/*
+ * debugging only
 				string os = decompress(compressedBuf);
-
-//				Console.WriteLine(compressedBuf.Length + " |" + os + "|");
-				
+				Console.WriteLine(compressedBuf.Length + " |" + os + "|");
+*/				
 
 				//Array.Copy(displayBuf, 0, radioData, DMR_ID_SIZE, Math.Min(stringLength, displayBuf.Length));
 
@@ -244,18 +212,8 @@ namespace DMR
 			return radioData; 
 		}
 
-		public byte[] getCodeplugData(int stringLength)
-		{
-			byte[] codeplugData = new byte[4+stringLength];
-			if (DMRId != 0)
-			{
-				byte[] callsignbBuf = Encoding.UTF8.GetBytes(Callsign);
-				Array.Copy(callsignbBuf, 0, codeplugData, 4, callsignbBuf.Length);
-				Array.Copy(BitConverter.GetBytes(DMRId), 0, codeplugData, 0, 4);
-			}
-			return codeplugData; 
-		}
-
+		// Note. The 3 comparison functions appear with no references by Visual Studio
+		// But this is a bug in Visual Studio as they are used when the list has to be sorted by in DMRIDForm.cs
 		public int CompareTo(DMRDataItem comparePart)
 		{
 			// A null value means that this object is greater.
@@ -286,7 +244,7 @@ namespace DMR
 		public bool Equals(DMRDataItem other)
 		{
 			if (other == null)
-			{ 
+			{
 				return false;
 			}
 			if (other == this)
@@ -295,17 +253,63 @@ namespace DMR
 			}
 			return (this.DMRId == other.DMRId);
 		}
+
 		public override int GetHashCode()
 		{
 			//Get hash code for the Name field if it is not null. 
 			return DMRId;
 		}
-
 #if false
+// No longer used. 
+// Prossibly incompatible with the latest changes
+
+		// Ham digital service is no longer available
+		public DMRDataItem FromHamDigital(string CSVLine)
+		{
+			string[] arr = CSVLine.Split(';');
+			Callsign = arr[1];
+			Name = arr[3];
+			DMRId = Int32.Parse(arr[2]);
+			try
+			{
+				AgeAsInt = Int32.Parse(arr[4]);// see if its a number (exception will trigger if not)
+				AgeInDays = arr[4];// Only gets here is no exception triggered
+			}
+			catch (Exception)
+			{
+
+			}
+			return this;
+		}
+
 		public object GetValue()
 		{
 			return AgeAsInt;
 		}
+
+		// Create from Data stored in the Codeplug
+		public DMRDataItem(byte[] data, int stringLength)
+		{
+			Callsign = System.Text.Encoding.Default.GetString(data, 4, stringLength);
+			DMRId = BitConverter.ToInt32(data, 0);
+		}
+
+
+
+		public byte[] getCodeplugData(int stringLength)
+		{
+			byte[] codeplugData = new byte[4+stringLength];
+			if (DMRId != 0)
+			{
+				byte[] callsignbBuf = Encoding.UTF8.GetBytes(Callsign);
+				Array.Copy(callsignbBuf, 0, codeplugData, 4, callsignbBuf.Length);
+				Array.Copy(BitConverter.GetBytes(DMRId), 0, codeplugData, 0, 4);
+			}
+			return codeplugData; 
+		}
+
+
+
 #endif
 		// Create from a semicolon separated string from Hamdigital
 		public DMRDataItem FromRadio(byte[] record, int stringLength)

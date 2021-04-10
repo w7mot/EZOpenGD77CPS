@@ -56,7 +56,7 @@ namespace DMR
 
 			DataList = new List<DMRDataItem>();
 
-			cmbStringLen.SelectedIndex = 2;
+			//cmbStringLen.SelectedIndex = 2;
 
 
 			dataGridView1.AutoGenerateColumns = false;
@@ -109,7 +109,7 @@ namespace DMR
 
 			rebindData();	
 
-			cmbStringLen.SelectedIndex = 9;
+			cmbStringLen.SelectedIndex = 10;// Default to 16 characters
 			cmbStringLen.Visible = true;
 			lblEnhancedLength.Visible = true;
 			cmbRadioType.SelectedIndex = 0;
