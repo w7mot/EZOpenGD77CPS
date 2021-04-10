@@ -116,7 +116,18 @@ namespace DMR
 			updateTotalNumberMessage();
 
 			FormBorderStyle = FormBorderStyle.FixedSingle;
-
+		
+			string s = "";
+			//string a = "";
+			for (int i=0;i<256;i++)
+            {
+//				Console.WriteLine(DMRDataItem.compressChar((char)i));
+				s += DMRDataItem.compressChar((char)i) + ",";
+				//a += (char)i + ",";
+			}
+			//Console.WriteLine(a);
+			//Console.WriteLine(s);
+			
 		}
 
 		private void dataGridRowDeleted(object sender, DataGridViewRowEventArgs e)
@@ -307,7 +318,7 @@ namespace DMR
 			get
 			{
 				int[] memorySizes =  { 0x88000, 0x88000 + 0x100000, 0x88000, 0x88000 + 0x700000 };
-				return (memorySizes[Math.Max(0,cmbRadioType.SelectedIndex)] - HEADER_LENGTH) / (_stringLength + ID_NUMBER_SIZE);
+				return (memorySizes[Math.Max(0,cmbRadioType.SelectedIndex)] - HEADER_LENGTH) / (DMRDataItem.compressSize(_stringLength) + ID_NUMBER_SIZE);
 			}
 		}
 
@@ -330,9 +341,11 @@ namespace DMR
 					break;
 			}
 
-			int maxRecords =  (dmrIdMemorySize - HEADER_LENGTH) / (_stringLength + ID_NUMBER_SIZE);
+			int recordSize = DMRDataItem.compressSize(_stringLength) + ID_NUMBER_SIZE;// _stringLength + ID_NUMBER_SIZE
+
+			int maxRecords =  (dmrIdMemorySize - HEADER_LENGTH) / (recordSize);
 			int numRecords = Math.Min(DataList.Count, maxRecords);
-			int dataSize = numRecords * (ID_NUMBER_SIZE + _stringLength) + HEADER_LENGTH;
+			int dataSize = numRecords * (recordSize) + HEADER_LENGTH;
 			dataSize = ((dataSize / 32)+1) * 32;
 			byte[] buffer = new byte[dataSize];
 
@@ -348,9 +361,11 @@ namespace DMR
 			List<DMRDataItem> uploadList = new List<DMRDataItem>(DataList);// Need to make a copy so we can sort it and not screw up the list in the dataGridView
 			uploadList.Sort();
 
+
+
 			for (int i = 0; i < numRecords; i++)
 			{
-				Array.Copy(uploadList[i].getRadioData(_stringLength), 0, buffer, HEADER_LENGTH + i * (ID_NUMBER_SIZE + _stringLength), (ID_NUMBER_SIZE + _stringLength));
+				Array.Copy(uploadList[i].getRadioData(_stringLength), 0, buffer, HEADER_LENGTH + i * (recordSize), (recordSize));
 			}
 			return buffer;
 		}
@@ -732,7 +747,9 @@ namespace DMR
 				SIG_PATTERN_BYTES[2] = (byte)'N';
 			}
 
-			SIG_PATTERN_BYTES[3] = (byte)(0x4a + _stringLength + ID_NUMBER_SIZE);
+			int recordLength = DMRDataItem.compressSize(_stringLength) + ID_NUMBER_SIZE;
+
+			SIG_PATTERN_BYTES[3] = (byte)(0x4a + recordLength);
 
 			dataObj.dataBuff = GenerateUploadData(radioInfo.flashId);
 			//File.WriteAllBytes("d:\\dmrid_db_NEW.bin", dataObj.dataBuff);// Write for debugging purposes
@@ -744,7 +761,6 @@ namespace DMR
 			dataObj.startDataAddressInTheRadio = radioMemoryAddress;
 			
 			int totalTransferSize = (dataObj.dataBuff.Length / 32) * 32;
-			int recordLength = _stringLength + ID_NUMBER_SIZE;
 
 			int splitPoint = HEADER_LENGTH + (recordLength * ((0x40000 - HEADER_LENGTH) / recordLength));
 

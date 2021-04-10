@@ -66,9 +66,9 @@ namespace DMR
 #endif
 		private byte Int8ToBCD(int val)
 		{
-	        int hi = val / 10;
+			int hi = val / 10;
 			int lo = val % 10;
-			return (byte)( (hi * 16) + lo);
+			return (byte)((hi * 16) + lo);
 		}
 
 		private byte BCDToByte(byte val)
@@ -78,14 +78,122 @@ namespace DMR
 			return (byte)(hi * 10 + lo);
 		}
 
+		static char[] DECOMPRESS_LUT = new char[64] { ' ', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '.' };
+		static  int [] COMPRESS_LUT = new int[256] {63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,0,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,1,2,3,4,5,6,7,8,9,10,63,63,63,63,63,63,63,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,63,63,63,63,63,63,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63};
+		public static byte compressChar(char b)
+        {
+			if (b == ' ')
+            {
+				return 0;
+            }
+
+			if (b >= '0' && b <= '9')
+            {
+				return (byte)((int)b - (int)'0' + 1);
+            }
+			if (b>='a' && b <= 'z')
+            {
+				return (byte)((int)b - (int)'a' + 10 + 26 + 1);
+			}
+			if (b >= 'A' && b <= 'Z')
+			{
+				return (byte)((int)b - (int)'A' + 10 + 1);
+			}
+			return 63;
+		}
+
+		public static int compressSize(int fromSize)
+        {
+			return ((fromSize / 4) * 3) + (fromSize % 4);
+
+		}
+
 		// Convert to format to send to the radio (GD-77)
+		public byte [] compress(string txtBuf)
+        {
+			byte[] compressedBuf = new byte[compressSize(txtBuf.Length)];
+
+			int o = 0;
+			int c = 0;
+			do
+			{
+				//AAAAAABB
+				//BBBBCCCC
+				//CCDDDDDD
+
+				//A << 2 | B >> 4
+				//B << 4 | C >> 2
+				//C << 6 | D
+				compressedBuf[o + 0] =  (byte)(COMPRESS_LUT[(byte)txtBuf[c]] << 2);
+				c++;
+
+				if (c == txtBuf.Length)
+                {
+					break;
+                }
+				compressedBuf[o + 0] |= (byte)(COMPRESS_LUT[(byte)txtBuf[c]] >> 4);
+				compressedBuf[o + 1] = (byte)(COMPRESS_LUT[(byte)txtBuf[c]] << 4);
+				c++;
+				if (c == txtBuf.Length)
+				{
+					break;
+				}
+				compressedBuf[o + 1] |= (byte)(COMPRESS_LUT[(byte)txtBuf[c]] >> 2);
+				compressedBuf[o + 2] =  (byte)(COMPRESS_LUT[(byte)txtBuf[c]] << 6);
+				c++;
+				if (c == txtBuf.Length)
+				{
+					break;
+				}
+				compressedBuf[o + 2] |= (byte)COMPRESS_LUT[(byte)txtBuf[c]];
+				c++;
+
+				o += 3;
+
+			} while (c < txtBuf.Length);
+
+			
+
+			return compressedBuf;
+		}
+
+		public string decompress(byte []compressedBuf)
+        {
+			string os = "";
+			byte cb1, cb2, cb3;
+			int d = 0;
+			do
+			{
+				cb1 = compressedBuf[d++];
+				os += DECOMPRESS_LUT[cb1 >> 2];//A
+				if (d== compressedBuf.Length)
+                {
+					break;
+                }
+				cb2 = compressedBuf[d++];
+				os += DECOMPRESS_LUT[((cb1 & 0x03) << 4) + (cb2 >> 4)];//B
+				if (d == compressedBuf.Length)
+				{
+					break;
+				}
+				cb3 = compressedBuf[d++];
+				os += DECOMPRESS_LUT[((cb2 & 0x0F) << 2) + (cb3 >> 6)];//C
+				os += DECOMPRESS_LUT[cb3 & 0x3F];//D
+
+			} while (d < compressedBuf.Length);
+			return os;
+		}
+
 		public byte[] getRadioData(int stringLength)
 		{
 			int DMR_ID_SIZE = 3;// 3 for native numbers 4 for BCD
-			byte[] radioData = new byte[stringLength + DMR_ID_SIZE];
+			int dataSize = compressSize(stringLength) + DMR_ID_SIZE;
+			dataSize = stringLength + DMR_ID_SIZE;
+			byte[] radioData = new byte[dataSize];
 			if (DMRId != 0)
 			{
 				byte[] displayBuf;
+				/*
 				if (stringLength > 8)
 				{
 					displayBuf = Encoding.UTF8.GetBytes(Callsign + " " + Details); 
@@ -93,9 +201,28 @@ namespace DMR
 				else
 				{
 					displayBuf = Encoding.UTF8.GetBytes(Callsign);
-				}
+				}*/
 
-				Array.Copy(displayBuf, 0, radioData, DMR_ID_SIZE, Math.Min(stringLength, displayBuf.Length));
+				string txtBuf = Callsign + " " + Details;
+
+
+				displayBuf = Encoding.UTF8.GetBytes(txtBuf);
+
+				byte[] compressedBuf;//= new byte[compressedLength];
+
+
+
+				compressedBuf = compress(txtBuf.Substring(0, Math.Min(txtBuf.Length,stringLength)));
+
+
+				string os = decompress(compressedBuf);
+
+//				Console.WriteLine(compressedBuf.Length + " |" + os + "|");
+				
+
+				//Array.Copy(displayBuf, 0, radioData, DMR_ID_SIZE, Math.Min(stringLength, displayBuf.Length));
+
+				Array.Copy(compressedBuf, 0, radioData, DMR_ID_SIZE, compressedBuf.Length);
 
 				if (DMR_ID_SIZE == 4)
 				{
