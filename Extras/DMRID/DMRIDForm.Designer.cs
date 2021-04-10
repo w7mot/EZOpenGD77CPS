@@ -43,6 +43,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.cmbRadioType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.chkUseVPMemory = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -209,11 +210,23 @@
             this.label1.Text = "Radio";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // chkUseVPMemory
+            // 
+            this.chkUseVPMemory.AutoSize = true;
+            this.chkUseVPMemory.Location = new System.Drawing.Point(409, 145);
+            this.chkUseVPMemory.Name = "chkUseVPMemory";
+            this.chkUseVPMemory.Size = new System.Drawing.Size(150, 17);
+            this.chkUseVPMemory.TabIndex = 15;
+            this.chkUseVPMemory.Text = "Use Voice Prompt memory";
+            this.chkUseVPMemory.UseVisualStyleBackColor = true;
+            this.chkUseVPMemory.CheckedChanged += new System.EventHandler(this.chkUseVPMemory_CheckedChanged);
+            // 
             // DMRIDForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(606, 422);
+            this.Controls.Add(this.chkUseVPMemory);
             this.Controls.Add(this.cmbRadioType);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblRegionId);
@@ -255,5 +268,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox cmbRadioType;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chkUseVPMemory;
     }
 }

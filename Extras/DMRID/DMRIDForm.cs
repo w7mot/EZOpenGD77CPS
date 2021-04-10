@@ -318,7 +318,7 @@ namespace DMR
 			get
 			{
 				int[] memorySizes =  { 0x88000, 0x88000 + 0x100000, 0x88000, 0x88000 + 0x700000 };
-				return (memorySizes[Math.Max(0,cmbRadioType.SelectedIndex)] - HEADER_LENGTH) / (DMRDataItem.compressSize(_stringLength) + ID_NUMBER_SIZE);
+				return (memorySizes[Math.Max(0,cmbRadioType.SelectedIndex)] - HEADER_LENGTH + (chkUseVPMemory.Checked?0x28C00:0)) / (DMRDataItem.compressSize(_stringLength) + ID_NUMBER_SIZE);
 			}
 		}
 
@@ -340,6 +340,8 @@ namespace DMR
 					dmrIdMemorySize = 0x88000;//544k
 					break;
 			}
+
+			dmrIdMemorySize += (chkUseVPMemory.Checked ? 0x28C00 : 0);
 
 			int recordSize = DMRDataItem.compressSize(_stringLength) + ID_NUMBER_SIZE;// _stringLength + ID_NUMBER_SIZE
 
@@ -744,7 +746,14 @@ namespace DMR
 
 			if (ID_NUMBER_SIZE == 3)
 			{
-				SIG_PATTERN_BYTES[2] = (byte)'N';
+				if (chkUseVPMemory.Checked)
+				{
+					SIG_PATTERN_BYTES[2] = (byte)'n';// signal use VP memory to the firmware
+				}
+				else
+                {
+					SIG_PATTERN_BYTES[2] = (byte)'N';
+				}
 			}
 
 			int recordLength = DMRDataItem.compressSize(_stringLength) + ID_NUMBER_SIZE;
@@ -762,7 +771,7 @@ namespace DMR
 			
 			int totalTransferSize = (dataObj.dataBuff.Length / 32) * 32;
 
-			int splitPoint = HEADER_LENGTH + (recordLength * ((0x40000 - HEADER_LENGTH) / recordLength));
+			int splitPoint = HEADER_LENGTH + (recordLength * ((0x40000 + - HEADER_LENGTH) / recordLength));
 
 			if (totalTransferSize > splitPoint)
             {
@@ -779,7 +788,7 @@ namespace DMR
 
 			if (totalTransferSize > 0)
             {
-				dataObj.startDataAddressInTheRadio = 0xB8000;
+				dataObj.startDataAddressInTheRadio = (chkUseVPMemory.Checked ? 0x8F400 : 0xB8000) ;
 				dataObj.localDataBufferStartPosition = localBufferPosition;// continue on from last transfer length
 				dataObj.transferLength = totalTransferSize;
 				WriteFlash(dataObj);
@@ -1005,6 +1014,11 @@ namespace DMR
 		}
 
         private void cmbRadioType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+			updateTotalNumberMessage();
+		}
+
+        private void chkUseVPMemory_CheckedChanged(object sender, EventArgs e)
         {
 			updateTotalNumberMessage();
 		}
