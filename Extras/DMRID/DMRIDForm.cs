@@ -729,75 +729,75 @@ namespace DMR
 				return;
 			}
 
-
 			RadioInfo radioInfo = readOpenGD77RadioInfo();
-			
 
-
-			// Commands to control the screen etc in the firmware
-			sendCommand(0);
-			sendCommand(1);
-			sendCommand(2, 0, 0, 3, 1, 0, "CPS");
-			sendCommand(2, 0, 16, 3, 1, 0, "Writing");
-			sendCommand(2, 0, 32, 3, 1, 0, "DMRID");
-			sendCommand(2, 0, 48, 3, 1, 0, "Database");
-			sendCommand(3);
-			sendCommand(6, 4);// flash red LED
-
-			OpenGD77CommsTransferData dataObj = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.NONE);
-			dataObj.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeWriteFlash;
-
-			if (ID_NUMBER_SIZE == 3)
+			if (radioInfo.buildDateTime != null)
 			{
-				if (chkUseVPMemory.Checked)
+				// Commands to control the screen etc in the firmware
+				sendCommand(0);
+				sendCommand(1);
+				sendCommand(2, 0, 0, 3, 1, 0, "CPS");
+				sendCommand(2, 0, 16, 3, 1, 0, "Writing");
+				sendCommand(2, 0, 32, 3, 1, 0, "DMRID");
+				sendCommand(2, 0, 48, 3, 1, 0, "Database");
+				sendCommand(3);
+				sendCommand(6, 4);// flash red LED
+
+				OpenGD77CommsTransferData dataObj = new OpenGD77CommsTransferData(OpenGD77CommsTransferData.CommsAction.NONE);
+				dataObj.mode = OpenGD77CommsTransferData.CommsDataMode.DataModeWriteFlash;
+
+				if (ID_NUMBER_SIZE == 3)
 				{
-					SIG_PATTERN_BYTES[2] = (byte)'n';// signal use VP memory to the firmware
+					if (chkUseVPMemory.Checked)
+					{
+						SIG_PATTERN_BYTES[2] = (byte)'n';// signal use VP memory to the firmware
+					}
+					else
+					{
+						SIG_PATTERN_BYTES[2] = (byte)'N';
+					}
+				}
+
+				int recordLength = DMRDataItem.compressSize(_stringLength) + ID_NUMBER_SIZE;
+
+				SIG_PATTERN_BYTES[3] = (byte)(0x4a + recordLength);
+
+				dataObj.dataBuff = GenerateUploadData(radioInfo.flashId);
+				//File.WriteAllBytes("d:\\dmrid_db_NEW.bin", dataObj.dataBuff);// Write for debugging purposes
+
+
+				int localBufferPosition = 0;
+
+				dataObj.localDataBufferStartPosition = localBufferPosition;
+				dataObj.startDataAddressInTheRadio = radioMemoryAddress;
+
+				int totalTransferSize = (dataObj.dataBuff.Length / 32) * 32;
+
+				int splitPoint = HEADER_LENGTH + (recordLength * ((0x40000 - HEADER_LENGTH) / recordLength));
+
+				if (totalTransferSize > splitPoint)
+				{
+					dataObj.transferLength = splitPoint;
 				}
 				else
-                {
-					SIG_PATTERN_BYTES[2] = (byte)'N';
+				{
+					dataObj.transferLength = totalTransferSize;
 				}
+				WriteFlash(dataObj);// transfer the first data section
+
+				totalTransferSize -= dataObj.transferLength;
+				localBufferPosition += dataObj.transferLength;
+
+				if (totalTransferSize > 0)
+				{
+					dataObj.startDataAddressInTheRadio = (chkUseVPMemory.Checked ? 0x8F400 : 0xB8000);
+					dataObj.localDataBufferStartPosition = localBufferPosition;// continue on from last transfer length
+					dataObj.transferLength = totalTransferSize;
+					WriteFlash(dataObj);
+				}
+
+				progressBar1.Value = 0;
 			}
-
-			int recordLength = DMRDataItem.compressSize(_stringLength) + ID_NUMBER_SIZE;
-
-			SIG_PATTERN_BYTES[3] = (byte)(0x4a + recordLength);
-
-			dataObj.dataBuff = GenerateUploadData(radioInfo.flashId);
-			//File.WriteAllBytes("d:\\dmrid_db_NEW.bin", dataObj.dataBuff);// Write for debugging purposes
-
-
-			int localBufferPosition = 0;
-
-			dataObj.localDataBufferStartPosition = localBufferPosition;
-			dataObj.startDataAddressInTheRadio = radioMemoryAddress;
-			
-			int totalTransferSize = (dataObj.dataBuff.Length / 32) * 32;
-
-			int splitPoint = HEADER_LENGTH + (recordLength * ((0x40000 - HEADER_LENGTH) / recordLength));
-
-			if (totalTransferSize > splitPoint)
-            {
-				dataObj.transferLength = splitPoint;
-			}
-            else
-            {
-				dataObj.transferLength = totalTransferSize;
-			}
-			WriteFlash(dataObj);// transfer the first data section
-
-			totalTransferSize -= dataObj.transferLength;
-			localBufferPosition += dataObj.transferLength;
-
-			if (totalTransferSize > 0)
-            {
-				dataObj.startDataAddressInTheRadio = (chkUseVPMemory.Checked ? 0x8F400 : 0xB8000) ;
-				dataObj.localDataBufferStartPosition = localBufferPosition;// continue on from last transfer length
-				dataObj.transferLength = totalTransferSize;
-				WriteFlash(dataObj);
-			}
-
-			progressBar1.Value = 0;
 			sendCommand(5);
 			if (_port != null)
 			{
@@ -810,6 +810,11 @@ namespace DMR
 					MessageBox.Show("Failed to close OpenGD77 comm port", "Warning");
 				}
 			}
+			if (radioInfo.buildDateTime == null)
+            {
+				MessageBox.Show("Incompatible firmware. Please update the firmware in your radio", "Error");
+			}
+
 		}
 
 		private void dataGridView1_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
