@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using System.Globalization;
 
 namespace DMR
 {
@@ -29,13 +28,59 @@ namespace DMR
 		public DMRDataItem FromRadioidDotNet(string CSVLine)
 		{
 			string[] arr = CSVLine.Split(',');
-			Callsign = arr[1];
-			Details = arr[2] + " " + arr[4] + " " + arr[6];// 3 is the last name and 5 is the state or region + " " + arr[6];// +" " + arr[3];
+			if (arr.Length < 3)
+            {
+				return null;
+            }
+
 			DMRIdString = arr[0];
 			DMRId = Int32.Parse(arr[0]);
+			Callsign = arr[1];
+			Details = arr[2];
+
+
+
+			if (arr.Length >= 5)
+			{
+				Details += " " + arr[4];
+			}
+            else
+            {
+				return this;
+            }
+
+			if (arr.Length >= 7)
+			{
+				Details += " " + arr[6];
+			}
+
+			for (int i = 0; i < Details.Length; i++)
+			{
+				if ((int)Details[i] >= 128)
+				{
+					Details = RemoveDiacritics(Details);
+				}
+			}
 			return this;
 		}
 
+
+		static string RemoveDiacritics(string text)
+		{
+			var normalizedString = text.Normalize(NormalizationForm.FormD);
+			var stringBuilder = new StringBuilder();
+
+			foreach (var c in normalizedString)
+			{
+				var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+				if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+				{
+					stringBuilder.Append(c);
+				}
+			}
+
+			return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
+		}
 		private byte Int8ToBCD(int val)
 		{
 			int hi = val / 10;
@@ -81,6 +126,13 @@ namespace DMR
 		// Convert to format to send to the radio (GD-77)
 		public byte [] compress(string txtBuf)
         {
+			for(int i=0;i< txtBuf.Length;i++)
+            {
+				if (txtBuf[i] > 'z')
+                {
+					Console.WriteLine((int)txtBuf[i] + " " + txtBuf[i]);
+                }
+            }
 			byte[] compressedBuf = new byte[compressSize(txtBuf.Length)];
 
 			int o = 0;
@@ -162,25 +214,9 @@ namespace DMR
 			byte[] radioData = new byte[dataSize];
 			if (DMRId != 0)
 			{
-
-/* 
-	* I can't see a need to make a distinction of what goes into the text depending on the selected length
-if (stringLength > 8)
-{
-	displayBuf = Encoding.UTF8.GetBytes(Callsign + " " + Details); 
-}
-else
-{
-	displayBuf = Encoding.UTF8.GetBytes(Callsign);
-}*/
-
 				string txtBuf = Callsign + " " + Details;
 
-				byte[] compressedBuf;//= new byte[compressedLength];
-
-
-
-				compressedBuf = compress(txtBuf.Substring(0, Math.Min(txtBuf.Length,stringLength)));
+				byte[] compressedBuf = compress(txtBuf.Substring(0, Math.Min(txtBuf.Length,stringLength)));
 
 /*
  * debugging only
@@ -188,26 +224,12 @@ else
 				Console.WriteLine(compressedBuf.Length + " |" + os + "|");
 */				
 
-				//Array.Copy(displayBuf, 0, radioData, DMR_ID_SIZE, Math.Min(stringLength, displayBuf.Length));
-
 				Array.Copy(compressedBuf, 0, radioData, DMR_ID_SIZE, compressedBuf.Length);
 
-				if (DMR_ID_SIZE == 4)
-				{
-					int dmrid = DMRId;
-					for (int i = 0; i < 4; i++)
-					{
-						radioData[i] = Int8ToBCD(dmrid % 100);
-						dmrid /= 100;
-					}
-				}
-				else
-                {
-					byte[] idBytes = BitConverter.GetBytes(DMRId);
-					radioData[0] = idBytes[0];
-					radioData[1] = idBytes[1];
-					radioData[2] = idBytes[2];
-				}
+				byte[] idBytes = BitConverter.GetBytes(DMRId);
+				radioData[0] = idBytes[0];
+				radioData[1] = idBytes[1];
+				radioData[2] = idBytes[2];
 			}
 			return radioData; 
 		}

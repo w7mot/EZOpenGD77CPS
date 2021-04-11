@@ -271,10 +271,13 @@ namespace DMR
 					}
 					if (csvLine.Length > 0)
 					{
-						DMRDataItem item = (new DMRDataItem()).FromRadioidDotNet(csvLine);
-						if (item.DMRIdString.IndexOf(txtRegionId.Text) == 0)
-						{
-							DataList.Add(item);
+						if (csvLine.IndexOf(txtRegionId.Text) == 0)
+						{ 
+							DMRDataItem item = (new DMRDataItem()).FromRadioidDotNet(csvLine);
+							if (item != null)
+							{
+								DataList.Add(item);
+							}
 						}
 					}
 				}
@@ -857,10 +860,13 @@ namespace DMR
 							}
 							if (csvLine.Length > 0)
 							{
-								DMRDataItem item = (new DMRDataItem()).FromRadioidDotNet(csvLine);
-								if (item.DMRIdString.IndexOf(txtRegionId.Text) == 0)
+								if (csvLine.IndexOf(txtRegionId.Text) == 0)
 								{
-									DataList.Add(item);
+									DMRDataItem item = (new DMRDataItem()).FromRadioidDotNet(csvLine);
+									if (item != null)
+									{
+										DataList.Add(item);
+									}
 								}
 							}
 						}
