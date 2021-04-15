@@ -67,14 +67,14 @@ namespace DMR
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);// Roger Clark. Added correct icon on main form!
 
             FirmwareLoader.outputType = FirmwareLoader.OutputType.OutputType_GD77;// FirmwareLoader.OutputType.OutputType_UNKNOWN;// FirmwareLoader.probeModel();
-                                                                                  /*
-                                                                                              if ((FirmwareLoader.outputType < FirmwareLoader.OutputType.OutputType_GD77) || (FirmwareLoader.outputType > FirmwareLoader.OutputType.OutputType_DM1801))
-                                                                                              {
-                                                                                                  MessageBox.Show("Error: Unable to detect your radio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                                                                  FirmwareLoader.outputType = FirmwareLoader.OutputType.OutputType_GD77;
-                                                                                              }
-                                                                                              this.rbModels[(int)FirmwareLoader.outputType].Checked = true;
-                                                                                   * */
+            /*
+                        if ((FirmwareLoader.outputType < FirmwareLoader.OutputType.OutputType_GD77) || (FirmwareLoader.outputType > FirmwareLoader.OutputType.OutputType_DM1801))
+                        {
+                            MessageBox.Show("Error: Unable to detect your radio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            FirmwareLoader.outputType = FirmwareLoader.OutputType.OutputType_GD77;
+                        }
+                        this.rbModels[(int)FirmwareLoader.outputType].Checked = true;
+            * */
         }
 
 
@@ -428,7 +428,7 @@ namespace DMR
         private void btnDownloadFirmware_Click(object sender, EventArgs e)
         {
 
-            Uri uri = new Uri("https://api.github.com/repos/rogerclarkmelbourne/opengd77/releases");//https://github.com/rogerclarkmelbourne/OpenGD77/releases");
+            Uri uri = new Uri("https://api.github.com/repos/libredmr/opengd77_releases/releases");//https://api.github.com/repos/rogerclarkmelbourne/opengd77/releases");
 
             if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
             {

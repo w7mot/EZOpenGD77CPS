@@ -35,7 +35,7 @@ namespace DMR
 					break;
 			}
 
-			if (Settings.LanguageFile == "Japanese.xml")
+			if ((Settings.LanguageFile == "Japanese.xml") && (FirmwareLoader.outputType != FirmwareLoader.OutputType.OutputType_GD77S))
             {
 				patternFormat += "_JA";
 			}
