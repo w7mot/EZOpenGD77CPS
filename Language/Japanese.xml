@@ -53,7 +53,7 @@
 		<Controls>
 			<Control Id="btnCopy" Text=">>" />
 			<Control Id="lblSquelch" Text="スケルチ" />
-			<Control Id="lblSql" Text="OpenGD77 スケルチレベル" />
+			<Control Id="lblSql" Text="EZ OpenGD77 スケルチレベル" />
 			<Control Id="grpDigit" Text="デジタル" />
 			<Control Id="lblTimingPreference" Text="タイミング設定" />
 			<Control Id="lblRepeaterSlot" Text="レピータースロット" />
@@ -365,7 +365,7 @@
 	<HelpForm Text="HelpView">
 		<Controls />
 	</HelpForm>
-	<MainForm Text="OpenGD77 CPS">
+	<MainForm Text="EZ OpenGD77 CPS">
 		<TreeView>
 			<TreeNode Id="Model" Text="GD-77" />
 			<TreeNode Id="BasicInfo" Text="バンド制限" />
@@ -443,7 +443,7 @@
       <MenuItem Id="tsmiDMRID" Text="コールサイン情報ダウンロード" />
       <MenuItem Id="tsmiCalibration" Text="キャリブレーション" />     
       
-      <MenuItem Id="tsmiOpenGD77" Text="OpenGD77 support" />
+      <MenuItem Id="tsmiOpenGD77" Text="EZ OpenGD77 support" />
       <MenuItem Id="tsmiFirmwareLoader" Text="ファームウェアローダー" />    
     </MenuStrip>
 		<ContextMenuStrip>
@@ -842,7 +842,7 @@
       <Control Id="btnClear" Text="消去" />      
     </Controls>
   </DMRIDForm>
-<OpenGD77Form Text="OpenGD77 Support">
+<OpenGD77Form Text="EZ OpenGD77 Support">
     <Controls>
       <Control Id="btnBackupEEPROM" Text="EEPROMバックアップ" />
       <Control Id="btnBackupFlash" Text="Flashバックアップ" />

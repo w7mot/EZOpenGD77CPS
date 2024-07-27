@@ -437,7 +437,7 @@
       <MenuItem Id="tsmiDMRID" Text="Download callsigns database" />
       <MenuItem Id="tsmiCalibration" Text="Calibration" />
 
-      <MenuItem Id="tsmiOpenGD77" Text="OpenGD77 support" />
+      <MenuItem Id="tsmiOpenGD77" Text="EZ OpenGD77 support" />
       <MenuItem Id="tsmiFirmwareLoader" Text="Firmware loader" />
     </MenuStrip>
 		<ContextMenuStrip>
@@ -747,7 +747,7 @@
       <Control Id="btnClear" Text="Clear" />
     </Controls>
   </DMRIDForm>
-  <OpenGD77Form Text="OpenGD77 Support">
+  <OpenGD77Form Text="EZ OpenGD77 Support">
     <Controls>
       <Control Id="btnBackupEEPROM" Text="Backup EEPROM" />
       <Control Id="btnBackupFlash" Text="Backup Flash" />
@@ -778,7 +778,7 @@
         <Item Id="Downloading_Screengrab" Text="Downloading Screengrab" />
         <Item Id="Writing_Voice_prompts" Text="Writing voice prompts" />
         <Item Id="Upload_complete" Text="Upload complete" />
-        <Item Id="No_com_port" Text="No com port. Close and reopen the OpenGD77 window to select a com port Are you sure you want to restore the EEPROM from a previously saved file?" />
+        <Item Id="No_com_port" Text="No com port. Close and reopen the EZ OpenGD77 window to select a com port Are you sure you want to restore the EEPROM from a previously saved file?" />
         <Item Id="Warning" Text="Warning" />
         <Item Id="The_file_is_not_the_correct_size." Text="The file is not the correct size." />
         <Item Id="Are_you_sure_you_want_to_restore_the_Calibartion_from_a_previously_saved_file" Text="Are you sure you want to restore the Calibartion from a previously saved file?" />

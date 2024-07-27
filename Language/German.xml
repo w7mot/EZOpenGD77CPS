@@ -363,7 +363,7 @@
 	<HelpForm Text="Hilfe">
 		<Controls />
 	</HelpForm>
-	<MainForm Text="OpenGD77 CPS">
+	<MainForm Text="EZ OpenGD77 CPS">
 		<TreeView>
 			<TreeNode Id="Model" Text="GD-77" />
 			<TreeNode Id="BasicInfo" Text="Bandgrenzen" />
@@ -439,7 +439,7 @@
       <MenuItem Id="tsmiContactsDownload" Text="Kontakte herunterladen" />
       <MenuItem Id="tsmiDMRID" Text="DMR ID-Liste herunterladen" />
       <MenuItem Id="tsmiCalibration" Text="Kalibrierungsanzeige" />
-			<MenuItem Id="tsmiOpenGD77" Text="OpenGD77 support" />
+			<MenuItem Id="tsmiOpenGD77" Text="EZ OpenGD77 support" />
 			<MenuItem Id="tsmiFirmwareLoader" Text="Firmware aktualisieren" />
     </MenuStrip>
 		<ContextMenuStrip>
@@ -759,7 +759,7 @@
       <Control Id="btnClear" Text="Löschen liste" />
     </Controls>
   </DMRIDForm>
-  <OpenGD77Form Text="OpenGD77 Support">
+  <OpenGD77Form Text="EZ OpenGD77 Support">
     <Controls>
       <Control Id="btnBackupEEPROM" Text="EEPROM Backup" />
       <Control Id="btnBackupFlash" Text="Flash Backup" />
@@ -790,7 +790,7 @@
         <Item Id="Downloading_Screengrab" Text="Screenshot herunterladen" />
         <Item Id="Writing_Voice_prompts" Text="Schreibe voice prompts" />
         <Item Id="Upload_complete" Text="Upload komplett" />
-        <Item Id="No_com_port" Text="Com Port nicht verfügbar. Das OpenGD77-Fenster neu öffnen, um einen  Port zu wählen  Sind sie sicher das sie das EEPROM mit einer früher gesicherten Datei wiederherstellen möchten?" />
+        <Item Id="No_com_port" Text="Com Port nicht verfügbar. Das EZ OpenGD77-Fenster neu öffnen, um einen  Port zu wählen  Sind sie sicher das sie das EEPROM mit einer früher gesicherten Datei wiederherstellen möchten?" />
         <Item Id="Warning" Text="Warnung" />
         <Item Id="The_file_is_not_the_correct_size." Text="Die Datei hat nicht die korrekte Größe" />
         <Item Id="Are_you_sure_you_want_to_restore_the_Calibartion_from_a_previously_saved_file" Text="Sind sie sicher das sie die Kalibration mit einer früher gesicherten Datei wiederherstellen möchten?" />

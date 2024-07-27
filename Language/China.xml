@@ -53,7 +53,7 @@
     <Controls>
       <Control Id="btnCopy" Text=">>" />
       <Control Id="lblSquelch" Text="静噪" />
-      <Control Id="lblSql" Text="OpenGD77静噪水平" />
+      <Control Id="lblSql" Text="EZ OpenGD77静噪水平" />
       <Control Id="grpDigit" Text="数字" />
       <Control Id="lblTimingPreference" Text="Timing Leader Prefernce" />
       <Control Id="lblRepeaterSlot" Text="中继时隙" />
@@ -620,7 +620,7 @@
     <Controls>
       <Control Id="btnCopy" Text=">>" />
       <Control Id="lblSquelch" Text="静噪" />
-      <Control Id="lblSql" Text="OpenGD77静噪水平" />
+      <Control Id="lblSql" Text="EZ OpenGD77静噪水平" />
       <Control Id="grpDigit" Text="数字" />
       <Control Id="lblTimingPreference" Text="Timing Leader Prefernce" />
       <Control Id="lblRepeaterSlot" Text="中继台时隙" />
